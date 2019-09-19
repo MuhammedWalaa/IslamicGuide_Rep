@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+@{
+    /**/
+
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    var langDir = langCode == "ar" ? "rtl" : "ltr";
+}
+<html dir="@(langDir)"
+      lang="@(langCode)">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HOME PAGE</title>
+    <!--BOOTSTRAP CSS-->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/ar-css/ar-style.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/animate.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/audio.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/chosen.min.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/color.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/component.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/demo-page.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/hover.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/jQuery-plugin-progressbar.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/jquery.bxslider.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/prettyphoto.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/shotcode.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/sidebar-widget.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/slick-theme.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/slick.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/typography.css" rel="stylesheet" />
+    <link href="~/Content/ar-css/ar-style.css" rel="stylesheet" />
+
+
+
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/slick.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/jquery.bxslider.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/audio.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/prettyphoto.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/demo-page.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="css/component.css" rel="stylesheet">
+    <!--fontawseme CSS-->
+    <link href="~/Content/css/hover.css" rel="stylesheet">
+    <!--fontawse~/Content/me CSS-->
+    <link href="~/Content/css/jQuery-plugin-progressbar.css" rel="stylesheet">
+    <!--fontawse~/Content/me CSS-->
+    <link href="~/Content/css/chosen.min.css" rel="stylesheet">
+    <!--fontawse~/Content/me CSS-->
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <!--fontawse~/Content/me CSS-->
+    <link href="~/Content/css/slick-theme.css" rel="stylesheet">
+    <!--THEME TY~/Content/PO CSS-->
+    <link href="~/Content/css/typography.css" rel="stylesheet">
+    <!--THEME TY~/Content/PO CSS-->
+    <link href="~/Content/css/shotcode.css" rel="stylesheet">
+    <!--THEME TYPO CSS-->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!--svg-icon CSS-->
+    <link rel="stylesheet" href="~/Content/svg-icon.css">
+    <!--COLOR CSS-->
+    <link rel="stylesheet" href="~/Content/css/color.css">
+    <!--COLOR CSS-->
+
+    @if (langCode == "ar")
+    {
+        <link href="~/Content/styleAr.css" rel="stylesheet" />
+    }
+
+</head>
+<body dir="@(langDir)"
+      lang="@(langCode)">
+    <div class="wraper">
+        <header>
+            <!--KODE TOP WRAP START-->
+            <div class="kode_top_wrap">
+                <!--CONTAINER START-->
+                <div class="container">
+                    <!--ROW START-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!--KODE TOP INFO START-->
+                            <div class="kode_top_info">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>example@example.com</a></li>
+                                    <li><a href="#"><i class="fa icon-technology"></i>00000000000</a></li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <button style="direction : ltr !important" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                @if (langCode == "en")
+                                                {
+                                                    <img style="width:20px !important"  src="~/Content/images/en.svg" alt=""><p style="display:inline-block">EN</p>
+                                                }
+                                                else
+                                                {
+                                                    <img style="width:20px !important" src="~/Content/images/ar.svg" alt=""><p style="display:inline-block">AR</p>
+                                                }
+                                                    <span class="fa fa-angle-down"></span>
+                                                </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                <li><a href="@Url.Action("SetLanguage","Home",new {lang ="en"})"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
+                                                <li><a href="@Url.Action("SetLanguage","Home",new {lang ="ar"})"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--KODE TOP INFO END-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="kode_top_right_text">
+
+                                <form method="post" id="commentform" class="comment-form">
+                                    <div class="kf_commet_field">
+                                        <input placeholder="@Resources.LayoutResource.Search" name="author" type="text" value="" data-default="Name*" required="">
+                                        <button><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ROW END-->
+                </div>
+                <!--CONTAINER END-->
+            </div>
+            <!--KODE TOP WRAP END-->
+            <!--KODE TOP LOGO WRAP START-->
+            <div class="kode_top_logo_wrap them_overlay">
+                <!--CONTAINER START-->
+                <div class="container">
+                    <div class="top_logo">
+                        <h1><a href="#"><img style="vertical-align:unset;" src="~/Content/images/top-logo.png" alt="kodeforest"></a></h1>
+                    </div>
+                    <div class="top_time_circle">
+                        <ul class="ulSalah">
+                            <li><a href="#">@Resources.LayoutResource.Fajr</a><span>5:30</span></li>
+                            <li><a href="#">@Resources.LayoutResource.Dhur</a><span>1:30</span></li>
+                            <li><a href="#">@Resources.LayoutResource.Asar</a><span>5:00</span></li>
+                            <li><a href="#">@Resources.LayoutResource.Magrib</a><span>6:30</span></li>
+                            <li><a href="#">@Resources.LayoutResource.Isha</a><span>8:00</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--CONTAINER END-->
+            </div>
+            <!--KODE TOP LOGO WRAP END-->
+            <!--KODE NAVIGATION WRAP START-->
+            <div class="kode_navigation_wrap">
+                <!--CONTAINER START-->
+                <div class="container">
+                    <div class="navigation">
+                        <ul>
+                            <li>@Html.ActionLink(Resources.LayoutResource.Home, "Index", "Home")</li>
+                            <li>
+                                <a href="#">@Resources.LayoutResource.Services</a>
+                                <ul class="kode">
+                                    <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic")</li>
+                                    <li>@Html.ActionLink(Resources.LayoutResource.Books, "Index", "book")</li>
+                                    <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
+                                </ul>
+                            </li>
+                            <li><a href="about-us.html">@Resources.LayoutResource.AboutUs</a></li>
+                            <li><a href="contact-us.html">@Resources.LayoutResource.ContactUs</a></li>
+                        </ul>
+                        <!--DL Menu Start-->
+                        <div id="kode-responsive-navigation" class="dl-menuwrapper">
+                            <button class="dl-trigger">Open Menu</button>
+                            <ul class="dl-menu">
+                                <li>
+                                    <a class="active" href="#">Home</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="index-2.html">DEFULT HOME</a></li>
+                                        <li><a href="index-1.html">Home page 02</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu"><a href="about-us.html">About Us</a></li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Services</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="service.html">service</a></li>
+                                        <li><a href="service-01.html">service 01</a></li>
+                                        <li><a href="service02.html">service 02</a></li>
+                                        <li><a href="service-detail.html">service detail</a></li>
+                                        <li><a href="service-sidebar.html">service sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Projects</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="project.html">project</a></li>
+                                        <li><a href="project-01.html">project 01</a></li>
+                                        <li><a href="project-list.html">project list</a></li>
+                                        <li><a href="project-detail.html">project detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">blog</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="blog.html">blog</a></li>
+                                        <li><a href="blog01.html">blog 01</a></li>
+                                        <li><a href="blog-detail.html">blog detail</a></li>
+                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">portfolio</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="portfolio.html">portfolio</a></li>
+                                        <li><a href="portfolio-01.html">portfolio 01</a></li>
+                                        <li><a href="portfolio-02.html">portfolio 02</a></li>
+                                        <li><a href="portfolio-detail.html">portfolio detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item kode-parent-menu">
+                                    <a href="#">Pages</a>
+                                    <ul class="dl-submenu">
+                                        <li class="dl-back"><a href="#">back</a></li>
+                                        <li><a href="event.html">event</a></li>
+                                        <li><a href="404.html">404 page</a></li>
+                                        <li><a href="shop.html">shop page</a></li>
+                                        <li><a href="coming-soon.html">coming soon</a></li>
+                                        <li><a href="event-detail.html">event detail</a></li>
+                                        <li><a href="event-sidebar.html">event sidebar</a></li>
+                                        <li><a href="team-detail.html">team detail</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">contact Us</a></li>
+                            </ul>
+                        </div>
+                        <!--DL Menu END-->
+                    </div>
+                </div>
+                <!--CONTAINER END-->
+            </div>
+            <!--KODE NAVIGATION WRAP END-->
+        </header>
+
+        <div class="kode_mosques_wrap">
+            @RenderBody()
+        </div>
+        <div class="kode_newsletter_wrap">
+            <!--CONTAINER START-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="kode_newsletter_des">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <div class="kode_newsletter_text">
+                                <h5><a href="#">@Resources.LayoutResource.Newsletter</a></h5>
+                                <p>@Resources.LayoutResource.Newsletterupdate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="kode_newsletter_form">
+                            <form>
+                                <div class="kf_commet_field">
+                                    <input placeholder="@Resources.LayoutResource.Entermail" name="url" type="text" value="" data-default="Website" size="30" required>
+                                    <button class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CONTAINER END-->
+        </div>
+        <!--KODE NEWSLETTER WRAP END-->
+
+
+        <footer>
+            <!--WIDGET WRAP START-->
+            <div class="widget_wrap them_overlay">
+                <!--CONTAINER START-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="widget_logo">
+                                <a href="#"><img src="images/footer-logo.png" alt=""></a>
+                                <p>There are many variations of passages of Lorem Ipsum availableThere are many variations of passages of Lorem Ipsum available...</p>
+                                <ul class="widget_call_info">
+                                    <li><a href="#"><i class="fa fa-map-marker"></i>@Resources.LayoutResource.Location</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i>0000000000</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>example@example.com</a></li>
+                                </ul>
+                                <ul class="widget_social_icon">
+                                    <li><a class="hvr-ripple-out" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="hvr-ripple-out" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="hvr-ripple-out" href="#"><i class="fa fa-vimeo"></i></a></li>
+                                    <li><a class="hvr-ripple-out" href="#"><i class="fa fa-camera-retro"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="widget_event">
+                                <h4 class="widget_title">@Resources.LayoutResource.Getintouch</h4>
+                                <form method="post" class="comment-form">
+                                    <div class="kode-left-comment-sec">
+                                        <div class="kf_commet_field">
+                                            <input placeholder="@Resources.LayoutResource.Yname" name="author" type="text" value="" data-default="Name*" size="30" required>
+                                        </div>
+                                        <div class="kf_commet_field">
+                                            <input placeholder="@Resources.LayoutResource.Yemail" name="email" type="text" value="" data-default="Email*" size="30" required>
+                                        </div>
+                                    </div>
+                                    <div class="kode_textarea">
+                                        <textarea placeholder="@Resources.LayoutResource.Ymessage" name="comment"></textarea>
+                                    </div>
+                                    <button name="submit" type="submit" class="medium_btn bg_transparent border btn_hover">@Resources.LayoutResource.Submitnow</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--CONTAINER END-->
+            </div>
+            <!--WIDGET WRAP END-->
+            <!--WIDGET COPYRIGHT START-->
+            <div class="widget_copyright">
+                <!--CONTAINER START-->
+                <div class="container">
+                    <div class="copyright_text">
+                        <p>@Resources.LayoutResource.Copyrights</p>
+                        <a id="child-topbtn" class="top_btn hvr-wobble-vertical" href="#"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!--CONTAINER END-->
+            </div>
+            <!--WIDGET COPYRIGHT END-->
+        </footer>
+
+    </div>
+    <!--JavaScript-->
+    <script src="~/Content/js/jquery.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/bootstrap.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/slick.min.js"></script>
+    <!--js/jquery~/Content/.downCount.js start-->
+    <script src="~/Content/js/wow.min.js"></script>
+    <!--BOOTSTRAP JavaScript-->
+    <script src="~/Content/js/jquery.bxslider.min.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/jQuery-plugin-progressbar.js"></script>
+    <!--BOOTSTRAP JavaScript-->
+    <script src="~/Content/js/chosen.jquery.min.js"></script>
+    <!--js/jquery~/Content/.downCount.js start-->
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <!--js/jquery~/Content/.downCount.js start-->
+    <script src="~/Content/js/jquery.dlmenu.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/musicplayer.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/jquery.prettyphoto.js"></script>
+    <!--js/jquery~/Content/.downCount.js start-->
+    <script src="~/Content/js/jquery.downCount.js"></script>
+    <!--BOOTSTRAP~/Content/ JavaScript-->
+    <script src="~/Content/js/waypoints-min.js"></script>
+    <!--CUSTOM JavaScript-->
+    <script src="~/Content/js/custom.js"></script>
+</body>
+</html>  

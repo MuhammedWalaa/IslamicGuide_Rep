@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+}
+<!--KODE SAB BANNER WRAP START-->
+<div class="kode_sab_banner_wrap them_overlay">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="sab_banner_text">
+            <h2>@Resources.LayoutResource.Positions</h2>
+            <ul class="breadcrumbs">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><strong>@Resources.LayoutResource.Readingprinciples</strong></li>
+            </ul>
+        </div>
+    </div>
+    <!--CONTAINER END-->
+</div>
+<!--KODE SAB BANNER WRAP END-->
+<!--KODE EVENT WRAP START-->
+<div class="kode_event_wrap">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="kode_event_detail">
+            <ul>
+                <li>
+                    <div class="event_date">
+                        <span>15</span>
+                        <p></p>
+                    </div>
+                    <div class="kode_calender_list">
+                        <div class="kode_event_text">
+                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
+
+                        </div>
+                    </div>
+                    <div class="kode_event_ticket">
+                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="event_date">
+                        <span>15</span>
+                        <p></p>
+                    </div>
+                    <div class="kode_calender_list">
+                        <div class="kode_event_text">
+                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
+
+                        </div>
+                    </div>
+                    <div class="kode_event_ticket">
+                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                    </div>
+                </li>
+
+
+
+
+
+            </ul>
+        </div>
+        <!--KODE PAGINATION LIST START-->
+        <div class="kode_pagination_list navi_2">
+            <ul class="kode_pagination">
+                <li>
+                    <a class="prve" href="#">
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        @Resources.LayoutResource.Previous
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li>
+                    <a class="next" href="#">
+                        @Resources.LayoutResource.Next
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                    </a>
+            </li>
+        </ul>
+    </div>
+    <!--KODE PAGINATION LIST END-->
+</div>
+<!--CONTAINER END-->
+</div>
+<!--KODE EVENT WRAP END-->

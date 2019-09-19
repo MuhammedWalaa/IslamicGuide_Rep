@@ -1,0 +1,35 @@
+﻿.col-md-10 {
+    float: right;
+}
+.col-md-6 {
+    float: right;
+}
+.col-md-4 {
+    float: right;
+}
+.col-md-2 {
+    float: right;
+}
+.alignselect {
+    direction: rtl;
+    float: right;
+}
+    /*arrows left to right  اي سهم مشاور يمين يبقي شمال و العكس */
+    .kode_event_ticket{
+    float : right;
+}
+.ulSalah{
+    padding-right:100px ;
+}
+.kode_newsletter_form .kf_commet_field input{
+    float:none;
+}
+.kode_top_right_text{
+    float:left;
+}
+.kode_event_detail li:last-child {
+    display: inline-flex;
+}
+.event_date{
+    position : unset;
+}

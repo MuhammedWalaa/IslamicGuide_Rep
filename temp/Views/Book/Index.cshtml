@@ -1,0 +1,109 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--KODE SAB BANNER WRAP START-->
+<div class="kode_sab_banner_wrap them_overlay">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="sab_banner_text">
+            <h2>@Resources.LayoutResource.Books</h2>
+            <ul class="breadcrumbs">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><strong>@Resources.LayoutResource.Books</strong></li>
+            </ul>
+        </div>
+    </div>
+    <!--CONTAINER END-->
+</div>
+
+<div class="kode_navigation_wrap">
+    <div class="container">
+        <div dir="rtl" class="navigation">
+            <select class="kode alignselect">
+                <option selected> @Html.ActionLink(Resources.LayoutResource.Book1, "Index", "SubTopic")</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div style="padding:0px;" class="kode_blog_madium_wrap detail width_res">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="@Url.Action("Index", "SubTopic")">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "SubTopic")"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service1.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service2.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service3.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service4.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service5.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
+                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center" class="koed_banner_btn">
+                <a style="color:black" class="medium_btn border margin-right-1 btn_hover" href="#">@Resources.LayoutResource.Showmore</a>
+            </div>
+        </div>
+       
+    </div>
+    
+</div>
+
