@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace temp.Controllers
+namespace IslamicGuide.App.Controllers
 {
     public class BaseController : Controller
     {
@@ -151,7 +151,7 @@ namespace temp.Controllers
 
         //public void ShowSuccessMessage()
         //{
-        //    TempData["ValidationMessage"] = new ValidationMessage()
+        //    IslamicGuide.AppData["ValidationMessage"] = new ValidationMessage()
         //    {
         //        Message = GeneralResource.GeneralSuccessMessage,
         //        Success = true
@@ -188,7 +188,7 @@ namespace temp.Controllers
         //}
         //public void ShowErrorMessage(string errorMessage)
         //{
-        //    TempData["ValidationMessage"] = new ValidationMessage()
+        //    IslamicGuide.AppData["ValidationMessage"] = new ValidationMessage()
         //    {
         //        Message = string.IsNullOrEmpty(errorMessage) ? GeneralResource.GeneralErrorMessage : errorMessage,
         //        Success = false
@@ -197,7 +197,7 @@ namespace temp.Controllers
 
         //public void ShowSuccessMessage(string Successmessage)
         //{
-        //    TempData["ValidationMessage"] = new ValidationMessage()
+        //    IslamicGuide.AppData["ValidationMessage"] = new ValidationMessage()
         //    {
         //        Message = string.IsNullOrEmpty(Successmessage) ? GeneralResource.GeneralSuccessMessage : Successmessage,
         //        Success = true

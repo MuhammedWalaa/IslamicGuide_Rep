@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace temp.Controllers
+namespace IslamicGuide.App.Controllers
 {
 
     public class HomeController : BaseController 

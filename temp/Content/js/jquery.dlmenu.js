@@ -225,7 +225,7 @@
 				var instance = $.data( this, 'dlmenu' );
 				if ( !instance ) {
 					logError( "cannot call methods on dlmenu prior to initialization; " +
-					"attempted to call method '" + options + "'" );
+					"atIslamicGuide.Appted to call method '" + options + "'" );
 					return;
 				}
 				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {

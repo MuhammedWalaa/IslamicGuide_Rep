@@ -384,7 +384,7 @@
 
             $.each(filtrItems, function(i, e) {
                 //Set item up as Filtr object & push to array
-                var item = $(e).extend(FiltrItemProto)._init(i, self);
+                var item = $(e).extend(FiltrIIslamicGuide.Approto)._init(i, self);
                 itemsArray.push(item);
             });
             return itemsArray;
@@ -554,7 +554,7 @@
         * @return {Object[]} array of future item positions.
         * @private
         */
-        _calcItemPositions: function() {
+        _calcIIslamicGuide.Appositions: function() {
             var self  = this,
                 array = self._activeArray,
             //Container data
@@ -744,9 +744,9 @@
             //Tag gallery state as animating
             self._isAnimating = true;
             //Recalculate positions and filter in items
-            self._itemPositions = self._calcItemPositions();
+            self._iIslamicGuide.Appositions = self._calcIIslamicGuide.Appositions();
             for (var i = 0; i < arr.length; i++) {
-                arr[i]._filterIn(self._itemPositions[i]);
+                arr[i]._filterIn(self._iIslamicGuide.Appositions[i]);
             }
         },
 
@@ -764,7 +764,7 @@
         /**
         * Used to make deep copies of the predefined filters
         * in the options for the filterIn/Out methods of items.
-        * @see _filterIn and _filterOut methods in FiltrItemProto.
+        * @see _filterIn and _filterOut methods in FiltrIIslamicGuide.Approto.
         * @param {Object} obj - is the source object to make a deep copy from.
         * @return {Object} Deep copy of the obj param.
         * @private
@@ -868,7 +868,7 @@
     /**
     * FiltrItem Prototype
     */
-    var FiltrItemProto = {
+    var FiltrIIslamicGuide.Approto = {
 
         /**
         * Transforms a jQuery item with .filtr-item class into a FiltrItem.

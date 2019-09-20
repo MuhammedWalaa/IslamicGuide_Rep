@@ -2,7 +2,7 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace temp
+namespace IslamicGuide.App
 {
     public class MvcApplication : System.Web.HttpApplication
     {
