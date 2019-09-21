@@ -14,6 +14,7 @@ namespace IslamicGuide.Services.Services
 
         public List<BookGridVM> GetAllBooks()
         {
+            
             return new List<BookGridVM>();
         }
     }
