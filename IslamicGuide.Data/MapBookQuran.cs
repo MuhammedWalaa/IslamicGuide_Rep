@@ -18,7 +18,7 @@ namespace IslamicGuide.Data
         public int ParagraphID { get; set; }
         public int PositionID { get; set; }
     
-        public virtual Book Book { get; set; }
+        public virtual BookContent BookContent { get; set; }
         public virtual Position Position { get; set; }
     }
 }

@@ -1,9 +1,10 @@
-﻿
+﻿@model IEnumerable<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{ 
+@{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
 }
 <!--KODE SAB BANNER WRAP START-->
@@ -28,23 +29,25 @@
         <div class="kode_event_detail">
             <ul>
                 @*<li>
-                    <div class="event_date">
-                        <span>15</span>
-                        <p></p>
-                    </div>
-                    <div class="kode_calender_list">
-                        <div class="kode_event_text">
-                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
-                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
-
+                        <div class="event_date">
+                            <span>15</span>
+                            <p></p>
                         </div>
-                    </div>
-                    <div class="kode_event_ticket">
-                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
-                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
-                    </div>
-                </li>*@
+                        <div class="kode_calender_list">
+                            <div class="kode_event_text">
+                                <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                                <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
 
+                            </div>
+                        </div>
+                        <div class="kode_event_ticket">
+                            <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                            <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                        </div>
+                    </li>*@
+
+                @foreach (var item in Model)
+                {
                 <li>
                     <div class="event_date">
                         <span>15</span>
@@ -52,7 +55,7 @@
                     </div>
                     <div class="kode_calender_list">
                         <div class="kode_event_text">
-                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                            <h4>@Html.ActionLink(item.Title, "GetById", "subtopicpositions",new { id = item.ID },null)</h4>
                             <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
 
                         </div>
@@ -62,7 +65,7 @@
                         <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
                     </div>
                 </li>
-
+                }
 
 
 
@@ -100,11 +103,11 @@
                             <i class="fa fa-arrow-right"></i>
                         }
                     </a>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
+        <!--KODE PAGINATION LIST END-->
     </div>
-    <!--KODE PAGINATION LIST END-->
-</div>
-<!--CONTAINER END-->
+    <!--CONTAINER END-->
 </div>
 <!--KODE EVENT WRAP END-->

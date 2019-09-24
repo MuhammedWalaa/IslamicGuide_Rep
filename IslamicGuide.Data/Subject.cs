@@ -18,6 +18,7 @@ namespace IslamicGuide.Data
         public Subject()
         {
             this.MapSubjectsQurans = new HashSet<MapSubjectsQuran>();
+            this.Subjects1 = new HashSet<Subject>();
         }
     
         public int ID { get; set; }
@@ -26,5 +27,8 @@ namespace IslamicGuide.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MapSubjectsQuran> MapSubjectsQurans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subject> Subjects1 { get; set; }
+        public virtual Subject Subject1 { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IslamicGuide.Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace IslamicGuide.App.Controllers
 {
     public class TopicController : BaseController
     {
+        private readonly SubjectService _subjectService;
+        public TopicController()
+        {
+            _subjectService = new SubjectService();
+        }
         // GET: Topic
         public ActionResult Index()
         {
-            return View();
+            var subjects = _subjectService.GetAllSubjects();
+            return View(subjects);
         }
     }
 }

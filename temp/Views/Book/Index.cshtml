@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<IslamicGuide.Data.ViewModels.Books.BookGridVM>
+@{
     /**/
 
     ViewBag.Title = "Index";
@@ -22,7 +23,10 @@
     <div class="container">
         <div dir="rtl" class="navigation">
             <select class="kode alignselect">
-                <option selected> @Html.ActionLink(Resources.LayoutResource.Book1, "Index", "SubTopic")</option>
+                @foreach (var item in Model)
+                {
+                    <option selected> @Html.ActionLink(item.Title, "Index", "SubTopic/"+item.ID)</option>
+                }
             </select>
         </div>
     </div>
@@ -31,72 +35,21 @@
     <!--CONTAINER START-->
     <div class="container">
         <div class="row">
+            @foreach (var item in Model)
+            {
             <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="@Url.Action("Index", "SubTopic")">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "SubTopic")"><i class="fa fa-arrow-right"></i></a>
+                <a href="@Url.Action("Index", "SubTopic")">
+                    <div class="kode_service_des">
+                        <figure>
+                            <img src="~/Content/extra-images/service.jpg" alt="">
+                        </figure>
+                        <div class="kode_service_text">
+                            <h4><a href="@Url.Action("Index", "SubTopic/"+item.ID)">@item.Title</a></h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service1.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service2.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service3.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service4.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service5.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <h4><a href="#">@Resources.LayoutResource.IbnKasir</a></h4>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            }
             <div style="text-align:center" class="koed_banner_btn">
                 <a style="color:black" class="medium_btn border margin-right-1 btn_hover" href="#">@Resources.LayoutResource.Showmore</a>
             </div>

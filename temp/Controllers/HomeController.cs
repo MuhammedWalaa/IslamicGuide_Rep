@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IslamicGuide.Data.ViewModels.Home;
+using IslamicGuide.Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,20 @@ namespace IslamicGuide.App.Controllers
 
     public class HomeController : BaseController 
     {
+        private readonly SubjectService _subjectService;
+        private readonly BookService _bookService;
+        public HomeController()
+        {
+            _subjectService = new SubjectService();
+            _bookService = new BookService();
+        }
         public ActionResult Index()
         {
-            return View();
+            HomeVM hm = new HomeVM();
+            hm.Subject = _subjectService.GetMainSubjects();
+            hm.BookCount = _bookService.CountBooks();
+            hm.SubjectCount = _subjectService.CountSubjects();
+            return View(hm);
         }
         public ActionResult SetLanguage(string lang)
         {

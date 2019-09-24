@@ -1,4 +1,4 @@
-﻿
+﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +26,10 @@
     <div class="container">
         <div dir="rtl" class="navigation">
             <select class="kode alignselect">
-                <option selected> @Html.ActionLink(Resources.LayoutResource.Subject1, "Index", "Topic")</option>
+                @foreach (var item in Model)
+                {
+                    <option> @Html.ActionLink(item.Title, "GetById", "SubTopic",new { id = item.ID }, null)</option>
+                }
             </select>
         </div>
     </div>
@@ -35,120 +38,139 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-book"></i></span>
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service.jpg" alt="">
+                    </figure>
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
+
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service1.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-social"></i></span>
-                    @*<h4><a href="#">الأستماع للخطبة</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service1.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service2.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-people"></i></span>
-                    @*<h4><a href="#">الزواج</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service2.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service3.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-islam"></i></span>
-                    @*<h4><a href="#">التفاسير</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service3.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service4.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-monuments-1"></i></span>
-                    @*<h4><a href="#">الغسول</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service4.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service5.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-monuments"></i></span>
-                    @*<h4><a href="#">صلاة المسجد</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service5.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service6.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-art"></i></span>
-                    @*<h4><a href="#">دروس المسجد</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service6.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service7.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-people-1"></i></span>
-                    @*<h4><a href="#">دار الافتاء</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopic")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service7.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="kode_service_des">
-                <figure>
-                    <img src="~/Content/extra-images/service8.jpg" alt="">
-                </figure>
-                <div class="kode_service_text">
-                    <span><i class="fa icon-circles"></i></span>
-                    @*<h4><a href="#">الزواج الشرعي</a></h4>*@
-                    <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    <a class="right_arrow hvr-ripple-out" href="@Url.Action("Index", "subtopicpositions")"><i class="fa fa-arrow-right"></i></a>
+            <a href="@Url.Action("Index", "subtopic")">
+
+                <div class="kode_service_des">
+                    <figure>
+                        <img src="~/Content/extra-images/service8.jpg" alt="">
+                    </figure>
+
+                    <div class="kode_service_text">
+                        <span><i class="fa icon-book"></i></span>
+                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <!--KODE PAGINATION LIST START-->
         <div class="kode_pagination_list">

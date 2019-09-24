@@ -21,6 +21,7 @@ namespace IslamicGuide.Data
             this.QuranWords = new HashSet<QuranWord>();
         }
     
+        public int p_Id { get; set; }
         public int ID { get; set; }
         public string Aya { get; set; }
         public Nullable<int> SoraID { get; set; }

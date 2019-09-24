@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IslamicGuide.Data.ViewModels.Home.HomeVM
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -93,11 +95,11 @@
                         <p>here are many variations of passages of Lorem Ipsum available, but have suffered alteration in some form, by injected humour, or randomised words  of Lorem Ipsum available, but the majority have suffered alteration in some form...</p>
                         <ul class="kode_counter_mosque">
                             <li>
-                                <span class="counter">20</span>
+                                <span class="counter">@Model.BookCount</span>
                                 <h6><a href="#">@Resources.LayoutResource.Books</a></h6>
                             </li>
                             <li>
-                                <span class="counter">240</span>
+                                <span class="counter">@Model.SubjectCount</span>
                                 <h6><a href="#">@Resources.LayoutResource.Subjects</a></h6>
                             </li>
                         </ul>
@@ -202,50 +204,28 @@
         </div>
         <!--SECTION HDG END-->
         <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="#">@Resources.LayoutResource.Readingprinciples</a></h4>
-                        <p><i class="fa fa-clock-o"></i>5</p>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service1.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-social"></i></span>
-                        <h4><a href="#">@Resources.LayoutResource.Khotba</a></h4>
-                        <p><i class="fa fa-clock-o"></i> 10</p>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            @foreach (var item in Model.Subject)
+            {
+            <div class="col-md-4">
+                <a href="@Url.Action("Index", "SubTopic")">
+                    <div class="kode_service_des">
+                        <figure>
+                            <img src="~/Content/extra-images/service.jpg" alt="">
+                        </figure>
 
-            <div class="col-md-4 col-sm-6">
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service3.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-islam"></i></span>
-                        <h4><a href="#">@Resources.LayoutResource.Tafsir</a></h4>
-                        <p><i class="fa fa-clock-o"></i> 20</p>
-                        <a class="right_arrow hvr-ripple-out" href="#"><i class="fa fa-arrow-right"></i></a>
+                        <div class="kode_service_text">
+                            <h4>
+                                @Html.ActionLink(item.Title, "GetById", "SubTopic", new { id = item.ID },null)
+                            </h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
+            }
 
             <div class="col-md-12">
                 <div class="service_btn">
-                    <a class="medium_btn background-bg-dark btn_hover" href="#">@Resources.LayoutResource.Showmore</a>
+                    @Html.ActionLink("Show More", "Index", "Topic",null, new { @class = "small_btn background-bg-dark margin-right btn_hover"})
                 </div>
             </div>
         </div>
