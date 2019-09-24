@@ -11,6 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Category_English" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="BookContent">
           <Key>
@@ -22,6 +23,8 @@
           <Property Name="SouraId" Type="int" Nullable="false" />
           <Property Name="BookId" Type="int" Nullable="false" />
           <Property Name="BookContentHTML" Type="nvarchar(max)" />
+          <Property Name="BookContent_English" Type="text" />
+          <Property Name="BookContentHTML_English" Type="text" />
         </EntityType>
         <EntityType Name="Books">
           <Key>
@@ -32,6 +35,8 @@
           <Property Name="CategoryID" Type="int" />
           <Property Name="Author" Type="nvarchar" MaxLength="255" />
           <Property Name="Version" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="Author_English" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MapBookQuran">
           <Key>
@@ -68,6 +73,7 @@
           <Property Name="Aya" Type="nvarchar(max)" />
           <Property Name="SoraID" Type="int" />
           <Property Name="AyaNum" Type="int" />
+          <Property Name="Aya_English" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="QuranSuar">
           <Key>
@@ -76,6 +82,7 @@
           <Property Name="p_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title_English" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="QuranWords">
           <Key>
@@ -89,6 +96,16 @@
           <Property Name="AyaID" Type="int" />
           <Property Name="SoraID" Type="int" />
           <Property Name="AyaNum" Type="int" />
+          <Property Name="Word_English" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StaticData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Data_Arabic" Type="text" />
+          <Property Name="Data_English" Type="text" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -97,6 +114,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="ParentID" Type="int" />
+          <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -294,6 +312,7 @@
           <EntitySet Name="QuranAyat" EntityType="Self.QuranAyat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranSuar" EntityType="Self.QuranSuar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranWords" EntityType="Self.QuranWords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaticData" EntityType="Self.StaticData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -427,6 +446,7 @@
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="Subject1" EntitySet="Subjects" />
           </AssociationSet>
+          <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
         </EntityContainer>
         <EntityType Name="BookCategory">
           <Key>
@@ -435,6 +455,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Books" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="BookCategory" ToRole="Book" />
+          <Property Name="Category_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BookContent">
           <Key>
@@ -450,6 +471,8 @@
           <NavigationProperty Name="QuranAyat" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranAyat" FromRole="BookContent" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranSuar" FromRole="BookContent" ToRole="QuranSuar" />
           <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent" FromRole="BookContent" ToRole="MapBookQuran" />
+          <Property Name="BookContent_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookContentHTML_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -462,6 +485,8 @@
           <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookCategory" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="Book" ToRole="BookCategory" />
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="Book" ToRole="BookContent" />
+          <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Author_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MapBookQuran">
           <Key>
@@ -509,6 +534,7 @@
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranAyat" FromRole="QuranAyat" ToRole="BookContent" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranAyat_QuranSuar" FromRole="QuranAyat" ToRole="QuranSuar" />
           <NavigationProperty Name="QuranWords" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranAyat" FromRole="QuranAyat" ToRole="QuranWord" />
+          <Property Name="Aya_English" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuranSuar">
           <Key>
@@ -520,6 +546,7 @@
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranSuar" FromRole="QuranSuar" ToRole="BookContent" />
           <NavigationProperty Name="QuranAyats" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranAyat_QuranSuar" FromRole="QuranSuar" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranWords" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranSuar" FromRole="QuranSuar" ToRole="QuranWord" />
+          <Property Name="Title_English" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuranWord">
           <Key>
@@ -537,6 +564,7 @@
           <NavigationProperty Name="Positions1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords1" FromRole="QuranWord" ToRole="Position" />
           <NavigationProperty Name="QuranAyat" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranAyat" FromRole="QuranWord" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranSuar" FromRole="QuranWord" ToRole="QuranSuar" />
+          <Property Name="Word_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -548,6 +576,7 @@
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Subjects" FromRole="Subject" ToRole="MapSubjectsQuran" />
           <NavigationProperty Name="Subjects1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject" ToRole="Subject1" />
           <NavigationProperty Name="Subject1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject1" ToRole="Subject" />
+          <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -735,6 +764,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StaticData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -744,6 +782,7 @@
           <EntitySetMapping Name="BookCategories">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.BookCategory">
               <MappingFragment StoreEntitySet="BookCategories">
+                <ScalarProperty Name="Category_English" ColumnName="Category_English" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -752,6 +791,8 @@
           <EntitySetMapping Name="BookContents">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.BookContent">
               <MappingFragment StoreEntitySet="BookContent">
+                <ScalarProperty Name="BookContentHTML_English" ColumnName="BookContentHTML_English" />
+                <ScalarProperty Name="BookContent_English" ColumnName="BookContent_English" />
                 <ScalarProperty Name="BookContentHTML" ColumnName="BookContentHTML" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="SouraId" ColumnName="SouraId" />
@@ -764,6 +805,8 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Book">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Author_English" ColumnName="Author_English" />
+                <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
@@ -802,6 +845,7 @@
           <EntitySetMapping Name="QuranAyats">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.QuranAyat">
               <MappingFragment StoreEntitySet="QuranAyat">
+                <ScalarProperty Name="Aya_English" ColumnName="Aya_English" />
                 <ScalarProperty Name="AyaNum" ColumnName="AyaNum" />
                 <ScalarProperty Name="SoraID" ColumnName="SoraID" />
                 <ScalarProperty Name="Aya" ColumnName="Aya" />
@@ -813,6 +857,7 @@
           <EntitySetMapping Name="QuranSuars">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.QuranSuar">
               <MappingFragment StoreEntitySet="QuranSuar">
+                <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="p_Id" ColumnName="p_Id" />
@@ -822,6 +867,7 @@
           <EntitySetMapping Name="QuranWords">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.QuranWord">
               <MappingFragment StoreEntitySet="QuranWords">
+                <ScalarProperty Name="Word_English" ColumnName="Word_English" />
                 <ScalarProperty Name="AyaNum" ColumnName="AyaNum" />
                 <ScalarProperty Name="SoraID" ColumnName="SoraID" />
                 <ScalarProperty Name="AyaID" ColumnName="AyaID" />
@@ -836,6 +882,7 @@
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -858,6 +905,16 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaticDatas">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.StaticData">
+              <MappingFragment StoreEntitySet="StaticData">
+                <ScalarProperty Name="Data_English" ColumnName="Data_English" />
+                <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
