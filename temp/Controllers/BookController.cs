@@ -1,4 +1,6 @@
-﻿using IslamicGuide.Services.Services;
+﻿using IslamicGuide.Data.ViewModels.Books;
+using IslamicGuide.Services.Services;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace IslamicGuide.App.Controllers
@@ -11,10 +13,17 @@ namespace IslamicGuide.App.Controllers
             _bookService = new BookService();
         }
         // GET: Book
+        private readonly BookService _bookService;
+
+        public BookController()
+        {
+            _bookService = new BookService();
+        }
         public ActionResult Index()
         {
-            var books = _bookService.GetAllBooks();
-            return View(books);
+
+            List<BookGridVM> c = _bookService.GetAllBooks();
+            return View();
         }
 
     }

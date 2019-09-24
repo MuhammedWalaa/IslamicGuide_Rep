@@ -25,6 +25,7 @@ namespace IslamicGuide.Data
         public int p_Id { get; set; }
         public Nullable<int> ID { get; set; }
         public string Title { get; set; }
+        public string Title_English { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookContent> BookContents { get; set; }

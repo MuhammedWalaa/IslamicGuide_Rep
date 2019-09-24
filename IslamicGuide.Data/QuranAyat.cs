@@ -26,6 +26,7 @@ namespace IslamicGuide.Data
         public string Aya { get; set; }
         public Nullable<int> SoraID { get; set; }
         public Nullable<int> AyaNum { get; set; }
+        public string Aya_English { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookContent> BookContents { get; set; }

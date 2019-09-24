@@ -24,6 +24,7 @@ namespace IslamicGuide.Data
         public int ID { get; set; }
         public string Title { get; set; }
         public Nullable<int> ParentID { get; set; }
+        public string Title_English { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MapSubjectsQuran> MapSubjectsQurans { get; set; }

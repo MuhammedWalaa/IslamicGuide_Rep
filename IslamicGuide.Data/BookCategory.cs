@@ -22,6 +22,7 @@ namespace IslamicGuide.Data
     
         public int ID { get; set; }
         public string Category { get; set; }
+        public string Category_English { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }
