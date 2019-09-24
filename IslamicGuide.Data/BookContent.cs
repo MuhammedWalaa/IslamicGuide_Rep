@@ -26,6 +26,8 @@ namespace IslamicGuide.Data
         public int SouraId { get; set; }
         public int BookId { get; set; }
         public string BookContentHTML { get; set; }
+        public string BookContent_English { get; set; }
+        public string BookContentHTML_English { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual QuranAyat QuranAyat { get; set; }
