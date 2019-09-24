@@ -22,6 +22,15 @@ namespace IslamicGuide.Services.Services
             return _DbContext.Subjects.Where(x => x.ParentID == 1).Count();
 
         }
+        public SubjectVM GetSubjectById(int id)
+        {
+            SubjectVM subject = new  SubjectVM();
+
+            var subj = _DbContext.Subjects.Where(p => p.ID==id).FirstOrDefault();
+            subject.ID = subj.ID;
+            subject.Title = subj.Title;
+            return subject;
+        }
         public List<SubjectVM> GetMainSubjects()
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
@@ -39,9 +48,10 @@ namespace IslamicGuide.Services.Services
             if (id != 0)
             {
                 var subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
+                var parentTitle = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
                 foreach (var item in subSubjectList)
                 {
-                    subSubjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                    subSubjects.Add(new SubjectVM {ParentTitle= parentTitle, ID = item.ID, Title = item.Title });
                 }
             }
             //subjects

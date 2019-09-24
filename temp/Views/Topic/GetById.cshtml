@@ -1,0 +1,100 @@
+﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+}
+
+<!--KODE SAB BANNER WRAP START-->
+<div class="kode_sab_banner_wrap them_overlay">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="sab_banner_text">
+            <h2>@Resources.LayoutResource.Subjects</h2>
+            <ul class="breadcrumbs">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><strong>@Model[0].ParentTitle</strong></li>
+            </ul>
+        </div>
+    </div>
+    <!--CONTAINER END-->
+</div>
+<!--KODE SAB BANNER WRAP END-->
+<div class="kode_navigation_wrap">
+    <div class="container">
+        <div dir="rtl" class="navigation">
+            <select class="kode alignselect">
+                @foreach (var item in ViewBag.subj)
+                {
+                    <option> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+<!--CONTAINER START-->
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+
+                <a href="@Url.Action("GetById", "Topic",new { id = item.ID },null)">
+                    <div class="kode_service_des">
+                        <figure>
+                            <img src="~/Content/extra-images/service.jpg" alt="">
+                        </figure>
+
+                        <div class="kode_service_text">
+                            <h4>
+                                @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)
+                            </h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+
+        <!--KODE PAGINATION LIST START-->
+        <div class="kode_pagination_list">
+            <ul class="kode_pagination">
+                <li>
+                    <a class="prve" href="#">
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        @Resources.LayoutResource.Previous
+                    </a>
+                </li>
+
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+
+                <li>
+                    <a class="next" href="#">
+                        @Resources.LayoutResource.Next
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--KODE PAGINATION LIST END-->
+    </div>
+</div>
+<!--KODE BLOG MADIUM WRAP END-->
