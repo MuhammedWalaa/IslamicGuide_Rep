@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace IslamicGuide.Data.ViewModels.Subjects
 {
-    public class SubjectVM
+    public class SubSubjectPageVM
     {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string ParentTitle { get; set; }
+        public List<SubjectVM> subjectVM { get; set; }
+        public List<SubjectVM> subjectsDropdown { get; set; }
     }
 }

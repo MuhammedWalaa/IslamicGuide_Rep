@@ -1,4 +1,4 @@
-﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+﻿@model IslamicGuide.Data.ViewModels.Subjects.SubSubjectPageVM
 
 @{
     ViewBag.Title = "Index";
@@ -16,7 +16,7 @@
             <h2>@Resources.LayoutResource.Subjects</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><strong>@Model[0].ParentTitle</strong></li>
+                <li><strong>@Model.subjectVM[0].ParentTitle</strong></li>
             </ul>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="container">
         <div dir="rtl" class="navigation">
             <select class="kode alignselect">
-                @foreach (var item in ViewBag.subj)
+                @foreach (var item in Model.subjectsDropdown)
                 {
                     <option> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
                 }
@@ -38,7 +38,7 @@
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in Model.subjectVM)
         {
             <div class="col-md-4">
 

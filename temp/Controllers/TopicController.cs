@@ -23,19 +23,30 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetById(int id)
         {
+            var subSubjects = _subjectService.GetSubSubjectById(id);
+            if (subSubjects.Count() == 0)
+            {
+                return RedirectToAction("GetById", "SubTopic", new { id = id });
+            }
+            SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
-            if (id == 1)
+            var parentID = _subjectService.GetSubjectParentId(id);
+            if (parentID == 0)
+                dropList = null;
+            else if (parentID == 1)
             {
                 var mainsubjs = _subjectService.GetMainSubjects();
-                ViewBag.subj = mainsubjs;
+                dropList = mainsubjs;
             }
             else
             {
                 var mainsubjs = _subjectService.GetSubjectById(id);
                 dropList.Add(mainsubjs);
             }
-            var subSubjects = _subjectService.GetSubSubjectById(id);
-            return View(subSubjects);
+            
+            SubPage.subjectsDropdown = dropList;
+            SubPage.subjectVM = subSubjects;
+            return View(SubPage);
         }
     }
 }
