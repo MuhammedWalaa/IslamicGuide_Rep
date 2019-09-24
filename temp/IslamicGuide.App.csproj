@@ -499,6 +499,8 @@
     <Content Include="Views\Tafsir\tafsir.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Quran\Index.cshtml" />
+    <Content Include="Views\SubTopic\GetById.cshtml" />
+    <Content Include="Views\SubTopicPositions\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\.vs\islamic\v15\" />
@@ -526,6 +528,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IslamicGuide.Data\IslamicGuide.Data.csproj">
+      <Project>{AD726676-4FD6-4737-B1CB-DCBCFA90B3FC}</Project>
+      <Name>IslamicGuide.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IslamicGuide.Services\IslamicGuide.Services.csproj">
+      <Project>{0243EC60-C84C-4AFD-8348-4E82B0360B79}</Project>
+      <Name>IslamicGuide.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

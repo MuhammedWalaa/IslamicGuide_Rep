@@ -20,7 +20,7 @@ namespace IslamicGuide.Data
             this.Books = new HashSet<Book>();
         }
     
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +26,10 @@
     <div class="container">
         <div dir="rtl" class="navigation">
             <select class="kode alignselect">
-                <option selected> @Html.ActionLink(Resources.LayoutResource.Subject1, "Index", "Topic")</option>
+                @foreach (var item in Model)
+                {
+                    <option> @Html.ActionLink(item.Title, "GetById", "SubTopic",new { id = item.ID }, null)</option>
+                }
             </select>
         </div>
     </div>
@@ -41,7 +44,6 @@
                     <figure>
                         <img src="~/Content/extra-images/service.jpg" alt="">
                     </figure>
-
                     <div class="kode_service_text">
                         <span><i class="fa icon-book"></i></span>
                         <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>

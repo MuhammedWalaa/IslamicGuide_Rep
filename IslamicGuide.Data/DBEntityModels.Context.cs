@@ -25,10 +25,9 @@ namespace IslamicGuide.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<BookContent> BookContents { get; set; }
-        public virtual DbSet<BookPath> BookPaths { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<MapBookQuran> MapBookQurans { get; set; }
         public virtual DbSet<MapSubjectsQuran> MapSubjectsQurans { get; set; }
         public virtual DbSet<Position> Positions { get; set; }

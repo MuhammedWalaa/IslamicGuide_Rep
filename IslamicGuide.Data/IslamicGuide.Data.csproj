@@ -65,9 +65,6 @@
     <Compile Include="BookContent.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="BookPath.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="DBEntityModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -113,6 +110,8 @@
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Books\BookGridVM.cs" />
+    <Compile Include="ViewModels\Home\HomeVM.cs" />
+    <Compile Include="ViewModels\Subjects\SubjectVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DBEntityModels.edmx">
@@ -121,7 +120,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DBEntityModels.edmx.diagram">
       <DependentUpon>DBEntityModels.edmx</DependentUpon>
     </None>

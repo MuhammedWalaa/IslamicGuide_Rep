@@ -18,21 +18,16 @@ namespace IslamicGuide.Data
         public Book()
         {
             this.BookContents = new HashSet<BookContent>();
-            this.MapBookQurans = new HashSet<MapBookQuran>();
         }
     
-        public int Id { get; set; }
-        public string Version { get; set; }
+        public int ID { get; set; }
         public string Title { get; set; }
+        public Nullable<int> CategoryID { get; set; }
         public string Author { get; set; }
-        public int PathId { get; set; }
-        public int CategoryId { get; set; }
+        public string Version { get; set; }
     
         public virtual BookCategory BookCategory { get; set; }
-        public virtual BookPath BookPath { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookContent> BookContents { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MapBookQuran> MapBookQurans { get; set; }
     }
 }

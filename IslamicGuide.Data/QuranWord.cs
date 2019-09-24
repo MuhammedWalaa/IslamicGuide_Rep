@@ -21,7 +21,8 @@ namespace IslamicGuide.Data
             this.Positions1 = new HashSet<Position>();
         }
     
-        public int ID { get; set; }
+        public int p_Id { get; set; }
+        public Nullable<int> ID { get; set; }
         public string Word { get; set; }
         public string WordUnDiac { get; set; }
         public string Stem { get; set; }

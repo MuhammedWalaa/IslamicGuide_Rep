@@ -18,6 +18,7 @@ namespace IslamicGuide.Data
         public int SubjectID { get; set; }
         public int PositionID { get; set; }
     
+        public virtual Position Position { get; set; }
         public virtual Subject Subject { get; set; }
     }
 }
