@@ -527,6 +527,16 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IslamicGuide.Data\IslamicGuide.Data.csproj">
+      <Project>{ad726676-4fd6-4737-b1cb-dcbcfa90b3fc}</Project>
+      <Name>IslamicGuide.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IslamicGuide.Services\IslamicGuide.Services.csproj">
+      <Project>{0243EC60-C84C-4AFD-8348-4E82B0360B79}</Project>
+      <Name>IslamicGuide.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

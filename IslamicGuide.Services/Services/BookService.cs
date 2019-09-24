@@ -1,6 +1,7 @@
 ﻿using IslamicGuide.Data;
 using IslamicGuide.Data.ViewModels.Books;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IslamicGuide.Services.Services
 {
@@ -14,6 +15,7 @@ namespace IslamicGuide.Services.Services
 
         public List<BookGridVM> GetAllBooks()
         {
+            List<Book> x = _DbContext.Books.ToList();
             return new List<BookGridVM>();
         }
     }
