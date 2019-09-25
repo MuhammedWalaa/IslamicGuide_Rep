@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+﻿@model IEnumerable<IslamicGuide.Data.ViewModels.Position.PositionVM>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
     <!--CONTAINER START-->
     <div class="container">
         <div class="sab_banner_text">
-            <h2>@Resources.LayoutResource.Positions</h2>
+            <h2>@ViewBag.subjectTitle</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
                 <li><strong>@Resources.LayoutResource.Readingprinciples</strong></li>
@@ -49,19 +49,19 @@
                 @foreach (var item in Model)
                 {
                 <li>
-                    <div class="event_date">
-                        <span>15</span>
-                        <p></p>
-                    </div>
+                    
                     <div class="kode_calender_list">
+                        <div class="event_date">
+                            <span style="margin-top: 40%;">@item.SuraNum</span>
+                        </div>
                         <div class="kode_event_text">
-                            <h4>@Html.ActionLink(item.Title, "GetById", "subtopicpositions",new { id = item.ID },null)</h4>
+                            <h4>@Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new { id = item.SuraNum }, null)</h4>
                             <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
 
                         </div>
                     </div>
-                    <div class="kode_event_ticket">
-                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                    <div style="position: absolute;right: 10%" class="kode_event_ticket">
+                        <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
                         <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
                     </div>
                 </li>

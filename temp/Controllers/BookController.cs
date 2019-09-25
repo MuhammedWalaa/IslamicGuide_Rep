@@ -9,12 +9,7 @@ namespace IslamicGuide.App.Controllers
     {
 
         // GET: Book
-        private readonly BookService _bookService;
-
-        public BookController()
-        {
-            _bookService = new BookService();
-        }
+        
         public ActionResult Index()
         {
 

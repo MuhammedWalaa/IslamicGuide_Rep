@@ -501,6 +501,7 @@
     <Content Include="Views\Quran\Index.cshtml" />
     <Content Include="Views\SubTopic\GetById.cshtml" />
     <Content Include="Views\SubTopicPositions\GetById.cshtml" />
+    <Content Include="Views\Topic\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\.vs\islamic\v15\" />

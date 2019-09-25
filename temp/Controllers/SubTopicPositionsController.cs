@@ -21,7 +21,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetById(int id)
         {
-            var subSubjects = _subjectService.GetSubSubjectPositionById(id);
+            var subSubjects = _subjectService.GetSubSubjectPositionsById(id);
             return View(subSubjects);
         }
     }
