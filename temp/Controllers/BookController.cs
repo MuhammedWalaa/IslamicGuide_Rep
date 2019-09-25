@@ -7,11 +7,7 @@ namespace IslamicGuide.App.Controllers
 {
     public class BookController : BaseController
     {
-        private readonly BookService _bookService;
-        public BookController()
-        {
-            _bookService = new BookService();
-        }
+
         // GET: Book
         private readonly BookService _bookService;
 

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IslamicGuide.Data", "Islami
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IslamicGuide.Services", "IslamicGuide.Services\IslamicGuide.Services.csproj", "{0243EC60-C84C-4AFD-8348-4E82B0360B79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedualedJobs", "SchedualedJobs\SchedualedJobs.csproj", "{B0BAA745-31F1-42E3-89D2-83C64703B3A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0243EC60-C84C-4AFD-8348-4E82B0360B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0243EC60-C84C-4AFD-8348-4E82B0360B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0243EC60-C84C-4AFD-8348-4E82B0360B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0BAA745-31F1-42E3-89D2-83C64703B3A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0BAA745-31F1-42E3-89D2-83C64703B3A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0BAA745-31F1-42E3-89D2-83C64703B3A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0BAA745-31F1-42E3-89D2-83C64703B3A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

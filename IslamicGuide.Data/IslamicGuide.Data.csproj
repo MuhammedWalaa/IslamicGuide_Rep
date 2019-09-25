@@ -81,6 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBEntityModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="MapBookQuran.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
@@ -88,6 +91,9 @@
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pray.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +106,7 @@
     <Compile Include="QuranWord.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="ResponseResult.cs" />
     <Compile Include="StaticData.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
