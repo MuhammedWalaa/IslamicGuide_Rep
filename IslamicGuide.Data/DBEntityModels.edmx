@@ -73,16 +73,14 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="FromQuranWordID" Type="int" />
           <Property Name="ToQuranWordID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Prays">
+        <EntityType Name="PraysTime">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Name_Arabic" Type="nvarchar" MaxLength="50" />
-          <Property Name="Name_English" Type="nvarchar" MaxLength="50" />
-          <Property Name="Time" Type="nvarchar" MaxLength="50" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_Arabic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="QuranAyat">
           <Key>
@@ -330,6 +328,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary
           <EntitySet Name="MapBookQuran" EntityType="Self.MapBookQuran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MapSubjectsQuran" EntityType="Self.MapSubjectsQuran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PraysTime" EntityType="Self.PraysTime" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranAyat" EntityType="Self.QuranAyat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranSuar" EntityType="Self.QuranSuar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranWords" EntityType="Self.QuranWords" Schema="dbo" store:Type="Tables" />
@@ -342,14 +341,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary
     [Images].[Id] AS [Id], 
     [Images].[Path] AS [Path]
     FROM [dbo].[Images] AS [Images]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Prays" EntityType="Self.Prays" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Prays].[Name_Arabic] AS [Name_Arabic], 
-    [Prays].[Name_English] AS [Name_English], 
-    [Prays].[Time] AS [Time], 
-    [Prays].[Id] AS [Id]
-    FROM [dbo].[Prays] AS [Prays]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BookContent_Books" Association="Self.FK_BookContent_Books">
             <End Role="Books" EntitySet="Books" />
@@ -483,7 +474,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary
           </AssociationSet>
           <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
           <EntitySet Name="Images" EntityType="DB_A4DE6E_IslamicGuideModel.Image" />
-          <EntitySet Name="Prays" EntityType="DB_A4DE6E_IslamicGuideModel.Pray" />
+          <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
         </EntityContainer>
         <EntityType Name="BookCategory">
           <Key>
@@ -818,14 +809,14 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Pray">
+        <EntityType Name="PraysTime">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -982,13 +973,13 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Prays' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Prays">
-            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Pray">
-              <MappingFragment StoreEntitySet="Prays">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="PraysTimes">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.PraysTime">
+              <MappingFragment StoreEntitySet="PraysTime">
                 <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Name_English" ColumnName="Name_English" />
                 <ScalarProperty Name="Name_Arabic" ColumnName="Name_Arabic" />
+                <ScalarProperty Name="Name_English" ColumnName="Name_English" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -11,6 +11,7 @@
         public Timing timings { get; set; }
         public Date date { get; set; }
         public Meta meta { get; set; }
+
     }
 
     public class Meta

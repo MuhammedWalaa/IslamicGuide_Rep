@@ -1,7 +1,6 @@
 ﻿using IslamicGuide.Data;
 using IslamicGuide.Services.Utilities;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SchedualedJobs
 {
@@ -18,18 +17,18 @@ namespace SchedualedJobs
         public static void Main(string[] args)
         {
 
-            Task<ResponseResult> response = GettingResponseResult();
+            ResponseResult response = GetJsonObject();
 
-            Pray fajr = _DbContext.Prays.FirstOrDefault(p => p.Name_English.Equals("Fajr"));
-            fajr.Time = response.Result.data.timings.Fajr;
-            Pray dhuhr = _DbContext.Prays.FirstOrDefault(p => p.Name_English.Equals("Dhuhr"));
-            dhuhr.Time = response.Result.data.timings.Dhuhr;
-            Pray asr = _DbContext.Prays.FirstOrDefault(p => p.Name_English.Equals("Asr"));
-            asr.Time = response.Result.data.timings.Asr;
-            Pray maghrib = _DbContext.Prays.FirstOrDefault(p => p.Name_English.Equals("Maghrib"));
-            maghrib.Time = response.Result.data.timings.Maghrib;
-            Pray isha = _DbContext.Prays.FirstOrDefault(p => p.Name_English.Equals("Isha"));
-            isha.Time = response.Result.data.timings.Isha;
+            PraysTime fajr = _DbContext.PraysTimes.FirstOrDefault(p => p.Name_English.Equals("Fajr"));
+            fajr.Time = response.data.timings.Fajr;
+            PraysTime dhuhr = _DbContext.PraysTimes.FirstOrDefault(p => p.Name_English.Equals("Dhuhr"));
+            dhuhr.Time = response.data.timings.Dhuhr;
+            PraysTime asr = _DbContext.PraysTimes.FirstOrDefault(p => p.Name_English.Equals("Asar"));
+            asr.Time = response.data.timings.Asr;
+            PraysTime maghrib = _DbContext.PraysTimes.FirstOrDefault(p => p.Name_English.Equals("Maghrib"));
+            maghrib.Time = response.data.timings.Maghrib;
+            PraysTime isha = _DbContext.PraysTimes.FirstOrDefault(p => p.Name_English.Equals("Isha"));
+            isha.Time = response.data.timings.Isha;
 
             _DbContext.SaveChanges();
 
@@ -37,12 +36,12 @@ namespace SchedualedJobs
 
         }
 
-        public static async Task<ResponseResult> GettingResponseResult()
+
+        public static ResponseResult GetJsonObject()
         {
-            ResponseResult response = await
-                _httpService.SendHttpGetRequest(
-                    "https://api.aladhan.com/timingsByAddress/25-09-2019?address=makkah,KSA&method=8");
-            return response;
+
+            string url = "https://api.aladhan.com/timingsByAddress/25-09-2019?address=makkah,KSA&method=8";
+            return HttpService.DownloadJsonData<ResponseResult>(url, null);
         }
     }
 }

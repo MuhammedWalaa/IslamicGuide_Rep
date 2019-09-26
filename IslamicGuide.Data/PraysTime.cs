@@ -12,11 +12,11 @@ namespace IslamicGuide.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Pray
+    public partial class PraysTime
     {
-        public string Name_Arabic { get; set; }
-        public string Name_English { get; set; }
-        public string Time { get; set; }
         public int Id { get; set; }
+        public string Name_English { get; set; }
+        public string Name_Arabic { get; set; }
+        public string Time { get; set; }
     }
 }
