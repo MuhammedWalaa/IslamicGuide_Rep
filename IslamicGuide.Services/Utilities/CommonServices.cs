@@ -37,5 +37,18 @@ namespace IslamicGuide.Services.Utilities
             return finalWords;
         }
 
+        public Boolean AddSubscriber(string email)
+        {
+            if (email == null)
+            {
+                return false;
+            }
+
+            _DbContext.Subscribers.Add(new Subscriber() {Date = DateTime.Now, Email = email});
+            _DbContext.SaveChanges();
+            return true;
+
+        }
+
     }
 }

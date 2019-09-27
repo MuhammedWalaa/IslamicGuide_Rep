@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Image" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Subscriber" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

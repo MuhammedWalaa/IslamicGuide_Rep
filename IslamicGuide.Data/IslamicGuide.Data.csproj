@@ -116,6 +116,9 @@
     <Compile Include="Subject.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Subscriber.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
@@ -124,6 +127,7 @@
     </Compile>
     <Compile Include="ViewModels\Books\BookGridVM.cs" />
     <Compile Include="ViewModels\Home\HomeVM.cs" />
+    <Compile Include="ViewModels\Position\BookContentVM.cs" />
     <Compile Include="ViewModels\Position\PositionDetialsVM.cs" />
     <Compile Include="ViewModels\Position\PositionVM.cs" />
     <Compile Include="ViewModels\Shared\LayoutStaticDataVM.cs" />

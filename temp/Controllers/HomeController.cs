@@ -12,6 +12,7 @@ namespace IslamicGuide.App.Controllers
 
     public class HomeController : BaseController
     {
+        private readonly CommonServices _commonServices;
         private readonly SubjectService _subjectService;
         private readonly BookService _bookService;
         private readonly RouteService _routeService;
@@ -20,6 +21,7 @@ namespace IslamicGuide.App.Controllers
             _subjectService = new SubjectService();
             _bookService = new BookService();
             _routeService=new RouteService();
+            _commonServices = new CommonServices();
             
         }
         public ActionResult Index()
@@ -45,6 +47,11 @@ namespace IslamicGuide.App.Controllers
             LanguageSetting.SetLanguage(lang);
             return Redirect(Path);
 
+        }
+
+        public void AddSubscriber(string email)
+        {
+            _commonServices.AddSubscriber(email);
         }
         public ActionResult About()
         {

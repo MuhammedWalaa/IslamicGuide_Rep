@@ -140,10 +140,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\QuranController.cs" />
-    <Compile Include="Controllers\SubTopicController.cs" />
-    <Compile Include="Controllers\SubTopicPositionsController.cs" />
-    <Compile Include="Controllers\TafsirController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -496,8 +493,8 @@
     <Content Include="Views\Tafsir\tafsir.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Quran\Index.cshtml" />
-    <Content Include="Views\SubTopic\GetById.cshtml" />
-    <Content Include="Views\SubTopicPositions\GetById.cshtml" />
+    <Content Include="Views\Topic\GetPositionsById.cshtml" />
+    <Content Include="Views\Positions\GetById.cshtml" />
     <Content Include="Views\Topic\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup>

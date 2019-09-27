@@ -40,5 +40,6 @@ namespace IslamicGuide.Data
         public virtual DbSet<StaticData> StaticDatas { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<PraysTime> PraysTimes { get; set; }
+        public virtual DbSet<Subscriber> Subscribers { get; set; }
     }
 }
