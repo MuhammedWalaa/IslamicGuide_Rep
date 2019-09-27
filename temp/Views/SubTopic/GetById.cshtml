@@ -55,14 +55,14 @@
                             <span style="margin-top: 40%;">@item.SuraNum</span>
                         </div>
                         <div class="kode_event_text">
-                            <h4>@Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new { id = item.SuraNum }, null)</h4>
-                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
+                            @Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new { id = item.SuraNum }, new { @style = "color:brown;font-size:15pt"})
+                            <p style="padding-right:25%; color:black;font-weight:500;">Hello world Hello worldHello world Hello worldHello world Hello worldHello world Hello worldHello world Hello worldHello world Hello worldHello world Hello worldHello world Hello world  </p>
 
                         </div>
                     </div>
                     <div style="position: absolute;right: 10%" class="kode_event_ticket">
                         <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
-                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                        @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.SuraNum }, new { @class = "medium_btn background-bg-dark"})
                     </div>
                 </li>
                 }
