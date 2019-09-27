@@ -5,8 +5,6 @@ using IslamicGuide.Services.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IslamicGuide.Services.BussinessServices
 {
@@ -22,7 +20,7 @@ namespace IslamicGuide.Services.BussinessServices
         }
         public int CountSubjects()
         {
-            
+
             return _DbContext.Subjects.Where(x => x.ParentID == 1).Count();
 
         }
@@ -34,9 +32,9 @@ namespace IslamicGuide.Services.BussinessServices
 
         public SubjectVM GetSubjectById(int id)
         {
-            SubjectVM subject = new  SubjectVM();
+            SubjectVM subject = new SubjectVM();
 
-            var subj = _DbContext.Subjects.Where(p => p.ID==id).FirstOrDefault();
+            Subject subj = _DbContext.Subjects.Where(p => p.ID == id).FirstOrDefault();
             subject.ID = subj.ID;
             subject.Title = subj.Title;
             return subject;
@@ -44,18 +42,21 @@ namespace IslamicGuide.Services.BussinessServices
         public int GetSubjectParentId(int id)
         {
 
-            var parentId = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().ParentID;
+            int? parentId = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().ParentID;
             if (parentId != null)
+            {
                 return parentId.Value;
+            }
+
             return 0;
         }
         public List<SubjectVM> GetMainSubjects()
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
-            var subjectList = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
-            foreach (var item in subjectList)
+            List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
+            foreach (Subject item in subjectList)
             {
-                subjects.Add(new SubjectVM {ID = item.ID, Title = item.Title });
+                subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
             }
             //subjects
             return subjects;
@@ -65,39 +66,39 @@ namespace IslamicGuide.Services.BussinessServices
             List<SubjectVM> subSubjects = new List<SubjectVM>();
             if (id != 0)
             {
-                var subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
-                var parentTitle = subjectTitle(id);
+                List<Subject> subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
+                string parentTitle = subjectTitle(id);
 
 
-                    foreach (var item in subSubjectList)
-                    {
-                        subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
-                    }
-                
+                foreach (Subject item in subSubjectList)
+                {
+                    subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
+                }
+
             }
             //subjects
             return subSubjects;
         }
         public string subjectTitle(int id)
         {
-            if(id!=0)
+            if (id != 0)
+            {
                 return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
+            }
+
             return "";
         }
         
         public List<SubjectVM> GetAllSubjects()
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
-            return _DbContext.Subjects.Where(p => p.ParentID == 1).Select(x => new SubjectVM() {
-                ID = x.ID,
-                Title = x.Title,
-            }).ToList();
-            //foreach (var item in subjectslist)
-            //{
-            //    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
-            //}
-            //return subjects;
+            var subjectslist = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
+            foreach (var item in subjectslist)
+            {
+                subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+            }
+            return subjects;
         }
-        
+
     }
 }
