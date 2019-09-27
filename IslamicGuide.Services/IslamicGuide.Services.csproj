@@ -64,6 +64,8 @@
     <Compile Include="BussinessServices\SubjectService.cs" />
     <Compile Include="BussinessServices\SubSubjectService.cs" />
     <Compile Include="Utilities\HttpService.cs" />
+    <Compile Include="Utilities\RouteService.cs" />
+    <Compile Include="Utilities\StaticDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IslamicGuide.Data\IslamicGuide.Data.csproj">

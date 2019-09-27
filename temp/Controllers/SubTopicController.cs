@@ -1,19 +1,18 @@
 ﻿using IslamicGuide.Services.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using IslamicGuide.Services.Utilities;
 
 namespace IslamicGuide.App.Controllers
 {
     public class SubTopicController : BaseController
     {
         private readonly SubjectService _subjectService;
+        private readonly RouteService _routeService;
         public SubTopicController()
         {
             _subjectService = new SubjectService();
-        }   
+            _routeService=new RouteService();
+        }
         // GET: SubTopic
         public ActionResult Index()
         {
@@ -21,8 +20,11 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetById(int id)
         {
+           
             var positions = _subjectService.GetSubSubjectPositionsById(id);
-            var parentTitle = _subjectService.subjectTitle(id);
+            string parentTitle = _subjectService.subjectTitle(id);
+
+            _routeService.RouteHandling(parentTitle,"SubTopicController","GetById",id,Routes);
             ViewBag.subjectTitle = parentTitle;
             return View(positions);
         }

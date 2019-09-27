@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using IslamicGuide.Data.ViewModels.Shared
+<!DOCTYPE html>
 @{
     /**/
 
@@ -33,9 +34,6 @@
     <link href="~/Content/ar-css/slick.css" rel="stylesheet" />
     <link href="~/Content/ar-css/typography.css" rel="stylesheet" />
     <link href="~/Content/ar-css/ar-style.css" rel="stylesheet" />
-
-
-
     <!--fontawseme CSS-->
     <link href="~/Content/css/font-awesome.css" rel="stylesheet">
     <!--fontawseme CSS-->
@@ -71,12 +69,10 @@
     <!--COLOR CSS-->
     <link rel="stylesheet" href="~/Content/css/color.css">
     <!--COLOR CSS-->
-
     @if (langCode == "ar")
     {
         <link href="~/Content/styleAr.css" rel="stylesheet" />
     }
-
 </head>
 <body dir="@(langDir)"
       lang="@(langCode)">
@@ -92,21 +88,21 @@
                             <!--KODE TOP INFO START-->
                             <div class="kode_top_info">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-envelope"></i>example@example.com</a></li>
-                                    <li><a href="#"><i class="fa icon-technology"></i>00000000000</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>@ViewBag.StaticData.Email</a></li>
+                                    <li><a href="#"><i class="fa icon-technology"></i>@ViewBag.StaticData.Phone</a></li>
                                     <li>
                                         <div class="dropdown">
                                             <button style="direction : ltr !important" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 @if (langCode == "en")
                                                 {
-                                                    <img style="width:20px !important"  src="~/Content/images/en.svg" alt=""><p style="display:inline-block">EN</p>
+                                                    <img style="width:20px !important" src="~/Content/images/en.svg" alt=""><p style="display:inline-block">EN</p>
                                                 }
                                                 else
                                                 {
                                                     <img style="width:20px !important" src="~/Content/images/ar.svg" alt=""><p style="display:inline-block">AR</p>
                                                 }
-                                                    <span class="fa fa-angle-down"></span>
-                                                </button>
+                                                <span class="fa fa-angle-down"></span>
+                                            </button>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
                                                 <li><a href="@Url.Action("SetLanguage","Home",new {lang ="en"})"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
                                                 <li><a href="@Url.Action("SetLanguage","Home",new {lang ="ar"})"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
@@ -119,7 +115,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="kode_top_right_text">
-
                                 <form method="post" id="commentform" class="comment-form">
                                     <div class="kf_commet_field">
                                         <input placeholder="@Resources.LayoutResource.Search" name="author" type="text" value="" data-default="Name*" required="">
@@ -143,11 +138,11 @@
                     </div>
                     <div class="top_time_circle">
                         <ul class="ulSalah">
-                            <li><a href="#">@Resources.LayoutResource.Fajr</a><span>5:30</span></li>
-                            <li><a href="#">@Resources.LayoutResource.Dhur</a><span>1:30</span></li>
-                            <li><a href="#">@Resources.LayoutResource.Asar</a><span>5:00</span></li>
-                            <li><a href="#">@Resources.LayoutResource.Magrib</a><span>6:30</span></li>
-                            <li><a href="#">@Resources.LayoutResource.Isha</a><span>8:00</span></li>
+                            @foreach (var p in ((List<PraysVM>)@ViewBag.PraysTime))
+                            {
+                                <li><a href="#">@p.Name</a><span>@p.Time</span></li>
+
+                            }
                         </ul>
                     </div>
                 </div>
@@ -249,7 +244,6 @@
             </div>
             <!--KODE NAVIGATION WRAP END-->
         </header>
-
         <div class="kode_mosques_wrap">
             @RenderBody()
         </div>
@@ -281,8 +275,6 @@
             <!--CONTAINER END-->
         </div>
         <!--KODE NEWSLETTER WRAP END-->
-
-
         <footer>
             <!--WIDGET WRAP START-->
             <div class="widget_wrap them_overlay">
@@ -294,9 +286,9 @@
                                 <a href="#"><img src="images/footer-logo.png" alt=""></a>
                                 <p>There are many variations of passages of Lorem Ipsum availableThere are many variations of passages of Lorem Ipsum available...</p>
                                 <ul class="widget_call_info">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>@Resources.LayoutResource.Location</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>0000000000</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope"></i>example@example.com</a></li>
+                                    <li><a href="#"><i class="fa fa-map-marker"></i>@ViewBag.StaticData.Location</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i>@ViewBag.StaticData.Phone</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>@ViewBag.StaticData.Email</a></li>
                                 </ul>
                                 <ul class="widget_social_icon">
                                     <li><a class="hvr-ripple-out" href="#"><i class="fa fa-facebook"></i></a></li>
@@ -306,7 +298,6 @@
                                 </ul>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="widget_event">
                                 <h4 class="widget_title">@Resources.LayoutResource.Getintouch</h4>
@@ -344,7 +335,6 @@
             </div>
             <!--WIDGET COPYRIGHT END-->
         </footer>
-
     </div>
     <!--JavaScript-->
     <script src="~/Content/js/jquery.js"></script>
@@ -375,4 +365,4 @@
     <!--CUSTOM JavaScript-->
     <script src="~/Content/js/custom.js"></script>
 </body>
-</html>  
+</html>

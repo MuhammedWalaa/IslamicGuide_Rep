@@ -1,6 +1,7 @@
 ﻿@model IslamicGuide.Data.ViewModels.Home.HomeVM
 
 @{
+    string Controller = "Topic";
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -32,7 +33,15 @@
                         <a class="medium_btn border btn_hover" href="#">@Resources.LayoutResource.Readmore</a>
                     </div>
                 </div>
-            </figure>
+   
+            
+            
+            
+            
+            
+            
+            
+                </figure>
         </li>
         <li>
             <figure class="them_overlay">
@@ -208,7 +217,7 @@
             {
             <div class="col-md-4">
 
-                <a href="@Url.Action("GetById", "Topic",new { id = item.ID},null)">
+                <a href="@Url.Action("GetById", Controller,new { id = item.ID},null)">
                     <div class="kode_service_des">
                         <figure>
                             <img src="~/Content/extra-images/service.jpg" alt="">
@@ -216,7 +225,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID},null)
+                                @Html.ActionLink(item.Title, "GetById", Controller, new { id = item.ID},null)
                             </h4>
                         </div>
                     </div>
@@ -231,7 +240,7 @@
             </div>
         </div>
     </div>
-    <!--CONTAINER END-->
+    <!--CONTAINER END-->-
 </div>
 <!--KODE SERVICES WRAP END-->
 <!--KODE PRAY WRAP START-->

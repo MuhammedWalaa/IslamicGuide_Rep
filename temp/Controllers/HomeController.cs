@@ -1,37 +1,45 @@
 ﻿using IslamicGuide.Data.ViewModels.Home;
 using IslamicGuide.Services.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IslamicGuide.Services.Utilities;
 
 namespace IslamicGuide.App.Controllers
 {
 
-    public class HomeController : BaseController 
+    public class HomeController : BaseController
     {
         private readonly SubjectService _subjectService;
         private readonly BookService _bookService;
+        private readonly RouteService _routeService;
         public HomeController()
         {
             _subjectService = new SubjectService();
             _bookService = new BookService();
+            _routeService=new RouteService();
+            
         }
         public ActionResult Index()
         {
-            HomeVM hm = new HomeVM();
-            hm.Subject = _subjectService.GetMainSubjects();
-            hm.BookCount = _bookService.CountBooks();
-            hm.SubjectCount = _subjectService.CountSubjects();
+            _routeService.RouteHandling("Home","Home","Index",null,Routes);
+            HomeVM hm = new HomeVM
+            {
+                Subject = _subjectService.GetMainSubjects(),
+                BookCount = _bookService.CountBooks(),
+                SubjectCount = _subjectService.CountSubjects()
+            };
             return View(hm);
         }
         public ActionResult SetLanguage(string lang)
         {
-            var Path = Request.UrlReferrer.AbsolutePath;
-            HttpCookie cultureCookie = new HttpCookie("culture");
-            cultureCookie.Value = lang;
-            cultureCookie.Expires = DateTime.Now.AddDays(1);
+            string Path = Request.UrlReferrer.AbsolutePath;
+            HttpCookie cultureCookie = new HttpCookie("culture")
+            {
+                Value = lang,
+                Expires = DateTime.Now.AddDays(1)
+            };
             Response.SetCookie(cultureCookie);
             LanguageSetting.SetLanguage(lang);
             return Redirect(Path);

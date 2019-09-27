@@ -1,11 +1,8 @@
 ﻿using IslamicGuide.Data;
 using IslamicGuide.Data.ViewModels.Position;
 using IslamicGuide.Data.ViewModels.Subjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IslamicGuide.Services.Services
 {
@@ -19,15 +16,15 @@ namespace IslamicGuide.Services.Services
         }
         public int CountSubjects()
         {
-            
+
             return _DbContext.Subjects.Where(x => x.ParentID == 1).Count();
 
         }
         public SubjectVM GetSubjectById(int id)
         {
-            SubjectVM subject = new  SubjectVM();
+            SubjectVM subject = new SubjectVM();
 
-            var subj = _DbContext.Subjects.Where(p => p.ID==id).FirstOrDefault();
+            Subject subj = _DbContext.Subjects.Where(p => p.ID == id).FirstOrDefault();
             subject.ID = subj.ID;
             subject.Title = subj.Title;
             return subject;
@@ -35,18 +32,21 @@ namespace IslamicGuide.Services.Services
         public int GetSubjectParentId(int id)
         {
 
-            var parentId = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().ParentID;
+            int? parentId = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().ParentID;
             if (parentId != null)
+            {
                 return parentId.Value;
+            }
+
             return 0;
         }
         public List<SubjectVM> GetMainSubjects()
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
-            var subjectList = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
-            foreach (var item in subjectList)
+            List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
+            foreach (Subject item in subjectList)
             {
-                subjects.Add(new SubjectVM {ID = item.ID, Title = item.Title });
+                subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
             }
             //subjects
             return subjects;
@@ -56,23 +56,26 @@ namespace IslamicGuide.Services.Services
             List<SubjectVM> subSubjects = new List<SubjectVM>();
             if (id != 0)
             {
-                var subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
-                var parentTitle = subjectTitle(id);
+                List<Subject> subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
+                string parentTitle = subjectTitle(id);
 
 
-                    foreach (var item in subSubjectList)
-                    {
-                        subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
-                    }
-                
+                foreach (Subject item in subSubjectList)
+                {
+                    subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
+                }
+
             }
             //subjects
             return subSubjects;
         }
         public string subjectTitle(int id)
         {
-            if(id!=0)
+            if (id != 0)
+            {
                 return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
+            }
+
             return "";
         }
         public List<PositionVM> GetSubSubjectPositionsById(int id)
@@ -81,16 +84,16 @@ namespace IslamicGuide.Services.Services
             int ayatCount = 0;
             if (id != 0)
             {
-                var posIDs = _DbContext.MapSubjectsQurans.Where(p => p.SubjectID == id).Select(x => x.ID).ToList();
+                List<int> posIDs = _DbContext.MapSubjectsQurans.Where(p => p.SubjectID == id).Select(x => x.ID).ToList();
                 //var strings = string.Join(" ", posIDs);
-                var SubSubjectPositions = _DbContext.Positions.Where(p => posIDs.Contains(p.ID)).ToList();
-                foreach (var item in SubSubjectPositions)
+                List<Position> SubSubjectPositions = _DbContext.Positions.Where(p => posIDs.Contains(p.ID)).ToList();
+                foreach (Position item in SubSubjectPositions)
                 {
 
                     ayatCount = item.QuranWord1.AyaNum.Value - item.QuranWord.AyaNum.Value;
                     if (ayatCount >= 0)
                     {
-                        var suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
+                        string suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
                         positionVMs.Add(new PositionVM { PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount + 1 });
                     }
                 }
@@ -99,19 +102,19 @@ namespace IslamicGuide.Services.Services
                 //    //subSubjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
                 //
             }
-                //Positions
-                return positionVMs.OrderBy(x=>x.SuraNum).ToList();
+            //Positions
+            return positionVMs.OrderBy(x => x.SuraNum).ToList();
         }
         public List<SubjectVM> GetAllSubjects()
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
-            var subjectslist = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
-            foreach (var item in subjectslist)
+            List<Subject> subjectslist = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
+            foreach (Subject item in subjectslist)
             {
                 subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
             }
             return subjects;
         }
-        
+
     }
 }
