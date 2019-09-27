@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="ViewModels\Books\BookGridVM.cs" />
     <Compile Include="ViewModels\Home\HomeVM.cs" />
+    <Compile Include="ViewModels\Position\PositionDetialsVM.cs" />
     <Compile Include="ViewModels\Position\PositionVM.cs" />
     <Compile Include="ViewModels\Subjects\SubSubjectPageVM.cs" />
     <Compile Include="ViewModels\Subjects\SubjectVM.cs" />

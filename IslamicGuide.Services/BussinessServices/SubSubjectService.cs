@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IslamicGuide.Services.Services
+namespace IslamicGuide.Services.BussinessServices
 {
     public class SubSubjectService
     {

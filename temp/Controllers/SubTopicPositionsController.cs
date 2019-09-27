@@ -1,4 +1,4 @@
-﻿using IslamicGuide.Services.Services;
+﻿using IslamicGuide.Services.BussinessServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,11 @@ namespace IslamicGuide.App.Controllers
     public class SubTopicPositionsController : BaseController
     {
         private readonly SubjectService _subjectService;
+        private readonly PositionService _positionService ;
         public SubTopicPositionsController()
         {
             _subjectService = new SubjectService();
+            _positionService = new PositionService();
         }
         // GET: SubTopicPositions
         public ActionResult Index()
@@ -21,8 +23,8 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetById(int id)
         {
-            var subSubjects = _subjectService.GetSubSubjectPositionsById(id);
-            return View(subSubjects);
+            var positionDetials = _positionService.GetPositionDetials(id);
+            return View(positionDetials);
         }
     }
 }

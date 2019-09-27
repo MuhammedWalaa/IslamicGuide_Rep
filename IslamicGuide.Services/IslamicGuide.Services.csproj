@@ -58,11 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BussinessServices\PositionService.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BussinessServices\BookService.cs" />
     <Compile Include="BussinessServices\SubjectService.cs" />
     <Compile Include="BussinessServices\SubSubjectService.cs" />
+    <Compile Include="Utilities\CommonServices.cs" />
     <Compile Include="Utilities\HttpService.cs" />
   </ItemGroup>
   <ItemGroup>

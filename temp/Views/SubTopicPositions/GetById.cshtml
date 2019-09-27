@@ -1,17 +1,83 @@
-﻿
+﻿@model IslamicGuide.Data.ViewModels.Position.PositionDetialsVM
+
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetById</title>
-</head>
-<body>
-    <div> 
+<div class="kode_sab_banner_wrap them_overlay">
+    <!--CONTAINER START-->
+    <div class="container">
+        <div class="sab_banner_text">
+            <h2>@Resources.LayoutResource.Position1</h2>
+            <ul class="breadcrumbs">
+                <li><strong> @Resources.LayoutResource.Position1 - @Resources.LayoutResource.Readingprinciples</strong></li>
+            </ul>
+        </div>
     </div>
-</body>
-</html>
+    <!--CONTAINER END-->
+</div>
+<di id="cnt">
+
+
+    <!--KODE NAVIGATION WRAP START-->
+    <div class="kode_navigation_wrap">
+        <!--CONTAINER START-->
+        <div style="margin-bottom:2%;margin-top:2%;" class="container">
+            <div class="navigation">
+                <ul>
+                    <li><a href="#">@Resources.LayoutResource.link1</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link2</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link3</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link4</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link5</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link6</a></li>
+                    <li><a href="#">@Resources.LayoutResource.link7</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <!--CONTAINER END-->
+    </div>
+    <!--KODE NAVIGATION WRAP END-->
+
+    <div style="display:flex" class="container">
+
+
+        <div class="row-fluid">
+            <div class="well">
+                <div>
+                    <div class="card text-center">
+                        <div class="card-header" style="text-align:center; background-color:#d2983d">
+                            <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                        </div>
+                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                            <p style="color: #d2973b; padding: 13px;" class="card-text">@Model.PositionQuranWords</p>
+                        </div>
+                    </div>
+
+                    <div class="card text-center">
+                        <div class="card-header" style="text-align:center;background-color:#d2983d">
+                            <h3 style="color:white" class="hStyles">@Resources.LayoutResource.AlFatihaverse6</h3>
+                        </div>
+                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                            <div style="padding-right: 7px; padding-left: 7px;">@Resources.LayoutResource.Allahsaid <span class="t4">@Resources.LayoutResource.AlFatihaverse6 </span>@Resources.LayoutResource.Alfatihaverse6tafsir </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin:auto;width:auto;text-align: center" class="text-center">
+                    <a class="btn no-print" href="#">
+                        <i class="icon icon-chevron-right"></i>
+                    </a>
+                    <div class="btn-group">
+                        <a class="btn btn-infoo dropdown-toggle" data-toggle="dropdown" href="#">
+                            <small> الصفحة Page </small>
+                            <strong>1</strong>
+                            <span class="caret"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</di>

@@ -13,5 +13,7 @@ namespace IslamicGuide.Data.ViewModels.Position
         public string SuraTitle { get; set; }
         public int AyatCount { get; set; }
         public string QuranWords { get; set; }
+        public int From { get; set; }
+        public int To { get; set; }
     }
 }

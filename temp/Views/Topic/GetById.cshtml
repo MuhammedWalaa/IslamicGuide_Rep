@@ -26,10 +26,10 @@
 <div class="kode_navigation_wrap">
     <div class="container">
         <div dir="rtl" class="navigation">
-            <select class="kode alignselect">
+            <select id="ListSubjects" class="kode alignselect">
                 @foreach (var item in Model.subjectsDropdown)
                 {
-                    <option> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                    <option value="@item.ID"> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
                 }
             </select>
         </div>

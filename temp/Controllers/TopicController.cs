@@ -1,5 +1,5 @@
 ﻿using IslamicGuide.Data.ViewModels.Subjects;
-using IslamicGuide.Services.Services;
+using IslamicGuide.Services.BussinessServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;

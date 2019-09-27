@@ -1,58 +1,168 @@
-﻿@model IEnumerable<IslamicGuide.Data.ViewModels.Books.BookGridVM>
+﻿
 @{
-    /**/
-
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
 }
 <!--KODE SAB BANNER WRAP START-->
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
         <div class="sab_banner_text">
-            <h2>@Resources.LayoutResource.Books</h2>
+            <h2>@Resources.LayoutResource.Positions</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><strong>@Resources.LayoutResource.Books</strong></li>
+                <li><strong>@Resources.LayoutResource.Readingprinciples</strong></li>
             </ul>
         </div>
     </div>
     <!--CONTAINER END-->
 </div>
-<div class="kode_navigation_wrap">
-    <div class="container">
-        <div dir="rtl" class="navigation">
-            <select class="kode alignselect">
-                @foreach (var item in Model)
-                {
-                    <option selected> @Html.ActionLink(item.Title, "Index", "SubTopic/"+item.ID)</option>
-                }
-            </select>
-        </div>
-    </div>
-</div>
-<div style="padding:0px;" class="kode_blog_madium_wrap detail width_res">
+<!--KODE SAB BANNER WRAP END-->
+<!--KODE EVENT WRAP START-->
+<div class="kode_event_wrap">
     <!--CONTAINER START-->
     <div class="container">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-            <div class="col-md-4">
-                <a href="@Url.Action("Index", "SubTopic")">
-                    <div class="kode_service_des">
-                        <figure>
-                            <img src="~/Content/extra-images/service.jpg" alt="">
-                        </figure>
-                        <div class="kode_service_text">
-                            <h4><a href="@Url.Action("Index", "SubTopic/"+item.ID)">@item.Title</a></h4>
+        <div class="kode_event_detail">
+            <ul>
+                <li>
+                    <div class="event_date">
+                        <span>15</span>
+                        <p></p>
+                    </div>
+                    <div class="kode_calender_list">
+                        <div class="kode_event_text">
+                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
+
                         </div>
                     </div>
-                </a>
+                    <div class="kode_event_ticket">
+                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="event_date">
+                        <span>15</span>
+                        <p></p>
+                    </div>
+                    <div class="kode_calender_list">
+                        <div class="kode_event_text">
+                            <h4><a href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Position1</a></h4>
+                            <p><span>There are many variations of. There are many vari</span>ations of passages...</p>
+
+                        </div>
+                    </div>
+                    <div class="kode_event_ticket">
+                        <a class="event_studium">5 : @Resources.LayoutResource.Ayat</a> <a class="event_studium">5 : @Resources.LayoutResource.Books</a>
+                        <a class="medium_btn background-bg-dark" href="@Url.Action("Index", "subtopicpositions")">@Resources.LayoutResource.Show</a>
+                    </div>
+                </li>
+
+
+
+
+
+            </ul>
+        </div>
+        <!--KODE PAGINATION LIST START-->
+        <div class="kode_pagination_list navi_2">
+            <ul class="kode_pagination">
+                <li>
+                    <a class="prve" href="#">
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        @Resources.LayoutResource.Previous
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li>
+                    <a class="next" href="#">
+                        @Resources.LayoutResource.Next
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--KODE PAGINATION LIST END-->
+    </div>
+    <!--CONTAINER END-->
+</div>
+<!--KODE EVENT WRAP END-->
+@*@model IEnumerable<IslamicGuide.Data.ViewModels.Books.BookGridVM>
+    @{
+        /**/
+
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <!--KODE SAB BANNER WRAP START-->
+    <div class="kode_sab_banner_wrap them_overlay">
+        <!--CONTAINER START-->
+        <div class="container">
+            <div class="sab_banner_text">
+                <h2>@Resources.LayoutResource.Books</h2>
+                <ul class="breadcrumbs">
+                    <li><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li><strong>@Resources.LayoutResource.Books</strong></li>
+                </ul>
             </div>
-            }
-            <div style="text-align:center" class="koed_banner_btn">
-                <a style="color:black" class="medium_btn border margin-right-1 btn_hover" href="#">@Resources.LayoutResource.Showmore</a>
+        </div>
+        <!--CONTAINER END-->
+    </div>
+    <div class="kode_navigation_wrap">
+        <div class="container">
+            <div dir="rtl" class="navigation">
+                <select class="kode alignselect">
+                    @foreach (var item in Model)
+                    {
+                        <option selected> @Html.ActionLink(item.Title, "Index", "SubTopic/"+item.ID)</option>
+                    }
+                </select>
             </div>
         </div>
     </div>
-</div>
+    <div style="padding:0px;" class="kode_blog_madium_wrap detail width_res">
+        <!--CONTAINER START-->
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                <div class="col-md-4">
+                    <a href="@Url.Action("Index", "SubTopic")">
+                        <div class="kode_service_des">
+                            <figure>
+                                <img src="~/Content/extra-images/service.jpg" alt="">
+                            </figure>
+                            <div class="kode_service_text">
+                                <h4><a href="@Url.Action("Index", "SubTopic/"+item.ID)">@item.Title</a></h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                }
+                <div style="text-align:center" class="koed_banner_btn">
+                    <a style="color:black" class="medium_btn border margin-right-1 btn_hover" href="#">@Resources.LayoutResource.Showmore</a>
+                </div>
+            </div>
+        </div>
+    </div>*@
