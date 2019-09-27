@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -81,6 +84,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBEntityModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="MapBookQuran.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
@@ -88,6 +94,9 @@
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PraysTime.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +109,7 @@
     <Compile Include="QuranWord.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="ResponseResult.cs" />
     <Compile Include="StaticData.cs">
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>

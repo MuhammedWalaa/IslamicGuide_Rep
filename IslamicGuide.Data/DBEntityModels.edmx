@@ -38,6 +38,15 @@
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="Author_English" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="MapBookQuran">
           <Key>
             <PropertyRef Name="BookID" />
@@ -63,6 +72,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FromQuranWordID" Type="int" />
           <Property Name="ToQuranWordID" Type="int" />
+        </EntityType>
+        <EntityType Name="PraysTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_Arabic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="QuranAyat">
           <Key>
@@ -115,6 +133,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageId" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -309,6 +328,7 @@
           <EntitySet Name="MapBookQuran" EntityType="Self.MapBookQuran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MapSubjectsQuran" EntityType="Self.MapSubjectsQuran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PraysTime" EntityType="Self.PraysTime" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranAyat" EntityType="Self.QuranAyat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranSuar" EntityType="Self.QuranSuar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuranWords" EntityType="Self.QuranWords" Schema="dbo" store:Type="Tables" />
@@ -316,6 +336,12 @@
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Images].[Id] AS [Id], 
+    [Images].[Path] AS [Path]
+    FROM [dbo].[Images] AS [Images]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_BookContent_Books" Association="Self.FK_BookContent_Books">
             <End Role="Books" EntitySet="Books" />
             <End Role="BookContent" EntitySet="BookContent" />
@@ -447,6 +473,8 @@
             <End Role="Subject1" EntitySet="Subjects" />
           </AssociationSet>
           <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
+          <EntitySet Name="Images" EntityType="DB_A4DE6E_IslamicGuideModel.Image" />
+          <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
         </EntityContainer>
         <EntityType Name="BookCategory">
           <Key>
@@ -577,6 +605,7 @@
           <NavigationProperty Name="Subjects1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject" ToRole="Subject1" />
           <NavigationProperty Name="Subject1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject1" ToRole="Subject" />
           <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageId" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -773,6 +802,22 @@
           <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PraysTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -882,6 +927,7 @@
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -915,6 +961,24 @@
                 <ScalarProperty Name="Data_English" ColumnName="Data_English" />
                 <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PraysTimes">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.PraysTime">
+              <MappingFragment StoreEntitySet="PraysTime">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Name_Arabic" ColumnName="Name_Arabic" />
+                <ScalarProperty Name="Name_English" ColumnName="Name_English" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
