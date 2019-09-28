@@ -11,13 +11,17 @@ namespace IslamicGuide.Services.Utilities
     {
         public void RouteHandling(string name, string controller, string actionName, int? id, List<Route> routes)
         {
-            if (routes.LastOrDefault(r => r.Text.Equals(name)) != null)
+            if(routes.Count>0)
+            if (name != null&&routes[1].Text!=null)
             {
-                PopRoutesOutOfIndex(routes, name);
-            }
-            else
-            {
-                AddRoute(name, controller, actionName, id, routes);
+                if (routes.LastOrDefault(r => r.Text.Equals(name)) != null)
+                {
+                    PopRoutesOutOfIndex(routes, name);
+                }
+                else
+                {
+                    AddRoute(name, controller, actionName, id, routes);
+                }
             }
         }
         private void AddRoute(string name,string controller,string actionName,int ? id, List<Route> routes)

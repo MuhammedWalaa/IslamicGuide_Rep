@@ -16,23 +16,23 @@ namespace IslamicGuide.App.Controllers
 
         public TopicController()
         {
-            _routeService= new RouteService();
+            _routeService = new RouteService();
             _subjectService = new SubjectService();
             _positionService = new PositionService();
         }
         // GET: Topic
         public ActionResult Index()
         {
-            List<SubjectVM> subjects = _subjectService.GetAllSubjects();
+            List<SubjectVM> subjects = _subjectService.GetAllSubjects(LangCode);
             return View(subjects);
         }
         public ActionResult GetById(int id)
         {
-            var currentRoute = _subjectService.GetSubjectById(id);
+            var currentRoute = _subjectService.GetSubjectById(id,LangCode);
             _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
-            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id);
+            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
             
-            List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id);
+            List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id,LangCode);
             if (subSubjects.Count() == 0)
             {
                 return RedirectToAction("GetPositionsById", "Topic", new { id = id });
@@ -47,12 +47,12 @@ namespace IslamicGuide.App.Controllers
             
             else if (parentID == 1)
             {
-                List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects();
+                List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
                 dropList = mainsubjs;
             }
             else
             {
-                SubjectVM mainsubjs = _subjectService.GetSubjectById(id);
+                SubjectVM mainsubjs = _subjectService.GetSubjectById(id,LangCode);
                 dropList.Add(mainsubjs);
             }
             if (positions.Count!=0)
@@ -70,8 +70,8 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetPositionsById(int id)
         {
-            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id);
-            var parentTitle = _subjectService.subjectTitle(id);
+            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
+            var parentTitle = _subjectService.subjectTitle(id,LangCode);
             _routeService.RouteHandling(parentTitle, "SubTopic", "GetById", id, Routes);
             ViewBag.subjectTitle = parentTitle;
             return View(positions);

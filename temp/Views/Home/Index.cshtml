@@ -302,7 +302,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title, "GetById", Controller, new { id = item.ID},null)
+                                @Html.ActionLink(item.Title==null?"item":item.Title, "GetById", Controller, new { id = item.ID},null)
                             </h4>
                         </div>
                     </div>

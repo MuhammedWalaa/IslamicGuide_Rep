@@ -24,13 +24,13 @@ namespace IslamicGuide.Services.BussinessServices
 
         }
 
-        public SubjectVM GetSubjectById(int id)
+        public SubjectVM GetSubjectById(int id,string langCode)
         {
             SubjectVM subject = new SubjectVM();
 
             Subject subj = _DbContext.Subjects.Where(p => p.ID == id).FirstOrDefault();
             subject.ID = subj.ID;
-            subject.Title = subj.Title;
+            subject.Title = langCode=="en"? subj.Title_English:subj.Title;
             return subject;
         }
         public int GetSubjectParentId(int id)
@@ -44,52 +44,56 @@ namespace IslamicGuide.Services.BussinessServices
 
             return 0;
         }
-        public List<SubjectVM> GetMainSubjects()
+        public List<SubjectVM> GetMainSubjects(string langCode)
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
             List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
             foreach (Subject item in subjectList)
             {
-                subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                subjects.Add(new SubjectVM { ID = item.ID, Title = langCode=="en"?item.Title_English:item.Title});
             }
             //subjects
             return subjects;
         }
-        public List<SubjectVM> GetSubSubjectById(int id)
+        public List<SubjectVM> GetSubSubjectById(int id,string langCode)
         {
             List<SubjectVM> subSubjects = new List<SubjectVM>();
             if (id != 0)
             {
+                
                 List<Subject> subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
-                string parentTitle = subjectTitle(id);
+                string parentTitle = subjectTitle(id,langCode);
 
 
                 foreach (Subject item in subSubjectList)
                 {
-                    subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
+                    subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = langCode == "en" ? item.Title_English : item.Title });
                 }
 
             }
             //subjects
             return subSubjects;
         }
-        public string subjectTitle(int id)
+        public string subjectTitle(int id,string langCode)
         {
             if (id != 0)
             {
-                return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
+                if(langCode=="en")
+                    return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title_English;
+                else
+                    return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
             }
 
             return "";
         }
         
-        public List<SubjectVM> GetAllSubjects()
+        public List<SubjectVM> GetAllSubjects(string langCode)
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
             var subjectslist = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
             foreach (var item in subjectslist)
             {
-                subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                subjects.Add(new SubjectVM { ID = item.ID, Title = langCode == "en" ? item.Title_English : item.Title });
             }
             return subjects;
         }

@@ -14,12 +14,9 @@ namespace IslamicGuide.Services.Utilities
         {
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
         }
-        public List<string> GetQuranWords(int from, int to, int ayatCount)
+        public List<string> GetQuranWords(int from, int to, int ayatCount,string langCode)
         {
-            List<string> lastWords = new List<string>();
-            List<int> ayatDistinct = new List<int>();
-            Dictionary<int, string> word_Aya = new Dictionary<int, string>();
-            var allWords = _DbContext.QuranWords.OrderBy(e => e.p_Id).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = x.Word, aya = x.AyaNum }).ToList();
+            var allWords = _DbContext.QuranWords.OrderBy(e => e.p_Id).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode=="en"? x.Word_English:x.Word, aya = x.AyaNum }).ToList();
             var finalWords = allWords.Select(x => x.word).ToList();
             var ayatRange = allWords.Select(e => e.aya).Distinct().ToList();
             foreach (var item in ayatRange)

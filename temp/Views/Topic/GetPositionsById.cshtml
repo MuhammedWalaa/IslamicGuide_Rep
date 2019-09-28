@@ -23,7 +23,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink(r.Text==null?"item":r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -76,7 +76,7 @@
                             <a class="event_studium" href="#">Ayat : @item.AyatCount</a>
                         </div>
                         <div align="right">
-                            @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
+                            @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
                         </div>
                     </li>
                 }
@@ -89,13 +89,13 @@
                         <span style="margin-top: 40%;">@item.SuraNum</span>
                     </div>
                     <div class="kode_event_text">
-                        @Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new { id = item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
+                        @Html.ActionLink(item.SuraTitle, "GetById", "Positions", new { id = item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
                         <p style="padding-right:25%; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
                     </div>
                 </div>
                 <div style="position: absolute;right: 10%" class="kode_event_ticket">
                     <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
-                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark" })
+                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark" })
                 </div>
             </li>
         }*@

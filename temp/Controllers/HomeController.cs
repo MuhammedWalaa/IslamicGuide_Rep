@@ -29,7 +29,7 @@ namespace IslamicGuide.App.Controllers
             _routeService.RouteHandling("Home","Home","Index",null,Routes);
             HomeVM hm = new HomeVM
             {
-                Subject = _subjectService.GetMainSubjects(),
+                Subject = _subjectService.GetMainSubjects(LangCode),
                 BookCount = _bookService.CountBooks(),
                 SubjectCount = _subjectService.CountSubjects()
             };

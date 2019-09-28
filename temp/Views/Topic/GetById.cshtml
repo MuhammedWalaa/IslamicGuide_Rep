@@ -24,7 +24,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink(r.Text==null?"item":r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -50,7 +50,7 @@
                 <select id="ListSubjects" class="kode alignselect">
                     @foreach (var item in Model.subjectsDropdown)
                     {
-                        <option value="@item.ID"> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                        <option value="@item.ID"> @Html.ActionLink(item.Title==null?"Item":item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
                     }
                 </select>
             </div>
@@ -71,7 +71,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)
+                                @Html.ActionLink(item.Title==null?"Item":item.Title, "GetById", "Topic", new { id = item.ID }, null)
                             </h4>
                         </div>
                     </div>

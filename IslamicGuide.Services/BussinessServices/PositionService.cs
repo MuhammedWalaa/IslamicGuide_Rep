@@ -19,7 +19,7 @@ namespace IslamicGuide.Services.BussinessServices
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
             _commonServices = new CommonServices();
         }
-        public List<PositionVM> GetSubjectAndSubSubjectPositionsById(int id)
+        public List<PositionVM> GetSubjectAndSubSubjectPositionsById(int id,string langCode)
         {
             List<PositionVM> positionVMs = new List<PositionVM>();
             int ayatCount = 0;
@@ -32,13 +32,17 @@ namespace IslamicGuide.Services.BussinessServices
                 foreach (var item in positions)
                 {
                     string finalResult = "";
+                    string suraTitle = "";
                     ayatCount = (item.QuranWord1.AyaID.Value - item.QuranWord.AyaID.Value) + 1;
                     if (ayatCount < 0)
                         ayatCount = (ayatCount * -1) + 1;
                     else
                     {
-                        var suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
-                        var res = _commonServices.GetQuranWords(item.FromQuranWordID.Value, item.ToQuranWordID.Value, ayatCount);
+                        if(langCode=="en")
+                            suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title_English;
+                        else
+                            suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
+                        var res = _commonServices.GetQuranWords(item.FromQuranWordID.Value, item.ToQuranWordID.Value, ayatCount,langCode);
                         var words_ayat = string.Join(" ", res);
                         if (ayatCount > 2)
                         {
@@ -62,18 +66,25 @@ namespace IslamicGuide.Services.BussinessServices
 
         }
 
-        public PositionDetialsVM GetPositionDetials(int id)
+        public PositionDetialsVM GetPositionDetials(int id,string langCode)
         {
-
-            var title = _DbContext.Subjects.FirstOrDefault(x=>x.ID==x.MapSubjectsQurans.FirstOrDefault(e=>e.PositionID==id).SubjectID).Title;
+            string title = "";
+            string suraTitle = "";
+            if(langCode=="en")
+                title = _DbContext.Subjects.FirstOrDefault(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Title_English;
+            else
+                title = _DbContext.Subjects.FirstOrDefault(x=>x.ID==x.MapSubjectsQurans.FirstOrDefault(e=>e.PositionID==id).SubjectID).Title;
             var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
                 var ayatCount = (position.QuranWord1.AyaID.Value - position.QuranWord.AyaID.Value) + 1;
                 if (ayatCount < 0)
                     ayatCount = (ayatCount * -1) + 1;
                 else
                 {
-                    var suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
-                    var res = _commonServices.GetQuranWords(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount);
+                if(langCode=="en")
+                    suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title_English;
+                else
+                    suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
+                var res = _commonServices.GetQuranWords(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);
                     var words_ayat = string.Join(" ", res);
                 return new PositionDetialsVM() { SuraTitle = suraTitle, PositionQuranWords = words_ayat,Title= title };
                 }
