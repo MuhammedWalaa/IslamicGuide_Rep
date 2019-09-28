@@ -85,9 +85,21 @@
 
 ==============================================================================================	*/
 
-.wraper{
-	float:left;
-	width:100%;
+.wraper {
+    float: left;
+    width:100%;
+
+    /*width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;*/
+
+
 }
 .dl-menuwrapper{
 	display:none;
@@ -98,9 +110,7 @@
 		KODE TOP WRAP START
 	=======================================
 */
-.kode_top_info ul,
-.kode_top_info,
-.kode_top_wrap{
+    .kode_top_info ul, .kode_top_info, .kode_top_wrap{
 	float:left;
 	width:100%;
 }
@@ -532,7 +542,7 @@
 }
 .section_hdg h3{
 	display:inline-block;
-	margin-right:16px;
+	/*margin-right:16px;*/
 }
 .section_hdg span{
 	font-size:25px;
@@ -660,7 +670,7 @@
     opacity: 0.80;
 }
 .kode_pillars_row{
-	width:950px;
+	width:100%;
 	text-align:center;
 	position:relative;
 	margin:auto;
@@ -774,34 +784,60 @@
     content: "";
     left: auto;
     position: absolute;
+    right: -129px;
+    top: -143px;
+    transform: rotate(-92deg) translate(-49px);
+    /*border-right: 1px solid #ffffff;
+    bottom: -22px;
+    content: "";
+    left: auto;
+    position: absolute;
     right: -82px;
     top: 0;
-    transform: rotate(-66deg) translate(-52px);
+    transform: rotate(-66deg) translate(-52px);*/
 }
-.right_bottom:after{
-	border-left: 1px solid #ffffff;
+.right_bottom:after {
+    border-left: 1px solid #ffffff;
+    border-right: none;
+    right: auto;
+    left: -127px;
+    transform: rotate(97deg) translate(52px);
+    /*border-left: 1px solid #ffffff;
 	border-right:none;
 	right:auto;
 	left:-82px;
-	transform: rotate(66deg) translate(52px);
+	transform: rotate(66deg) translate(52px);*/
 }
 .right_center:after,
-.left_center:after{
-	border-right: 1px solid #fff;
+.left_center:after {
+    border-right: 1px solid #fff;
+    bottom: -82px;
+    content: "";
+    left: auto;
+    position: absolute;
+    right: -58px;
+    top: 18px;
+    transform: rotate(-54deg) translate(-61px);
+    /*border-right: 1px solid #fff;
     bottom:-20px;
     content: "";
     left: auto;
     position: absolute;
     right: -58px;
     top: 38px;
-    transform: rotate(-54deg) translate(-61px);
+    transform: rotate(-54deg) translate(-61px);*/
 }
-.right_center:after{
-	border-left: 1px solid #fff;
+.right_center:after {
+    border-left: 1px solid #fff;
+    border-right: none;
+    right: auto;
+    left: -57px;
+    transform: rotate(54deg) translate(52px);
+    /*border-left: 1px solid #fff;
 	border-right:none;
 	right:auto;
 	left:-58px;
-	 transform: rotate(54deg) translate(61px);
+	 transform: rotate(54deg) translate(61px);*/
 }
 /*
 	=======================================

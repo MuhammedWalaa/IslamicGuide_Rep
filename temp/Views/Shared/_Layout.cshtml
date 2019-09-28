@@ -178,70 +178,17 @@
                         <div id="kode-responsive-navigation" class="dl-menuwrapper">
                             <button class="dl-trigger">Open Menu</button>
                             <ul class="dl-menu">
+                                <li>@Html.ActionLink(Resources.LayoutResource.Home, "Index", "Home")</li>
                                 <li>
-                                    <a class="active" href="#">Home</a>
+                                    <a href="#">@Resources.LayoutResource.Services</a>
                                     <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="index-2.html">DEFULT HOME</a></li>
-                                        <li><a href="index-1.html">Home page 02</a></li>
+                                        <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic")</li>
+                                        <li>@Html.ActionLink(Resources.LayoutResource.Books, "Index", "book")</li>
+                                        <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
                                     </ul>
                                 </li>
-                                <li class="menu-item kode-parent-menu"><a href="about-us.html">About Us</a></li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Services</a>
-                                    <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="service.html">service</a></li>
-                                        <li><a href="service-01.html">service 01</a></li>
-                                        <li><a href="service02.html">service 02</a></li>
-                                        <li><a href="service-detail.html">service detail</a></li>
-                                        <li><a href="service-sidebar.html">service sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Projects</a>
-                                    <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="project.html">project</a></li>
-                                        <li><a href="project-01.html">project 01</a></li>
-                                        <li><a href="project-list.html">project list</a></li>
-                                        <li><a href="project-detail.html">project detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">blog</a>
-                                    <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="blog.html">blog</a></li>
-                                        <li><a href="blog01.html">blog 01</a></li>
-                                        <li><a href="blog-detail.html">blog detail</a></li>
-                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">portfolio</a>
-                                    <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="portfolio.html">portfolio</a></li>
-                                        <li><a href="portfolio-01.html">portfolio 01</a></li>
-                                        <li><a href="portfolio-02.html">portfolio 02</a></li>
-                                        <li><a href="portfolio-detail.html">portfolio detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item kode-parent-menu">
-                                    <a href="#">Pages</a>
-                                    <ul class="dl-submenu">
-                                        <li class="dl-back"><a href="#">back</a></li>
-                                        <li><a href="event.html">event</a></li>
-                                        <li><a href="404.html">404 page</a></li>
-                                        <li><a href="shop.html">shop page</a></li>
-                                        <li><a href="coming-soon.html">coming soon</a></li>
-                                        <li><a href="event-detail.html">event detail</a></li>
-                                        <li><a href="event-sidebar.html">event sidebar</a></li>
-                                        <li><a href="team-detail.html">team detail</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">contact Us</a></li>
+                                <li><a href="about-us.html">@Resources.LayoutResource.AboutUs</a></li>
+                                <li><a href="contact-us.html">@Resources.LayoutResource.ContactUs</a></li>
                             </ul>
                         </div>
                         <!--DL Menu END-->
