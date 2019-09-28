@@ -1,4 +1,5 @@
 ﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,20 +16,57 @@
             <h2>@Resources.LayoutResource.Subjects</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><strong>@Resources.LayoutResource.Subjects</strong></li>
+                @foreach (var r in ((List
+                <IslamicGuide.Data.ViewModels.Shared.Route>
+                    )ViewBag.Routes))
+                {
+                    if (r.Id == null)
+                    {
+                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                    }
+                    else
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                    }
+                }
             </ul>
         </div>
     </div>
     <!--CONTAINER END-->
 </div>
+
 <!--KODE SAB BANNER WRAP END-->
+@*<div class="kode_navigation_wrap">
+        <div class="container">
+            @if (Model.HasPosition)
+            {
+                <div style="margin-top: 2%" class="kode_mosque_item">
+                    <div class="koed_banner_btn">
+
+                        @Html.ActionLink("المواضع", "GetPositionsForSubject", new { id = Model.Id }, new { @class = "medium_btn border btn_hover" })
+                    </div>
+                </div>
+            }
+            <div dir="rtl" class="navigation">
+
+                <select id="ListSubjects" class="kode alignselect">
+                    @foreach (var item in Model.subjectsDropdown)
+                    {
+                        <option value="@item.ID"> @Html.ActionLink(item.Title == null ? "Item" : item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>*@
 <div class="kode_navigation_wrap">
     <div class="container">
         <div dir="rtl" class="navigation">
-            <select class="kode alignselect">
+
+            <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                <option style="font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
                 @foreach (var item in Model)
                 {
-                    <option> @Html.ActionLink(item.Title, "GetById", "SubTopic",new { id = item.ID }, null)</option>
+                    <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
                 }
             </select>
         </div>
@@ -37,141 +75,26 @@
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
 
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service.jpg" alt="">
-                    </figure>
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
+                <a href="@Url.Action(" GetById", "Topic" ,new { id=item.ID },null)">
+                    <div class="kode_service_des">
+                        <figure>
+                            <img src="~/Content/extra-images/service.jpg" alt="">
+                        </figure>
+
+                        <div class="kode_service_text">
+                            <h4>
+                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "GetById", "Topic", new { id = item.ID }, null)
+                            </h4>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+        }
 
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service1.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service2.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service3.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service4.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service5.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service6.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service7.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="@Url.Action("Index", "subtopic")">
-
-                <div class="kode_service_des">
-                    <figure>
-                        <img src="~/Content/extra-images/service8.jpg" alt="">
-                    </figure>
-
-                    <div class="kode_service_text">
-                        <span><i class="fa icon-book"></i></span>
-                        <h4><a href="@Url.Action("Index", "subtopic")">@Resources.LayoutResource.Readingprinciples</a></h4>
-                    </div>
-                </div>
-            </a>
-        </div>
         <!--KODE PAGINATION LIST START-->
         <div class="kode_pagination_list">
             <ul class="kode_pagination">
@@ -212,3 +135,10 @@
     </div>
 </div>
 <!--KODE BLOG MADIUM WRAP END-->
+<script type="text/javascript">
+    function OnChangeEvent(dropDownElement) {
+        var selectedValue = dropDownElement.options[dropDownElement.selectedIndex].value;
+        var base_url = window.location.origin;
+        document.location = base_url + "/Topic/getbyid/" + selectedValue;
+    }
+</script>

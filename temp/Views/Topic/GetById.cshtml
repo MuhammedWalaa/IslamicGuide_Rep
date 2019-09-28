@@ -13,7 +13,7 @@
     <!--CONTAINER START-->
     <div class="container">
         <div class="sab_banner_text">
-            <h2>@Resources.LayoutResource.Subjects</h2>
+            <h2>@Model.subjectVM[0].ParentTitle</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
                 @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
@@ -40,17 +40,16 @@
         {
             <div style="margin-top: 2%" class="kode_mosque_item">
                 <div class="koed_banner_btn">
-                
                     @Html.ActionLink("المواضع", "GetPositionsForSubject",new{id = Model.Id}, new {@class = "medium_btn border btn_hover"})
                 </div>
             </div>
         }
             <div dir="rtl" class="navigation">
-
-                <select id="ListSubjects" class="kode alignselect">
+                <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                    <option style="font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
                     @foreach (var item in Model.subjectsDropdown)
                     {
-                        <option value="@item.ID"> @Html.ActionLink(item.Title==null?"Item":item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                        <option style="font-size:12pt;font-weight:200"  value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
                     }
                 </select>
             </div>
@@ -119,3 +118,11 @@
     </div>
 </div>
 <!--KODE BLOG MADIUM WRAP END-->
+
+<script type="text/javascript">
+    function OnChangeEvent(dropDownElement) {
+        var selectedValue = dropDownElement.options[dropDownElement.selectedIndex].value;
+        var base_url = window.location.origin;
+        document.location = base_url+"/Topic/getbyid/" + selectedValue;
+    }
+</script>
