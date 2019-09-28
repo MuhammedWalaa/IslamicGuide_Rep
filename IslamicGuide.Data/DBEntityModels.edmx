@@ -135,6 +135,14 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="ImageId" Type="int" />
         </EntityType>
+        <EntityType Name="Subscribers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -334,6 +342,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySet Name="QuranWords" EntityType="Self.QuranWords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaticData" EntityType="Self.StaticData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscribers" EntityType="Self.Subscribers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" store:Type="Tables" store:Schema="dbo">
@@ -475,6 +484,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
           <EntitySet Name="Images" EntityType="DB_A4DE6E_IslamicGuideModel.Image" />
           <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
+          <EntitySet Name="Subscribers" EntityType="DB_A4DE6E_IslamicGuideModel.Subscriber" />
         </EntityContainer>
         <EntityType Name="BookCategory">
           <Key>
@@ -818,6 +828,14 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Subscriber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -979,6 +997,15 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Name_Arabic" ColumnName="Name_Arabic" />
                 <ScalarProperty Name="Name_English" ColumnName="Name_English" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscribers">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subscriber">
+              <MappingFragment StoreEntitySet="Subscribers">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

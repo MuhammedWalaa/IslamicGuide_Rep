@@ -55,9 +55,8 @@ namespace IslamicGuide.Services.Utilities
         private void PopRoutesOutOfIndex(List<Route> routes, string name)
         {
             int size = routes.Count;
-
             int index = SearchForRoute(name, routes);
-            for (int i = index; i < size; i++)
+            for (int i = index+1; i < size; i++)
             {
                 routes.RemoveAt(routes.Count-1);
             }

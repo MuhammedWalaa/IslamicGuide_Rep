@@ -32,19 +32,30 @@
     </div>
     <!--CONTAINER END-->
 </div>
+
 <!--KODE SAB BANNER WRAP END-->
 <div class="kode_navigation_wrap">
     <div class="container">
-        <div dir="rtl" class="navigation">
-            <select id="ListSubjects" class="kode alignselect">
-                @foreach (var item in Model.subjectsDropdown)
-                {
-                    <option value="@item.ID"> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
-                }
-            </select>
+        @if (Model.HasPosition)
+        {
+            <div style="margin-top: 2%" class="kode_mosque_item">
+                <div class="koed_banner_btn">
+                
+                    @Html.ActionLink("المواضع", "GetPositionsForSubject",new{id = Model.Id}, new {@class = "medium_btn border btn_hover"})
+                </div>
+            </div>
+        }
+            <div dir="rtl" class="navigation">
+
+                <select id="ListSubjects" class="kode alignselect">
+                    @foreach (var item in Model.subjectsDropdown)
+                    {
+                        <option value="@item.ID"> @Html.ActionLink(item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
+                    }
+                </select>
+            </div>
         </div>
     </div>
-</div>
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
