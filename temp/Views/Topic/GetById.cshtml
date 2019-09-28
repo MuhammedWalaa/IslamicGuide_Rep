@@ -6,13 +6,17 @@
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    string arrow = "";
+    if (langCode == "en")
+    { arrow = "sab_banner_text"; }
+    else
+    { arrow = "sab_banner_textAr"; }
 }
-
 <!--KODE SAB BANNER WRAP START-->
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
-        <div class="sab_banner_text">
+        <div class=@arrow>
             <h2>@Model.subjectVM[0].ParentTitle</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
@@ -20,11 +24,11 @@
                 {
                     if (r.Id == null)
                     {
-                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, null, null)</strong></li>
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink(r.Text==null?"item":r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -40,21 +44,21 @@
         {
             <div style="margin-top: 2%" class="kode_mosque_item">
                 <div class="koed_banner_btn">
-                    @Html.ActionLink("المواضع", "GetPositionsForSubject",new{id = Model.Id}, new {@class = "medium_btn border btn_hover"})
+                    @Html.ActionLink("المواضع", "GetPositionsForSubject", new { id = Model.Id }, new { @class = "medium_btn border btn_hover" })
                 </div>
             </div>
         }
-            <div dir="rtl" class="navigation">
-                <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                    <option style="font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
-                    @foreach (var item in Model.subjectsDropdown)
-                    {
-                        <option style="font-size:12pt;font-weight:200"  value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
-                    }
-                </select>
-            </div>
+        <div dir="rtl" class="navigation">
+            <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                <option style="font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
+                @foreach (var item in Model.subjectsDropdown)
+                {
+                    <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                }
+            </select>
         </div>
     </div>
+</div>
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
@@ -70,7 +74,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title==null?"Item":item.Title, "GetById", "Topic", new { id = item.ID }, null)
+                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "GetById", "Topic", new { id = item.ID }, null)
                             </h4>
                         </div>
                     </div>
@@ -123,6 +127,6 @@
     function OnChangeEvent(dropDownElement) {
         var selectedValue = dropDownElement.options[dropDownElement.selectedIndex].value;
         var base_url = window.location.origin;
-        document.location = base_url+"/Topic/getbyid/" + selectedValue;
+        document.location = base_url + "/Topic/GetByIdList/" + selectedValue;
     }
 </script>

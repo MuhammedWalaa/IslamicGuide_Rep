@@ -30,7 +30,11 @@ namespace IslamicGuide.Services.BussinessServices
 
             Subject subj = _DbContext.Subjects.Where(p => p.ID == id).FirstOrDefault();
             subject.ID = subj.ID;
-            subject.Title = langCode=="en"? subj.Title_English:subj.Title;
+            if (langCode == "en")
+                subject.Title = subj.Title_English == null ? subj.Title : subj.Title_English;
+            else
+                subject.Title = subj.Title;
+
             return subject;
         }
         public int GetSubjectParentId(int id)
@@ -48,9 +52,19 @@ namespace IslamicGuide.Services.BussinessServices
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
             List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
-            foreach (Subject item in subjectList)
+            if (langCode == "en")
             {
-                subjects.Add(new SubjectVM { ID = item.ID, Title = langCode=="en"?item.Title_English:item.Title});
+                foreach (Subject item in subjectList)
+                {
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English ==null?item.Title: item.Title_English});
+                }
+            }
+            else
+            {
+                foreach (Subject item in subjectList)
+                {
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                }
             }
             //subjects
             return subjects;
@@ -64,12 +78,20 @@ namespace IslamicGuide.Services.BussinessServices
                 List<Subject> subSubjectList = _DbContext.Subjects.Where(x => x.ParentID == id).ToList();
                 string parentTitle = subjectTitle(id,langCode);
 
-
-                foreach (Subject item in subSubjectList)
+                if(langCode == "en")
                 {
-                    subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = langCode == "en" ? item.Title_English : item.Title });
+                    foreach (Subject item in subSubjectList)
+                    {
+                        subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title_English==null?item.Title :item.Title_English});
+                    }
                 }
-
+                else
+                {
+                    foreach (Subject item in subSubjectList)
+                    {
+                        subSubjects.Add(new SubjectVM { ParentTitle = parentTitle, ID = item.ID, Title = item.Title });
+                    }
+                }
             }
             //subjects
             return subSubjects;
@@ -78,12 +100,11 @@ namespace IslamicGuide.Services.BussinessServices
         {
             if (id != 0)
             {
-                if(langCode=="en")
-                    return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title_English;
+                if (langCode == "en")
+                    return _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
                 else
-                    return _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().Title;
+                    return _DbContext.Subjects.FirstOrDefault(x => x.ID == id).Title;
             }
-
             return "";
         }
         
@@ -91,9 +112,19 @@ namespace IslamicGuide.Services.BussinessServices
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
             var subjectslist = _DbContext.Subjects.Where(p=>p.ParentID==1).ToList();
-            foreach (var item in subjectslist)
+            if (langCode == "en")
             {
-                subjects.Add(new SubjectVM { ID = item.ID, Title = langCode == "en" ? item.Title_English : item.Title });
+                foreach (var item in subjectslist)
+                {
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English==null?item.Title :item.Title });
+                }
+            }
+            else
+            {
+                foreach (var item in subjectslist)
+                {
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                }
             }
             return subjects;
         }

@@ -39,7 +39,7 @@ namespace IslamicGuide.Services.BussinessServices
                     else
                     {
                         if(langCode=="en")
-                            suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title_English;
+                            suraTitle = _DbContext.QuranSuars.Where(p => p.ID == item.QuranWord.SoraID).Select(e=>e.Title_English==null?e.Title:e.Title_English).FirstOrDefault();
                         else
                             suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
                         var res = _commonServices.GetQuranWords(item.FromQuranWordID.Value, item.ToQuranWordID.Value, ayatCount,langCode);
@@ -71,7 +71,7 @@ namespace IslamicGuide.Services.BussinessServices
             string title = "";
             string suraTitle = "";
             if(langCode=="en")
-                title = _DbContext.Subjects.FirstOrDefault(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Title_English;
+                title = _DbContext.Subjects.Where(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Select(s=>s.Title_English==null?s.Title:s.Title_English).FirstOrDefault();
             else
                 title = _DbContext.Subjects.FirstOrDefault(x=>x.ID==x.MapSubjectsQurans.FirstOrDefault(e=>e.PositionID==id).SubjectID).Title;
             var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
@@ -81,7 +81,7 @@ namespace IslamicGuide.Services.BussinessServices
                 else
                 {
                 if(langCode=="en")
-                    suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title_English;
+                    suraTitle = _DbContext.QuranSuars.Where(p => p.ID == position.QuranWord.SoraID).Select(e=>e.Title_English==null?e.Title:e.Title_English).FirstOrDefault();
                 else
                     suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
                 var res = _commonServices.GetQuranWords(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);

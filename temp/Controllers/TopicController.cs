@@ -26,12 +26,17 @@ namespace IslamicGuide.App.Controllers
             List<SubjectVM> subjects = _subjectService.GetAllSubjects(LangCode);
             return View(subjects);
         }
-        public ActionResult GetById(int id)
+        public ActionResult GetByIdList(int id)
+        {
+            //var currentRoute = _subjectService.GetSubjectById(id, LangCode);
+            _routeService.PopRoutesOutOfIndexFromList(Routes, Routes[Routes.Count-1].Text);
+            return RedirectToAction("GetById", new { id = id });
+        }
+        public ActionResult GetById(int id,int? page)
         {
             var currentRoute = _subjectService.GetSubjectById(id,LangCode);
             _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
             var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
-            
             List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id,LangCode);
             if (subSubjects.Count() == 0)
             {

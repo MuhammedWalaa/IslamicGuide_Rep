@@ -11,9 +11,7 @@ namespace IslamicGuide.Services.Utilities
     {
         public void RouteHandling(string name, string controller, string actionName, int? id, List<Route> routes)
         {
-            if(routes.Count>0)
-            if (name != null&&routes[1].Text!=null)
-            {
+            
                 if (routes.LastOrDefault(r => r.Text.Equals(name)) != null)
                 {
                     PopRoutesOutOfIndex(routes, name);
@@ -22,7 +20,7 @@ namespace IslamicGuide.Services.Utilities
                 {
                     AddRoute(name, controller, actionName, id, routes);
                 }
-            }
+            
         }
         private void AddRoute(string name,string controller,string actionName,int ? id, List<Route> routes)
         {
@@ -56,7 +54,7 @@ namespace IslamicGuide.Services.Utilities
             return 5555;
         }
 
-        private void PopRoutesOutOfIndex(List<Route> routes, string name)
+        public void PopRoutesOutOfIndex(List<Route> routes, string name)
         {
             int size = routes.Count;
             int index = SearchForRoute(name, routes);
@@ -67,7 +65,17 @@ namespace IslamicGuide.Services.Utilities
 
             
         }
+        public void PopRoutesOutOfIndexFromList(List<Route> routes, string name)
+        {
+            int size = routes.Count;
+            int index = SearchForRoute(name, routes);
+            for (int i = index ; i < size; i++)
+            {
+                routes.RemoveAt(routes.Count - 1);
+            }
 
+
+        }
 
     }
 }

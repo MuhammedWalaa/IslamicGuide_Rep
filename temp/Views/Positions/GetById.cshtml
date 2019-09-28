@@ -4,14 +4,34 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    string arrow = "";
+    if (langCode == "en")
+    { arrow = "sab_banner_text"; }
+    else
+    { arrow = "sab_banner_textAr"; }
+}
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
-        <div class="sab_banner_text">
+
+
+        <div class=@arrow>
             <h2>@Model.Title</h2>
             <ul class="breadcrumbs">
-                <li><strong> @Resources.LayoutResource.Position1 - @Resources.LayoutResource.Readingprinciples</strong></li>
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
+                {
+                    if (r.Id == null)
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                    }
+                    else
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                    }
+                }
             </ul>
         </div>
     </div>
@@ -25,14 +45,14 @@
         <!--CONTAINER START-->
         <div style="margin-bottom:2%;margin-top:2%;" class="container">
             <div class="navigation">
-                <ul>
-                    <li><a href="#">@Resources.LayoutResource.link1</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link2</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link3</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link4</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link5</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link6</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link7</a></li>
+                <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link1</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link2</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link3</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link4</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link5</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link6</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link7</a></li>
                 </ul>
 
             </div>
