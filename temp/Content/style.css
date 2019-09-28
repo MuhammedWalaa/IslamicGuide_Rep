@@ -85,33 +85,6 @@
 
 ==============================================================================================	*/
 
-.ulSalah{
-    padding-left:100px ;
-}
-.alignselect {
-    direction:ltr;
-    float:left;
-    border-radius:4px;
-    width: 31.2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: white;
-    border: 1px solid black;
-    font-size: 20px;
-    color: black;
-    font-family: 'Poppins', sans-serif;
-}
-.alignselect1 {
-    width: 15%;
-    margin-top: 2%;
-    margin-right:2%;
-    margin-bottom: 2%;
-    background-color: white;
-    border: 1px solid black;
-    font-size: 20px;
-    color: black;
-    font-family: 'Poppins', sans-serif;
-}
 .wraper{
 	float:left;
 	width:100%;
@@ -211,7 +184,8 @@
 }
 .kode_top_right_text .comment-form{
 	float:left;
-	border-left:1px solid #ccc;
+	padding-left:30px;
+	/*border-left:1px solid #ccc;*/
 }
 .kode_top_right_text .kf_commet_field{
 	width:160px;
@@ -262,12 +236,12 @@
 	padding:25px 0px;
 }
 .top_logo{
-    display:inline-block;
+	float: left;
     position: relative;
     width: auto;
 }
 .top_time_circle{
-    display:inline-block;
+	float:right;
 	width:auto;
 	position: relative;
 	padding:2px 0px;
@@ -503,7 +477,7 @@
 	width:100%;
 }
 .kode_mosques_wrap{
-	padding:10px 0;
+	padding:80px 0;
 }
 .kode_mosque_des{
 	width:49%;
@@ -558,7 +532,7 @@
 }
 .section_hdg h3{
 	display:inline-block;
-	/*margin-right:16px;*/
+	margin-right:16px;
 }
 .section_hdg span{
 	font-size:25px;
@@ -566,6 +540,7 @@
 }
 .section_hdg span:after,
 .section_hdg span:before{
+	border-bottom: 1px solid #acacac;
     bottom: 12px;
     content: "";
     left: auto;
@@ -575,6 +550,7 @@
     width: 38px;
 }
 .section_hdg span:after{
+	border-top: 1px solid #acacac;
 	border-bottom:none;
 	top:16px;
 	right:auto;
@@ -614,7 +590,6 @@
 	margin-bottom:37px;
 }
 .kode_counter_mosque{
-    display:flex;
 	margin-bottom:36px;
 }
 .kode_counter_mosque li{
@@ -1749,6 +1724,7 @@
 }
 .kode_newsletter_des {
 	padding:17px 0px 13px;
+	/*border-right:1px solid #a37a39;*/
 }
 .kode_newsletter_des span{
 	display:inline-block;
@@ -1780,6 +1756,7 @@
 }
 /* kode newsletter form start */
 .kode_newsletter_form{
+	float:right;
 	padding:22px 0 23px;
 }
 .kode_newsletter_form .kf_commet_field{
@@ -2386,7 +2363,7 @@
     margin-bottom: -110px;
     padding: 80px 0 0;
     width: 572px;
-	background-image:url("images/piller-bg.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/piller-bg.png");
 	background-repeat:no-repeat;
 	z-index:999;
 }
@@ -2472,7 +2449,7 @@
 	width:100%;
 }
 .kode_building_wrap{
-	background-image:url("images/bulding.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/bulding.png");
 	background-position:center;
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -2714,7 +2691,7 @@
 	background-repeat:no-repeat;
 	background-size:cover;
 	animation: 10s linear 0s normal none infinite running shafaqat;
-	background: rgba(0, 0, 0, 0) url("images/banner-pattran-bg.png") repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0) url("http://kodeforest.net/html/islamic/images/banner-pattran-bg.png") repeat scroll 0 0;
 }
 @-webkit-keyframes shafaqat{
 	  0%{background-position:50% 0}
@@ -2790,7 +2767,7 @@
 }
 .kode_Philosophy_wrap{
 	padding:80px 0px 120px;
-	background-image:url("images/philosophy-pt.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/philosophy-pt.png");
 	background-repeat:no-repeat;
 	background-size:cover;
 }
@@ -3327,7 +3304,7 @@
 	width:100%;
 }
 .kode_404_wrap{
-	background-image:url("images/404-bg.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/404-bg.png");
 	background-position:center;
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -3367,7 +3344,7 @@
 	margin:0px -30px;
 }
 .kode_404_text h2 span:before{
-	background-image:url("images/404_bg1.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/404_bg1.png");
 	position:absolute;
 	content:"";
 	top:6px;
@@ -3412,7 +3389,7 @@
 	width:100%;
 }
 .kode_coming_soon_wrap{
-	background-image:url("images/coming-bg.png");
+	background-image:url("http://kodeforest.net/html/islamic/images/coming-bg.png");
 	background-position:center;
 	background-repeat:no-repeat;
 	background-size:cover;
@@ -3683,6 +3660,7 @@
 	text-transform:uppercase;
 }
 .kode_event_detail .kode_calender_list{
+	padding-left:30px;
 }
 .kode_portfolio_des .them_overlay:before,
 .kode_coming_fig .them_overlay:before,
@@ -3723,7 +3701,7 @@
 	display:inline-block;
 	padding:20px 30px 20px 20px;
 	border-left:1px solid #d0d0d0;
-	border-right:1px solid #d0d0d0;
+	/*border-right:1px solid #d0d0d0;*/
 	font-size:12px;
 }
 .event_studium:hover{
@@ -4095,7 +4073,7 @@
 	width:100%;
 }
 .kode_service_search_feild{
-	background-image: url("images/service_bg.png"), url("images/service_bg1.png");
+	background-image: url("http://kodeforest.net/html/islamic/images/service_bg.png"), url("http://kodeforest.net/html/islamic/images/service_bg1.png");
     background-position: left center, right center;
     background-repeat: no-repeat;
 	background-size:952px 860px;
@@ -4978,7 +4956,7 @@
 	background: rgba(145,201,218,0.90);
 }
 .overlay .overlay-close {
-	background: #000000 url("images/images.png") no-repeat scroll center center;
+	background: #000000 url("http://kodeforest.net/html/islamic/images/images.png") no-repeat scroll center center;
     border: medium none;
     border-radius: 100%;
     color: rgba(0, 0, 0, 0);
@@ -5105,12 +5083,4 @@
 .kode_search_overlay {
     float: left;
     width: auto;
-}
-
-.ayatfont {
-    font-family: hafs,"Times","Traditional Arabic",Arial;
-    color: #535353;
-    font-size: 1.8em;
-    line-height: 1.7em;
-    font-weight: bold;
 }

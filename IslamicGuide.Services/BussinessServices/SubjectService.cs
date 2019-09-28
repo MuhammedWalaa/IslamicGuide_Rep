@@ -12,7 +12,6 @@ namespace IslamicGuide.Services.BussinessServices
     public class SubjectService
     {
         private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
-        private readonly CommonServices _commonServices;
 
         public SubjectService()
         {
@@ -23,11 +22,6 @@ namespace IslamicGuide.Services.BussinessServices
 
             return _DbContext.Subjects.Where(x => x.ParentID == 1).Count();
 
-        }
-
-        public object GetSubSubjectPositionsById(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public SubjectVM GetSubjectById(int id)

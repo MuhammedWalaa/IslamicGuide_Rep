@@ -19,7 +19,7 @@
                 {
                     if (r.Id == null)
                     {
-                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller,null, null)</strong></li>
+                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, null, null)</strong></li>
                     }
                     else
                     {
@@ -32,6 +32,28 @@
     <!--CONTAINER END-->
 </div>
 <!--KODE SAB BANNER WRAP END-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--KODE EVENT WRAP START-->
 <div class="kode_event_wrap">
     <!--CONTAINER START-->
@@ -40,23 +62,43 @@
             <ul>
                 @foreach (var item in Model)
                 {
-                <li>
-                    
-                    <div class="kode_calender_list">
+                    <li>
                         <div class="event_date">
-                            <span style="margin-top: 40%;">@item.SuraNum</span>
+                            <span>@item.SuraNum</span>
                         </div>
-                        <div class="kode_event_text">
-                            @Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new {id =item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
-                            <p style="padding-right:25%; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
+                        <div class="kode_calender_list">
+                            <div style="width:600px" class="kode_event_text">
+                                <h4>@item.SuraTitle</h4>
+                                <p>@item.QuranWords</p>
+                            </div>
                         </div>
-                    </div>
-                    <div style="position: absolute;right: 10%" class="kode_event_ticket">
-                        <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
-                        @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark"})
-                    </div>
-                </li>
+                        <div class="kode_event_ticket">
+                            <a class="event_studium" href="#">Ayat : @item.AyatCount</a>
+                        </div>
+                        <div align="right">
+                            @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
+                        </div>
+                    </li>
                 }
+
+                @*@foreach (var item in Model)
+        {
+            <li>
+                <div class="kode_calender_list">
+                    <div class="event_date">
+                        <span style="margin-top: 40%;">@item.SuraNum</span>
+                    </div>
+                    <div class="kode_event_text">
+                        @Html.ActionLink(item.SuraTitle, "GetById", "subtopicpositions", new { id = item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
+                        <p style="padding-right:25%; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
+                    </div>
+                </div>
+                <div style="position: absolute;right: 10%" class="kode_event_ticket">
+                    <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
+                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "subtopicpositions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark" })
+                </div>
+            </li>
+        }*@
 
 
 

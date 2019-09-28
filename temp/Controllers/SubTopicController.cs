@@ -16,8 +16,7 @@ namespace IslamicGuide.App.Controllers
         public SubTopicController()
         {
             _subjectService = new SubjectService();
-            _positionService = new PositionService();
-        }   
+            _positionService = new PositionService(); 
             _routeService=new RouteService();
         }
         // GET: SubTopic
@@ -28,12 +27,10 @@ namespace IslamicGuide.App.Controllers
         public ActionResult GetById(int id)
         {
            
-            var positions = _subjectService.GetSubSubjectPositionsById(id);
+            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id);
             string parentTitle = _subjectService.subjectTitle(id);
 
             _routeService.RouteHandling(parentTitle,"SubTopicController","GetById",id,Routes);
-            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id);
-            var parentTitle = _subjectService.subjectTitle(id);
             ViewBag.subjectTitle = parentTitle;
             return View(positions);
         }

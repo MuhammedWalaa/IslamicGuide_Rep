@@ -7,8 +7,8 @@
 }
 
 <!--KODE BANNER WRAP START-->
-<div class="kode_banner_wrap">
-    <ul style="direction:rtl !important" class="bxslider">
+<div style="direction:ltr !important" class="kode_banner_wrap">
+    <ul class="bxslider">
         <li>
             <figure class="them_overlay">
                 <img src="~/Content/extra-images/banner.jpg" alt="">
@@ -98,7 +98,7 @@
                     <div class="section_hdg">
                         <a href="#"><img src="~/Content/images/hdg-img.png" alt=""></a>
                         <h3>@Resources.LayoutResource.AboutUs</h3>
-                        <span><i class="fa icon-building"></i></span>
+                        <i class="fa icon-building"></i>
                     </div>
                     <div class="kode_mosque_item">
                         <p>here are many variations of passages of Lorem Ipsum available, but have suffered alteration in some form, by injected humour, or randomised words  of Lorem Ipsum available, but the majority have suffered alteration in some form...</p>
@@ -126,7 +126,84 @@
 </div>
 <!--KODE MOSQUES WRAP END-->
 <!--KODE PILLARS WRAP START-->
+
+
 <div class="kode_pillars_wrap them_overlay">
+					<!--CONTAINER START-->
+					<div class="container">
+						<!--SECTION HDG START-->
+                        <div class="section_hdg hdg_2">
+                            <a href="#"><img src="~/Content/images/hdg-img-2.png" alt=""></a>
+                            <h3>@Resources.LayoutResource.Pillars</h3>
+                            <span><i class="fa icon-building"></i></span>
+                        </div>
+						<!--SECTION HDG END-->
+						<div class="kode_pillars_row">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+                                    <ul class="nav nav-tabs kode_pillars_item">
+                                        <li><a class="left_bottom hvr-ripple-out" href="#tab1" data-toggle="tab"><span><i class="fa icon-interface"></i></span><h6>@Resources.LayoutResource.Shahdah</h6></a></li>
+                                        <li><a class="left_center hvr-ripple-out" href="#tab2" data-toggle="tab"><span><i class="fa icon-people-1"></i></span><h6>@Resources.LayoutResource.Salah</h6></a></li>
+                                        <li><a class="center hvr-ripple-out" href="#tab3" data-toggle="tab"><span><i class="fa icon-money"></i></span><h6>@Resources.LayoutResource.Zakat</h6></a></li>
+                                        <li><a class="right_center hvr-ripple-out" href="#tab4" data-toggle="tab"><span><i class="fa icon-monuments-1"></i></span><h6>@Resources.LayoutResource.Hajj</h6></a></li>
+                                        <li><a class="right_bottom hvr-ripple-out" href="#tab5" data-toggle="tab"><span><i class="fa icon-book-1"></i></span><h6>@Resources.LayoutResource.Fasting</h6></a></li>
+                                    </ul>
+								</div>
+								<div class="panel-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-building"></i></span>
+                                                <h4>@Resources.LayoutResource.IslamicPillar</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade in" id="tab1">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-interface"></i></span>
+                                                <h4>@Resources.LayoutResource.Shahdah</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade in" id="tab2">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-people-1"></i></span>
+                                                <h4>@Resources.LayoutResource.Salah</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade in" id="tab3">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-money"></i></span>
+                                                <h4>@Resources.LayoutResource.Zakat</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade in" id="tab4">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-monuments-1"></i></span>
+                                                <h4>@Resources.LayoutResource.Hajj</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade in" id="tab4">
+                                            <div class="kode_pillars_text">
+                                                <span><i class="fa icon-book-1"></i></span>
+                                                <h4>@Resources.LayoutResource.Fasting</h4>
+                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority is have suffered alteration in some form...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--CONTAINER END-->
+				</div>
+
+
+
+@*<div class="kode_pillars_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
         <!--SECTION HDG START-->
@@ -198,7 +275,7 @@
         </div>
     </div>
     <!--CONTAINER END-->
-</div>
+</div>*@
 <!--KODE PILLARS WRAP END-->
 <!--KODE SERVICES WRAP START-->
 <div class="kode_services_wrap">
@@ -235,7 +312,7 @@
 
             <div class="col-md-12">
                 <div class="service_btn">
-                    @Html.ActionLink("Show More", "Index", "Topic",null, new { @class = "small_btn background-bg-dark margin-right btn_hover"})
+                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic",null, new { @class = "small_btn background-bg-dark margin-right btn_hover"})
                 </div>
             </div>
         </div>

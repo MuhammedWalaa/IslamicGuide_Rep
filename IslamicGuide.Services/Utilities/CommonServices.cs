@@ -31,7 +31,6 @@ namespace IslamicGuide.Services.Utilities
                     var inde = allWords.FindLastIndex(s => s.aya == item);
                     finalWords.Insert(allWords.FindLastIndex(s => s.aya == item), "(" + item + ")");
                 }
-
             }
 
             return finalWords;

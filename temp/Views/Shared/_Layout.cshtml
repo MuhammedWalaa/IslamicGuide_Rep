@@ -14,7 +14,6 @@
     <title>HOME PAGE</title>
     <!--BOOTSTRAP CSS-->
     <link href="~/Content/css/bootstrap.css" rel="stylesheet">
-    <link href="~/Content/css/ar-style.css" rel="stylesheet" />
     <link href="~/Content/css/animate.css" rel="stylesheet" />
     <link href="~/Content/css/audio.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
@@ -33,7 +32,7 @@
     <link href="~/Content/css/slick-theme.css" rel="stylesheet" />
     <link href="~/Content/css/slick.css" rel="stylesheet" />
     <link href="~/Content/css/typography.css" rel="stylesheet" />
-    <link href="~/Content/css/ar-style.css" rel="stylesheet" />
+    @*<link href="~/Content/css/ar-style.css" rel="stylesheet" />*@
 
 
 
@@ -132,15 +131,20 @@
                 <!--CONTAINER END-->
             </div>
             <!--KODE TOP WRAP END-->
+
+
+           
+
+
             <!--KODE TOP LOGO WRAP START-->
             <div class="kode_top_logo_wrap them_overlay">
                 <!--CONTAINER START-->
                 <div class="container">
                     <div class="top_logo">
-                        <h1><a href="#"><img style="vertical-align:unset;" src="~/Content/images/top-logo.png" alt="kodeforest"></a></h1>
+                        <h1><a href="#"><img src="~/Content/images/top-logo.png" alt="kodeforest"></a></h1>
                     </div>
                     <div class="top_time_circle">
-                        <ul class="ulSalah">
+                        <ul>
                             @foreach (var p in ((List<PraysVM>)@ViewBag.PraysTime))
                             {
                                 <li><a href="#">@p.Name</a><span>@p.Time</span></li>

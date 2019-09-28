@@ -466,6 +466,7 @@
     <Content Include="Content\fonts\Amiri-Quran.ttf" />
     <Content Include="Content\images\ar.svg" />
     <Content Include="Content\images\en.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.woff2" />
     <None Include="Content\Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.js" />
     <Content Include="Content\Scripts\jquery-3.3.1.min.js" />

@@ -10,5 +10,6 @@ namespace IslamicGuide.Data.ViewModels.Position
     {
         public string SuraTitle { get; set; }
         public string PositionQuranWords { get; set; }
+        public string Title { get; set; }
     }
 }

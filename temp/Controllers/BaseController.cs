@@ -8,6 +8,7 @@ namespace IslamicGuide.App.Controllers
 {
     public class BaseController : Controller
     {
+
         public Guid? SystemUserId => Request.Cookies["UserId"] == null ? (Guid?)null : new Guid(Request.Cookies["UserId"].Value);
         public string LangCode => Request.Cookies["culture"] == null ? string.Empty : Request.Cookies["culture"].Value;
         public static List<Route> Routes;

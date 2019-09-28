@@ -371,8 +371,7 @@
   content: "\f040";
 }
 .fa-map-marker:before {
-    padding: 12px;
-    content: "\f041";
+  content: "\f041";
 }
 .fa-adjust:before {
   content: "\f042";
@@ -614,7 +613,6 @@
   content: "\f094";
 }
 .fa-phone:before {
-  padding:10px;
   content: "\f095";
 }
 .fa-square-o:before {
@@ -801,7 +799,6 @@
   content: "\f0de";
 }
 .fa-envelope:before {
-  padding:10px;
   content: "\f0e0";
 }
 .fa-linkedin:before {

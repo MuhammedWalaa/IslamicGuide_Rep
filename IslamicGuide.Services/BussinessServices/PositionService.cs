@@ -64,6 +64,8 @@ namespace IslamicGuide.Services.BussinessServices
 
         public PositionDetialsVM GetPositionDetials(int id)
         {
+
+            var title = _DbContext.Subjects.FirstOrDefault(x=>x.ID==x.MapSubjectsQurans.FirstOrDefault(e=>e.PositionID==id).SubjectID).Title;
             var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
                 var ayatCount = (position.QuranWord1.AyaID.Value - position.QuranWord.AyaID.Value) + 1;
                 if (ayatCount < 0)
@@ -73,7 +75,7 @@ namespace IslamicGuide.Services.BussinessServices
                     var suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
                     var res = _commonServices.GetQuranWords(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount);
                     var words_ayat = string.Join(" ", res);
-                return new PositionDetialsVM() { SuraTitle = suraTitle, PositionQuranWords = words_ayat };
+                return new PositionDetialsVM() { SuraTitle = suraTitle, PositionQuranWords = words_ayat,Title= title };
                 }
             
             return null;

@@ -30,7 +30,7 @@ namespace IslamicGuide.Services.Utilities
             }
             else
             {
-                routes[routes.Count]=(new Route() { ActionName = actionName, Controller = controller, Text = name,Id=id });
+                routes.Add(new Route() { ActionName = actionName, Controller = controller, Text = name,Id=id });
             }
 
             
@@ -54,10 +54,12 @@ namespace IslamicGuide.Services.Utilities
 
         private void PopRoutesOutOfIndex(List<Route> routes, string name)
         {
+            int size = routes.Count;
+
             int index = SearchForRoute(name, routes);
-            for (int i = index; i < routes.Count; i++)
+            for (int i = index; i < size; i++)
             {
-                routes.RemoveAt(i);
+                routes.RemoveAt(routes.Count-1);
             }
 
             
