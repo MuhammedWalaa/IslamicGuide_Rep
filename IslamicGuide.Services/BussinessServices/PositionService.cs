@@ -6,18 +6,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IslamicGuide.Data.ViewModels.Position;
+using IslamicGuide.Data.ViewModels.Shared;
+using IslamicGuide.Data.ViewModels.Subjects;
 
 namespace IslamicGuide.Services.BussinessServices
 {
    
     public class PositionService
     {
+
         private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
         private readonly CommonServices _commonServices;
         public PositionService()
         {
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
             _commonServices = new CommonServices();
+        }
+
+        public PageListResult<PositionVM> AdjustingPositionData(PageFilterModel filter, int id)
+        {
+            List<PositionVM> positions = GetSubjectAndSubSubjectPositionsById(id,filter.LangCode);
+            int positionsCount = positions.Count;
+
+            return new PageListResult<PositionVM>()
+            {
+                RowsCount = positionsCount,
+                DataList = positions.Skip(filter.Skip)
+                    .Take(filter.PageSize).ToList(),
+
+            };
         }
         public List<PositionVM> GetSubjectAndSubSubjectPositionsById(int id,string langCode)
         {

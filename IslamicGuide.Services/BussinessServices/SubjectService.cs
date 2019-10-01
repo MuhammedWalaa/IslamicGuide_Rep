@@ -1,5 +1,6 @@
 ﻿using IslamicGuide.Data;
 using IslamicGuide.Data.ViewModels.Position;
+using IslamicGuide.Data.ViewModels.Shared;
 using IslamicGuide.Data.ViewModels.Subjects;
 using IslamicGuide.Services.Utilities;
 using System;
@@ -20,10 +21,23 @@ namespace IslamicGuide.Services.BussinessServices
         public int CountSubjects()
         {
 
-            return _DbContext.Subjects.Where(x => x.ParentID == 1).Count();
+            return _DbContext.Subjects.Count(x => x.ParentID == 1);
 
         }
-
+        public PageListResult<SubjectVM> AdjustingMainSubjectsData(PageFilterModel pageFilterModel, int subjectId)
+        {
+            List<SubjectVM> subjects = GetSubSubjectById(subjectId,pageFilterModel.LangCode);
+            int subjectsCount = subjects.Count;
+            if (subjectsCount == 0)
+                return null;
+            return new PageListResult<SubjectVM>()
+            {
+                RowsCount = subjectsCount,
+                DataList = subjects.Skip(pageFilterModel.Skip)
+                    .Take(pageFilterModel.PageSize).ToList(),
+            };
+        }
+        
         public SubjectVM GetSubjectById(int id,string langCode)
         {
             SubjectVM subject = new SubjectVM();

@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IslamicGuide.Data.ViewModels.Shared;
+using IslamicGuide.Data.ViewModels.Subjects;
+using IslamicGuide.Services.BussinessServices;
 
 namespace IslamicGuide.Services.Utilities
 {
     public class CommonServices
     {
         private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly SubjectService _subjectService;
         public CommonServices()
         {
+            _subjectService = new SubjectService();
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
         }
         public List<string> GetQuranWords(int from, int to, int ayatCount,string langCode)
@@ -32,7 +37,7 @@ namespace IslamicGuide.Services.Utilities
 
             return finalWords;
         }
-
+        
         public Boolean AddSubscriber(string email)
         {
             if (email == null)

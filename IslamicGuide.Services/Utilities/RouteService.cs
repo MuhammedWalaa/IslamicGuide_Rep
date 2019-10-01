@@ -9,8 +9,11 @@ namespace IslamicGuide.Services.Utilities
 {
     public class RouteService
     {
+        
+
         public void RouteHandling(string name, string controller, string actionName, int? id, List<Route> routes)
         {
+
             
                 if (routes.LastOrDefault(r => r.Text.Equals(name)&&r.Controller.Equals(controller)) != null)
                 {

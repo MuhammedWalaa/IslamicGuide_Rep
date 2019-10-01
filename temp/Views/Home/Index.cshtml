@@ -293,8 +293,7 @@
             @foreach (var item in Model.Subject)
             {
             <div class="col-md-4">
-
-                <a href="@Url.Action("GetById", Controller,new { id = item.ID},null)">
+                <a href="@Url.Action("index", Controller,new { subjectId = item.ID},null)">
                     <div class="kode_service_des">
                         <figure>
                             <img src="~/Content/extra-images/service.jpg" alt="">
@@ -302,7 +301,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title==null?"item":item.Title, "GetById", Controller, new { id = item.ID},null)
+                                @Html.ActionLink(item.Title == null ? "item" : item.Title, "index", Controller, new { subjectId = item.ID }, null)
                             </h4>
                         </div>
                     </div>
@@ -312,7 +311,7 @@
 
             <div class="col-md-12">
                 <div class="service_btn">
-                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic",null, new { @class = "small_btn background-bg-dark margin-right btn_hover"})
+                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic", new { subjectId = 1 }, new { @class = "small_btn background-bg-dark margin-right btn_hover"})
                 </div>
             </div>
         </div>
