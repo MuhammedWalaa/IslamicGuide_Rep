@@ -3188,6 +3188,7 @@
     }
 
 .breadcrumbs {
+    direction :ltr !important;
     display: inline-block;
     background-color: #fff;
     padding: 8px 24px;
@@ -3245,7 +3246,7 @@
 
     .sab_banner_textAr li:before {
         position: absolute;
-        content: "\f100";
+        content: "\f101";
         top: 1px;
         right: -23px;
         bottom: 0px;

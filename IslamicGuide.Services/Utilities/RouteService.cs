@@ -12,7 +12,7 @@ namespace IslamicGuide.Services.Utilities
         public void RouteHandling(string name, string controller, string actionName, int? id, List<Route> routes)
         {
             
-                if (routes.LastOrDefault(r => r.Text.Equals(name)) != null)
+                if (routes.LastOrDefault(r => r.Text.Equals(name)&&r.Controller.Equals(controller)) != null)
                 {
                     PopRoutesOutOfIndex(routes, name);
                 }
