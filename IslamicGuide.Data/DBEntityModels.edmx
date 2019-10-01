@@ -53,7 +53,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             <PropertyRef Name="ParagraphID" />
             <PropertyRef Name="PositionID" />
           </Key>
-          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
           <Property Name="ParagraphID" Type="int" Nullable="false" />
           <Property Name="PositionID" Type="int" Nullable="false" />
         </EntityType>
@@ -221,6 +221,18 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MapBookQuran_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="MapBookQuran" Type="Self.MapBookQuran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MapBookQuran">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MapBookQuran_Positions">
           <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
           <End Role="MapBookQuran" Type="Self.MapBookQuran" Multiplicity="*" />
@@ -371,6 +383,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             <End Role="BookContent" EntitySet="BookContent" />
             <End Role="MapBookQuran" EntitySet="MapBookQuran" />
           </AssociationSet>
+          <AssociationSet Name="FK_MapBookQuran_Books" Association="Self.FK_MapBookQuran_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="MapBookQuran" EntitySet="MapBookQuran" />
+          </AssociationSet>
           <AssociationSet Name="FK_MapBookQuran_Positions" Association="Self.FK_MapBookQuran_Positions">
             <End Role="Positions" EntitySet="Positions" />
             <End Role="MapBookQuran" EntitySet="MapBookQuran" />
@@ -419,12 +435,16 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySet Name="MapBookQurans" EntityType="DB_A4DE6E_IslamicGuideModel.MapBookQuran" />
           <EntitySet Name="MapSubjectsQurans" EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" />
           <EntitySet Name="Positions" EntityType="DB_A4DE6E_IslamicGuideModel.Position" />
+          <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
           <EntitySet Name="QuranAyats" EntityType="DB_A4DE6E_IslamicGuideModel.QuranAyat" />
           <EntitySet Name="QuranSuars" EntityType="DB_A4DE6E_IslamicGuideModel.QuranSuar" />
           <EntitySet Name="QuranWords" EntityType="DB_A4DE6E_IslamicGuideModel.QuranWord" />
+          <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
           <EntitySet Name="Subjects" EntityType="DB_A4DE6E_IslamicGuideModel.Subject" />
+          <EntitySet Name="Subscribers" EntityType="DB_A4DE6E_IslamicGuideModel.Subscriber" />
           <EntitySet Name="sysdiagrams" EntityType="DB_A4DE6E_IslamicGuideModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="DB_A4DE6E_IslamicGuideModel.User" />
+          <EntitySet Name="Images" EntityType="DB_A4DE6E_IslamicGuideModel.Image" />
           <AssociationSet Name="FK_Books_BookCategories" Association="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories">
             <End Role="BookCategory" EntitySet="BookCategories" />
             <End Role="Book" EntitySet="Books" />
@@ -443,6 +463,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           </AssociationSet>
           <AssociationSet Name="FK_MapBookQuran_BookContent" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent">
             <End Role="BookContent" EntitySet="BookContents" />
+            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapBookQuran_Books" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books">
+            <End Role="Book" EntitySet="Books" />
             <End Role="MapBookQuran" EntitySet="MapBookQurans" />
           </AssociationSet>
           <AssociationSet Name="FK_MapBookQuran_Positions" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions">
@@ -481,10 +505,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="Subject1" EntitySet="Subjects" />
           </AssociationSet>
-          <EntitySet Name="StaticDatas" EntityType="DB_A4DE6E_IslamicGuideModel.StaticData" />
-          <EntitySet Name="Images" EntityType="DB_A4DE6E_IslamicGuideModel.Image" />
-          <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
-          <EntitySet Name="Subscribers" EntityType="DB_A4DE6E_IslamicGuideModel.Subscriber" />
         </EntityContainer>
         <EntityType Name="BookCategory">
           <Key>
@@ -492,8 +512,8 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Books" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="BookCategory" ToRole="Book" />
           <Property Name="Category_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="BookCategory" ToRole="Book" />
         </EntityType>
         <EntityType Name="BookContent">
           <Key>
@@ -505,12 +525,12 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="SouraId" Type="Int32" Nullable="false" />
           <Property Name="BookId" Type="Int32" Nullable="false" />
           <Property Name="BookContentHTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BookContent_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookContentHTML_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Book" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="BookContent" ToRole="Book" />
           <NavigationProperty Name="QuranAyat" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranAyat" FromRole="BookContent" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranSuar" FromRole="BookContent" ToRole="QuranSuar" />
           <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent" FromRole="BookContent" ToRole="MapBookQuran" />
-          <Property Name="BookContent_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="BookContentHTML_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -521,10 +541,11 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="Author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BookCategory" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="Book" ToRole="BookCategory" />
-          <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="Book" ToRole="BookContent" />
           <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Author_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookCategory" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="Book" ToRole="BookCategory" />
+          <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="Book" ToRole="BookContent" />
+          <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="Book" ToRole="MapBookQuran" />
         </EntityType>
         <EntityType Name="MapBookQuran">
           <Key>
@@ -532,10 +553,11 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             <PropertyRef Name="ParagraphID" />
             <PropertyRef Name="PositionID" />
           </Key>
-          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
           <Property Name="ParagraphID" Type="Int32" Nullable="false" />
           <Property Name="PositionID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BookContent" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent" FromRole="MapBookQuran" ToRole="BookContent" />
+          <NavigationProperty Name="Book" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="MapBookQuran" ToRole="Book" />
           <NavigationProperty Name="Position" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions" FromRole="MapBookQuran" ToRole="Position" />
         </EntityType>
         <EntityType Name="MapSubjectsQuran">
@@ -560,6 +582,15 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <NavigationProperty Name="QuranWord" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords" FromRole="Position" ToRole="QuranWord" />
           <NavigationProperty Name="QuranWord1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords1" FromRole="Position" ToRole="QuranWord" />
         </EntityType>
+        <EntityType Name="PraysTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="QuranAyat">
           <Key>
             <PropertyRef Name="p_Id" />
@@ -569,10 +600,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="Aya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SoraID" Type="Int32" />
           <Property Name="AyaNum" Type="Int32" />
+          <Property Name="Aya_English" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranAyat" FromRole="QuranAyat" ToRole="BookContent" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranAyat_QuranSuar" FromRole="QuranAyat" ToRole="QuranSuar" />
           <NavigationProperty Name="QuranWords" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranAyat" FromRole="QuranAyat" ToRole="QuranWord" />
-          <Property Name="Aya_English" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuranSuar">
           <Key>
@@ -581,10 +612,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="p_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title_English" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranSuar" FromRole="QuranSuar" ToRole="BookContent" />
           <NavigationProperty Name="QuranAyats" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranAyat_QuranSuar" FromRole="QuranSuar" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranWords" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranSuar" FromRole="QuranSuar" ToRole="QuranWord" />
-          <Property Name="Title_English" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuranWord">
           <Key>
@@ -598,11 +629,20 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="AyaID" Type="Int32" />
           <Property Name="SoraID" Type="Int32" />
           <Property Name="AyaNum" Type="Int32" />
+          <Property Name="Word_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Positions" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords" FromRole="QuranWord" ToRole="Position" />
           <NavigationProperty Name="Positions1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords1" FromRole="QuranWord" ToRole="Position" />
           <NavigationProperty Name="QuranAyat" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranAyat" FromRole="QuranWord" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranSuar" Relationship="DB_A4DE6E_IslamicGuideModel.FK_QuranWords_QuranSuar" FromRole="QuranWord" ToRole="QuranSuar" />
-          <Property Name="Word_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StaticData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -611,11 +651,19 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ParentID" Type="Int32" />
+          <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageId" Type="Int32" />
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Subjects" FromRole="Subject" ToRole="MapSubjectsQuran" />
           <NavigationProperty Name="Subjects1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject" ToRole="Subject1" />
           <NavigationProperty Name="Subject1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject1" ToRole="Subject" />
-          <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ImageId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Subscriber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -634,6 +682,13 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Books_BookCategories">
           <End Type="DB_A4DE6E_IslamicGuideModel.BookCategory" Role="BookCategory" Multiplicity="0..1" />
@@ -692,6 +747,18 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             </Principal>
             <Dependent Role="MapBookQuran">
               <PropertyRef Name="ParagraphID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapBookQuran_Books">
+          <End Type="DB_A4DE6E_IslamicGuideModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MapBookQuran">
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -803,40 +870,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="StaticData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="PraysTime">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name_Arabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Subscriber">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -905,6 +939,16 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PraysTimes">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.PraysTime">
+              <MappingFragment StoreEntitySet="PraysTime">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Name_Arabic" ColumnName="Name_Arabic" />
+                <ScalarProperty Name="Name_English" ColumnName="Name_English" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="QuranAyats">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.QuranAyat">
               <MappingFragment StoreEntitySet="QuranAyat">
@@ -942,6 +986,16 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="StaticDatas">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.StaticData">
+              <MappingFragment StoreEntitySet="StaticData">
+                <ScalarProperty Name="Data_English" ColumnName="Data_English" />
+                <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
@@ -950,6 +1004,15 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscribers">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subscriber">
+              <MappingFragment StoreEntitySet="Subscribers">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -973,39 +1036,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StaticDatas">
-            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.StaticData">
-              <MappingFragment StoreEntitySet="StaticData">
-                <ScalarProperty Name="Data_English" ColumnName="Data_English" />
-                <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Image">
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PraysTimes">
-            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.PraysTime">
-              <MappingFragment StoreEntitySet="PraysTime">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Name_Arabic" ColumnName="Name_Arabic" />
-                <ScalarProperty Name="Name_English" ColumnName="Name_English" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Subscribers">
-            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subscriber">
-              <MappingFragment StoreEntitySet="Subscribers">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
