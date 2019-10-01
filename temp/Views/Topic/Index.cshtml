@@ -1,4 +1,5 @@
-﻿@model List<IslamicGuide.Data.ViewModels.Subjects.SubjectVM>
+﻿@using IslamicGuide.Data.ViewModels.Shared
+@using IslamicGuide.Data.ViewModels.Subjects
 
 @{
     ViewBag.Title = "Index";
@@ -16,9 +17,7 @@
             <h2>@Resources.LayoutResource.Subjects</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
-                @foreach (var r in ((List
-                <IslamicGuide.Data.ViewModels.Shared.Route>
-                    )ViewBag.Routes))
+                @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
                 {
                     if (r.Id == null)
                     {
@@ -64,7 +63,7 @@
 
             <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
                 <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
-                @foreach (var item in Model)
+                @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
                 {
                     <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
                 }
@@ -75,11 +74,11 @@
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in ((List<SubjectVM>)ViewBag.SubPage.DataList.DataList))
         {
             <div class="col-md-4">
 
-                <a href="@Url.Action("GetById", "Topic" ,new { id=item.ID },null)">
+                <a href="@Url.Action("Index", "Topic" ,new { subjectId=item.ID },null)">
                     <div class="kode_service_des">
                         <figure>
                             <img src="~/Content/extra-images/service.jpg" alt="">
@@ -87,7 +86,7 @@
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "GetById", "Topic", new { id = item.ID }, null)
+                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "Index", "Topic", new { subjectId = item.ID }, null)
                             </h4>
                         </div>
                     </div>
@@ -139,6 +138,6 @@
     function OnChangeEvent(dropDownElement) {
         var selectedValue = dropDownElement.options[dropDownElement.selectedIndex].value;
         var base_url = window.location.origin;
-        document.location = base_url + "/Topic/getbyid/" + selectedValue;
+        document.location = base_url + "/Topic/index?subjectId=" + selectedValue;
     }
 </script>

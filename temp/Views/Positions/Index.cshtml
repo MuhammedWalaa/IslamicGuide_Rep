@@ -1,112 +1,137 @@
-﻿
+﻿@using IslamicGuide.Data.ViewModels.Position
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+}
+<!--KODE SAB BANNER WRAP START-->
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
         <div class="sab_banner_text">
-            <h2>@Resources.LayoutResource.Position1</h2>
+            <h2>@ViewBag.subjectTitle</h2>
             <ul class="breadcrumbs">
-                <li><strong> @Resources.LayoutResource.Position1 - @Resources.LayoutResource.Readingprinciples</strong></li>
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
+                {
+                    if (r.Id == null)
+                    {
+                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                    }
+                    else
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                    }
+                }
             </ul>
         </div>
     </div>
     <!--CONTAINER END-->
 </div>
-<di id="cnt">
-
-
-    <!--KODE NAVIGATION WRAP START-->
-    <div class="kode_navigation_wrap">
-        <!--CONTAINER START-->
-        <div style="margin-bottom:2%;margin-top:2%;" class="container">
-            <div class="navigation">
-                <ul >
-                    <li><a href="#">@Resources.LayoutResource.link1</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link2</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link3</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link4</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link5</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link6</a></li>
-                    <li><a href="#">@Resources.LayoutResource.link7</a></li>
-                </ul>
-                
-            </div>
-        </div>
-        <!--CONTAINER END-->
-    </div>
-    <!--KODE NAVIGATION WRAP END-->
-  
-    <div style="display:flex" class="container">
-
-
-        <div class="row-fluid">
-            <div class="well">
-                @*<div class="text-left">
-                        <div class="btn-group">
-                        </div>
-
-
-                        <div class="btn-group">
-                            <a class="btn btn-successs btn-small dropdown-toggle" data-toggle="dropdown" href="#">
-                                <small> آية Aya </small>
-                                <strong>6</strong>
-                                <span class="caret"></span>
-                            </a>
-                            <ul id="ayat_ul" class="dropdown-menu pull-right" style="max-height:300px;overflow:auto"><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya1.html">1</a></li><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya2.html">2</a></li><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya3.html">3</a></li><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya4.html">4</a></li><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya5.html">5</a></li><li class="active"><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya6.html">6</a></li><li><a href="http://quran.ksu.edu.sa/tafseer/saadi/sura1-aya7.html">7</a></li></ul>
-                        </div>
-                    </div>*@
-                <div>
-                    <div class="card text-center">
-                        <div class="card-header" style="text-align:center; background-color:#d2983d">
-                            <h2 style="color:white" class="hStyles">@Resources.LayoutResource.AlFatiha</h2>
-                        </div>
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <p style="color: #d2973b; padding: 13px;" class="card-text">@Resources.LayoutResource.AlFatiha_sora</p>
-                        </div>
-                    </div>
-
-                    <div class="card text-center">
-                        <div class="card-header" style="text-align:center;background-color:#d2983d">
-                            <h3 style="color:white" class="hStyles">@Resources.LayoutResource.AlFatihaverse6</h3>
-                        </div>
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <div style="padding-right: 7px; padding-left: 7px;">@Resources.LayoutResource.Allahsaid <span class="t4">@Resources.LayoutResource.AlFatihaverse6 </span>@Resources.LayoutResource.Alfatihaverse6tafsir </div>
-                        </div>
-                    </div>
+<!--KODE SAB BANNER WRAP END-->
+<!--KODE EVENT WRAP START-->
+<div class="kode_event_wrap">
+    <!--CONTAINER START-->
+    <div class="container">
+        @foreach (var item in (List<PositionVM>)ViewBag.pm.DataList.DataList)
+        {
+            <div class="row" style="padding: 25px; box-shadow: -1px -1px 10px -1px #888888;margin-bottom: 30px;">
+                <div class="col-md-2">
+                    <span style="font-size: 35pt;color: chocolate;font-weight: 600;">@item.SuraNum</span>
                 </div>
-                @*<div class="well">
-
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <div class="nass" id="div_saadi">
-
-                                <div style="color: green">اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (6) </div>
-                                <div style="padding: 10px 0">ثم قال تعالى: <span class="t4">{ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ }</span> أي: دلنا وأرشدنا, ووفقنا للصراط المستقيم, وهو الطريق الواضح الموصل إلى الله, وإلى جنته, وهو معرفة الحق والعمل به, فاهدنا إلى الصراط واهدنا في الصراط. فالهداية إلى الصراط: لزوم دين الإسلام, وترك ما سواه من الأديان, والهداية في الصراط, تشمل الهداية لجميع التفاصيل الدينية علما وعملا. فهذا الدعاء من أجمع الأدعية وأنفعها للعبد ولهذا وجب على الإنسان أن يدعو الله به في كل ركعة من صلاته, لضرورته إلى ذلك.</div>
-                            </div>
-                        </div>
-                    </div>*@
-
-
-
-                <div style="margin:auto;width:auto;text-align: center" class="text-center">
-                    <a class="btn no-print" href="#">
-                        <i class="icon icon-chevron-right"></i>
-                    </a>
-                    <div class="btn-group">
-                        <a class="btn btn-infoo dropdown-toggle" data-toggle="dropdown" href="#">
-                            <small> الصفحة Page </small>
-
-                            <strong>1</strong>
-                            <span class="caret"></span>
-
-                        </a>
-                    </div>
-                    
+                <div class="col-md-6">
+                    <h4 style="color:brown;font-size:20pt;font-weight: 1000;">@item.SuraTitle</h4>
+                    <p style="padding-top:20px; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
+                </div>
+                <div class="col-md-2">
+                    <a href="#">@Resources.LayoutResource.Ayat : @item.AyatCount</a>
+                </div>
+                <div align="right" class="col-md-2">
+                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
                 </div>
             </div>
-        </div>
+        }
+        @*<div class="kode_event_detail">
+            <ul>
+
+                <li>
+                    <div class="event_date">
+                        <span>@item.SuraNum</span>
+                    </div>
+                    <div class="kode_calender_list">
+                        <div style="width:600px" class="kode_event_text">
+
+                        </div>
+                    </div>
+                    <div class="kode_event_ticket">
+                    </div>
+                    <div align="right">
+                    </div>
+                </li>
+                }*@
+
+        @*@foreach (var item in Model)
+            {
+                <li>
+                    <div class="kode_calender_list">
+                        <div class="event_date">
+                            <span style="margin-top: 40%;">@item.SuraNum</span>
+                        </div>
+                        <div class="kode_event_text">
+                            @Html.ActionLink(item.SuraTitle, "GetById", "Positions", new { id = item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
+                            <p style="padding-right:25%; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
+                        </div>
+                    </div>
+                    <div style="position: absolute;right: 10%" class="kode_event_ticket">
+                        <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
+                        @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark" })
+                    </div>
+                </li>
+            }*@
+
+
+
+
+
     </div>
-</di>
+    <!--KODE PAGINATION LIST START-->
+    <div class="kode_pagination_list navi_2">
+        <ul class="kode_pagination">
+            <li>
+                <a class="prve" href="#">
+                    @if (langCode == "ar")
+                    {
+                        <i class="fa fa-arrow-right"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-arrow-left"></i>
+                    }
+                    @Resources.LayoutResource.Previous
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li>
+                <a class="next" href="#">
+                    @Resources.LayoutResource.Next
+                    @if (langCode == "ar")
+                    {
+                        <i class="fa fa-arrow-left"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-arrow-right"></i>
+                    }
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--KODE PAGINATION LIST END-->
+</div>
+<!--CONTAINER END-->
+</div>
+<!--KODE EVENT WRAP END-->

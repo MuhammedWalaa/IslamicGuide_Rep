@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using IslamicGuide.Services.Utilities;
+using IslamicGuide.Data.ViewModels.Shared;
 
 namespace IslamicGuide.App.Controllers
 {
@@ -21,29 +22,113 @@ namespace IslamicGuide.App.Controllers
             _positionService = new PositionService();
         }
         // GET: Topic
-        public ActionResult Index()
+        public ActionResult Index(int subjectId, int ? page)
         {
-            List<SubjectVM> subjects = _subjectService.GetAllSubjects(LangCode);
-            return View(subjects);
+            
+            var res = Search(subjectId,page);
+            if (!res)
+                return RedirectToAction("Index", "Positions", new { id = subjectId });
+
+            var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
+            _routeService.RouteHandling(currentRoute.Title, "Topic", "Index", subjectId, Routes);
+
+            return View("Index");
+        }
+
+        //public ActionResult GetPositionsById(int id)
+        //{
+        //    return RedirectToAction("Index", "Positions", new { id = id });
+        //}
+
+        public bool Search(int subjectId, int? page)
+        {
+            if (subjectId != 0)
+            {
+                ViewBag.SubjectId = subjectId;
+            }
+
+            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(subjectId, LangCode);
+
+            SubSubjectPageVM SubPage = new SubSubjectPageVM();
+            List<SubjectVM> dropList = new List<SubjectVM>();
+            int pageSize = 6;
+
+            var result = _subjectService.AdjustingMainSubjectsData(new PageFilterModel()
+            {
+                LangCode = LangCode,
+                PageSize = pageSize,
+                Skip = ((page ?? 1) - 1) * pageSize
+            }, subjectId);
+            // if Subject has no SubSubjects
+            if (result == null)
+            {
+                return false;
+            }
+
+            //Pagination Pages Count
+            var pagesCount = 1;
+            if (result.RowsCount % pageSize == 0)
+                pagesCount = (result.RowsCount / pageSize);
+            else
+                pagesCount = (result.RowsCount / pageSize) + 1;
+
+
+
+            int parentId = _subjectService.GetSubjectParentId(subjectId);
+
+            if (parentId == 0)
+            {
+                List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
+                dropList = mainsubjs;
+            }
+            else
+            {
+                SubjectVM mainsubjs = _subjectService.GetSubjectById(subjectId, LangCode);
+                dropList.Add(mainsubjs);
+            }
+
+
+
+            SubPage.HasPosition = positions.Any() ? true : false;
+            SubPage.subjectsDropdown = dropList;
+            SubPage.DataList = result;
+            SubPage.Id = subjectId;
+
+
+            ViewBag.SubPage = SubPage;
+            ViewBag.PagingResult = new PagingModel
+            {
+                CurrentPage = page ?? 1,
+
+                PagesCount = pagesCount
+            };
+            return true;
         }
         public ActionResult GetByIdList(int id)
         {
-            //var currentRoute = _subjectService.GetSubjectById(id, LangCode);
             _routeService.PopRoutesOutOfIndexFromList(Routes, Routes[Routes.Count-1].Text);
-            return RedirectToAction("GetById", new { id = id });
+            return RedirectToAction("Index", new { id = id });
         }
+
         public ActionResult GetById(int id,int? page)
         {
+            List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id, LangCode);
+            if (subSubjects.Any())
+            {
+                return RedirectToAction("GetPositionsById", "Positions", new { id = id });
+            }
+
+
+            // Handling Routing
             var currentRoute = _subjectService.GetSubjectById(id,LangCode);
             _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
+
+
             var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
-            List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id,LangCode);
-            if (subSubjects.Count() == 0)
-            {
-                return RedirectToAction("GetPositionsById", "Topic", new { id = id });
-            }
+            
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
+
             int parentID = _subjectService.GetSubjectParentId(id);
             if (parentID == 0)
             {
@@ -60,28 +145,14 @@ namespace IslamicGuide.App.Controllers
                 SubjectVM mainsubjs = _subjectService.GetSubjectById(id,LangCode);
                 dropList.Add(mainsubjs);
             }
-            if (positions.Count!=0)
-            {
-                SubPage.HasPosition = true;
-            }
-            else
-            {
-                SubPage.HasPosition = false;
-            }
+            
+            SubPage.HasPosition = positions.Any() ? true : false;
             SubPage.subjectsDropdown = dropList;
             SubPage.subjectVM = subSubjects;
             SubPage.Id = id;
             return View(SubPage);
         }
-        public ActionResult GetPositionsById(int id)
-        {
-            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
-            var parentTitle = _subjectService.subjectTitle(id,LangCode);
-            _routeService.RouteHandling(parentTitle, "SubTopic", "GetById", id, Routes);
-            ViewBag.subjectTitle = parentTitle;
-            return View(positions);
-        }
-
+        
         public ActionResult GetPositionsForSubject(int id)
         {
             return RedirectToAction("GetPositionsById", "Topic", new { id = id });

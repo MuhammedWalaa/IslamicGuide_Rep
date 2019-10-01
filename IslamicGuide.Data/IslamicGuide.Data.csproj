@@ -130,7 +130,11 @@
     <Compile Include="ViewModels\Position\BookContentVM.cs" />
     <Compile Include="ViewModels\Position\PositionDetialsVM.cs" />
     <Compile Include="ViewModels\Position\PositionVM.cs" />
+    <Compile Include="ViewModels\Position\PositionPageVM.cs" />
     <Compile Include="ViewModels\Shared\LayoutStaticDataVM.cs" />
+    <Compile Include="ViewModels\Shared\PageFilterModel.cs" />
+    <Compile Include="ViewModels\Shared\PageListResult.cs" />
+    <Compile Include="ViewModels\Shared\PagingModel.cs" />
     <Compile Include="ViewModels\Shared\Route.cs" />
     <Compile Include="ViewModels\Subjects\SubSubjectPageVM.cs" />
     <Compile Include="ViewModels\Subjects\SubjectVM.cs" />

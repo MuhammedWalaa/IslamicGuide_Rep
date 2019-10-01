@@ -498,6 +498,7 @@
     <Content Include="Views\Positions\GetById.cshtml" />
     <Content Include="Views\Topic\GetById.cshtml" />
     <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\.vs\islamic\v15\" />
