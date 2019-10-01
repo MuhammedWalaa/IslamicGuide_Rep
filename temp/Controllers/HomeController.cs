@@ -26,7 +26,13 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult Index()
         {
-            _routeService.RouteHandling("Home","Home","Index",null,Routes);
+            var routename = "";
+            if (LangCode == "en")
+                routename = "Home";
+            else
+                routename = "الرئيسية";
+               
+            _routeService.RouteHandling(routename, "Home","Index",null,Routes);
             HomeVM hm = new HomeVM
             {
                 Subject = _subjectService.GetMainSubjects(LangCode),
