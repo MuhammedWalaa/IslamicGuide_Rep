@@ -297,4 +297,7 @@
   <data name="Allahsaid" xml:space="preserve">
     <value>ثم قال تعالى:</value>
   </data>
+  <data name="NoPositions" xml:space="preserve">
+    <value>هذا الموضوع لا يوجد لديه مواضع</value>
+  </data>
 </root>

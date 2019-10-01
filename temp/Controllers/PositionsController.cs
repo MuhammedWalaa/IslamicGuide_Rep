@@ -27,7 +27,8 @@ namespace IslamicGuide.App.Controllers
             Search(id, page);
             // Routing And title Handling
             var positionDetials = _positionService.GetPositionDetials(id, LangCode);
-
+            if (positionDetials == null)
+                return View("Error");
             var parentTitle = _subjectService.subjectTitle(id, LangCode);
             _routeService.RouteHandling(positionDetials.SuraTitle, "Positions", "Index", id, Routes);
             ViewBag.subjectTitle = parentTitle;

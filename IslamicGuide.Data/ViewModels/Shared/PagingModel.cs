@@ -9,6 +9,7 @@ namespace IslamicGuide.Data.ViewModels.Shared
     public class PagingModel
     {
         public int CurrentPage { get; set; }
+        public string Url { get; set; }
         public int PagesCount { get; set; }
     }
 }

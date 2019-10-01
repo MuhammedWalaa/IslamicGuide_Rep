@@ -53,85 +53,9 @@
                 </div>
             </div>
         }
-        @*<div class="kode_event_detail">
-            <ul>
-
-                <li>
-                    <div class="event_date">
-                        <span>@item.SuraNum</span>
-                    </div>
-                    <div class="kode_calender_list">
-                        <div style="width:600px" class="kode_event_text">
-
-                        </div>
-                    </div>
-                    <div class="kode_event_ticket">
-                    </div>
-                    <div align="right">
-                    </div>
-                </li>
-                }*@
-
-        @*@foreach (var item in Model)
-            {
-                <li>
-                    <div class="kode_calender_list">
-                        <div class="event_date">
-                            <span style="margin-top: 40%;">@item.SuraNum</span>
-                        </div>
-                        <div class="kode_event_text">
-                            @Html.ActionLink(item.SuraTitle, "GetById", "Positions", new { id = item.PosID }, new { @style = "color:brown;font-size:20pt;font-weight: 1000;" })
-                            <p style="padding-right:25%; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
-                        </div>
-                    </div>
-                    <div style="position: absolute;right: 10%" class="kode_event_ticket">
-                        <a class="event_studium">@item.AyatCount : @Resources.LayoutResource.Ayat</a>
-                        @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark" })
-                    </div>
-                </li>
-            }*@
-
-
-
-
 
     </div>
-    <!--KODE PAGINATION LIST START-->
-    <div class="kode_pagination_list navi_2">
-        <ul class="kode_pagination">
-            <li>
-                <a class="prve" href="#">
-                    @if (langCode == "ar")
-                    {
-                        <i class="fa fa-arrow-right"></i>
-                    }
-                    else
-                    {
-                        <i class="fa fa-arrow-left"></i>
-                    }
-                    @Resources.LayoutResource.Previous
-                </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li>
-                <a class="next" href="#">
-                    @Resources.LayoutResource.Next
-                    @if (langCode == "ar")
-                    {
-                        <i class="fa fa-arrow-left"></i>
-                    }
-                    else
-                    {
-                        <i class="fa fa-arrow-right"></i>
-                    }
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!--KODE PAGINATION LIST END-->
+    @Html.Partial("_Paging")
+
 </div>
 <!--CONTAINER END-->
-</div>
-<!--KODE EVENT WRAP END-->

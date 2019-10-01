@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3d28f827bff84337a3a45acfeae1cb91" Name="Diagram1">
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.BookCategory" Width="1.5" PointX="3.75" PointY="1.25" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.BookContent" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.BookContent" Width="1.5" PointX="8.375" PointY="3.625" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Book" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Width="1.5" PointX="10.5" PointY="6.75" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" Width="2.125" PointX="9.75" PointY="10" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Width="1.5" PointX="11" PointY="6.625" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" Width="2.125" PointX="9.625" PointY="9.875" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Position" Width="1.875" PointX="9.5" PointY="12.5" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.QuranAyat" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.QuranSuar" Width="1.5" PointX="0.75" PointY="4.625" />

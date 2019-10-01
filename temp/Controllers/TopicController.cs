@@ -22,7 +22,7 @@ namespace IslamicGuide.App.Controllers
             _positionService = new PositionService();
         }
         // GET: Topic
-        public ActionResult Index(int subjectId, int ? page)
+        public ActionResult Index(int ? page, int subjectId = 1)
         {
             
             var res = Search(subjectId,page);
@@ -46,7 +46,11 @@ namespace IslamicGuide.App.Controllers
             {
                 ViewBag.SubjectId = subjectId;
             }
-
+            var pageUrl = "/topic";
+            if (subjectId != 0)
+            {
+                pageUrl += "?SubjectId=" + subjectId;
+            }
             var positions = _positionService.GetSubjectAndSubSubjectPositionsById(subjectId, LangCode);
 
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
@@ -99,7 +103,7 @@ namespace IslamicGuide.App.Controllers
             ViewBag.PagingResult = new PagingModel
             {
                 CurrentPage = page ?? 1,
-
+                Url = pageUrl,
                 PagesCount = pagesCount
             };
             return true;
