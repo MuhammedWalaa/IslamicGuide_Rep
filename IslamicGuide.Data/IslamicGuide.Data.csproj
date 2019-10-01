@@ -128,6 +128,7 @@
     <Compile Include="ViewModels\Books\BookGridVM.cs" />
     <Compile Include="ViewModels\Home\HomeVM.cs" />
     <Compile Include="ViewModels\Position\BookContentVM.cs" />
+    <Compile Include="ViewModels\Position\PositionBooksContentVM.cs" />
     <Compile Include="ViewModels\Position\PositionDetialsVM.cs" />
     <Compile Include="ViewModels\Position\PositionVM.cs" />
     <Compile Include="ViewModels\Position\PositionPageVM.cs" />

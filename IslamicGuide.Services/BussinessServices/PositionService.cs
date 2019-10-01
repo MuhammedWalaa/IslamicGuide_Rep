@@ -2,6 +2,7 @@
 using IslamicGuide.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,13 @@ namespace IslamicGuide.Services.BussinessServices
                     .Take(filter.PageSize).ToList(),
 
             };
+        }
+
+        public List<PositionBooksContentVM> GetPositionContent(int id, int ?tabId)
+        {
+            var positionBookContents = _DbContext.MapBookQurans.Where(p => p.PositionID == id).ToList();
+            return new List<PositionBooksContentVM>();
+
         }
         public List<PositionVM> GetSubjectAndSubSubjectPositionsById(int id,string langCode)
         {

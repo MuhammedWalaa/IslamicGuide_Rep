@@ -72,7 +72,7 @@
                     <a href="#">@Resources.LayoutResource.Ayat : @item.AyatCount</a>
                 </div>
                 <div align="right" class="col-md-2">
-                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetById", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
+                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetPositionDetails", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
                 </div>
             </div>
         }

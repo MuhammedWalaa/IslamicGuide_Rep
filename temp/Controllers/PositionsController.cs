@@ -67,5 +67,11 @@ namespace IslamicGuide.App.Controllers
             _routeService.RouteHandling(positionDetials.SuraTitle,"Positions","GetById",id,Routes);
             return View(positionDetials);
         }
+
+        public ActionResult GetPositionDetails(int id,int ? tab, int? page)
+        {
+           var p = _positionService.GetPositionContent(id,null);
+           return View("Index");
+        }
     }
 }
