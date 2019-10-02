@@ -45,13 +45,14 @@
         <div style="margin-bottom:2%;margin-top:2%;" class="container">
             <div class="navigation">
                 <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tafsir</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tajweed</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.TajweedPrincples</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tlawa</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.WordMeanings</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.AsbabAlNuzul</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Targmat</a></li>
+                    
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 4})">@Resources.LayoutResource.Tafsir</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 9})">@Resources.LayoutResource.Tajweed</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 8})">@Resources.LayoutResource.Tlawa</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 6})">@Resources.LayoutResource.WordMeanings</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 5})">@Resources.LayoutResource.Targmat</a></li>
                 </ul>
 
             </div>
@@ -59,7 +60,7 @@
         <!--CONTAINER END-->
     </div>
     <!--KODE NAVIGATION WRAP END-->
-
+    <input id ="positionId" value="@ViewBag.PositionId" hidden=""/>
     <div class="container">
 
 
@@ -79,7 +80,7 @@
                         </div>
                     </div>
 
-                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @style = "font-size:18pt; font-weight:300" })
+                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL,"BookId", "Title"), new {@onchange="OnChangeBook(this)", @id="Books", @style = "font-size:18pt; font-weight:300" })
 
                     @foreach (var item in Model.BookContent)
                     {
@@ -100,3 +101,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function OnChangeBook(SelectList)
+    {
+        var selectedValue = SelectList.options[SelectList.selectedIndex].value;
+        var positionId = Document.getElementById("#positionId");
+        var base_url = window.location.origin;
+        document.location = base_url + "/Positions/GetSpecificContent?positionId=" + selectedValue+ "&bookId=" + positionId.value;
+    }
+</script>

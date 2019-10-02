@@ -80,11 +80,38 @@ namespace IslamicGuide.App.Controllers
         //    return View(positionDetials);
         //}
 
+        /// <summary>
+        /// / ForTheList
+        /// </summary>
+        /// <param name="positionId"></param>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        public ActionResult GetSpecificContent(int positionId, int bookId)
+        {
+            var positionDetials = _positionService.GetPositionDetials(positionId, LangCode);
+            ViewBag.NextAya = positionDetials.NextAyaWords;
+            ViewBag.PrevAya = positionDetials.PrevAyaWords;
+            ViewBag.PositionId = positionId;
+            
+            var p = _positionService.GetPositionSpecificContent(positionId,bookId);
+            if (positionDetials != null)
+            {
+                if (p != null)
+                {
+                    ViewBag.BooksDDL = p;
+                    positionDetials.BookContent = p;
+                }
+            }
+            return View("GetPositionDetails",positionDetials);
+        }
+
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
+            
             var positionDetials = _positionService.GetPositionDetials(id, LangCode);
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
+            ViewBag.PositionId = id;
             if (tab == null)
                 tab = 1;
             var p = _positionService.GetPositionContent(id,tab);
