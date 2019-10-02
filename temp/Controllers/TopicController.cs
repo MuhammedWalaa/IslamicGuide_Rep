@@ -31,7 +31,18 @@ namespace IslamicGuide.App.Controllers
             else if (res == 2)
                 return View("Error");
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
-            _routeService.RouteHandling(currentRoute.Title, "Topic", "Index", subjectId, Routes);
+            _routeService.RouteHandling(
+                Request.UrlReferrer.PathAndQuery
+                ,new Title()
+                {
+                    ArabicName = parent.Title,
+                    EnglishName = parent.Title_English
+                }
+                , currentRoute.Title_English
+                ,currentRoute.Title
+                , "Topic", "Index"
+                , subjectId
+                , Routes);
 
             return View("Index");
         }
@@ -113,52 +124,52 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetByIdList(int id)
         {
-            _routeService.PopRoutesOutOfIndexFromList(Routes, Routes[Routes.Count-1].Text);
-            return RedirectToAction("Index", new { id = id });
+            _routeService.PopRoutesOutOfIndexFromList(Request.UrlReferrer.PathAndQuery,Routes);
+            return RedirectToAction("Index", new { subjectId = id });
         }
 
-        public ActionResult GetById(int id,int? page)
-        {
-            List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id, LangCode);
-            if (subSubjects.Any())
-            {
-                return RedirectToAction("GetPositionsById", "Positions", new { id = id });
-            }
+        //public ActionResult GetById(int id,int? page)
+        //{
+        //    List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id, LangCode);
+        //    if (subSubjects.Any())
+        //    {
+        //        return RedirectToAction("GetPositionsById", "Positions", new { id = id });
+        //    }
 
 
-            // Handling Routing
-            var currentRoute = _subjectService.GetSubjectById(id,LangCode);
-            _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
+        //    // Handling Routing
+        //    var currentRoute = _subjectService.GetSubjectById(id,LangCode);
+        //    _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
 
 
-            var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
+        //    var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
             
-            SubSubjectPageVM SubPage = new SubSubjectPageVM();
-            List<SubjectVM> dropList = new List<SubjectVM>();
+        //    SubSubjectPageVM SubPage = new SubSubjectPageVM();
+        //    List<SubjectVM> dropList = new List<SubjectVM>();
 
-            int parentID = _subjectService.GetSubjectParentId(id);
-            if (parentID == 0)
-            {
-                dropList = null;
-            }
+        //    int parentID = _subjectService.GetSubjectParentId(id);
+        //    if (parentID == 0)
+        //    {
+        //        dropList = null;
+        //    }
             
-            else if (parentID == 1)
-            {
-                List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
-                dropList = mainsubjs;
-            }
-            else
-            {
-                SubjectVM mainsubjs = _subjectService.GetSubjectById(id,LangCode);
-                dropList.Add(mainsubjs);
-            }
+        //    else if (parentID == 1)
+        //    {
+        //        List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
+        //        dropList = mainsubjs;
+        //    }
+        //    else
+        //    {
+        //        SubjectVM mainsubjs = _subjectService.GetSubjectById(id,LangCode);
+        //        dropList.Add(mainsubjs);
+        //    }
             
-            SubPage.HasPosition = positions.Any() ? true : false;
-            SubPage.subjectsDropdown = dropList;
-            SubPage.subjectVM = subSubjects;
-            SubPage.Id = id;
-            return View(SubPage);
-        }
+        //    SubPage.HasPosition = positions.Any() ? true : false;
+        //    SubPage.subjectsDropdown = dropList;
+        //    SubPage.subjectVM = subSubjects;
+        //    SubPage.Id = id;
+        //    return View(SubPage);
+        //}
         
         public ActionResult GetPositionsForSubject(int id)
         {

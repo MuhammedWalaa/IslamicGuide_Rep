@@ -25,13 +25,24 @@ namespace IslamicGuide.App.Controllers
         public ActionResult Index(int id, int? page)
         {
             Search(id, page);
-            // Routing And title Handling
-            var positionDetials = _positionService.GetPositionDetials(id, LangCode);
-            if (positionDetials == null)
-                return View("Error");
-            var parentTitle = _subjectService.subjectTitle(id, LangCode);
-            _routeService.RouteHandling(positionDetials.SuraTitle, "Positions", "Index", id, Routes);
-            ViewBag.subjectTitle = parentTitle;
+            //// Routing And title Handling
+            //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
+
+            var parentSubject = _subjectService.GetSubjectById(id, LangCode);
+            _routeService.RouteHandling(
+                Request.UrlReferrer.PathAndQuery,
+                new Title()
+                {
+                    ArabicName = parentSubject.Title,
+                    EnglishName = parentSubject.Title_English
+                },
+                parentSubject.Title_English,
+                parentSubject.Title,
+                "Positions",
+                "Index",
+                id,
+                Routes);
+            ViewBag.subjectTitle = (LangCode == "en") ? parentSubject.Title_English : parentSubject.Title;
             return View();
         }
 
@@ -61,12 +72,13 @@ namespace IslamicGuide.App.Controllers
                 PagesCount = pagesCount
             };
         }
-        //public ActionResult GetById(int id)
-        //{
-
-        //    _routeService.RouteHandling(positionDetials.SuraTitle, "Positions", "GetById", id, Routes);
-        //    return View(positionDetials);
-        //}
+        public ActionResult GetById(int id)
+        {
+            
+            var positionDetials = _positionService.GetPositionDetials(id,LangCode);
+            _routeService.RouteHandling(positionDetials.SuraTitle,"Positions","GetById",id,Routes);
+            return View(positionDetials);
+        }
 
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {

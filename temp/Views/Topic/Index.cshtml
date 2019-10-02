@@ -21,11 +21,11 @@
                 {
                     if (r.Id == null)
                     {
-                        <li><strong>@Html.ActionLink(r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "eng") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName,r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
                 }
             </ul>

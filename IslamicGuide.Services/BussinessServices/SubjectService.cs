@@ -40,16 +40,15 @@ namespace IslamicGuide.Services.BussinessServices
         
         public SubjectVM GetSubjectById(int id,string langCode)
         {
-            SubjectVM subject = new SubjectVM();
-
-            Subject subj = _DbContext.Subjects.Where(p => p.ID == id).FirstOrDefault();
-            subject.ID = subj.ID;
-            if (langCode == "en")
-                subject.Title = subj.Title_English == null ? subj.Title : subj.Title_English;
-            else
-                subject.Title = subj.Title;
-
-            return subject;
+            Subject subj = _DbContext.Subjects.Find(id);
+            if (subj == null)
+                return new SubjectVM();
+            return  new SubjectVM()
+            {
+                ID = subj.ID,
+                Title = subj.Title?? ".",
+                Title_English = subj.Title_English??"."
+            };
         }
         public int GetSubjectParentId(int id)
         {
