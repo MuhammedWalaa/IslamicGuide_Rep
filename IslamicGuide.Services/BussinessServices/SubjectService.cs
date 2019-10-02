@@ -38,6 +38,15 @@ namespace IslamicGuide.Services.BussinessServices
             };
         }
         
+        public List<SubjectVM> GetDDLBySubjectParentId(int subjectParentId)
+        {
+            return _DbContext.Subjects.Where(x => x.ParentID == subjectParentId).Select(e => new SubjectVM()
+            {
+                Title = e.Title,
+                Title_English = e.Title_English,
+                ID = e.ID,
+            }).ToList();
+        }
         public SubjectVM GetSubjectById(int id,string langCode)
         {
             Subject subj = _DbContext.Subjects.Find(id);

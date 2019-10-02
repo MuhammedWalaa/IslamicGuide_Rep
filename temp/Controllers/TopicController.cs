@@ -30,6 +30,8 @@ namespace IslamicGuide.App.Controllers
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
             else if (res == 2)
                 return View("Error");
+            var parentId = _subjectService.GetSubjectParentId(subjectId);
+            var parent = _subjectService.GetSubjectById(subjectId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
             _routeService.RouteHandling(
                 Request.UrlReferrer.PathAndQuery
@@ -95,15 +97,19 @@ namespace IslamicGuide.App.Controllers
             int parentId = _subjectService.GetSubjectParentId(subjectId);
 
             if (parentId == 0)
-            {
-                List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
-                dropList = mainsubjs;
-            }
-            else
-            {
-                SubjectVM mainsubjs = _subjectService.GetSubjectById(subjectId, LangCode);
-                dropList.Add(mainsubjs);
-            }
+                parentId = 1;
+            dropList = _subjectService.GetDDLBySubjectParentId(parentId);
+            var xxxx = 1;
+            //if (parentId == 0)
+            //{
+            //    List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
+            //    dropList = mainsubjs;
+            //}
+            //else
+            //{
+            //    SubjectVM mainsubjs = _subjectService.GetSubjectById(subjectId, LangCode);
+            //    dropList.Add(mainsubjs);
+            //}
 
 
 

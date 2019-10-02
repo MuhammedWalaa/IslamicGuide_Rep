@@ -315,4 +315,7 @@
   <data name="Targmat" xml:space="preserve">
     <value>ترجمات</value>
   </data>
+  <data name="Tajweed" xml:space="preserve">
+    <value>التجويد</value>
+  </data>
 </root>

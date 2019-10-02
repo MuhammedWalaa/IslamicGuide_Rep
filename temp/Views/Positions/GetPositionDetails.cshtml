@@ -20,7 +20,7 @@
             <h2>@Model.Title</h2>
             <ul class="breadcrumbs">
                 <li><a href="#"><i class="fa fa-home"></i></a></li>
-                @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
+                @*@foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
                 {
                     if (r.Id == null)
                     {
@@ -30,7 +30,7 @@
                     {
                         <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
                     }
-                }
+                }*@
             </ul>
         </div>
     </div>

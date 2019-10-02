@@ -42,8 +42,6 @@ namespace IslamicGuide.Services.Utilities
         public PositionWordsWithNextAndPrevModel GetQuranWordsWithNextPrevAyah(int from, int to, int ayatCount, string langCode)
         {
             PositionWordsWithNextAndPrevModel resultModel = new PositionWordsWithNextAndPrevModel(); 
-            List<string> prevAyaWords = new List<string>();
-            List<string> nextAyaWords = new List<string>();
             string previousAya="";
             string nextAya="";
             var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode == "en" && x.Word_English != null ? x.Word_English : x.Word, aya = x.AyaNum }).ToList();
@@ -63,7 +61,17 @@ namespace IslamicGuide.Services.Utilities
 
                 previousAya += $"({firstAya - 1})";
             }
-            
+            //1- ngeb 3dd el ayat ele fe el sora id dh (firstAyaSoraId)
+            nextAya += $"({lastAya})";
+            if (langCode == "en")
+                nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English == null
+                    ? _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya
+                    : _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English;
+            else
+                nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya;
+
+
+
             //int lastAyaSoraId = _DbContext.QuranAyats.Find(lastAya).SoraID.Value;
             //if (lastAyaSoraId != 0 && _DbContext.QuranSuars.Where(x => x.ID == lastAyaSoraId).Select(e => e.QuranAyats).Count() > lastAya)
             //{

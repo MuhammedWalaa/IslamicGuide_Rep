@@ -72,13 +72,13 @@ namespace IslamicGuide.App.Controllers
                 PagesCount = pagesCount
             };
         }
-        public ActionResult GetById(int id)
-        {
+        //public ActionResult GetById(int id)
+        //{
             
-            var positionDetials = _positionService.GetPositionDetials(id,LangCode);
-            _routeService.RouteHandling(positionDetials.SuraTitle,"Positions","GetById",id,Routes);
-            return View(positionDetials);
-        }
+        //    var positionDetials = _positionService.GetPositionDetials(id,LangCode);
+        //    _routeService.RouteHandling(positionDetials.SuraTitle,"Positions","GetById",id,Routes);
+        //    return View(positionDetials);
+        //}
 
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
