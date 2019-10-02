@@ -11,42 +11,46 @@ namespace IslamicGuide.Services.Utilities
     {
         
 
-        public void RouteHandling(string name, string controller, string actionName, int? id, List<Route> routes)
+        public void RouteHandling(string uri,Title parentTitle,string nameEnglish,string nameArabic, string controller, string actionName, int? id, List<Route> routes)
         {
 
             
-                if (routes.LastOrDefault(r => r.Text.Equals(name)&&r.Controller.Equals(controller)) != null)
+                if (routes.LastOrDefault(r => r.Uri==uri) != null)
                 {
-                    PopRoutesOutOfIndex(routes, name);
+                    PopRoutesOutOfIndex(uri,routes);
                 }
                 else
                 {
-                    AddRoute(name, controller, actionName, id, routes);
+                    AddRoute(uri,parentTitle,nameEnglish,nameArabic, controller, actionName, id, routes);
                 }
             
         }
-        private void AddRoute(string name,string controller,string actionName,int ? id, List<Route> routes)
+        private void AddRoute(string uri,Title parentTitle,string nameEnglish,string nameArabic,string controller,string actionName,int ? id, List<Route> routes)
         {
+
+            PopTillTheParent(parentTitle,routes);
+            //var routeTitles = routes.Select()
             if (id == null)
             {
-                routes.Add(new Route() { ActionName = actionName, Controller = controller, Text = name });
+                
+                routes.Add(new Route() { Uri = uri, ActionName = actionName, Controller = controller, Text = new Title(){ArabicName = nameArabic, EnglishName = nameEnglish} });
                 
 
             }
             else
             {
-                routes.Add(new Route() { ActionName = actionName, Controller = controller, Text = name,Id=id });
+                routes.Add(new Route() {Uri = uri, ActionName = actionName, Controller = controller, Text = new Title() { ArabicName = nameArabic, EnglishName = nameEnglish }, Id=id });
             }
 
             
         }
 
-        private int SearchForRoute(string name, List<Route> routes)
+        private int SearchForRoute(string uri, List<Route> routes)
         {
             int flag=0;
             foreach (var route in routes)
             {
-                if (route.Text.Equals(name))
+                if (route.Uri.Equals(uri))
                 {
                     return flag;
                 }
@@ -57,10 +61,35 @@ namespace IslamicGuide.Services.Utilities
             return 5555;
         }
 
-        public void PopRoutesOutOfIndex(List<Route> routes, string name)
+        public int SearchForParent(Title parentTitle, List<Route> routes)
+        {
+            int flag = 0;
+            foreach (var route in routes)
+            {
+                if (route.Text.Equals(parentTitle.ArabicName) || route.Text.Equals(parentTitle.EnglishName))
+                {
+                    return flag;
+                }
+
+                flag++;
+            }
+
+            return 5555;
+        }
+        public void PopTillTheParent(Title parentTitle, List<Route> routes)
         {
             int size = routes.Count;
-            int index = SearchForRoute(name, routes);
+            int index = SearchForParent(parentTitle, routes);
+
+            for (int i = index + 1; i < size; i++)
+            {
+                routes.RemoveAt(routes.Count - 1);
+            }
+        }
+        public void PopRoutesOutOfIndex(string uri,List<Route> routes)
+        {
+            int size = routes.Count;
+            int index = SearchForRoute(uri, routes);
             for (int i = index+1; i < size; i++)
             {
                 routes.RemoveAt(routes.Count-1);
@@ -68,10 +97,11 @@ namespace IslamicGuide.Services.Utilities
 
             
         }
-        public void PopRoutesOutOfIndexFromList(List<Route> routes, string name)
+        public void PopRoutesOutOfIndexFromList(string uri,List<Route> routes)
         {
             int size = routes.Count;
-            int index = SearchForRoute(name, routes);
+            int index = SearchForRoute(uri, routes);
+
             for (int i = index ; i < size; i++)
             {
                 routes.RemoveAt(routes.Count - 1);

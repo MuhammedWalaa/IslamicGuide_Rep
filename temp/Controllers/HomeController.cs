@@ -26,15 +26,9 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult Index()
         {
-            var routename = "";
-            if (LangCode == "en")
-                routename = "Home";
-            else
-                routename = "الرئيسية";
-               
-            _routeService.RouteHandling(routename, "Home","Index",null,Routes);
+            _routeService.RouteHandling(Request.Url.Authority,null,"Home","الرئيسية","Home","Index",null,Routes);
             HomeVM hm = new HomeVM
-            {
+            { 
                 Subject = _subjectService.GetMainSubjects(LangCode),
                 BookCount = _bookService.CountBooks(),
                 SubjectCount = _subjectService.CountSubjects()
@@ -43,7 +37,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult SetLanguage(string lang)
         {
-            string Path = Request.UrlReferrer.AbsolutePath;
+            string Path = Request.UrlReferrer.PathAndQuery;
             HttpCookie cultureCookie = new HttpCookie("culture")
             {
                 Value = lang,
