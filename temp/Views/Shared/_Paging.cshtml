@@ -1,0 +1,168 @@
+﻿@using IslamicGuide.Data.ViewModels.Shared
+
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+}
+<style type="text/css">
+    .paging {
+        /*margin: auto!important;
+        display: table;
+        margin-top: 15px;*/
+    }
+
+    .page-link {
+        /*position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: black;
+        background-color: #fff;
+        border: 1px solid #dee2e6;*/
+    }
+
+        .page-link:not(:disabled):not(.disabled) {
+            /*cursor: pointer;*/
+        }
+
+    .paging li {
+        /*margin-left: 0;
+        display: inline-block;
+        text-align: -webkit-match-parent;
+        width: 40px;
+        float: left;*/
+    }
+    .active {
+        background-color: #d2973b
+    }
+    .page-item.active .page-link, .page-link:focus, .page-link:hover {
+        /*color: black !important;
+        background-color: #04DBC0 !important;
+        border: 1px solid #dee2e6 !important;*/
+    }
+</style>
+@if (ViewBag.PagingResult != null && ((PagingModel)ViewBag.PagingResult).PagesCount > 1)
+{
+    var pagingResult = (PagingModel)ViewBag.PagingResult;
+    <div class="kode_pagination_list">
+        <ul class="kode_pagination">
+            @if (pagingResult.CurrentPage == 1)
+            {
+                <li>
+                    <a class="prve" href="#">
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        @Resources.LayoutResource.Previous
+                    </a>
+                </li>
+                @*<li><a href="#">«</a></li>*@
+            }
+            else
+            {
+                <li>
+                    <a class="prve" href="@pagingResult.Url&page=@(pagingResult.CurrentPage-1)">
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        @Resources.LayoutResource.Previous
+                    </a>
+                </li>
+                @*<li><a href="@pagingResult.Url&page=@(pagingResult.CurrentPage-1)">«</a></li>*@
+            }
+            @if (pagingResult.PagesCount < 8)
+            {
+                for (var i = 1; i <= pagingResult.PagesCount; i++)
+                {
+                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+            }
+            else if (pagingResult.PagesCount >= 8 &&
+                     (pagingResult.CurrentPage <= 3 || (pagingResult.CurrentPage + 2) >= pagingResult.PagesCount))
+            {
+                for (var i = 1; i <= 3; i++)
+                {
+                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+                for (var i = (pagingResult.PagesCount - 2); i <= pagingResult.PagesCount; i++)
+                {
+                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+
+            }
+            else if (pagingResult.PagesCount >= 8)
+            {
+                for (var i = 1; i <= 2; i++)
+                {
+                    <li>
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+                <p>. . . . . .</p>
+                for (var i = (pagingResult.CurrentPage - 1); i <= (pagingResult.CurrentPage + 1); i++)
+                {
+                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+                <p>. . . . . .</p>
+                for (var i = (pagingResult.PagesCount - 1); i <= pagingResult.PagesCount; i++)
+                {
+                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
+                        <a href="@pagingResult.Url&page=@i">@i</a>
+                    </li>
+                }
+            }
+            @if (pagingResult.CurrentPage == pagingResult.PagesCount)
+            {
+                <li>
+                    <a class="next" href="#">
+                        @Resources.LayoutResource.Next
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                    </a>
+                </li>
+                @*<li><a href="#">»</a></li>*@
+            }
+            else
+            {
+                <li>
+                    <a class="next" href="@pagingResult.Url&page=@(pagingResult.CurrentPage+1)">
+                        @Resources.LayoutResource.Next
+                        @if (langCode == "ar")
+                        {
+                            <i class="fa fa-arrow-left"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-arrow-right"></i>
+                        }
+                    </a>
+                </li>
+                @*<li><a href="@pagingResult.Url&page=@(pagingResult.CurrentPage+1)">»</a></li>*@
+            }
+        </ul>
+    </div>
+}

@@ -33,34 +33,9 @@
     </div>
     <!--CONTAINER END-->
 </div>
-
-<!--KODE SAB BANNER WRAP END-->
-@*<div class="kode_navigation_wrap">
-        <div class="container">
-            @if (Model.HasPosition)
-            {
-                <div style="margin-top: 2%" class="kode_mosque_item">
-                    <div class="koed_banner_btn">
-
-                        @Html.ActionLink("المواضع", "GetPositionsForSubject", new { id = Model.Id }, new { @class = "medium_btn border btn_hover" })
-                    </div>
-                </div>
-            }
-            <div dir="rtl" class="navigation">
-
-                <select id="ListSubjects" class="kode alignselect">
-                    @foreach (var item in Model.subjectsDropdown)
-                    {
-                        <option value="@item.ID"> @Html.ActionLink(item.Title == null ? "Item" : item.Title, "GetById", "Topic", new { id = item.ID }, null)</option>
-                    }
-                </select>
-            </div>
-        </div>
-    </div>*@
 <div class="kode_navigation_wrap">
     <div class="container">
         <div dir="rtl" class="navigation">
-
             <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
                 <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
                 @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
@@ -93,44 +68,8 @@
                 </a>
             </div>
         }
-
-        <!--KODE PAGINATION LIST START-->
-        <div class="kode_pagination_list">
-            <ul class="kode_pagination">
-                <li>
-                    <a class="prve" href="#">
-                        @if (langCode == "ar")
-                        {
-                            <i class="fa fa-arrow-right"></i>
-                        }
-                        else
-                        {
-                            <i class="fa fa-arrow-left"></i>
-                        }
-                        @Resources.LayoutResource.Previous
-                    </a>
-                </li>
-
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-
-                <li>
-                    <a class="next" href="#">
-                        @Resources.LayoutResource.Next
-                        @if (langCode == "ar")
-                        {
-                            <i class="fa fa-arrow-left"></i>
-                        }
-                        else
-                        {
-                            <i class="fa fa-arrow-right"></i>
-                        }
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--KODE PAGINATION LIST END-->
+        @Html.Partial("_Paging")
+        
     </div>
 </div>
 <!--KODE BLOG MADIUM WRAP END-->

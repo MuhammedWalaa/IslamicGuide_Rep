@@ -95,11 +95,17 @@ namespace IslamicGuide.Services.BussinessServices
         {
             string title = "";
             string suraTitle = "";
-            if(langCode=="en")
-                title = _DbContext.Subjects.Where(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Select(s=>s.Title_English==null?s.Title:s.Title_English).FirstOrDefault();
+            if (langCode == "en")
+            {
+                title = _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
+                //title = _DbContext.Subjects.Where(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.ID == id).SubjectID).Select(s => s.Title_English == null ? s.Title : s.Title_English).FirstOrDefault();
+            }
             else
-                title = _DbContext.Subjects.FirstOrDefault(x=>x.ID==x.MapSubjectsQurans.FirstOrDefault(e=>e.PositionID==id).SubjectID).Title;
-            var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
+                title = _DbContext.Subjects.FirstOrDefault(x => x.ID == id).Title;
+                //title = _DbContext.Subjects.FirstOrDefault(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Title;
+                var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
+            if (position == null)
+                return null;
                 var ayatCount = (position.QuranWord1.AyaID.Value - position.QuranWord.AyaID.Value) + 1;
                 if (ayatCount < 0)
                     ayatCount = (ayatCount * -1) + 1;
