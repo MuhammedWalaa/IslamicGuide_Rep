@@ -28,7 +28,6 @@ namespace IslamicGuide.Data
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<BookContent> BookContents { get; set; }
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<MapBookQuran> MapBookQurans { get; set; }
         public virtual DbSet<MapSubjectsQuran> MapSubjectsQurans { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<PraysTime> PraysTimes { get; set; }
@@ -41,5 +40,6 @@ namespace IslamicGuide.Data
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<MapBookQuran> MapBookQurans { get; set; }
     }
 }

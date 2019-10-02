@@ -13,7 +13,7 @@ namespace IslamicGuide.App.Controllers
     public class PositionsController : BaseController
     {
         private readonly SubjectService _subjectService;
-        private readonly PositionService _positionService ;
+        private readonly PositionService _positionService;
         private readonly RouteService _routeService;
         public PositionsController()
         {
@@ -22,7 +22,7 @@ namespace IslamicGuide.App.Controllers
             _routeService = new RouteService();
         }
         // GET: Positions
-        public ActionResult Index(int id, int ? page)
+        public ActionResult Index(int id, int? page)
         {
             Search(id, page);
             //// Routing And title Handling
@@ -80,10 +80,23 @@ namespace IslamicGuide.App.Controllers
         //    return View(positionDetials);
         //}
 
-        public ActionResult GetPositionDetails(int id,int ? tab, int? page)
+        public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
-           var p = _positionService.GetPositionContent(id,null);
-           return View("Index");
+            var positionDetials = _positionService.GetPositionDetials(id, LangCode);
+            ViewBag.NextAya = positionDetials.NextAyaWords;
+            ViewBag.PrevAya = positionDetials.PrevAyaWords;
+            if (tab == null)
+                tab = 1;
+            var p = _positionService.GetPositionContent(id,tab);
+            if (positionDetials != null)
+            {
+                if (p != null)
+                {
+                    ViewBag.BooksDDL = p;
+                    positionDetials.BookContent = p;
+                }
+            }
+            return View(positionDetials);
         }
     }
 }

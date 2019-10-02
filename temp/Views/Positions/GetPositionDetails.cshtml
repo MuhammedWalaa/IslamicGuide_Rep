@@ -1,0 +1,102 @@
+﻿@model IslamicGuide.Data.ViewModels.Position.PositionDetialsVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    string arrow = "";
+    if (langCode == "en")
+    { arrow = "sab_banner_text"; }
+    else
+    { arrow = "sab_banner_textAr"; }
+}
+<div class="kode_sab_banner_wrap them_overlay">
+    <!--CONTAINER START-->
+    <div class="container">
+
+
+        <div class=@arrow>
+            <h2>@Model.Title</h2>
+            <ul class="breadcrumbs">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                @*@foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
+                {
+                    if (r.Id == null)
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, null, null)</strong></li>
+                    }
+                    else
+                    {
+                        <li><strong>@Html.ActionLink(r.Text == null ? "item" : r.Text, r.ActionName, r.Controller, new { id = r.Id }, null)</strong></li>
+                    }
+                }*@
+            </ul>
+        </div>
+    </div>
+    <!--CONTAINER END-->
+</div>
+<div id="cnt">
+
+
+    <!--KODE NAVIGATION WRAP START-->
+    <div class="kode_navigation_wrap">
+        <!--CONTAINER START-->
+        <div style="margin-bottom:2%;margin-top:2%;" class="container">
+            <div class="navigation">
+                <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tafsir</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tajweed</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.TajweedPrincples</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tlawa</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.WordMeanings</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.AsbabAlNuzul</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Targmat</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <!--CONTAINER END-->
+    </div>
+    <!--KODE NAVIGATION WRAP END-->
+
+    <div class="container">
+
+
+        <div class="row-fluid">
+            <div class="well">
+                <div>
+                    <div style="display:inline" class="card text-center">
+                        <div class="card-header" style="text-align:center; background-color:#d2983d">
+                            <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                        </div>
+                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                            <p>
+                                @ViewBag.PrevAya
+                                <span style="background-color:#f1dc058f; color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
+                                @ViewBag.NextAya
+                            </p>
+                        </div>
+                    </div>
+
+                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @style = "font-size:18pt; font-weight:300" })
+
+                    @foreach (var item in Model.BookContent)
+                    {
+                        <div class="card text-center">
+                            <div class="card-header" style="text-align:center;background-color:#d2983d">
+                                <h3 style="color:white" class="hStyles">@item.Title</h3>
+                            </div>
+                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                                <div style="padding-right: 7px; padding-left: 7px;">
+                                    @item.Content
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

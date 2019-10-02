@@ -300,4 +300,25 @@
   <data name="NoPositions" xml:space="preserve">
     <value>This Subject has no Positions</value>
   </data>
+  <data name="AsbabAlNuzul" xml:space="preserve">
+    <value>Asbab Al-Nuzul</value>
+  </data>
+  <data name="Readings" xml:space="preserve">
+    <value>Readings</value>
+  </data>
+  <data name="Tajweed" xml:space="preserve">
+    <value>Tajweeds</value>
+  </data>
+  <data name="TajweedPrincples" xml:space="preserve">
+    <value>Tajweed Princples</value>
+  </data>
+  <data name="Tlawa" xml:space="preserve">
+    <value>Readings</value>
+  </data>
+  <data name="WordMeanings" xml:space="preserve">
+    <value>Word Meanings</value>
+  </data>
+  <data name="Targmat" xml:space="preserve">
+    <value>Translations</value>
+  </data>
 </root>

@@ -11,5 +11,6 @@ namespace IslamicGuide.Data.ViewModels.Position
         public int PositionId { get; set; }
         public int  BookId { get; set; }
         public int  BookContentId { get; set; }
+        public PositionDetialsVM PositionDetials { get; set; }
     }
 }

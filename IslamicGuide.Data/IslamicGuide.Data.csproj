@@ -132,6 +132,7 @@
     <Compile Include="ViewModels\Position\PositionDetialsVM.cs" />
     <Compile Include="ViewModels\Position\PositionVM.cs" />
     <Compile Include="ViewModels\Position\PositionPageVM.cs" />
+    <Compile Include="ViewModels\Position\PositionWordsWithNextAndPrevModel.cs" />
     <Compile Include="ViewModels\Shared\LayoutStaticDataVM.cs" />
     <Compile Include="ViewModels\Shared\PageFilterModel.cs" />
     <Compile Include="ViewModels\Shared\PageListResult.cs" />
