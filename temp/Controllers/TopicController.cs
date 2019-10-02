@@ -29,10 +29,10 @@ namespace IslamicGuide.App.Controllers
             if (!res)
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
             var parentId = _subjectService.GetSubjectParentId(subjectId);
-            var parent = _subjectService.GetSubjectById(subjectId, LangCode);
+            var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
             _routeService.RouteHandling(
-                Request.UrlReferrer.PathAndQuery
+                Request.Url.OriginalString
                 ,new Title()
                 {
                     ArabicName = parent.Title,
@@ -122,7 +122,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetByIdList(int id)
         {
-            _routeService.PopRoutesOutOfIndexFromList(Request.UrlReferrer.PathAndQuery,Routes);
+            _routeService.PopRoutesOutOfIndexFromList(Request.Url.OriginalString,Routes);
             return RedirectToAction("Index", new { subjectId = id });
         }
 

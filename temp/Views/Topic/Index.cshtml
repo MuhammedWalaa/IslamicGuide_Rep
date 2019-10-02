@@ -16,12 +16,12 @@
         <div class="sab_banner_text">
             <h2>@Resources.LayoutResource.Subjects</h2>
             <ul class="breadcrumbs">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                @*<li><a href="#"><i class="fa fa-home"></i></a></li>*@
                 @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
                 {
                     if (r.Id == null)
                     {
-                        <li><strong>@Html.ActionLink((langCode == "eng") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
                     else
                     {

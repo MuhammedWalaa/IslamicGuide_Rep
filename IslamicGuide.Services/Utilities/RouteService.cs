@@ -28,7 +28,10 @@ namespace IslamicGuide.Services.Utilities
         private void AddRoute(string uri,Title parentTitle,string nameEnglish,string nameArabic,string controller,string actionName,int ? id, List<Route> routes)
         {
 
-            PopTillTheParent(parentTitle,routes);
+            if (parentTitle!=null)
+            {
+                PopTillTheParent(parentTitle,routes);
+            }
             //var routeTitles = routes.Select()
             if (id == null)
             {
@@ -66,7 +69,7 @@ namespace IslamicGuide.Services.Utilities
             int flag = 0;
             foreach (var route in routes)
             {
-                if (route.Text.Equals(parentTitle.ArabicName) || route.Text.Equals(parentTitle.EnglishName))
+                if (route.Text.ArabicName.Equals(parentTitle.ArabicName))
                 {
                     return flag;
                 }

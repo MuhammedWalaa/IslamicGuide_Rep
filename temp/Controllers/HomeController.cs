@@ -26,7 +26,8 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult Index()
         {
-            _routeService.RouteHandling(Request.Url.Authority,null,"Home","الرئيسية","Home","Index",null,Routes);
+            
+            _routeService.RouteHandling(Request.Url.OriginalString, null,"Home","الرئيسية","Home","Index",null,Routes);
             HomeVM hm = new HomeVM
             { 
                 Subject = _subjectService.GetMainSubjects(LangCode),
@@ -37,7 +38,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult SetLanguage(string lang)
         {
-            string Path = Request.UrlReferrer.PathAndQuery;
+            string Path = Request.Url.OriginalString;
             HttpCookie cultureCookie = new HttpCookie("culture")
             {
                 Value = lang,

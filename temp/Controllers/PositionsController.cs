@@ -30,7 +30,7 @@ namespace IslamicGuide.App.Controllers
 
             var parentSubject = _subjectService.GetSubjectById(id, LangCode);
             _routeService.RouteHandling(
-                Request.UrlReferrer.PathAndQuery,
+                Request.Url.OriginalString,
                 new Title()
                 {
                     ArabicName = parentSubject.Title,
