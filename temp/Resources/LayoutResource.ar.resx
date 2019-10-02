@@ -300,4 +300,19 @@
   <data name="NoPositions" xml:space="preserve">
     <value>هذا الموضوع لا يوجد لديه مواضع</value>
   </data>
+  <data name="AsbabAlNuzul" xml:space="preserve">
+    <value>أسباب النزول</value>
+  </data>
+  <data name="TajweedPrincples" xml:space="preserve">
+    <value>مبادئ التجويد</value>
+  </data>
+  <data name="Tlawa" xml:space="preserve">
+    <value>التلاوة</value>
+  </data>
+  <data name="WordMeanings" xml:space="preserve">
+    <value>معاني الكلمات</value>
+  </data>
+  <data name="Targmat" xml:space="preserve">
+    <value>ترجمات</value>
+  </data>
 </root>

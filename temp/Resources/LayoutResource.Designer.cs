@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asbab Al-Nuzul.
+        /// </summary>
+        public static string AsbabAlNuzul {
+            get {
+                return ResourceManager.GetString("AsbabAlNuzul", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ayat.
         /// </summary>
         public static string Ayat {
@@ -448,6 +457,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Readings.
+        /// </summary>
+        public static string Readings {
+            get {
+                return ResourceManager.GetString("Readings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read more.
         /// </summary>
         public static string Readmore {
@@ -565,11 +583,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tajweeds.
+        /// </summary>
+        public static string Tajweed {
+            get {
+                return ResourceManager.GetString("Tajweed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tajweed Princples.
+        /// </summary>
+        public static string TajweedPrincples {
+            get {
+                return ResourceManager.GetString("TajweedPrincples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translations.
+        /// </summary>
+        public static string Targmat {
+            get {
+                return ResourceManager.GetString("Targmat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Readings.
+        /// </summary>
+        public static string Tlawa {
+            get {
+                return ResourceManager.GetString("Tlawa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Topics.
         /// </summary>
         public static string Topics {
             get {
                 return ResourceManager.GetString("Topics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word Meanings.
+        /// </summary>
+        public static string WordMeanings {
+            get {
+                return ResourceManager.GetString("WordMeanings", resourceCulture);
             }
         }
         

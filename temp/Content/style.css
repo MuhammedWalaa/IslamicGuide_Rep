@@ -3541,7 +3541,8 @@
     padding: 15px 0;
     text-align: center;
     overflow: hidden;
-    width: 390px;
+    /*width: 390px;*/
+    width: auto;
 }
 
     .kode_pagination li {

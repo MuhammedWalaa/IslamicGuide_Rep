@@ -4,6 +4,7 @@ namespace IslamicGuide.Data.ViewModels.Position
 {
     public class BookContentVM
     {
+        public int BookId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string ContentHTML { get; set; }

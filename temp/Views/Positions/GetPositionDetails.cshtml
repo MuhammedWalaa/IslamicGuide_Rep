@@ -1,5 +1,4 @@
 ﻿@model IslamicGuide.Data.ViewModels.Position.PositionDetialsVM
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -46,13 +45,13 @@
         <div style="margin-bottom:2%;margin-top:2%;" class="container">
             <div class="navigation">
                 <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link1</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link2</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link3</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link4</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link5</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link6</a></li>
-                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.link7</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tafsir</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tajweed</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.TajweedPrincples</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Tlawa</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.WordMeanings</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.AsbabAlNuzul</a></li>
+                    <li style="margin-left:unset"><a href="#">@Resources.LayoutResource.Targmat</a></li>
                 </ul>
 
             </div>
@@ -61,29 +60,41 @@
     </div>
     <!--KODE NAVIGATION WRAP END-->
 
-    <div style="display:flex" class="container">
+    <div class="container">
 
 
         <div class="row-fluid">
             <div class="well">
                 <div>
-                    <div class="card text-center">
+                    <div style="display:inline" class="card text-center">
                         <div class="card-header" style="text-align:center; background-color:#d2983d">
                             <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
                         </div>
                         <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <p style="color: #d2973b; padding: 13px;" class="card-text">@Model.PositionQuranWords</p>
+                            <p>
+                                @ViewBag.PrevAya
+                                <span style="background-color:#f1dc058f; color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
+                                @ViewBag.NextAya
+                            </p>
                         </div>
                     </div>
 
-                    <div class="card text-center">
-                        <div class="card-header" style="text-align:center;background-color:#d2983d">
-                            <h3 style="color:white" class="hStyles">@Resources.LayoutResource.AlFatihaverse6</h3>
+                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @style = "font-size:18pt; font-weight:300" })
+
+                    @foreach (var item in Model.BookContent)
+                    {
+                        <div class="card text-center">
+                            <div class="card-header" style="text-align:center;background-color:#d2983d">
+                                <h3 style="color:white" class="hStyles">@item.Title</h3>
+                            </div>
+                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                                <div style="padding-right: 7px; padding-left: 7px;">
+                                    @item.Content
+                                </div>
+                            </div>
                         </div>
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <div style="padding-right: 7px; padding-left: 7px;">@Resources.LayoutResource.Allahsaid <span class="t4">@Resources.LayoutResource.AlFatihaverse6 </span>@Resources.LayoutResource.Alfatihaverse6tafsir </div>
-                        </div>
-                    </div>
+                    }
+
                 </div>
             </div>
         </div>

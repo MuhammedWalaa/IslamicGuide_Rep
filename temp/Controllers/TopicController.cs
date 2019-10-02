@@ -26,9 +26,10 @@ namespace IslamicGuide.App.Controllers
         {
             
             var res = Search(subjectId,page);
-            if (!res)
+            if (res == 1)
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
-
+            else if (res == 2)
+                return View("Error");
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
             _routeService.RouteHandling(currentRoute.Title, "Topic", "Index", subjectId, Routes);
 
@@ -40,7 +41,7 @@ namespace IslamicGuide.App.Controllers
         //    return RedirectToAction("Index", "Positions", new { id = id });
         //}
 
-        public bool Search(int subjectId, int? page)
+        public int Search(int subjectId, int? page)
         {
             if (subjectId != 0)
             {
@@ -52,7 +53,7 @@ namespace IslamicGuide.App.Controllers
                 pageUrl += "?SubjectId=" + subjectId;
             }
             var positions = _positionService.GetSubjectAndSubSubjectPositionsById(subjectId, LangCode);
-
+            
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
             int pageSize = 6;
@@ -66,7 +67,9 @@ namespace IslamicGuide.App.Controllers
             // if Subject has no SubSubjects
             if (result == null)
             {
-                return false;
+                if(positions.Count==0)
+                    return 2;
+                return 1;
             }
 
             //Pagination Pages Count
@@ -106,7 +109,7 @@ namespace IslamicGuide.App.Controllers
                 Url = pageUrl,
                 PagesCount = pagesCount
             };
-            return true;
+            return 0;
         }
         public ActionResult GetByIdList(int id)
         {

@@ -432,7 +432,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySet Name="BookCategories" EntityType="DB_A4DE6E_IslamicGuideModel.BookCategory" />
           <EntitySet Name="BookContents" EntityType="DB_A4DE6E_IslamicGuideModel.BookContent" />
           <EntitySet Name="Books" EntityType="DB_A4DE6E_IslamicGuideModel.Book" />
-          <EntitySet Name="MapBookQurans" EntityType="DB_A4DE6E_IslamicGuideModel.MapBookQuran" />
           <EntitySet Name="MapSubjectsQurans" EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" />
           <EntitySet Name="Positions" EntityType="DB_A4DE6E_IslamicGuideModel.Position" />
           <EntitySet Name="PraysTimes" EntityType="DB_A4DE6E_IslamicGuideModel.PraysTime" />
@@ -460,18 +459,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <AssociationSet Name="FK_BookContent_QuranSuar" Association="DB_A4DE6E_IslamicGuideModel.FK_BookContent_QuranSuar">
             <End Role="QuranSuar" EntitySet="QuranSuars" />
             <End Role="BookContent" EntitySet="BookContents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MapBookQuran_BookContent" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent">
-            <End Role="BookContent" EntitySet="BookContents" />
-            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MapBookQuran_Books" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books">
-            <End Role="Book" EntitySet="Books" />
-            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MapBookQuran_Positions" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
           </AssociationSet>
           <AssociationSet Name="FK_MapSubjectsQuran_Positions" Association="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Positions">
             <End Role="Position" EntitySet="Positions" />
@@ -504,6 +491,19 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <AssociationSet Name="FK_Subjects_Subjects" Association="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects">
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="Subject1" EntitySet="Subjects" />
+          </AssociationSet>
+          <EntitySet Name="MapBookQurans" EntityType="DB_A4DE6E_IslamicGuideModel.MapBookQuran" />
+          <AssociationSet Name="FK_MapBookQuran_BookContent" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent">
+            <End Role="BookContent" EntitySet="BookContents" />
+            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapBookQuran_Books" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapBookQuran_Positions" Association="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="MapBookQuran" EntitySet="MapBookQurans" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BookCategory">
@@ -547,19 +547,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="Book" ToRole="BookContent" />
           <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="Book" ToRole="MapBookQuran" />
         </EntityType>
-        <EntityType Name="MapBookQuran">
-          <Key>
-            <PropertyRef Name="BookID" />
-            <PropertyRef Name="ParagraphID" />
-            <PropertyRef Name="PositionID" />
-          </Key>
-          <Property Name="BookID" Type="Int32" Nullable="false" />
-          <Property Name="ParagraphID" Type="Int32" Nullable="false" />
-          <Property Name="PositionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BookContent" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent" FromRole="MapBookQuran" ToRole="BookContent" />
-          <NavigationProperty Name="Book" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="MapBookQuran" ToRole="Book" />
-          <NavigationProperty Name="Position" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions" FromRole="MapBookQuran" ToRole="Position" />
-        </EntityType>
         <EntityType Name="MapSubjectsQuran">
           <Key>
             <PropertyRef Name="ID" />
@@ -577,10 +564,10 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FromQuranWordID" Type="Int32" />
           <Property Name="ToQuranWordID" Type="Int32" />
-          <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions" FromRole="Position" ToRole="MapBookQuran" />
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Positions" FromRole="Position" ToRole="MapSubjectsQuran" />
           <NavigationProperty Name="QuranWord" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords" FromRole="Position" ToRole="QuranWord" />
           <NavigationProperty Name="QuranWord1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Positions_QuranWords1" FromRole="Position" ToRole="QuranWord" />
+          <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions" FromRole="Position" ToRole="MapBookQuran" />
         </EntityType>
         <EntityType Name="PraysTime">
           <Key>
@@ -738,42 +725,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MapBookQuran_BookContent">
-          <End Type="DB_A4DE6E_IslamicGuideModel.BookContent" Role="BookContent" Multiplicity="1" />
-          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BookContent">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MapBookQuran">
-              <PropertyRef Name="ParagraphID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MapBookQuran_Books">
-          <End Type="DB_A4DE6E_IslamicGuideModel.Book" Role="Book" Multiplicity="1" />
-          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MapBookQuran">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MapBookQuran_Positions">
-          <End Type="DB_A4DE6E_IslamicGuideModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MapBookQuran">
-              <PropertyRef Name="PositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MapSubjectsQuran_Positions">
           <End Type="DB_A4DE6E_IslamicGuideModel.Position" Role="Position" Multiplicity="1" />
           <End Type="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" Role="MapSubjectsQuran" Multiplicity="*" />
@@ -870,6 +821,55 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MapBookQuran">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="ParagraphID" />
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="ParagraphID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookContent" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_BookContent" FromRole="MapBookQuran" ToRole="BookContent" />
+          <NavigationProperty Name="Book" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="MapBookQuran" ToRole="Book" />
+          <NavigationProperty Name="Position" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Positions" FromRole="MapBookQuran" ToRole="Position" />
+        </EntityType>
+        <Association Name="FK_MapBookQuran_BookContent">
+          <End Type="DB_A4DE6E_IslamicGuideModel.BookContent" Role="BookContent" Multiplicity="1" />
+          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookContent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MapBookQuran">
+              <PropertyRef Name="ParagraphID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapBookQuran_Books">
+          <End Type="DB_A4DE6E_IslamicGuideModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MapBookQuran">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapBookQuran_Positions">
+          <End Type="DB_A4DE6E_IslamicGuideModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="DB_A4DE6E_IslamicGuideModel.MapBookQuran" Role="MapBookQuran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MapBookQuran">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -909,15 +909,6 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MapBookQurans">
-            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.MapBookQuran">
-              <MappingFragment StoreEntitySet="MapBookQuran">
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="ParagraphID" ColumnName="ParagraphID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1041,6 +1032,15 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapBookQurans">
+            <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.MapBookQuran">
+              <MappingFragment StoreEntitySet="MapBookQuran">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="ParagraphID" ColumnName="ParagraphID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
