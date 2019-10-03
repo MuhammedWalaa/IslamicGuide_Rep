@@ -18,6 +18,15 @@
     .kode_event_ticket{
     float : right;
 }
+
+.navigation > ul > li > ul > li a {
+    display: block;
+    padding: 9px 20px;
+    text-align: right !important;
+    position: relative;
+    z-index: 999;
+    font-weight: 300;
+}
 .ulSalah{
     padding-right:100px ;
 }
