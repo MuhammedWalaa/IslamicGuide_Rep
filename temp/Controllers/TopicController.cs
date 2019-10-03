@@ -24,7 +24,15 @@ namespace IslamicGuide.App.Controllers
         // GET: Topic
         public ActionResult Index(int ? page, int subjectId = 1)
         {
-            
+            string path;
+            if (Request.Url.OriginalString.Contains("page"))
+            {
+                path = Request.UrlReferrer.ToString();
+            }
+            else
+            {
+                path = Request.Url.OriginalString;
+            }
             var res = Search(subjectId,page);
             if (res == 1)
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
@@ -34,7 +42,7 @@ namespace IslamicGuide.App.Controllers
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
             _routeService.RouteHandling(
-                Request.Url.OriginalString
+                path
                 ,new Title()
                 {
                     ArabicName = parent.Title,
@@ -49,11 +57,7 @@ namespace IslamicGuide.App.Controllers
             return View("Index");
         }
 
-        //public ActionResult GetPositionsById(int id)
-        //{
-        //    return RedirectToAction("Index", "Positions", new { id = id });
-        //}
-
+        
         public int Search(int subjectId, int? page)
         {
             if (subjectId != 0)
@@ -99,20 +103,7 @@ namespace IslamicGuide.App.Controllers
             if (parentId == 0)
                 parentId = 1;
             dropList = _subjectService.GetDDLBySubjectParentId(parentId);
-            var xxxx = 1;
-            //if (parentId == 0)
-            //{
-            //    List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
-            //    dropList = mainsubjs;
-            //}
-            //else
-            //{
-            //    SubjectVM mainsubjs = _subjectService.GetSubjectById(subjectId, LangCode);
-            //    dropList.Add(mainsubjs);
-            //}
-
-
-
+            
             SubPage.HasPosition = positions.Any() ? true : false;
             SubPage.subjectsDropdown = dropList;
             SubPage.DataList = result;
@@ -134,52 +125,20 @@ namespace IslamicGuide.App.Controllers
             return RedirectToAction("Index", new { subjectId = id });
         }
 
-        //public ActionResult GetById(int id,int? page)
-        //{
-        //    List<SubjectVM> subSubjects = _subjectService.GetSubSubjectById(id, LangCode);
-        //    if (subSubjects.Any())
-        //    {
-        //        return RedirectToAction("GetPositionsById", "Positions", new { id = id });
-        //    }
-
-
-        //    // Handling Routing
-        //    var currentRoute = _subjectService.GetSubjectById(id,LangCode);
-        //    _routeService.RouteHandling(currentRoute.Title,"Topic","GetById",id,Routes);
-
-
-        //    var positions = _positionService.GetSubjectAndSubSubjectPositionsById(id,LangCode);
-            
-        //    SubSubjectPageVM SubPage = new SubSubjectPageVM();
-        //    List<SubjectVM> dropList = new List<SubjectVM>();
-
-        //    int parentID = _subjectService.GetSubjectParentId(id);
-        //    if (parentID == 0)
-        //    {
-        //        dropList = null;
-        //    }
-            
-        //    else if (parentID == 1)
-        //    {
-        //        List<SubjectVM> mainsubjs = _subjectService.GetMainSubjects(LangCode);
-        //        dropList = mainsubjs;
-        //    }
-        //    else
-        //    {
-        //        SubjectVM mainsubjs = _subjectService.GetSubjectById(id,LangCode);
-        //        dropList.Add(mainsubjs);
-        //    }
-            
-        //    SubPage.HasPosition = positions.Any() ? true : false;
-        //    SubPage.subjectsDropdown = dropList;
-        //    SubPage.subjectVM = subSubjects;
-        //    SubPage.Id = id;
-        //    return View(SubPage);
-        //}
-        
-        public ActionResult GetPositionsForSubject(int id)
+        public ActionResult PreIndex(int subjectId)
         {
-            return RedirectToAction("GetPositionsById", "Topic", new { id = id });
+            var currentRoute = _subjectService.GetSubjectById(1, LangCode);
+            _routeService.RouteHandling(
+                "http://localhost:52620/Topic?subjectId=1"
+                , new Title()
+                  
+                , currentRoute.Title_English
+                , currentRoute.Title
+                , "Topic", "Index"
+                , subjectId
+                , Routes);
+
+            return RedirectToAction("Index", "Topic", new { subjectId = subjectId });
         }
 
     }

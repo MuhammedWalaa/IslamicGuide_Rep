@@ -24,13 +24,22 @@ namespace IslamicGuide.App.Controllers
         // GET: Positions
         public ActionResult Index(int id, int? page)
         {
+            string path;
+            if (Request.Url.OriginalString.Contains("page"))
+            {
+                path = Request.UrlReferrer.ToString();
+            }
+            else
+            {
+                path = Request.Url.OriginalString;
+            }
             Search(id, page);
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
 
             var parentSubject = _subjectService.GetSubjectById(id, LangCode);
             _routeService.RouteHandling(
-                Request.Url.OriginalString,
+                path,
                 new Title()
                 {
                     ArabicName = parentSubject.Title,
@@ -107,7 +116,8 @@ namespace IslamicGuide.App.Controllers
 
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
-            
+ 
+
             var positionDetials = _positionService.GetPositionDetials(id, LangCode);
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;

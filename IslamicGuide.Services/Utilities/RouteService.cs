@@ -15,7 +15,7 @@ namespace IslamicGuide.Services.Utilities
         {
 
             
-                if (routes.LastOrDefault(r => r.Uri==uri) != null)
+                if (routes.FirstOrDefault(r => r.Uri==uri) != null)
                 {
                     PopRoutesOutOfIndex(uri,routes);
                 }
