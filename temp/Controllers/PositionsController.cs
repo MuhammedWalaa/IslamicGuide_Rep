@@ -81,20 +81,7 @@ namespace IslamicGuide.App.Controllers
                 PagesCount = pagesCount
             };
         }
-        //public ActionResult GetById(int id)
-        //{
-            
-        //    var positionDetials = _positionService.GetPositionDetials(id,LangCode);
-        //    _routeService.RouteHandling(positionDetials.SuraTitle,"Positions","GetById",id,Routes);
-        //    return View(positionDetials);
-        //}
 
-        /// <summary>
-        /// / ForTheList
-        /// </summary>
-        /// <param name="positionId"></param>
-        /// <param name="bookId"></param>
-        /// <returns></returns>
         public ActionResult GetSpecificContent(int positionId , int bookId)
         {
             var positionDetials = _positionService.GetPositionDetials(positionId, LangCode);
