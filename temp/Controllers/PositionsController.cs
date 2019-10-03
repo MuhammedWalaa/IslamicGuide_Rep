@@ -118,8 +118,7 @@ namespace IslamicGuide.App.Controllers
 
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
- 
-
+            
             var positionDetials = _positionService.GetPositionDetials(id, LangCode);
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
@@ -135,6 +134,20 @@ namespace IslamicGuide.App.Controllers
                     positionDetials.BookContent = p;
                 }
             }
+            var subjectTitle = _positionService.GetSubjectTitleForPosition(id);
+            _routeService.RouteHandling(
+                Request.Url.OriginalString,
+                new Title()
+                {
+                    ArabicName = subjectTitle.ArabicName,
+                    EnglishName = subjectTitle.EnglishName
+                },
+                positionDetials.SuraTitle_English,
+                positionDetials.SuraTitle,
+                "Positions",
+                "Index",
+                id,
+                Routes);
             return View(positionDetials);
         }
     }

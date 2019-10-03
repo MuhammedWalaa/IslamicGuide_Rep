@@ -58,6 +58,16 @@ namespace IslamicGuide.Services.BussinessServices
                 Contents.Add(content);
             return Contents;
         }
+
+        public Title GetSubjectTitleForPosition(int positionId)
+        {
+            var positionSubject = _DbContext.MapSubjectsQurans.FirstOrDefault(p => p.PositionID == positionId);
+            return new Title()
+            {
+                ArabicName = positionSubject.Subject.Title,
+                EnglishName = positionSubject.Subject.Title_English
+            };
+        }
         public List<BookContentVM> GetPositionContent(int id, int? tabId, string langCode, bool isFromList)
         {
             if (isFromList)
