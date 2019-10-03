@@ -44,7 +44,7 @@ namespace IslamicGuide.Services.Utilities
             PositionWordsWithNextAndPrevModel resultModel = new PositionWordsWithNextAndPrevModel(); 
             string previousAya="";
             string nextAya="";
-            var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode == "en" && x.Word_English != null ? x.Word_English : x.Word, aya = x.AyaNum }).ToList();
+             var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode == "en" && x.Word_English != null ? x.Word_English : x.Word, aya = x.AyaNum }).ToList();
             var finalWords = allWords.Select(x => x.word).ToList();
             var ayatRange = allWords.Select(e => e.aya).Distinct().ToList();
             var lastAya = ayatRange[ayatRange.Count-1];

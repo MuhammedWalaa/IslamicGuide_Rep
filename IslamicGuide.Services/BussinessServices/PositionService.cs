@@ -45,6 +45,7 @@ namespace IslamicGuide.Services.BussinessServices
         /// <returns></returns>
         public List<BookContentVM> GetPositionSpecificContent(int positionId, int bookId)
         {
+            positionId = 40;
             var content = _DbContext.MapBookQurans.Where(m => m.BookID == bookId && m.PositionID == positionId).Select(
                 e => new BookContentVM
                 {
@@ -59,31 +60,34 @@ namespace IslamicGuide.Services.BussinessServices
                     BookId = e.BookID
                 }).FirstOrDefault();
            List<BookContentVM> Contents = new List<BookContentVM>();
-           Contents.Add(content);
+            if(content!=null)
+                Contents.Add(content);
            return Contents;
         }
-        public List<BookContentVM> GetPositionContent(int id, int? tabId)
+        public List<BookContentVM> GetPositionContent(int id, int? tabId, bool isFromList)
         {
-            //id refers to PositionId , tabId referes to CategoryId
-            //return a list of book contents
-            id = 40;
-            tabId = 4;
-            if (tabId == null)
-                tabId = 1;
-            //if first time visit we go to first tab (Tafsir)
-            BookContentVM bookContent = new BookContentVM();
-            return _DbContext.MapBookQurans.Where(x => x.PositionID == id && x.Book.CategoryID == tabId).Select(e => new BookContentVM
+            if (isFromList)
             {
-                Title = e.Book.Title,
-                Title_English = e.Book.Title_English,
-                AuthorName = e.Book.Author,
-                AuthorName_English = e.Book.Author_English,
-                ContentHTML = e.BookContent.BookContentHTML,
-                ContentHTML_English = e.BookContent.BookContentHTML_English,
-                Content = e.BookContent.BookContent1,
-                Content_English = e.BookContent.BookContent_English,
-                BookId = e.BookID,
+                tabId = _DbContext.Books.FirstOrDefault(x => x.ID == tabId).CategoryID;
+            }
+                //id refers to PositionId , tabId referes to CategoryId
+                //return a list of book contents
+                id = 40;
+                //if first time visit we go to first tab (Tafsir)
+                BookContentVM bookContent = new BookContentVM();
+                return _DbContext.MapBookQurans.Where(x => x.PositionID == id && x.Book.CategoryID == tabId).Select(e => new BookContentVM
+                {
+                    Title = e.Book.Title,
+                    Title_English = e.Book.Title_English,
+                    AuthorName = e.Book.Author,
+                    AuthorName_English = e.Book.Author_English,
+                    ContentHTML = e.BookContent.BookContentHTML,
+                    ContentHTML_English = e.BookContent.BookContentHTML_English,
+                    Content = e.BookContent.BookContent1,
+                    Content_English = e.BookContent.BookContent_English,
+                    BookId = e.BookID,
                 }).ToList();
+            
             //var positionBookContents = _DbContext.MapBookQurans.Where(p => p.PositionID == e /*id*/).ToList();
 
         }
@@ -144,7 +148,9 @@ namespace IslamicGuide.Services.BussinessServices
                 //title = _DbContext.Subjects.Where(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.ID == id).SubjectID).Select(s => s.Title_English == null ? s.Title : s.Title_English).FirstOrDefault();
             }
             else
-                title = _DbContext.Subjects.FirstOrDefault(x => x.ID == id).Title;
+                title = _DbContext.Subjects.FirstOrDefault(x => x.ID == id)==null?
+                    ".":
+                    _DbContext.Subjects.FirstOrDefault(x => x.ID == id).Title;
                 //title = _DbContext.Subjects.FirstOrDefault(x => x.ID == x.MapSubjectsQurans.FirstOrDefault(e => e.PositionID == id).SubjectID).Title;
                 var position = _DbContext.Positions.FirstOrDefault(p => p.ID==id);
             if (position == null)

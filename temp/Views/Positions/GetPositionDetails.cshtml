@@ -46,13 +46,13 @@
             <div class="navigation">
                 <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
                     
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 4})">@Resources.LayoutResource.Tafsir</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 9})">@Resources.LayoutResource.Tajweed</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 8})">@Resources.LayoutResource.Tlawa</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 6})">@Resources.LayoutResource.WordMeanings</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = 5})">@Resources.LayoutResource.Targmat</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 4})">@Resources.LayoutResource.Tafsir</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 9})">@Resources.LayoutResource.Tajweed</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 8})">@Resources.LayoutResource.Tlawa</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 6})">@Resources.LayoutResource.WordMeanings</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
+                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 5})">@Resources.LayoutResource.Targmat</a></li>
                 </ul>
 
             </div>
@@ -79,34 +79,39 @@
                             </p>
                         </div>
                     </div>
-
-                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL,"BookId", "Title"), new {@onchange="OnChangeBook(this)", @id="Books", @style = "font-size:18pt; font-weight:300" })
-
-                    @foreach (var item in Model.BookContent)
+                    @if (ViewBag.BooksDDL != null)
+                    {
+                        @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @onchange = "OnChangeBook()", @id = "Books", @style = "font-size:18pt; font-weight:300" })
+                    }
+                    @if (Model.BookContent.Count>0)
                     {
                         <div class="card text-center">
                             <div class="card-header" style="text-align:center;background-color:#d2983d">
-                                <h3 style="color:white" class="hStyles">@item.Title</h3>
+                                <h3 style="color:white" class="hStyles">@Model.BookContent[0].Title</h3>
                             </div>
                             <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
                                 <div style="padding-right: 7px; padding-left: 7px;">
-                                    @item.Content
+                                     @Model.BookContent[0].Content
                                 </div>
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function OnChangeBook(SelectList)
+<script>
+    const mySel = document.getElementById("Books");
+    let val = localStorage.getItem("Books");
+    if (val) mySel.value = val;
+</script>
+<script>
+    function OnChangeBook()
     {
-        var selectedValue = SelectList.options[SelectList.selectedIndex].value;
-        var positionId = Document.getElementById("#positionId");
+        var selectedValue = document.getElementById("Books").value;
+        localStorage.setItem("Books", selectedValue);
         var base_url = window.location.origin;
-        document.location = base_url + "/Positions/GetSpecificContent?positionId=" + selectedValue+ "&bookId=" + positionId.value;
+        document.location = "/Positions/GetSpecificContent?positionId=" + @ViewBag.PositionId + "&bookId=" + selectedValue;
     }
 </script>
