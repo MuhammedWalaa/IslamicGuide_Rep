@@ -36,13 +36,17 @@
 <div class="kode_navigation_wrap">
     <div class="container">
         <div dir="rtl" class="navigation">
-            <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
-                @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
-                {
-                    <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
-                }
-            </select>
+            <div style="padding-bottom:20px;padding-top:20px" class="row">
+                <div class="col-md-4">
+                    <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                        <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
+                        @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
+                        {
+                            <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                        }
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </div>

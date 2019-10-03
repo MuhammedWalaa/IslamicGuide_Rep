@@ -8,12 +8,12 @@
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.BookCategory" Width="1.5" PointX="6.125" PointY="1" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.BookContent" Width="1.5" PointX="11.75" PointY="3" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Book" Width="1.5" PointX="8.375" PointY="1.125" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" Width="2.125" PointX="9.625" PointY="9.875" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Position" Width="1.875" PointX="11.75" PointY="6.625" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.MapSubjectsQuran" Width="2.125" PointX="10.25" PointY="9.625" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Position" Width="1.875" PointX="15.5" PointY="7.375" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.QuranAyat" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.QuranSuar" Width="1.5" PointX="0.75" PointY="4.625" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.QuranWord" Width="1.5" PointX="5.625" PointY="4.375" />
-        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Subject" Width="1.5" PointX="6.875" PointY="9.875" />
+        <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.Subject" Width="1.5" PointX="13.5" PointY="9.875" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8" />
         <EntityTypeShape EntityType="DB_A4DE6E_IslamicGuideModel.User" Width="1.5" PointX="0.75" PointY="2" />
         <AssociationConnector Association="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" />

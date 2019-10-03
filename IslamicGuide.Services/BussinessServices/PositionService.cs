@@ -37,15 +37,8 @@ namespace IslamicGuide.Services.BussinessServices
 
             };
         }
-        /// <summary>
-        /// ForTheList
-        /// </summary>
-        /// <param name="positionId"></param>
-        /// <param name="bookId"></param>
-        /// <returns></returns>
         public List<BookContentVM> GetPositionSpecificContent(int positionId,string langCode, int bookId)
         {
-            positionId = 40;
             var content = _DbContext.MapBookQurans.Where(m => m.BookID == bookId && m.PositionID == positionId).Select(
                 e => new BookContentVM
                 {
@@ -66,7 +59,6 @@ namespace IslamicGuide.Services.BussinessServices
             }
             //id refers to PositionId , tabId referes to CategoryId
             //return a list of book contents
-            id = 40;
             //if first time visit we go to first tab (Tafsir)
             BookContentVM bookContent = new BookContentVM();
             return _DbContext.MapBookQurans.Where(x => x.PositionID == id && x.Book.CategoryID == tabId).Select(e => new BookContentVM
