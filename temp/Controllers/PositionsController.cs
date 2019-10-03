@@ -92,9 +92,9 @@ namespace IslamicGuide.App.Controllers
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
             ViewBag.PositionId = positionId;
-            var allBooks = _positionService.GetPositionContent(positionId, bookId,true);
+            var allBooks = _positionService.GetPositionContent(positionId, bookId,LangCode,true);
 
-            var p = _positionService.GetPositionSpecificContent(positionId,bookId);
+            var p = _positionService.GetPositionSpecificContent(positionId,LangCode,bookId);
             if (positionDetials != null)
             {
                 ViewBag.BooksDDL = allBooks;
@@ -116,7 +116,7 @@ namespace IslamicGuide.App.Controllers
             ViewBag.PositionId = id;
             if (tab == null)
                 tab = 4;
-            var p = _positionService.GetPositionContent(id,tab,false);
+            var p = _positionService.GetPositionContent(id,tab,LangCode,false);
             if (positionDetials != null)
             {
                 if (p != null)
