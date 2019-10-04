@@ -27,13 +27,16 @@ namespace IslamicGuide.App.Controllers
             string path;
             if (Request.Url.OriginalString.Contains("page"))
             {
-                path = Request.UrlReferrer.ToString();
+                path = Request.Url.OriginalString;
+                path = path.Substring(0, path.IndexOf("?"));
+
             }
             else
             {
                 path = Request.Url.OriginalString;
             }
             Search(id, page);
+            ViewBag.PathForPaging = path+"?";
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
 

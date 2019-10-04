@@ -84,9 +84,18 @@
             {
                 for (var i = 1; i <= pagingResult.PagesCount; i++)
                 {
-                    <li class=" @((i == pagingResult.CurrentPage)? "active" : "" )">
-                        <a href="@pagingResult.Url&page=@i">@i</a>
-                    </li>
+                    if (ViewBag.PathForPaging == null)
+                    {
+                        <li class=" @((i == pagingResult.CurrentPage) ? "active" : "" )">
+                            <a href="@pagingResult.Url&page=@i">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class=" @((i == pagingResult.CurrentPage) ? "active" : "" )">
+                            <a href="@ViewBag.PathForPaging&page=@i">@i</a>
+                        </li>
+                    }
                 }
             }
             else if (pagingResult.PagesCount >= 8 &&
