@@ -118,7 +118,7 @@ namespace IslamicGuide.App.Controllers
             var p = _positionService.GetPositionContent(id,tab,LangCode,false);
             if (positionDetials != null)
             {
-                if (p != null)
+                if (p != null &&p.Count()!=0)
                 {
                     ViewBag.BooksDDL = p;
                     positionDetials.BookContent = p;

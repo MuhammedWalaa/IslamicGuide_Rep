@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName!=null?r.Text.EnglishName:"." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -79,7 +79,9 @@
                             </p>
                         </div>
                     </div>
-                    @if (Model.BookContent.Count > 0 )
+                    @if (Model.BookContent != null)
+                    {
+                    if (Model.BookContent.Count > 0)
                     {
                         <div style="padding-bottom:20px;padding-top:20px" class="row">
                             <div class="col-md-4">
@@ -87,7 +89,7 @@
                             </div>
                         </div>
                     }
-                    @if (Model.BookContent.Count > 0)
+                        if (Model.BookContent.Count > 0)
                     {
                         <div class="card text-center">
                             <div class="card-header" style="text-align:center;background-color:#d2983d">
@@ -101,6 +103,7 @@
                                 </div>
                             </div>
                         </div>
+                    }
                     }
                 </div>
             </div>
