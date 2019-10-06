@@ -32,6 +32,7 @@ namespace IslamicGuide.App.Controllers
             LanguageSetting.SetLanguage(lang);
             return base.BeginExecuteCore(callback, state);
         }
+
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
@@ -40,6 +41,6 @@ namespace IslamicGuide.App.Controllers
             ViewBag.StaticData = staticData.GetLayoutStaticData(LangCode);
             ViewBag.Routes = Routes;
         }
-
+        
     }
 }
