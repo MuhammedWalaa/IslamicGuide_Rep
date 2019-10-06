@@ -327,4 +327,7 @@
   <data name="EmailWrong" xml:space="preserve">
     <value>Something Wrong Happened, Please Try Again</value>
   </data>
+  <data name="yMobile" xml:space="preserve">
+    <value>Your Mobile</value>
+  </data>
 </root>
