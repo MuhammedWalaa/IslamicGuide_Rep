@@ -11,6 +11,7 @@ namespace IslamicGuide.Data.ViewModels.Position
         public string SuraTitle { get; set; }
         public string SuraTitle_English { get; set; }
         public string PositionQuranWords { get; set; }
+        public string HedaytAlAyat { get; set; }
         public string NextAyaWords { get; set; }
         public string PrevAyaWords { get; set; }
         public List<BookContentVM> BookContent { get; set; }

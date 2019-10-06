@@ -155,10 +155,9 @@ namespace IslamicGuide.Services.BussinessServices
                 else
                     suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
                 var res = _commonServices.GetQuranWordsWithNextPrevAyah(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);
-
                 var words_ayat = string.Join(" ", res.Words);
-
-                return new PositionDetialsVM() { SuraTitle = suraTitle, NextAyaWords = res.NextAyaWords, PrevAyaWords = res.PreviousAyaWords, PositionQuranWords = words_ayat, Title = title };
+                var hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.Hedayt_AlAyat;
+                    return new PositionDetialsVM() {HedaytAlAyat =hedayt_Ayat, SuraTitle = suraTitle, NextAyaWords = res.NextAyaWords, PrevAyaWords = res.PreviousAyaWords, PositionQuranWords = words_ayat, Title = title };
             }
 
             return null;

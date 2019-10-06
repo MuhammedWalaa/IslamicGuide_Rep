@@ -37,6 +37,7 @@
           <Property Name="Version" Type="nvarchar" MaxLength="255" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="Author_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="Path" Type="nvarchar" MaxLength="510" />
         </EntityType>
         <EntityType Name="ContactUs">
           <Key>
@@ -144,6 +145,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="ParentID" Type="int" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="ImageId" Type="int" />
+          <Property Name="Hedayt_AlAyat" Type="nvarchar" MaxLength="510" />
         </EntityType>
         <EntityType Name="Subscribers">
           <Key>
@@ -558,6 +560,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <NavigationProperty Name="BookCategory" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Books_BookCategories" FromRole="Book" ToRole="BookCategory" />
           <NavigationProperty Name="BookContents" Relationship="DB_A4DE6E_IslamicGuideModel.FK_BookContent_Books" FromRole="Book" ToRole="BookContent" />
           <NavigationProperty Name="MapBookQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapBookQuran_Books" FromRole="Book" ToRole="MapBookQuran" />
+          <Property Name="Path" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MapSubjectsQuran">
           <Key>
@@ -655,6 +658,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Subjects" FromRole="Subject" ToRole="MapSubjectsQuran" />
           <NavigationProperty Name="Subjects1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject" ToRole="Subject1" />
           <NavigationProperty Name="Subject1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject1" ToRole="Subject" />
+          <Property Name="Hedayt_AlAyat" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Subscriber">
           <Key>
@@ -924,6 +928,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Book">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Author_English" ColumnName="Author_English" />
                 <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
@@ -1012,6 +1017,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Hedayt_AlAyat" ColumnName="Hedayt_AlAyat" />
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />

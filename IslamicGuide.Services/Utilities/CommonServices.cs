@@ -44,11 +44,14 @@ namespace IslamicGuide.Services.Utilities
             PositionWordsWithNextAndPrevModel resultModel = new PositionWordsWithNextAndPrevModel(); 
             string previousAya="";
             string nextAya="";
+            bool nomoreAyat = false;
              var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode == "en" && x.Word_English != null ? x.Word_English : x.Word, aya = x.AyaNum }).ToList();
             var finalWords = allWords.Select(x => x.word).ToList();
             var ayatRange = allWords.Select(e => e.aya).Distinct().ToList();
             var lastAya = ayatRange[ayatRange.Count-1];
             var firstAya = ayatRange[0];
+            if (firstAya == lastAya)
+                nomoreAyat = true;
             int firstAyaSoraId = _DbContext.QuranWords.FirstOrDefault(x => x.ID == from).SoraID.Value;
             if (firstAya != 1)
             {
@@ -63,13 +66,15 @@ namespace IslamicGuide.Services.Utilities
             }
             //1- ngeb 3dd el ayat ele fe el sora id dh (firstAyaSoraId)
             nextAya += $"({lastAya})";
-            if (langCode == "en")
+            if (langCode == "en"&&!nomoreAyat)
                 nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English == null
                     ? _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya
                     : _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English;
             else
-                nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya;
-
+            {
+                if(!nomoreAyat)
+                    nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya;
+            }
 
 
             //int lastAyaSoraId = _DbContext.QuranAyats.Find(lastAya).SoraID.Value;

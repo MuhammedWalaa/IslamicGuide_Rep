@@ -26,6 +26,7 @@ namespace IslamicGuide.Data
         public Nullable<int> ParentID { get; set; }
         public string Title_English { get; set; }
         public Nullable<int> ImageId { get; set; }
+        public string Hedayt_AlAyat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MapSubjectsQuran> MapSubjectsQurans { get; set; }
