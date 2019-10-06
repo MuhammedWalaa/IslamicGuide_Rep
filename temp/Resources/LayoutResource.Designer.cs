@@ -187,6 +187,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Added Successfully.
+        /// </summary>
+        public static string EmailAdded {
+            get {
+                return ResourceManager.GetString("EmailAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something Wrong Happened, Please Try Again.
+        /// </summary>
+        public static string EmailWrong {
+            get {
+                return ResourceManager.GetString("EmailWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Your Email.
         /// </summary>
         public static string Entermail {

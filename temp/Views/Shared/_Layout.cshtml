@@ -216,12 +216,21 @@
                     </div>
                     <div class="col-md-6">
                         <div class="kode_newsletter_form">
-                            <form>
-                                <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.Entermail" name="url" type="text" value="" data-default="Website" size="30" required>
-                                    <button class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
-                                </div>
-                            </form>
+                           @using (Html.BeginForm("AddSubscriber", "Home"))
+                           {
+                               <div class="kf_commet_field">
+                                   <input placeholder="@Resources.LayoutResource.Entermail" name="email" id="email" type="email" value="" data-default="Website" size="30" required>
+                                   <button type="submit" class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
+                                   @if (@TempData["added"] != null)
+                                   {
+                                   <p style="color: green">@Resources.LayoutResource.EmailAdded</p>
+                                   }
+                                   @if (@TempData["Wrong"] != null)
+                                   {
+                                   <p style="color: red">@Resources.LayoutResource.EmailWrong</p>
+                                   }
+                               </div>
+                           }
                         </div>
                     </div>
                 </div>
@@ -317,6 +326,19 @@
     <!--BOOTSTRAP~/Content/ JavaScript-->
     <script src="~/Content/js/waypoints-min.js"></script>
     <!--CUSTOM JavaScript-->
-    <script src="~/Content/js/custom.js"></script>
+<script src="~/Content/js/custom.js"></script>
+<script>
+    function OnChangeBook()
+    {
+        if (getElementById("url").valid) {
+
+            var selectedValue = $("#url").val();
+            console.log(selectedValue);
+            var base_url = window.location.origin;
+            debugger;
+            document.location = base_url + "/Home/AddSubscriber/" + selectedValue;
+        }
+    }
+</script>
 </body>
 </html>
