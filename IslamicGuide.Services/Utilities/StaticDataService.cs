@@ -17,19 +17,28 @@ namespace IslamicGuide.Services.Utilities
         {
             List<PraysVM> praysVms = new List<PraysVM>();
             List<PraysTime> praysTime = new List<PraysTime>();
-            praysTime = _db.PraysTimes.ToList();
-            foreach (PraysTime p in praysTime)
+            try
             {
-                if (langCode.Equals("en"))
+                praysTime = _db.PraysTimes.ToList();
+                foreach (PraysTime p in praysTime)
                 {
-                    praysVms.Add(new PraysVM() { Name = p.Name_English, Time = p.Time });
-                }
-                else
-                {
-                    praysVms.Add(new PraysVM() { Name = p.Name_Arabic, Time = p.Time });
-                }
+                    if (langCode.Equals("en"))
+                    {
+                        praysVms.Add(new PraysVM() { Name = p.Name_English, Time = p.Time });
+                    }
+                    else
+                    {
+                        praysVms.Add(new PraysVM() { Name = p.Name_Arabic, Time = p.Time });
+                    }
 
+                }
             }
+            catch (System.Exception)
+            {
+
+                return null;
+            }
+            
             return praysVms;
 
         }

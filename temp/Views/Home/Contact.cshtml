@@ -1,17 +1,98 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<div class="wraper">
+    <!--KODE SAB BANNER WRAP START-->
+    <div class="kode_sab_banner_wrap them_overlay">
+        <!--CONTAINER START-->
+        <div class="container">
+            <div class="sab_banner_text">
+                <h2>Contact Us</h2>
+                <ul class="breadcrumbs">
+                    <li><a href=""><i class="fa fa-home"></i></a></li>
+                    <li><strong>Contact Us</strong></li>
+                </ul>
+            </div>
+        </div>
+        <!--CONTAINER END-->
+    </div>
+    <!--KODE SAB BANNER WRAP END-->
+    <!--KODE 404 WRAP START-->
+    <div class="kode_contact_wrap">
+       
+        <!--CONTAINER START-->
+        <!--KODE CONTACT DES START-->
+        <div class="kode_contact_des">
+            <div class="container">
+                <div class="row">
+                    <div class="kode_contact_field">
+                        <div class="section_hdg hdg_2 hdg_3">
+                            <a href="#"><img src="images/hdg-img.png" alt=""></a>
+                            <h3>Contact Us</h3>
+                            <span><i class="fa icon-building"></i></span>
+                        </div>
+                        <form method="post" id="commentform" class="comment-form">
+                            <div class="col-md-4">
+                                <div class="kf_commet_field">
+                                    <input placeholder="@Resources.LayoutResource.Yname" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="kf_commet_field">
+                                    <input placeholder="@Resources.LayoutResource.Yemail" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="kf_commet_field">
+                                    <input placeholder="@Resources.LayoutResource.yMobile" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="kode_textarea">
+                                    <textarea placeholder="@Resources.LayoutResource.Ymessage" name="comment"></textarea>
+                                </div>
+                                <p class="form-submit"><input name="submit" type="submit" class="medium_btn background-bg-dark btn_hover hvr-wobble-bottom" value="@Resources.LayoutResource.Submitnow"></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--KODE CONTACT SERVICE START-->
+                <div class="kode_contact_service">
+                    <ul>
+                        <li>
+                            <div class="kode_contact_text">
+                                <h5><a href="#">ADDRESS</a></h5>
+                                <a href="#"><i class="fa fa-map-marker"></i></a>
+                                <p>
+                                    <span>Location</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="kode_contact_text">
+                                <h5><a href="#">PHONE</a></h5>
+                                <a href="#"><i class="fa fa-map-marker"></i></a>
+                                <p>
+                                    <span>0000000000</span>
+                                    
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="kode_contact_text">
+                                <h5><a href="#">EMAIL ADDRESS</a></h5>
+                                <a href="#"><i class="fa fa-map-marker"></i></a>
+                                <p>
+                                    <span>example@example.com</span>
+                                    
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--KODE CONTACT SERVICE END-->
+            </div>
+            <!--CONTAINER END-->
+        </div>
+        <!--KODE CONTACT DES END-->
+    </div>
+    <!--KODE 404 WRAP END-->
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</div>

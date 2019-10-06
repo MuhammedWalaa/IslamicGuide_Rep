@@ -321,4 +321,7 @@
   <data name="Targmat" xml:space="preserve">
     <value>Translations</value>
   </data>
+  <data name="yMobile" xml:space="preserve">
+    <value>Your Mobile</value>
+  </data>
 </root>

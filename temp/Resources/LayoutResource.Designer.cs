@@ -655,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Mobile.
+        /// </summary>
+        public static string yMobile {
+            get {
+                return ResourceManager.GetString("yMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Name.
         /// </summary>
         public static string Yname {

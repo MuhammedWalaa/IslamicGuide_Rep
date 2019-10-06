@@ -35,26 +35,35 @@ namespace IslamicGuide.App.Controllers
             {
                 path = Request.Url.OriginalString;
             }
+            try
+            {
+                var parentSubject = _subjectService.GetSubjectById(id, LangCode);
+                _routeService.RouteHandling(
+                    path,
+                    new Title()
+                    {
+                        ArabicName = parentSubject.Title,
+                        EnglishName = parentSubject.Title_English
+                    },
+                    parentSubject.Title_English,
+                    parentSubject.Title,
+                    "Positions",
+                    "Index",
+                    id,
+                    Routes);
+                ViewBag.subjectTitle = (LangCode == "en") ? parentSubject.Title_English : parentSubject.Title;
+            }
+            catch (Exception)
+            {
+
+                return View("Error");
+            }
             Search(id, page);
             ViewBag.PathForPaging = path+"?";
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
 
-            var parentSubject = _subjectService.GetSubjectById(id, LangCode);
-            _routeService.RouteHandling(
-                path,
-                new Title()
-                {
-                    ArabicName = parentSubject.Title,
-                    EnglishName = parentSubject.Title_English
-                },
-                parentSubject.Title_English,
-                parentSubject.Title,
-                "Positions",
-                "Index",
-                id,
-                Routes);
-            ViewBag.subjectTitle = (LangCode == "en") ? parentSubject.Title_English : parentSubject.Title;
+            
             return View();
         }
 

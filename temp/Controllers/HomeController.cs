@@ -66,5 +66,9 @@ namespace IslamicGuide.App.Controllers
 
             return View();
         }
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

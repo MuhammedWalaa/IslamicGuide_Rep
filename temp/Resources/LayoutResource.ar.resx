@@ -318,4 +318,7 @@
   <data name="Tajweed" xml:space="preserve">
     <value>التجويد</value>
   </data>
+  <data name="yMobile" xml:space="preserve">
+    <value>رقم هاتفك</value>
+  </data>
 </root>
