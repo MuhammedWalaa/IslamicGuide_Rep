@@ -4,10 +4,10 @@
         <!--CONTAINER START-->
         <div class="container">
             <div class="sab_banner_text">
-                <h2>Contact Us</h2>
+                <h2>@Resources.LayoutResource.ContactUs</h2>
                 <ul class="breadcrumbs">
                     <li><a href=""><i class="fa fa-home"></i></a></li>
-                    <li><strong>Contact Us</strong></li>
+                    <li><strong>@Resources.LayoutResource.ContactUs</strong></li>
                 </ul>
             </div>
         </div>
@@ -18,35 +18,33 @@
     <div class="kode_contact_wrap">
        
         <!--CONTAINER START-->
-        <!--KODE CONTACT DES START-->
-        <div class="kode_contact_des">
             <div class="container">
                 <div class="row">
                     <div class="kode_contact_field">
                         <div class="section_hdg hdg_2 hdg_3">
                             <a href="#"><img src="images/hdg-img.png" alt=""></a>
-                            <h3>Contact Us</h3>
+                            <h3>@Resources.LayoutResource.ContactUs</h3>
                             <span><i class="fa icon-building"></i></span>
                         </div>
                         <form method="post" id="commentform" class="comment-form">
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.Yname" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input placeholder="@Resources.LayoutResource.Yname" id="author" name="author" type="text" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.Yemail" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input placeholder="@Resources.LayoutResource.Yemail" id="email" name="email" type="text" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.yMobile" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input placeholder="@Resources.LayoutResource.yMobile" id="phone" name="phone" type="text" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="kode_textarea">
-                                    <textarea placeholder="@Resources.LayoutResource.Ymessage" name="comment"></textarea>
+                                    <textarea placeholder="@Resources.LayoutResource.Ymessage" id="comment" name="comment"></textarea>
                                 </div>
                                 <p class="form-submit"><input name="submit" type="submit" class="medium_btn background-bg-dark btn_hover hvr-wobble-bottom" value="@Resources.LayoutResource.Submitnow"></p>
                             </div>
@@ -90,8 +88,6 @@
                 <!--KODE CONTACT SERVICE END-->
             </div>
             <!--CONTAINER END-->
-        </div>
-        <!--KODE CONTACT DES END-->
     </div>
     <!--KODE 404 WRAP END-->
 

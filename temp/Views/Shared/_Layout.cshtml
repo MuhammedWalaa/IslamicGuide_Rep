@@ -171,8 +171,8 @@
                                     <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
                                 </ul>
                             </li>
-                            <li><a href="about-us.html">@Resources.LayoutResource.AboutUs</a></li>
-                            <li><a href="contact-us.html">@Resources.LayoutResource.ContactUs</a></li>
+                            <li> @Html.ActionLink(@Resources.LayoutResource.AboutUs, "About", "Home")</li>
+                            <li><a href="/home/contact">@Resources.LayoutResource.ContactUs</a></li>
                         </ul>
                         <!--DL Menu Start-->
                         <div id="kode-responsive-navigation" class="dl-menuwrapper">
@@ -187,8 +187,8 @@
                                         <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
                                     </ul>
                                 </li>
-                                <li><a href="about-us.html">@Resources.LayoutResource.AboutUs</a></li>
-                                <li><a href="contact-us.html">@Resources.LayoutResource.ContactUs</a></li>
+                                <li><a href="~/Views/Home/About.cshtml">@Resources.LayoutResource.AboutUs</a></li>
+                                <li><a href="/home/contact">@Resources.LayoutResource.ContactUs</a></li>
                             </ul>
                         </div>
                         <!--DL Menu END-->
@@ -258,14 +258,14 @@
                                 <form method="post" class="comment-form">
                                     <div class="kode-left-comment-sec">
                                         <div class="kf_commet_field">
-                                            <input placeholder="@Resources.LayoutResource.Yname" name="author" type="text" value="" data-default="Name*" size="30" required>
+                                            <input placeholder="@Resources.LayoutResource.Yname" id="author" name="author" type="text" value="" data-default="Name*" size="30" required>
                                         </div>
                                         <div class="kf_commet_field">
-                                            <input placeholder="@Resources.LayoutResource.Yemail" name="email" type="text" value="" data-default="Email*" size="30" required>
+                                            <input placeholder="@Resources.LayoutResource.Yemail" id="email" name="email" type="text" value="" data-default="Email*" size="30" required>
                                         </div>
                                     </div>
                                     <div class="kode_textarea">
-                                        <textarea placeholder="@Resources.LayoutResource.Ymessage" name="comment"></textarea>
+                                        <textarea placeholder="@Resources.LayoutResource.Ymessage" id="comment" name="comment"></textarea>
                                     </div>
                                     <button name="submit" type="submit" class="medium_btn bg_transparent border btn_hover">@Resources.LayoutResource.Submitnow</button>
                                 </form>

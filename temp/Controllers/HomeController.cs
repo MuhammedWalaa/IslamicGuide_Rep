@@ -16,14 +16,16 @@ namespace IslamicGuide.App.Controllers
         private readonly SubjectService _subjectService;
         private readonly BookService _bookService;
         private readonly RouteService _routeService;
+        private readonly StaticDataService _staticDataService;
         public HomeController()
         {
             _subjectService = new SubjectService();
             _bookService = new BookService();
             _routeService=new RouteService();
             _commonServices = new CommonServices();
-            
+            _staticDataService = new StaticDataService();
         }
+        [HttpGet]
         public ActionResult Index()
         {
             _routeService.RouteHandling(Request.Url.OriginalString, null,"Home","الرئيسية","Home","Index",null,Routes);
@@ -34,6 +36,23 @@ namespace IslamicGuide.App.Controllers
                 SubjectCount = _subjectService.CountSubjects()
             };
             return View(hm);
+        }
+        [HttpPost]
+        public ActionResult Index(string author, string email, string comment)
+        {
+            var res = _staticDataService.SaveContactUs(author, email, comment);
+            if (res)
+            {
+                _routeService.RouteHandling(Request.Url.OriginalString, null, "Home", "الرئيسية", "Home", "Index", null, Routes);
+                HomeVM hm = new HomeVM
+                {
+                    Subject = _subjectService.GetMainSubjects(LangCode),
+                    BookCount = _bookService.CountBooks(),
+                    SubjectCount = _subjectService.CountSubjects()
+                };
+                return View(hm);
+            }
+            return View("Error");
         }
         public ActionResult SetLanguage(string lang)
         {
@@ -56,15 +75,25 @@ namespace IslamicGuide.App.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            ViewBag.BookCount = _bookService.CountBooks();
+            ViewBag.SubjectCount = _subjectService.CountSubjects();
             return View();
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(string author, string email, string comment, string phone)
+        {
+            ViewBag.Message = "Your contact page.";
+            var res = _staticDataService.SaveContactUs(author, email, comment, phone);
+            if (res)
+            {
+                return View();
+            }
+            return View("Error");
         }
         public ActionResult Error()
         {

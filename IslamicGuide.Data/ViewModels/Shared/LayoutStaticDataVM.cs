@@ -8,6 +8,7 @@ namespace IslamicGuide.Data.ViewModels.Shared
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Location { get; set; }
+        public string There { get; set; }
     }
 
     public class PraysVM
