@@ -69,6 +69,9 @@
       <DependentUpon>DBEntityModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="ContactUs.cs">
+      <DependentUpon>DBEntityModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBEntityModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +136,7 @@
     <Compile Include="ViewModels\Position\PositionVM.cs" />
     <Compile Include="ViewModels\Position\PositionPageVM.cs" />
     <Compile Include="ViewModels\Position\PositionWordsWithNextAndPrevModel.cs" />
+    <Compile Include="ViewModels\Shared\ContactUsVM.cs" />
     <Compile Include="ViewModels\Shared\LayoutStaticDataVM.cs" />
     <Compile Include="ViewModels\Shared\PageFilterModel.cs" />
     <Compile Include="ViewModels\Shared\PageListResult.cs" />

@@ -13,6 +13,7 @@ namespace IslamicGuide.Services.Utilities
         {
             _db = new DB_A4DE6E_IslamicGuideEntities();
         }
+
         public List<PraysVM> GetPraysTime(string langCode)
         {
             List<PraysVM> praysVms = new List<PraysVM>();
@@ -42,26 +43,49 @@ namespace IslamicGuide.Services.Utilities
             return praysVms;
 
         }
+        public bool SaveContactUs(string name,string email,string comment,string phone="")
+        {
+            ContactUs obj = new ContactUs()
+            {
+                Name= name,
+                Email = email,
+                Comment = comment,
+                Phone = phone,
+            };
+            try
+            {
+                _db.ContactUs1.Add(obj);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
 
+        }
         public LayoutStaticDataVM GetLayoutStaticData(string langCode)
         {
             string location = "";
-
-
-            List<StaticData> staticData = _db.StaticDatas.Where(d => d.Name == "Phone" || d.Name == "Email" || d.Name == "Location").ToList();
+            string there = "";
+            List<StaticData> staticData = _db.StaticDatas.Where(d => d.Name == "Phone" || d.Name == "Email" || d.Name == "Location"||d.Name== "There1").ToList();
             if (langCode == "en")
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location").Data_English;
+                there = staticData.FirstOrDefault(d => d.Name == "There1").Data_English;
             }
             else
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location").Data_Arabic;
+                there = staticData.FirstOrDefault(d => d.Name == "There1").Data_Arabic;
             }
             return new LayoutStaticDataVM()
             {
+
                 Email = staticData.FirstOrDefault(d => d.Name == "Email").Data_Arabic,
                 Phone = staticData.FirstOrDefault(d => d.Name == "Phone").Data_Arabic,
-                Location = location
+                Location = location,
+                There = there,
             };
         }
     }

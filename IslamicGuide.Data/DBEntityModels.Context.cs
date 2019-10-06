@@ -41,5 +41,6 @@ namespace IslamicGuide.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<MapBookQuran> MapBookQurans { get; set; }
+        public virtual DbSet<ContactUs> ContactUs1 { get; set; }
     }
 }
