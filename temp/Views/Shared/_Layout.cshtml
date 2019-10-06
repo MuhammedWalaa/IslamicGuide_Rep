@@ -106,8 +106,8 @@
                                                 <span class="fa fa-angle-down"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="@Url.Action("SetLanguage","Home",new {lang ="en"})"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
-                                                <li><a href="@Url.Action("SetLanguage","Home",new {lang ="ar"})"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
+                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
+                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -166,7 +166,7 @@
                             <li>
                                 <a href="#">@Resources.LayoutResource.Services</a>
                                 <ul class="kode">
-                                    <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic",new {subjectId= 1},null)</li>
+                                    <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic", new { subjectId = 1 }, null)</li>
                                     <li>@Html.ActionLink(Resources.LayoutResource.Books, "Index", "book")</li>
                                     <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
                                 </ul>
@@ -249,9 +249,9 @@
                                 <a href="#"><img src="images/footer-logo.png" alt=""></a>
                                 <p>There are many variations of passages of Lorem Ipsum availableThere are many variations of passages of Lorem Ipsum available...</p>
                                 <ul class="widget_call_info">
-                                    <li><a href="#"><i class="fa fa-map-marker"></i>@ViewBag.StaticData.Location</a></li>
-                                    <li><a href="#"><i class="fa fa-phone"></i>@ViewBag.StaticData.Phone</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope"></i>@ViewBag.StaticData.Email</a></li>
+                                    <li><a href="#"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;@ViewBag.StaticData.Location</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i>&nbsp;&nbsp;@ViewBag.StaticData.Phone</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;@ViewBag.StaticData.Email</a></li>
                                 </ul>
                                 <ul class="widget_social_icon">
                                     <li><a class="hvr-ripple-out" href="#"><i class="fa fa-facebook"></i></a></li>
