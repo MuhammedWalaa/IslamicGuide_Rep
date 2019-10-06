@@ -46,13 +46,13 @@
             <div class="navigation">
                 <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
 
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 4})">@Resources.LayoutResource.Tafsir</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 9})">@Resources.LayoutResource.Tajweed</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 8})">@Resources.LayoutResource.Tlawa</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 6})">@Resources.LayoutResource.WordMeanings</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
-                    <li style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 5})">@Resources.LayoutResource.Targmat</a></li>
+                    <li id="4" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 4})">@Resources.LayoutResource.Tafsir</a></li>
+                    <li id="9" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 9})">@Resources.LayoutResource.Tajweed</a></li>
+                    <li id="7" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
+                    <li id="8" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 8})">@Resources.LayoutResource.Tlawa</a></li>
+                    <li id="6" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 6})">@Resources.LayoutResource.WordMeanings</a></li>
+                    <li id="10" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
+                    <li id="5" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 5})">@Resources.LayoutResource.Targmat</a></li>
                 </ul>
 
             </div>
@@ -123,4 +123,8 @@
         var base_url = window.location.origin;
         document.location = "/Positions/GetSpecificContent?positionId=" + @ViewBag.PositionId + "&bookId=" + selectedValue;
     }
+
+    document.ready(function() {
+        getElementById(@ViewBag.tabId).addClass('active');
+    });
 </script>

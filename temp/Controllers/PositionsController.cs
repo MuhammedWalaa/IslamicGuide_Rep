@@ -125,14 +125,13 @@ namespace IslamicGuide.App.Controllers
             if (tab == null)
                 tab = 4;
             var p = _positionService.GetPositionContent(id,tab,LangCode,false);
-            if (positionDetials != null)
+            if (positionDetials != null && p != null && p.Count() != 0)
             {
-                if (p != null &&p.Count()!=0)
-                {
-                    ViewBag.BooksDDL = p;
-                    positionDetials.BookContent = p;
-                }
+                ViewBag.BooksDDL = p;
+                positionDetials.BookContent = p;
+                ViewBag.tabId = tab;
             }
+            
             var subjectTitle = _positionService.GetSubjectTitleForPosition(id);
             _routeService.RouteHandling(
                 Request.Url.OriginalString,

@@ -24,25 +24,19 @@ namespace IslamicGuide.App.Controllers
         // GET: Topic
         public ActionResult Index(int ? page, int subjectId = 1)
         {
-            string path;
-            if (Request.Url.OriginalString.Contains("page"))
-            {
-                path = Request.UrlReferrer.ToString();
-            }
-            else
-            {
-                path = Request.Url.OriginalString;
-            }
             var res = Search(subjectId,page);
+
             if (res == 1)
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
             else if (res == 2)
                 return View("Error");
+
             var parentId = _subjectService.GetSubjectParentId(subjectId);
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
+
             _routeService.RouteHandling(
-                path
+                Request.Url.OriginalString
                 ,new Title()
                 {
                     ArabicName = parent.Title,

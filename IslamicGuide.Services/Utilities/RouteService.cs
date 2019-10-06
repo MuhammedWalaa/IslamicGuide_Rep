@@ -13,16 +13,24 @@ namespace IslamicGuide.Services.Utilities
 
         public void RouteHandling(string uri,Title parentTitle,string nameEnglish,string nameArabic, string controller, string actionName, int? id, List<Route> routes)
         {
-
             
-                if (routes.FirstOrDefault(r => r.Uri.ToLower()==uri.ToLower()) != null)
-                {
+            if (uri.Contains("&page"))
+            {
+                uri = uri.Remove(uri.LastIndexOf("&"), uri.Length - uri.LastIndexOf("&"));
+            }
+            if (uri.Contains("&tab"))
+            {
+                uri = uri.Remove(uri.LastIndexOf("&"), uri.Length - uri.LastIndexOf("&"));
+            }
+
+            if (routes.FirstOrDefault(r => r.Uri.ToLower()==uri.ToLower()) != null)
+            {
                     PopRoutesOutOfIndex(uri,routes);
-                }
-                else
-                {
+            }
+            else
+            {
                     AddRoute(uri,parentTitle,nameEnglish,nameArabic, controller, actionName, id, routes);
-                }
+            }
             
         }
         private void AddRoute(string uri,Title parentTitle,string nameEnglish,string nameArabic,string controller,string actionName,int ? id, List<Route> routes)
