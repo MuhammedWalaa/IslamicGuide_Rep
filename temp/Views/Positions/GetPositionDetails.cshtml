@@ -57,11 +57,11 @@
 
             </div>
         </div>
-        <div>
+        @*<div>
             <div class="card-header" style="text-align:center; background-color:#d2983d">
                 <h5 style="color:white" class="hStyles">@Model.HedaytAlAyat</h5>
             </div>
-        </div>
+        </div>*@
         <!--CONTAINER END-->
     </div>
     <!--KODE NAVIGATION WRAP END-->
@@ -72,6 +72,17 @@
         <div class="row-fluid">
             <div class="well">
                 <div>
+                    <div style="display:inline" class="card text-center">
+                        <div class="card-header" style="text-align:center; background-color:#d2983d">
+                            <h3 style="color:white" class="hStyles">هداية الأيات</h3>
+                        </div>
+                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                            <p>
+                                <span style=" color: #d2973b;" class="card-text">@Model.HedaytAlAyat</span>
+                            </p>
+                        </div>
+                    </div>
+
                     <div style="display:inline" class="card text-center">
                         <div class="card-header" style="text-align:center; background-color:#d2983d">
                             <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
