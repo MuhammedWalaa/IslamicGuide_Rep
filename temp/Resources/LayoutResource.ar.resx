@@ -327,4 +327,10 @@
   <data name="yMobile" xml:space="preserve">
     <value>رقم هاتفك</value>
   </data>
+  <data name="Added" xml:space="preserve">
+    <value>تم الاشتراك بنجاح</value>
+  </data>
+  <data name="Wrong" xml:space="preserve">
+    <value>حدث خطأ ما حاول مرة اخري</value>
+  </data>
 </root>
