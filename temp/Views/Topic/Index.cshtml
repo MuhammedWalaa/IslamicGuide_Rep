@@ -9,6 +9,7 @@
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
 }
 
+
 <!--KODE SAB BANNER WRAP START-->
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
@@ -25,7 +26,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName,r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -33,23 +34,28 @@
     </div>
     <!--CONTAINER END-->
 </div>
+
 <div class="kode_navigation_wrap">
     <div class="container">
         <div dir="rtl" class="navigation">
             <div style="padding-bottom:20px;padding-top:20px" class="row">
-                <div class="col-md-4">
-                    <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                        <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
-                        @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
-                        {
-                            <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
-                        }
-                    </select>
-                </div>
+                @if (ViewBag.Search == null)
+                {
+                    <div class="col-md-4">
+                        <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                            <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
+                            @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
+                            {
+                                <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                            }
+                        </select>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
+
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
@@ -73,7 +79,7 @@
             </div>
         }
         @Html.Partial("_Paging")
-        
+
     </div>
 </div>
 <!--KODE BLOG MADIUM WRAP END-->

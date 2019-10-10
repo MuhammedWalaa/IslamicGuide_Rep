@@ -327,4 +327,10 @@
   <data name="yMobile" xml:space="preserve">
     <value>رقم هاتفك</value>
   </data>
+  <data name="Hedayt_Alayat" xml:space="preserve">
+    <value>هداية الأيات</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>لا توجد نتائج</value>
+  </data>
 </root>

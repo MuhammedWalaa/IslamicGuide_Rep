@@ -14,6 +14,25 @@ namespace IslamicGuide.Services.BussinessServices
     {
         private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
 
+        public PageListResult<SubjectVM> SearchQuery(PageFilterModel pageFilterModel , string searchQuery)
+        {
+            var listOfSubjects = _DbContext.Subjects.Where(x => x.Title.Contains(searchQuery) || x.Title_English.ToLower().Contains(searchQuery))
+                .Select(e=>new SubjectVM()
+                {
+                    ID = e.ID,
+                    Title = e.Title,
+                    Title_English = e.Title_English,
+                }).ToList();
+            if (listOfSubjects.Count == 0)
+                return null;
+            return new PageListResult<SubjectVM>()
+            {
+                RowsCount = listOfSubjects.Count,
+                DataList = listOfSubjects.Skip(pageFilterModel.Skip)
+                    .Take(pageFilterModel.PageSize).ToList(),
+            };
+        }
+
         public SubjectService()
         {
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
@@ -27,12 +46,11 @@ namespace IslamicGuide.Services.BussinessServices
         public PageListResult<SubjectVM> AdjustingMainSubjectsData(PageFilterModel pageFilterModel, int subjectId)
         {
             List<SubjectVM> subjects = GetSubSubjectById(subjectId,pageFilterModel.LangCode);
-            int subjectsCount = subjects.Count;
-            if (subjectsCount == 0)
+            if (subjects.Count == 0)
                 return null;
             return new PageListResult<SubjectVM>()
             {
-                RowsCount = subjectsCount,
+                RowsCount = subjects.Count,
                 DataList = subjects.Skip(pageFilterModel.Skip)
                     .Take(pageFilterModel.PageSize).ToList(),
             };

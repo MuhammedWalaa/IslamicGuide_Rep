@@ -113,18 +113,18 @@
                             <!--KODE TOP INFO END-->
                         </div>
                         <div class="col-md-6">
-                            <div hidden class="kode_top_right_text">
-                                <form method="post" id="commentform" class="comment-form">
+                            <div class="kode_top_right_text">
+                                @using (Html.BeginForm("SearchLayout", "Topic"))
+                                {
                                     <div class="kf_commet_field">
-                                        <input placeholder="@Resources.LayoutResource.Search" name="author" type="text" value="" data-default="Name*" required="">
-                                        <button><i class="fa fa-search"></i></button>
+                                        <input placeholder="@Resources.LayoutResource.Search" name="searchQuery" id="searchQuery" type="text" value="" required>
+                                        <button type="submit"><i class="fa fa-search"></i></button>
                                     </div>
-                                </form>
+                                }
                             </div>
                         </div>
+                        <!--ROW END-->
                     </div>
-                    <!--ROW END-->
-                </div>
                 <!--CONTAINER END-->
             </div>
             <!--KODE TOP WRAP END-->
@@ -327,9 +327,14 @@
             var selectedValue = $("#url").val();
             console.log(selectedValue);
             var base_url = window.location.origin;
-            debugger;
             document.location = base_url + "/Home/AddSubscriber/" + selectedValue;
         }
+    }
+    function search()
+    {
+        var searchWords = $("#searchWords").val();
+        var base_url = window.location.origin;
+        document.location = base_url + "/Topic/SearchLayout" + searchWords;
     }
 </script>
 </body>

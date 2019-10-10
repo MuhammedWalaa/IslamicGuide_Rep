@@ -21,6 +21,7 @@ namespace IslamicGuide.App.Controllers
             _subjectService = new SubjectService();
             _positionService = new PositionService();
         }
+
         // GET: Topic
         public ActionResult Index(int ? page, int subjectId = 1)
         {
@@ -51,7 +52,53 @@ namespace IslamicGuide.App.Controllers
             return View("Index");
         }
 
-        
+        public ActionResult SearchLayout(string searchQuery, int? page)
+        {
+            if(!string.IsNullOrEmpty(searchQuery))
+            {
+                int pageSize = 6;
+
+                var result = _subjectService.SearchQuery(new PageFilterModel()
+                {
+                    LangCode = LangCode,
+                    PageSize = pageSize,
+                    Skip = ((page ?? 1) - 1) * pageSize
+                }, searchQuery.ToLower());
+                if (result != null)
+                {
+                    var pageUrl = "/topic/SearchLayout";
+                    pageUrl += "?searchQuery=" + searchQuery;
+
+                    //Pagination Pages Count
+                    var pagesCount = 1;
+                    if (result.RowsCount % pageSize == 0)
+                        pagesCount = (result.RowsCount / pageSize);
+                    else
+                        pagesCount = (result.RowsCount / pageSize) + 1;
+
+                    SubSubjectPageVM SubPage = new SubSubjectPageVM();
+
+                    SubPage.DataList = result;
+                    ViewBag.Search = "true";
+                    ViewBag.SubPage = SubPage;
+                    ViewBag.PagingResult = new PagingModel
+                    {
+                        CurrentPage = page ?? 1,
+                        Url = pageUrl,
+                        PagesCount = pagesCount
+                    };
+                    return View("Index");
+                }
+                else
+                {
+                    TempData["NoResult"] = "true";
+                    TempData.Keep();
+                }
+            }
+
+            return RedirectToAction("Index","Home");
+
+        }
         public int Search(int subjectId, int? page)
         {
             if (subjectId != 0)
@@ -89,9 +136,7 @@ namespace IslamicGuide.App.Controllers
                 pagesCount = (result.RowsCount / pageSize);
             else
                 pagesCount = (result.RowsCount / pageSize) + 1;
-
-
-
+            
             int parentId = _subjectService.GetSubjectParentId(subjectId);
 
             if (parentId == 0)
@@ -118,14 +163,12 @@ namespace IslamicGuide.App.Controllers
             _routeService.PopRoutesOutOfIndexFromList(Request.Url.OriginalString,Routes);
             return RedirectToAction("Index", new { subjectId = id });
         }
-
         public ActionResult PreIndex(int subjectId)
         {
             var currentRoute = _subjectService.GetSubjectById(1, LangCode);
             _routeService.RouteHandling(
                 "http://localhost:52620/Topic?subjectId=1"
                 , new Title()
-                  
                 , currentRoute.Title_English
                 , currentRoute.Title
                 , "Topic", "Index"

@@ -330,4 +330,10 @@
   <data name="yMobile" xml:space="preserve">
     <value>Your Mobile</value>
   </data>
+  <data name="Hedayt_Alayat" xml:space="preserve">
+    <value>Hedayt Alayat</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>There is no results found</value>
+  </data>
 </root>

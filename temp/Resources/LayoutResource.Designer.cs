@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hedayt Alayat.
+        /// </summary>
+        public static string Hedayt_Alayat {
+            get {
+                return ResourceManager.GetString("Hedayt_Alayat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -408,6 +417,15 @@ namespace Resources {
         public static string NoPositions {
             get {
                 return ResourceManager.GetString("NoPositions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no results found.
+        /// </summary>
+        public static string NoResults {
+            get {
+                return ResourceManager.GetString("NoResults", resourceCulture);
             }
         }
         
