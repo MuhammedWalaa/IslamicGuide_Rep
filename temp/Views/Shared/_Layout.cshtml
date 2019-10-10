@@ -87,8 +87,8 @@
                             <!--KODE TOP INFO START-->
                             <div class="kode_top_info">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-envelope"></i>@ViewBag.StaticData.Email</a></li>
-                                    <li><a href="#"><i class="fa icon-technology"></i>@ViewBag.StaticData.Phone</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>&nbsp;&nbsp;@ViewBag.StaticData.Email</a></li>
+                                    <li><a href="#"><i class="fa icon-technology"></i>&nbsp;&nbsp;@ViewBag.StaticData.Phone</a></li>
                                     <li>
                                         <div class="dropdown">
                                             <button style="direction : ltr !important" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,8 +103,9 @@
                                                 <span class="fa fa-angle-down"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
                                                 <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
+                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
+
                                             </ul>
                                         </div>
                                     </li>
@@ -211,15 +212,15 @@
                            @using (Html.BeginForm("AddSubscriber", "Home"))
                            {
                                <div class="kf_commet_field">
-                                   <input placeholder="@Resources.LayoutResource.Entermail" name="email" id="email" type="email" value="" data-default="Website" size="30" required>
+                                   <input style="direction:ltr !important" placeholder="@Resources.LayoutResource.Entermail" name="email" id="email" type="email" value="" data-default="Website" size="30" required>
                                    <button type="submit" class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
                                    @if (@TempData["added"] != null)
                                    {
-                                   <p style="color: green">@Resources.LayoutResource.EmailAdded</p>
+                                   <script> alert("@Resources.LayoutResource.Added") </script>
                                    }
                                    @if (@TempData["Wrong"] != null)
                                    {
-                                   <p style="color: red">@Resources.LayoutResource.EmailWrong</p>
+                                   <script> alert("@Resources.LayoutResource.Wrong") </script>
                                    }
                                </div>
                            }

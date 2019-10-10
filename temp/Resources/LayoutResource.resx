@@ -330,6 +330,12 @@
   <data name="yMobile" xml:space="preserve">
     <value>Your Mobile</value>
   </data>
+  <data name="Added" xml:space="preserve">
+    <value>Subscribed successfully</value>
+  </data>
+  <data name="Wrong" xml:space="preserve">
+    <value>Something wrong happened Try again later</value>
+  </data>
   <data name="Hedayt_Alayat" xml:space="preserve">
     <value>Hedayt Alayat</value>
   </data>

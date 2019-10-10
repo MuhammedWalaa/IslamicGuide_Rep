@@ -95,6 +95,7 @@ namespace IslamicGuide.Services.BussinessServices
                 {
                     string finalResult = "";
                     string suraTitle = "";
+                    
                     ayatCount = (item.QuranWord1.AyaID.Value - item.QuranWord.AyaID.Value) + 1;
                     if (ayatCount < 0)
                         ayatCount = (ayatCount * -1) + 1;
@@ -132,6 +133,7 @@ namespace IslamicGuide.Services.BussinessServices
         {
             string title = "";
             string suraTitle = "";
+            string hedayt_Ayat = "";
             if (langCode == "en")
             {
                 title = _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
@@ -151,12 +153,17 @@ namespace IslamicGuide.Services.BussinessServices
             else
             {
                 if (langCode == "en")
+                {
                     suraTitle = _DbContext.QuranSuars.Where(p => p.ID == position.QuranWord.SoraID).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
+                    hedayt_Ayat = _DbContext.MapSubjectsQurans.Where(x => x.PositionID == position.ID).Select(e => e.Subject.Hedayt_AlAyat == null ? e.Subject.Hedayt_AlAyatArabic : e.Subject.Hedayt_AlAyat).FirstOrDefault();
+                }
                 else
+                {
                     suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
+                    hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.Hedayt_AlAyatArabic;
+                }
                 var res = _commonServices.GetQuranWordsWithNextPrevAyah(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);
                 var words_ayat = string.Join(" ", res.Words);
-                var hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.Hedayt_AlAyat;
                     return new PositionDetialsVM() {HedaytAlAyat =hedayt_Ayat, SuraTitle = suraTitle, NextAyaWords = res.NextAyaWords, PrevAyaWords = res.PreviousAyaWords, PositionQuranWords = words_ayat, Title = title };
             }
 

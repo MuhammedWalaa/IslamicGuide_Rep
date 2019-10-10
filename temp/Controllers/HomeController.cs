@@ -68,9 +68,21 @@ namespace IslamicGuide.App.Controllers
 
         }
 
-        public void AddSubscriber(string email)
+        public ActionResult AddSubscriber(string email)
         {
-            _commonServices.AddSubscriber(email);
+            try
+            {
+                _commonServices.AddSubscriber(email);
+                TempData["Added"] = true;
+
+            }
+            catch(Exception ex)
+            {
+                TempData["Wrong"] = true;
+            }
+
+            TempData.Keep();
+            return Redirect(Request.UrlReferrer.OriginalString);
         }
         public ActionResult About()
         {

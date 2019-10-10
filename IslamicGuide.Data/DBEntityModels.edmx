@@ -145,7 +145,8 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <Property Name="ParentID" Type="int" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="ImageId" Type="int" />
-          <Property Name="Hedayt_AlAyat" Type="nvarchar" MaxLength="510" />
+          <Property Name="Hedayt_AlAyat" Type="nvarchar(max)" />
+          <Property Name="Hedayt_AlAyatArabic" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Subscribers">
           <Key>
@@ -658,7 +659,8 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A4DE6E_IslamicGuideModel.FK_MapSubjectsQuran_Subjects" FromRole="Subject" ToRole="MapSubjectsQuran" />
           <NavigationProperty Name="Subjects1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject" ToRole="Subject1" />
           <NavigationProperty Name="Subject1" Relationship="DB_A4DE6E_IslamicGuideModel.FK_Subjects_Subjects" FromRole="Subject1" ToRole="Subject" />
-          <Property Name="Hedayt_AlAyat" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+          <Property Name="Hedayt_AlAyat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hedayt_AlAyatArabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Subscriber">
           <Key>
@@ -1017,6 +1019,7 @@ warning 6002: The table/view 'DB_A4DE6E_Quran.dbo.Images' does not have a primar
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A4DE6E_IslamicGuideModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Hedayt_AlAyatArabic" ColumnName="Hedayt_AlAyatArabic" />
                 <ScalarProperty Name="Hedayt_AlAyat" ColumnName="Hedayt_AlAyat" />
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Title_English" ColumnName="Title_English" />
