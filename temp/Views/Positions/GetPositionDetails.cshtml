@@ -19,7 +19,7 @@
         <div class=@arrow>
             <h2>@Model.SuraTitle</h2>
             <ul class="breadcrumbs">
-             
+
                 @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
                 {
                     if (r.Id == null)
@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName!=null?r.Text.EnglishName:"." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
@@ -58,10 +58,10 @@
             </div>
         </div>
         @*<div>
-            <div class="card-header" style="text-align:center; background-color:#d2983d">
-                <h5 style="color:white" class="hStyles">@Model.HedaytAlAyat</h5>
-            </div>
-        </div>*@
+                <div class="card-header" style="text-align:center; background-color:#d2983d">
+                    <h5 style="color:white" class="hStyles">@Model.HedaytAlAyat</h5>
+                </div>
+            </div>*@
         <!--CONTAINER END-->
     </div>
     <!--KODE NAVIGATION WRAP END-->
@@ -73,27 +73,33 @@
             <div class="well">
                 <div>
                     <div style="display:inline" class="card text-center">
-                        <div class="card-header" style="text-align:center; background-color:#d2983d">
-                            <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
-                        </div>
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <p>
-                                <span style=" color: #d2973b;" class="card-text">@Model.HedaytAlAyat</span>
-                            </p>
+                        <div style="margin-bottom:10px; border : 1px solid black">
+                            <div class="card-header" style="text-align:center; background-color:#d2983d">
+                                <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
+                            </div>
+                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                                <p>
+                                    <span style="padding:5px; color: black;" class="card-text">@Model.HedaytAlAyat</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     <div style="display:inline" class="card text-center">
-                        <div class="card-header" style="text-align:center; background-color:#d2983d">
-                            <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                        <div style="margin-bottom:10px; border : 1px solid black">
+
+                            <div class="card-header" style="text-align:center; background-color:#d2983d">
+                                <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                            </div>
+                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                                <p style="padding:10px">
+                                    @ViewBag.PrevAya
+                                    <span style=" color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
+                                    @ViewBag.NextAya
+                                </p>
+                            </div>
                         </div>
-                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                            <p>
-                                @ViewBag.PrevAya
-                                <span style=" color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
-                                @ViewBag.NextAya
-                            </p>
-                        </div>
+
                     </div>
                     @if (Model.BookContent != null)
                     {
@@ -120,7 +126,6 @@
                                 </div>
                             </div>
                         }
-
                     }
                 </div>
             </div>
@@ -140,8 +145,7 @@
         var base_url = window.location.origin;
         document.location = "/Positions/GetSpecificContent?positionId=" + @ViewBag.PositionId + "&bookId=" + selectedValue;
     }
-
-    document.ready(function() {
-        getElementById(@ViewBag.tabId).addClass('active');
-    });
+    if (@ViewBag.Tab != null) {
+        document.getElementById("@ViewBag.Tab").firstChild.className += 'active';
+    }
 </script>

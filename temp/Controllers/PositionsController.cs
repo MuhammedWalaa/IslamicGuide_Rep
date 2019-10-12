@@ -123,7 +123,12 @@ namespace IslamicGuide.App.Controllers
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
             ViewBag.PositionId = id;
             if (tab == null)
+            {
                 tab = 4;
+                ViewBag.Tab = 4;
+            }
+            else
+                ViewBag.Tab = tab;
             var p = _positionService.GetPositionContent(id,tab,LangCode,false);
             if (positionDetials != null && p != null && p.Count() != 0)
             {
