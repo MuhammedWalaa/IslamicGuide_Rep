@@ -4173,7 +4173,7 @@ tbody.collapse.in {
   margin-bottom: 0.75rem;
   background-color: #fff;
   border-radius: 0.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid #fff;
 }
 
 .card-block {

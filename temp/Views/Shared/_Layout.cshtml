@@ -91,20 +91,21 @@
                                     <li><a href="#"><i class="fa icon-technology"></i>&nbsp;&nbsp;@ViewBag.StaticData.Phone</a></li>
                                     <li>
                                         <div class="dropdown">
-                                            <button style="direction : ltr !important" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 @if (langCode == "en")
                                                 {
-                                                    <img style="width:20px !important" src="~/Content/images/en.svg" alt=""><p style="display:inline-block">EN</p>
+                                                <p style="display:inline-block">EN</p> <img style="width:20px !important" src="~/Content/images/en.svg" alt="">
                                                 }
                                                 else
                                                 {
-                                                    <img style="width:20px !important" src="~/Content/images/ar.svg" alt=""><p style="display:inline-block">AR</p>
+                                                    <p style="display:inline-block">AR</p><img style="width:20px !important" src="~/Content/images/ar.svg" alt="">
                                                 }
                                                 <span class="fa fa-angle-down"></span>
                                             </button>
+                                            
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })"><img style="width:20px !important ;" src="~/Content/images/ar.svg" alt="">AR</a></li>
-                                                <li><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })"><img style="width:20px !important ;" src="~/Content/images/en.svg" alt="">EN</a></li>
+                                                <li style="display:inline !important" ><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })">AR<img style="width:20px !important ;" src="~/Content/images/ar.svg"></a></li>
+                                                <li style="display:inline !important"><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })">EN<img style="width:20px !important ;" src="~/Content/images/en.svg"></a></li>
 
                                             </ul>
                                         </div>

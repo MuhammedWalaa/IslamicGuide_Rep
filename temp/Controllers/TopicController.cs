@@ -51,7 +51,10 @@ namespace IslamicGuide.App.Controllers
 
             return View("Index");
         }
-
+        public ActionResult ErrorSearch()
+        {
+            return View();
+        }
         public ActionResult SearchLayout(string searchQuery, int? page)
         {
             if(!string.IsNullOrEmpty(searchQuery))
@@ -96,7 +99,7 @@ namespace IslamicGuide.App.Controllers
                 }
             }
 
-            return RedirectToAction("Index","Home");
+            return View("ErrorSearch");
 
         }
         public int Search(int subjectId, int? page)
@@ -142,7 +145,7 @@ namespace IslamicGuide.App.Controllers
             if (parentId == 0)
                 parentId = 1;
             dropList = _subjectService.GetDDLBySubjectParentId(parentId);
-            
+            ViewBag.ParID = subjectId;
             SubPage.HasPosition = positions.Any() ? true : false;
             SubPage.subjectsDropdown = dropList;
             SubPage.DataList = result;
