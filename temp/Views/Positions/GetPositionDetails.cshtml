@@ -67,67 +67,72 @@
     <!--KODE NAVIGATION WRAP END-->
     <input id="positionId" value="@ViewBag.PositionId" hidden="" />
     <div class="container">
+        <div class="row">
 
 
+            <div class="col-md-12">
+                <div class="card-header" style="text-align:center; background-color:#d2983d">
+                    <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
+                </div>
+                <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                    <p>
+                        <span style="padding:5px; color: black;" class="card-text">@Model.HedaytAlAyat</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
         <div class="row-fluid">
             <div class="well">
-                <div>
-                    <div style="display:inline" class="card text-center">
-                        <div style="margin-bottom:10px; border : 1px solid black">
-                            <div class="card-header" style="text-align:center; background-color:#d2983d">
-                                <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
-                            </div>
-                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                                <p>
-                                    <span style="padding:5px; color: black;" class="card-text">@Model.HedaytAlAyat</span>
-                                </p>
-                            </div>
+
+
+                <div style="display:inline" class="card text-center">
+                    <div style="margin-bottom:10px; border : 1px solid black">
+
+                        <div class="card-header" style="text-align:center; background-color:#d2983d">
+                            <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                        </div>
+                        <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                            <p style="padding:10px">
+                                @ViewBag.PrevAya
+                                <span style=" color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
+                                @ViewBag.NextAya
+                            </p>
                         </div>
                     </div>
 
-                    <div style="display:inline" class="card text-center">
-                        <div style="margin-bottom:10px; border : 1px solid black">
-
-                            <div class="card-header" style="text-align:center; background-color:#d2983d">
-                                <h2 style="color:white" class="hStyles">@Model.SuraTitle</h2>
+                </div>
+                @if (Model.BookContent != null)
+                {
+                    if (Model.BookContent.Count > 0)
+                    {
+                        <div style="padding-bottom:20px;padding-top:20px" class="row">
+                            <div class="col-md-4">
+                                @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @onchange = "OnChangeBook()", @id = "Books", @style = "border:1px solid #e1ba7f !important; font-size:18pt; font-weight:300" })
+                            </div>
+                        </div>
+                    }
+                    if (Model.BookContent.Count > 0)
+                    {
+                        <div class="card text-center">
+                            <div class="card-header" style="text-align:center;background-color:#d2983d">
+                                <h3 style="color:white" class="hStyles">
+                                    @Model.BookContent[0].Title
+                                </h3>
                             </div>
                             <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                                <p style="padding:10px">
-                                    @ViewBag.PrevAya
-                                    <span style=" color: #d2973b;" class="card-text">@Model.PositionQuranWords</span>
-                                    @ViewBag.NextAya
-                                </p>
+                                <div style="padding-right: 7px; padding-left: 7px;">
+                                    @Html.Raw(Model.BookContent[0].ContentHTML)
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                    @if (Model.BookContent != null)
-                    {
-                        if (Model.BookContent.Count > 0)
-                        {
-                            <div style="padding-bottom:20px;padding-top:20px" class="row">
-                                <div class="col-md-4">
-                                    @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @onchange = "OnChangeBook()", @id = "Books", @style = "border:1px solid #e1ba7f !important; font-size:18pt; font-weight:300" })
-                                </div>
-                            </div>
-                        }
-                        if (Model.BookContent.Count > 0)
-                        {
-                            <div class="card text-center">
-                                <div class="card-header" style="text-align:center;background-color:#d2983d">
-                                    <h3 style="color:white" class="hStyles">
-                                        @Model.BookContent[0].Title
-                                    </h3>
-                                </div>
-                                <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                                    <div style="padding-right: 7px; padding-left: 7px;">
-                                        @Html.Raw(Model.BookContent[0].ContentHTML)
-                                    </div>
-                                </div>
-                            </div>
-                        }
                     }
-                </div>
+                }
+
             </div>
         </div>
     </div>
