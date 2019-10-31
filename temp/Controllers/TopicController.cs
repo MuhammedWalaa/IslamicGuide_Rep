@@ -56,7 +56,7 @@ namespace IslamicGuide.App.Controllers
         {
             if(!string.IsNullOrEmpty(searchQuery))
             {
-                int pageSize = 6;
+                int pageSize = 12;
 
                 var result = _subjectService.SearchQuery(new PageFilterModel()
                 {
