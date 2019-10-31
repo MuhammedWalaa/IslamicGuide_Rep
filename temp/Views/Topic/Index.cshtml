@@ -41,15 +41,22 @@
             <div style="padding-bottom:20px;padding-top:20px" class="row">
                 @if (ViewBag.Search == null)
                 {
-                    <div class="col-md-4">
-                        <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                            <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" selected disabled>@Resources.LayoutResource.Subjects</option>
-                            @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
+                <div class="col-md-4">
+                    <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                        <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" disabled>@Resources.LayoutResource.Subjects</option>
+                        @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
+                        {
+                            if (item.ID == ViewBag.ParID)
+                            {
+                                <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                            }
+                            else
                             {
                                 <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
                             }
-                        </select>
-                    </div>
+                        }
+                    </select>
+                </div>
                 }
             </div>
         </div>

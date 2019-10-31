@@ -42,3 +42,9 @@
 .event_date{
     position : unset;
 }
+.top_logo{
+    float:right !important;
+}
+.top_time_circle{
+    float:left !important;
+}

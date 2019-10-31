@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+}
+
+<div class="kode_sab_banner_wrap them_overlay">
+    <div class="container">
+        <div class="sab_banner_text">
+            <h2>@Resources.LayoutResource.Subjects</h2>
+        </div>
+    </div>
+</div>
+<div class="container">
+    
+    <div class="row">
+            <div style="padding:30px" class="col-md-12">
+                <div class="card-header" style="text-align:center; background-color:#d2983d">
+                    <h3 style="color:white" class="hStyles">@Resources.LayoutResource.NoResults</h3>
+                </div>
+            </div>
+    </div>
+</div>

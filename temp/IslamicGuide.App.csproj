@@ -502,6 +502,7 @@
     <Content Include="Views\Positions\Index.cshtml" />
     <Content Include="Views\Shared\_Paging.cshtml" />
     <Content Include="Views\Positions\GetPositionDetails.cshtml" />
+    <Content Include="Views\Topic\ErrorSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\.vs\islamic\v15\" />
