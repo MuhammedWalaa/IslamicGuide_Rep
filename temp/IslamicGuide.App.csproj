@@ -484,6 +484,7 @@
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\modernizr-2.8.3.js" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
