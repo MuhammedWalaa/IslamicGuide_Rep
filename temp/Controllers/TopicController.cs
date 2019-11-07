@@ -36,19 +36,22 @@ namespace IslamicGuide.App.Controllers
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
 
-            _routeService.RouteHandling(
-                Request.Url.OriginalString
-                ,new Title()
-                {
-                    ArabicName = parent.Title,
-                    EnglishName = parent.Title_English
-                }
-                , currentRoute.Title_English
-                ,currentRoute.Title
-                , "Topic", "Index"
-                , subjectId
-                , Routes);
+            if (subjectId != 1)
+            {
+                _routeService.RouteHandling(
+                    Request.Url.OriginalString
+                    , new Title()
+                    {
+                        ArabicName = parent.Title,
+                        EnglishName = parent.Title_English
+                    }
+                    , currentRoute.Title_English
+                    , currentRoute.Title
+                    , "Topic", "Index"
+                    , subjectId
+                    , Routes);
 
+            }
             return View("Index");
         }
         public ActionResult ErrorSearch()

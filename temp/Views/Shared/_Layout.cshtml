@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 @{
     /**/
-
+    
     var langCode = Request.Cookies["culture"] == null ? "ar" : Request.Cookies["culture"].Value;
     var langDir = langCode == "ar" ? "rtl" : "ltr";
+    var font = langCode == "ar" ? "Times New Roman" : "";
 }
 <html dir="@(langDir)"
       lang="@(langCode)">
@@ -66,6 +67,9 @@
     <!--COLOR CSS-->
     <link rel="stylesheet" href="~/Content/css/color.css">
     <!--COLOR CSS-->
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico" >
+    <link rel="icon" type="image/gif" href="~/Content/images/animated_favicon1.gif" >
+
     @if (langCode == "ar")
     {
         <link href="~/Content/styleAr.css" rel="stylesheet" />
@@ -129,6 +133,8 @@
             </div>
             <!--KODE TOP WRAP END-->
             <!--KODE TOP LOGO WRAP START-->
+            
+            </div>
             <div class="kode_top_logo_wrap them_overlay">
                 <!--CONTAINER START-->
                 <div class="container">

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutUs" xml:space="preserve">
-    <value>نبذة عنا</value>
+    <value>نبذة</value>
   </data>
   <data name="AlFatiha" xml:space="preserve">
     <value>الفاتحة</value>
@@ -259,7 +259,7 @@
     <value>كل الحقوق محفوظة@2019</value>
   </data>
   <data name="Subjects" xml:space="preserve">
-    <value>المواضيع</value>
+    <value>الموضوعات</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>تسجيل</value>
