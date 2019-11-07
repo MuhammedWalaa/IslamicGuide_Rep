@@ -180,6 +180,15 @@
     <Content Include="Content\css\sidebar-widget.css" />
     <Content Include="Content\css\slick-theme.css" />
     <Content Include="Content\css\slick.css" />
+    <Content Include="Content\extra-images\Child subject.jpg" />
+    <Content Include="Content\extra-images\الآداب الشرعية.png" />
+    <Content Include="Content\extra-images\التاريخ والأمم السابقة.png" />
+    <Content Include="Content\extra-images\السيرة النبوية الشريفة.png" />
+    <Content Include="Content\extra-images\العادات.png" />
+    <Content Include="Content\extra-images\العبادات.png" />
+    <Content Include="Content\extra-images\العقيدة.png" />
+    <Content Include="Content\extra-images\القرآن الكريم.png" />
+    <Content Include="Content\extra-images\المعاملات.png" />
     <Content Include="Content\styleAr.css" />
     <Content Include="Content\css\typography.css" />
     <Content Include="Content\extra-images\banner-1.jpg" />

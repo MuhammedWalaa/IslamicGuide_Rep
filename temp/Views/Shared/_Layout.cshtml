@@ -3,7 +3,7 @@
 @{
     /**/
 
-    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    var langCode = Request.Cookies["culture"] == null ? "ar" : Request.Cookies["culture"].Value;
     var langDir = langCode == "ar" ? "rtl" : "ltr";
 }
 <html dir="@(langDir)"
@@ -155,14 +155,7 @@
                     <div class="navigation">
                         <ul>
                             <li>@Html.ActionLink(Resources.LayoutResource.Home, "Index", "Home")</li>
-                            <li>
-                                <a href="#">@Resources.LayoutResource.Services</a>
-                                <ul class="kode">
-                                    <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic", new { subjectId = 1 }, null)</li>
-                                    <li>@Html.ActionLink(Resources.LayoutResource.Books, "Index", "book")</li>
-                                    <li>@Html.ActionLink(Resources.LayoutResource.Quran, "Index", "quran")</li>
-                                </ul>
-                            </li>
+                            <li>@Html.ActionLink(Resources.LayoutResource.Subjects, "Index", "Topic", new { subjectId = 1 }, null)</li>
                             <li> @Html.ActionLink(@Resources.LayoutResource.AboutUs, "About", "Home")</li>
                             <li><a href="/home/contact">@Resources.LayoutResource.ContactUs</a></li>
                         </ul>

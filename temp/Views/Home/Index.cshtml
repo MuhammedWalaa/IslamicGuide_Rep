@@ -51,6 +51,47 @@
         <a data-slide-index="2" href="#"><img src="~/Content/extra-images/banner2.jpg" alt="" /></a>
     </div>
 </div>
+
+<div class="kode_services_wrap">
+    <!--CONTAINER START-->
+    <div class="container">
+        <!--SECTION HDG START-->
+        <div class="section_hdg hdg_2 hdg_3">
+            <a href="#"><img src="~/Content/images/hdg-img.png" alt=""></a>
+            <h3>@Resources.LayoutResource.Subjects</h3>
+
+            <span><i class="fa icon-building"></i></span>
+        </div>
+        <!--SECTION HDG END-->
+        <div class="row">
+            @foreach (var item in Model.Subject)
+            {
+                <div class="col-md-4">
+                    <a href="@Url.Action("PreIndex", Controller, new { subjectId = item.ID }, null)">
+                        <div class="kode_service_des">
+                            <figure>
+                                <img src="~/Content/extra-images/@(item.Title).png" alt="">
+                            </figure>
+
+                            <div class="kode_service_text">
+                                <h4>
+                                    @Html.ActionLink(item.Title == null ? "item" : item.Title, "PreIndex", Controller, new { subjectId = item.ID }, null)
+                                </h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+            <div class="col-md-12">
+                <div class="service_btn">
+                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic", new { subjectId = 1 }, new { @class = "small_btn background-bg-dark margin-right btn_hover" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CONTAINER END-->-
+</div>
 <!--KODE BANNER WRAP END-->
 <!--KODE MOSQUES WRAP STRAT-->
 <div class="kode_mosques_wrap">
@@ -193,46 +234,7 @@
 
 <!--KODE PILLARS WRAP END-->
 <!--KODE SERVICES WRAP START-->
-<div class="kode_services_wrap">
-    <!--CONTAINER START-->
-    <div class="container">
-        <!--SECTION HDG START-->
-        <div class="section_hdg hdg_2 hdg_3">
-            <a href="#"><img src="~/Content/images/hdg-img.png" alt=""></a>
-            <h3>@Resources.LayoutResource.Subjects</h3>
 
-            <span><i class="fa icon-building"></i></span>
-        </div>
-        <!--SECTION HDG END-->
-        <div class="row">
-            @foreach (var item in Model.Subject)
-            {
-                <div class="col-md-4">
-                    <a href="@Url.Action("Index", Controller,new { subjectId = item.ID},null)">
-                        <div class="kode_service_des">
-                            <figure>
-                                <img src="~/Content/extra-images/service.jpg" alt="">
-                            </figure>
-
-                            <div class="kode_service_text">
-                                <h4>
-                                    @Html.ActionLink(item.Title == null ? "item" : item.Title, "Index", Controller, new { subjectId = item.ID }, null)
-                                </h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            }
-
-            <div class="col-md-12">
-                <div class="service_btn">
-                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic", new { subjectId = 1 }, new { @class = "small_btn background-bg-dark margin-right btn_hover" })
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--CONTAINER END-->-
-</div>
 <!--KODE SERVICES WRAP END-->
 <!--KODE PRAY WRAP START-->
 <div class="kode_pray_wrap them_overlay">
