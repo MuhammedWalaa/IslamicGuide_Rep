@@ -1,3 +1,7 @@
+
+.kode_service_text_Align {
+    text-align: center;
+}
 /*=====================================================================================
 	
 	Project: Islamic project
@@ -84,7 +88,6 @@
 
 
 ==============================================================================================	*/
-
 .wraper {
     float: left;
     width: 100%;
@@ -3127,7 +3130,7 @@
 }
 
 .kode_sab_banner_wrap {
-    padding: 60px 0px 65px;
+    padding: 10px 0px 10px;
     background-repeat: no-repeat;
     background-size: cover;
     animation: 10s linear 0s normal none infinite running shafaqat;

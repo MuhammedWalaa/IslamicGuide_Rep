@@ -35,7 +35,7 @@ namespace IslamicGuide.App.Controllers
             var parentId = _subjectService.GetSubjectParentId(subjectId);
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
-
+            ViewBag.ParentTitle = currentRoute.Title;
             if (subjectId != 1)
             {
                 _routeService.RouteHandling(
@@ -147,7 +147,7 @@ namespace IslamicGuide.App.Controllers
 
             if (parentId == 0)
                 parentId = 1;
-            dropList = _subjectService.GetDDLBySubjectParentId(parentId);
+            dropList = _subjectService.GetDDLBySubjectParentId(subjectId);
             ViewBag.ParID = subjectId;
             SubPage.HasPosition = positions.Any() ? true : false;
             SubPage.subjectsDropdown = dropList;

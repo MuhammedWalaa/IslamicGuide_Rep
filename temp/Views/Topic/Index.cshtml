@@ -15,7 +15,7 @@
     <!--CONTAINER START-->
     <div class="container">
         <div class="sab_banner_text">
-            <h2>@Resources.LayoutResource.Subjects</h2>
+            <h2>@ViewBag.ParentTitle</h2>
             <ul class="breadcrumbs">
                 @*<li><a href="#"><i class="fa fa-home"></i></a></li>*@
                 @foreach (var r in ((List<IslamicGuide.Data.ViewModels.Shared.Route>)ViewBag.Routes))
@@ -42,7 +42,7 @@
                 @if (ViewBag.Search == null)
                 {
                 <div class="col-md-4">
-                    <select style="font-size:18pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                    <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
                         <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" disabled>@Resources.LayoutResource.Subjects</option>
                         @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
                         {

@@ -15,5 +15,7 @@ namespace IslamicGuide.Data.ViewModels.Position
         public string QuranWords { get; set; }
         public int From { get; set; }
         public int To { get; set; }
+        public int FromAya { get; set; }
+        public int ToAya { get; set; }
     }
 }

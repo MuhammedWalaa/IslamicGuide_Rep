@@ -26,8 +26,7 @@ namespace IslamicGuide.App.Controllers
             }
             else
             {
-                string[] userLanguage = Request.UserLanguages;
-                lang = userLanguage != null ? userLanguage[0] : "ar";
+                lang = "ar";
             }
             LanguageSetting.SetLanguage(lang);
             return base.BeginExecuteCore(callback, state);

@@ -20,8 +20,10 @@ namespace IslamicGuide.Services.Utilities
             _subjectService = new SubjectService();
             _DbContext = new DB_A4DE6E_IslamicGuideEntities();
         }
-        public List<string> GetQuranWords(int from, int to, int ayatCount,string langCode)
+        public KeyValueList GetQuranWords(int from, int to, int ayatCount,string langCode)
         {
+            KeyValueList res = new KeyValueList(){};
+            
             var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode=="en"&&x.Word_English!=null? x.Word_English:x.Word, aya = x.AyaNum }).ToList();
             var finalWords = allWords.Select(x => x.word).ToList();
             var ayatRange = allWords.Select(e => e.aya).Distinct().ToList();
@@ -36,7 +38,10 @@ namespace IslamicGuide.Services.Utilities
                 }
             }
 
-            return finalWords;
+            res.Words = finalWords;
+            res.FirstAya = ayatRange.First().Value;
+            res.LastAya = ayatRange.Last().Value;
+            return res;
         }
 
         public PositionWordsWithNextAndPrevModel GetQuranWordsWithNextPrevAyah(int from, int to, int ayatCount, string langCode)

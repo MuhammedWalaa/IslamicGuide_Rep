@@ -52,28 +52,25 @@
     </div>
 </div>
 
-<div class="kode_services_wrap">
-    <!--CONTAINER START-->
+<div style="padding-bottom: 0px !important" class="kode_services_wrap">
     <div class="container">
-        <!--SECTION HDG START-->
         <div class="section_hdg hdg_2 hdg_3">
             <a href="#"><img src="~/Content/images/hdg-img.png" alt=""></a>
             <h3>@Resources.LayoutResource.Subjects</h3>
 
             <span><i class="fa icon-building"></i></span>
         </div>
-        <!--SECTION HDG END-->
         <div class="row">
             @foreach (var item in Model.Subject)
             {
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a href="@Url.Action("PreIndex", Controller, new { subjectId = item.ID }, null)">
                         <div class="kode_service_des">
                             <figure>
                                 <img src="~/Content/extra-images/@(item.Title).png" alt="">
                             </figure>
 
-                            <div class="kode_service_text">
+                            <div class="kode_service_text kode_service_text_Align">
                                 <h4>
                                     @Html.ActionLink(item.Title == null ? "item" : item.Title, "PreIndex", Controller, new { subjectId = item.ID }, null)
                                 </h4>
@@ -82,19 +79,12 @@
                     </a>
                 </div>
             }
-
-            @*<div class="col-md-12">
-                <div class="service_btn">
-                    @Html.ActionLink(Resources.LayoutResource.Showmore, "Index", "Topic", new { subjectId = 1 }, new { @class = "small_btn background-bg-dark margin-right btn_hover" })
-                </div>
-            </div>*@
         </div>
     </div>
-    <!--CONTAINER END-->-
 </div>
 <!--KODE BANNER WRAP END-->
 <!--KODE MOSQUES WRAP STRAT-->
-<div class="kode_mosques_wrap">
+<div style="padding-top: 20px !important" class="kode_mosques_wrap">
     <!--CONTAINER STRAT-->
     <div class="container">
         <!--ROW STRAT-->
@@ -157,16 +147,13 @@
 <!--KODE PILLARS WRAP START-->
 
 
-<div class="kode_pillars_wrap them_overlay">
-    <!--CONTAINER START-->
+@*<div class="kode_pillars_wrap them_overlay">
     <div class="container">
-        <!--SECTION HDG START-->
         <div class="section_hdg hdg_2">
             <a href="#"><img src="~/Content/images/hdg-img-2.png" alt=""></a>
             <h3>@Resources.LayoutResource.Pillars</h3>
             <span><i class="fa icon-building"></i></span>
         </div>
-        <!--SECTION HDG END-->
         <div class="kode_pillars_row">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -228,8 +215,7 @@
             </div>
         </div>
     </div>
-    <!--CONTAINER END-->
-</div>
+</div>*@
 
 
 <!--KODE PILLARS WRAP END-->
@@ -237,8 +223,7 @@
 
 <!--KODE SERVICES WRAP END-->
 <!--KODE PRAY WRAP START-->
-<div class="kode_pray_wrap them_overlay">
-    <!--CONTAINER START-->
+@*<div class="kode_pray_wrap them_overlay">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -258,5 +243,4 @@
             </div>
         </div>
     </div>
-    <!--CONTAINER END-->
-</div>
+</div>*@
