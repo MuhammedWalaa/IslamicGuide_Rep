@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aya.
+        /// </summary>
+        public static string Aya {
+            get {
+                return ResourceManager.GetString("Aya", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ayat.
         /// </summary>
         public static string Ayat {

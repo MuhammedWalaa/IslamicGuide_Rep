@@ -105,7 +105,8 @@ namespace IslamicGuide.Services.BussinessServices
                             suraTitle = _DbContext.QuranSuars.Where(p => p.ID == item.QuranWord.SoraID).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
                         else
                             suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == item.QuranWord.SoraID).Title;
-                        var res = _commonServices.GetQuranWords(item.FromQuranWordID.Value, item.ToQuranWordID.Value, ayatCount, langCode);
+                        var result = _commonServices.GetQuranWords(item.FromQuranWordID.Value, item.ToQuranWordID.Value, ayatCount, langCode);
+                        var res = result.Words;
                         var words_ayat = string.Join(" ", res);
                         if (ayatCount > 2)
                         {
@@ -116,9 +117,9 @@ namespace IslamicGuide.Services.BussinessServices
                         else
                             finalResult = words_ayat.Substring(0, words_ayat.IndexOf(")") + 1);
                         if (finalResult == "")
-                            positionVMs.Add(new PositionVM { PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = words_ayat, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value });
+                            positionVMs.Add(new PositionVM {FromAya = result.FirstAya,ToAya = result.LastAya, PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = words_ayat, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value, });
                         else
-                            positionVMs.Add(new PositionVM { PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = finalResult, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value });
+                            positionVMs.Add(new PositionVM {FromAya = result.FirstAya,ToAya = result.LastAya, PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = finalResult, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value });
 
                     }
                 }
