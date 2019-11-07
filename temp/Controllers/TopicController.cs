@@ -23,7 +23,7 @@ namespace IslamicGuide.App.Controllers
         }
 
         // GET: Topic
-        public ActionResult Index(int ? page, int subjectId = 1)
+        public ActionResult Index(int ? page, int subjectId)
         {
             var res = Search(subjectId,page);
 
@@ -117,7 +117,7 @@ namespace IslamicGuide.App.Controllers
             
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
-            int pageSize = 6;
+            int pageSize = 12;
 
             var result = _subjectService.AdjustingMainSubjectsData(new PageFilterModel()
             {

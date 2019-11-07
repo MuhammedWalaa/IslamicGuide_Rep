@@ -208,7 +208,7 @@
             @foreach (var item in Model.Subject)
             {
                 <div class="col-md-4">
-                    <a href="@Url.Action("PreIndex", Controller,new { subjectId = item.ID},null)">
+                    <a href="@Url.Action("Index", Controller,new { subjectId = item.ID},null)">
                         <div class="kode_service_des">
                             <figure>
                                 <img src="~/Content/extra-images/service.jpg" alt="">
@@ -216,7 +216,7 @@
 
                             <div class="kode_service_text">
                                 <h4>
-                                    @Html.ActionLink(item.Title == null ? "item" : item.Title, "PreIndex", Controller, new { subjectId = item.ID }, null)
+                                    @Html.ActionLink(item.Title == null ? "item" : item.Title, "Index", Controller, new { subjectId = item.ID }, null)
                                 </h4>
                             </div>
                         </div>
