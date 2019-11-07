@@ -35,7 +35,7 @@ namespace IslamicGuide.App.Controllers
             var parentId = _subjectService.GetSubjectParentId(subjectId);
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
-
+            ViewBag.ParentTitle = parent;
             _routeService.RouteHandling(
                 Request.Url.OriginalString
                 ,new Title()

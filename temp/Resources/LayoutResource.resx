@@ -342,4 +342,7 @@
   <data name="NoResults" xml:space="preserve">
     <value>There is no results found</value>
   </data>
+  <data name="Title" xml:space="preserve">
+    <value>Al Quran Subjects</value>
+  </data>
 </root>
