@@ -10,6 +10,11 @@
                 Culture = lang;
                 UICulture = lang;
             }
+            else
+            {
+                Culture = "ar";
+                UICulture = "ar";
+            }
         }
     }
 }

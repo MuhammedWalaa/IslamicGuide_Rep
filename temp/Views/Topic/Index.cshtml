@@ -1,14 +1,16 @@
 ﻿@using IslamicGuide.Data.ViewModels.Shared
 @using IslamicGuide.Data.ViewModels.Subjects
+@using Microsoft.Ajax.Utilities
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var counter = 0;
+    int routeCount = 1;
     var subjectsCount = 0;
 }
 @{
-    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    var langCode = Request.Cookies["culture"] == null ? "ar" : Request.Cookies["culture"].Value;
 }
 
 
@@ -30,6 +32,7 @@
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
+
                 }
             </ul>
         </div>
@@ -101,7 +104,7 @@
                             }
                         </figure>
 
-                        <div class="kode_service_text">
+                        <div style="text-align: center" class="kode_service_text">
                             <h4>
                                 @Html.ActionLink(item.Title == null ? "Item" : item.Title, "Index", "Topic", new { subjectId = item.ID }, new { @style = "font-size:10pt;" })
                             </h4>
