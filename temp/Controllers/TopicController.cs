@@ -31,11 +31,28 @@ namespace IslamicGuide.App.Controllers
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
             else if (res == 2)
                 return View("Error");
-
+            
             var parentId = _subjectService.GetSubjectParentId(subjectId);
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
-            ViewBag.ParentTitle = currentRoute.Title;
+            if (parentId != 0)
+            {
+                if (parent.ID != 1)
+                {
+                    ViewBag.ParentImageName = parent.Title;
+
+                    if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
+                        ViewBag.ParentImageName = parent.ParentTitle;
+                }
+                else
+                    ViewBag.ParentImageName = currentRoute.Title;
+            }
+            else
+            {
+                ViewBag.ParentImageName = null;
+            }
+
+            ViewBag.ParentTitle = null;
             if (subjectId != 1)
             {
                 _routeService.RouteHandling(
@@ -60,6 +77,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult SearchLayout(string searchQuery, int? page)
         {
+            List<string> searchedSubjectsImages= new List<string>();
             if(!string.IsNullOrEmpty(searchQuery))
             {
                 int pageSize = 12;
@@ -72,6 +90,32 @@ namespace IslamicGuide.App.Controllers
                 }, searchQuery.ToLower());
                 if (result != null)
                 {
+                    foreach (var subjec in result.DataList)
+                    {
+                        string imageToAdd = "";
+                        var parentId = _subjectService.GetSubjectParentId(subjec.ID);
+                        var parent = _subjectService.GetSubjectById(parentId, LangCode);
+                        var currentRoute = _subjectService.GetSubjectById(subjec.ID, LangCode);
+                        if (parentId != 0)
+                        {
+                            if (parent.ID != 1)
+                            {
+                                imageToAdd = parent.Title;
+
+                                if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
+                                    imageToAdd = parent.ParentTitle;
+                            }
+                            else
+                                imageToAdd = currentRoute.Title;
+                        }
+                        else
+                        {
+                            imageToAdd = null;
+                        }
+                        searchedSubjectsImages.Add(imageToAdd);
+                    }
+
+                    ViewBag.SearchedImages = searchedSubjectsImages;
                     var pageUrl = "/topic/SearchLayout";
                     pageUrl += "?searchQuery=" + searchQuery;
 

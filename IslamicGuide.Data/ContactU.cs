@@ -12,7 +12,7 @@ namespace IslamicGuide.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ContactUs
+    public partial class ContactU
     {
         public int ID { get; set; }
         public string Name { get; set; }
