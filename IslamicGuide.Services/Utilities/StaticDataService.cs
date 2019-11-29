@@ -45,7 +45,7 @@ namespace IslamicGuide.Services.Utilities
         }
         public bool SaveContactUs(string name,string email,string comment,string phone="")
         {
-            ContactU obj = new ContactU()
+            ContactUs obj = new ContactUs()
             {
                 Name= name,
                 Email = email,
@@ -54,7 +54,7 @@ namespace IslamicGuide.Services.Utilities
             };
             try
             {
-                _db.ContactUs.Add(obj);
+                _db.ContactUs1.Add(obj);
                 _db.SaveChanges();
                 return true;
             }

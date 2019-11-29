@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var counter = 0;
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
@@ -74,24 +73,7 @@
                 <a href="@Url.Action("Index", "Topic" ,new { subjectId=item.ID },null)">
                     <div style="max-height: 370px;" class="kode_service_des">
                         <figure>
-                            
-                            @if (ViewBag.SearchedImages!=null && ((List<string>) ViewBag.SearchedImages).Count > 0)
-                            {
-                                <img src="~/Content/extra-images/@(ViewBag.SearchedImages[counter]).png" alt="">
-                                counter++;
-                            }
-                            else
-                            {
-                                if (ViewBag.ParentImageName != null)
-                                {
-                                    <img src="~/Content/extra-images/@(ViewBag.ParentImageName).png" alt="">
-                                }
-                                else
-                                {
-                                    <img src="~/Content/extra-images/@(item.Title).png" alt="">
-
-                                }
-                            }
+                            <img src="~/Content/extra-images/Child subject.jpg" alt="">
                         </figure>
 
                         <div class="kode_service_text">

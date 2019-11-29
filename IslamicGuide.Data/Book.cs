@@ -17,6 +17,7 @@ namespace IslamicGuide.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
+            this.BookContents = new HashSet<BookContent>();
             this.MapBookQurans = new HashSet<MapBookQuran>();
         }
     
@@ -27,8 +28,11 @@ namespace IslamicGuide.Data
         public string Version { get; set; }
         public string Title_English { get; set; }
         public string Author_English { get; set; }
+        public string Path { get; set; }
     
         public virtual BookCategory BookCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookContent> BookContents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MapBookQuran> MapBookQurans { get; set; }
     }

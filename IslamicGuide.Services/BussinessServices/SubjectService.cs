@@ -22,7 +22,6 @@ namespace IslamicGuide.Services.BussinessServices
                     ID = e.ID,
                     Title = e.Title,
                     Title_English = e.Title_English,
-                    ParentTitle = e.Subject1!=null?e.Subject1.Title:null,
                 }).ToList();
             if (listOfSubjects.Count == 0)
                 return null;
@@ -75,9 +74,7 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 ID = subj.ID,
                 Title = subj.Title?? ".",
-                Title_English = subj.Title_English??".",
-                ParentTitle = subj.Subject1?.Title,
-
+                Title_English = subj.Title_English??"."
             };
         }
         public int GetSubjectParentId(int id)
