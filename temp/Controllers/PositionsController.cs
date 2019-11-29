@@ -59,17 +59,23 @@ namespace IslamicGuide.App.Controllers
                 return View("Error");
             }
             Search(id, page);
+
+            //Pagination Problem 
             ViewBag.PathForPaging = path+"?";
+            ViewBag.PagingResult.Url = path + "?";
+
+            //Pagination Problem 
+
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
 
-            
+
             return View();
         }
 
         public void Search(int id, int? page)
         {
-            int pageSize = 6;
+            int pageSize = 10;
             PositionPageVM pm = new PositionPageVM();
             var result = _positionService.AdjustingPositionData(new PageFilterModel()
             {

@@ -60,73 +60,70 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="BookCategory.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="BookContent.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="ContactUs.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBEntityModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEntityModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBEntityModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBEntityModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEntityModels.edmx</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IslamicCenter.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IslamicCenter.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IslamicCenter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IslamicCenter.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IslamicCenter.edmx</DependentUpon>
     </Compile>
     <Compile Include="MapBookQuran.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="MapSubjectsQuran.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="PraysTime.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuranAyat.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="QuranSuar.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="QuranWord.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="ResponseResult.cs" />
     <Compile Include="StaticData.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Subject.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Subscriber.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>DBEntityModels.tt</DependentUpon>
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Books\BookGridVM.cs" />
     <Compile Include="ViewModels\Home\HomeVM.cs" />
@@ -147,36 +144,33 @@
     <Compile Include="ViewModels\Subjects\SubjectVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="DBEntityModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBEntityModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="DBEntityModels.edmx.diagram">
-      <DependentUpon>DBEntityModels.edmx</DependentUpon>
+    <EntityDeploy Include="IslamicCenter.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IslamicCenter.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="IslamicCenter.edmx.diagram">
+      <DependentUpon>IslamicCenter.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBEntityModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBEntityModels.Context.cs</LastGenOutput>
-      <DependentUpon>DBEntityModels.edmx</DependentUpon>
-    </Content>
-    <Content Include="DBEntityModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBEntityModels.edmx</DependentUpon>
-      <LastGenOutput>DBEntityModels.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="IslamicCenter.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IslamicCenter.edmx</DependentUpon>
+      <LastGenOutput>IslamicCenter.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="IslamicCenter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IslamicCenter.edmx</DependentUpon>
+      <LastGenOutput>IslamicCenter.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

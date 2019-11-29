@@ -12,7 +12,7 @@ namespace IslamicGuide.Services.BussinessServices
 
     public class SubjectService
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
 
         public PageListResult<SubjectVM> SearchQuery(PageFilterModel pageFilterModel , string searchQuery)
         {
@@ -22,6 +22,7 @@ namespace IslamicGuide.Services.BussinessServices
                     ID = e.ID,
                     Title = e.Title,
                     Title_English = e.Title_English,
+                    ParentTitle = e.Subject1!=null?e.Subject1.Title:null,
                 }).ToList();
             if (listOfSubjects.Count == 0)
                 return null;
@@ -35,7 +36,7 @@ namespace IslamicGuide.Services.BussinessServices
 
         public SubjectService()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
         }
         public int CountSubjects()
         {
@@ -74,7 +75,9 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 ID = subj.ID,
                 Title = subj.Title?? ".",
-                Title_English = subj.Title_English??"."
+                Title_English = subj.Title_English??".",
+                ParentTitle = subj.Subject1?.Title,
+
             };
         }
         public int GetSubjectParentId(int id)

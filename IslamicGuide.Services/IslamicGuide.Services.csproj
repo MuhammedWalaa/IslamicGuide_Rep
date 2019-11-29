@@ -70,16 +70,15 @@
     <Compile Include="Utilities\StaticDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IslamicGuide.Data\IslamicGuide.Data.csproj">
-      <Project>{AD726676-4FD6-4737-B1CB-DCBCFA90B3FC}</Project>
-      <Name>IslamicGuide.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IslamicGuide.Data\IslamicGuide.Data.csproj">
+      <Project>{ad726676-4fd6-4737-b1cb-dcbcfa90b3fc}</Project>
+      <Name>IslamicGuide.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

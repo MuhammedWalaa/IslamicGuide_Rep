@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="29fef1dba0a1404d8322628ab273e2ca" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.BookCategory" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.BookContent" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Book" Width="1.5" PointX="10.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.ContactU" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.MapBookQuran" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.MapSubjectsQuran" Width="1.5" PointX="12.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Position" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.PraysTime" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranAyat" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranSuar" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranWord" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.StaticData" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Subject" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Subscriber" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.User" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Image" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_Books_BookCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_BookContent_QuranAyat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_BookContent_QuranSuar" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_MapBookQuran_BookContent" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_MapBookQuran_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_MapBookQuran_Positions" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_MapSubjectsQuran_Positions" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_MapSubjectsQuran_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_Positions_QuranWords" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_Positions_QuranWords1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_QuranAyat_QuranSuar" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_QuranWords_QuranAyat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_QuranWords_QuranSuar" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_Subjects_Subjects" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var counter = 0;
+    var subjectsCount = 0;
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
@@ -41,22 +43,22 @@
             <div style="padding-bottom:20px;padding-top:20px" class="row">
                 @if (ViewBag.Search == null)
                 {
-                <div class="col-md-4">
-                    <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                        <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" disabled>@Resources.LayoutResource.Subjects</option>
-                        @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
-                        {
-                            if (item.ID == ViewBag.ParID)
+                    <div class="col-md-4">
+                        <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
+                            <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" disabled>@Resources.LayoutResource.Subjects</option>
+                            @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
                             {
-                                <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                                if (item.ID == ViewBag.ParID)
+                                {
+                                    <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                                }
+                                else
+                                {
+                                    <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                                }
                             }
-                            else
-                            {
-                                <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
-                            }
-                        }
-                    </select>
-                </div>
+                        </select>
+                    </div>
                 }
             </div>
         </div>
@@ -66,28 +68,58 @@
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
+
+        @*<div class="col-md-1">
+            <p>asdasdasd</p>
+        </div>*@
+
         @foreach (var item in ((List<SubjectVM>)ViewBag.SubPage.DataList.DataList))
         {
-            <div style="max-height: 380px;" class="col-md-3">
+            
+            <div style=" margin-right: 30px; margin-bottom: 20px; max-height: 250px;" class="col-md-2">
 
-                <a href="@Url.Action("Index", "Topic" ,new { subjectId=item.ID },null)">
-                    <div style="max-height: 370px;" class="kode_service_des">
+                <a href="@Url.Action("Index", "Topic", new {subjectId = item.ID}, null)">
+                    <div style="max-height: 250px;" class="kode_service_des">
                         <figure>
-                            <img src="~/Content/extra-images/Child subject.jpg" alt="">
+
+                            @if (ViewBag.SearchedImages != null && ((List<string>)ViewBag.SearchedImages).Count > 0)
+                            {
+                                <img src="~/Content/extra-images/@(ViewBag.SearchedImages[counter]).png" alt="">
+                                counter++;
+                            }
+                            else
+                            {
+                                if (ViewBag.ParentImageName != null)
+                                {
+                                    <img src="~/Content/extra-images/@(ViewBag.ParentImageName).png" alt="">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/extra-images/@(item.Title).png" alt="">
+
+                                }
+                            }
                         </figure>
 
                         <div class="kode_service_text">
                             <h4>
-                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "Index", "Topic", new { subjectId = item.ID }, null)
+                                @Html.ActionLink(item.Title == null ? "Item" : item.Title, "Index", "Topic", new { subjectId = item.ID }, new { @style = "font-size:10pt;" })
                             </h4>
                         </div>
                     </div>
                 </a>
             </div>
+            @*if (subjectsCount == 5)
+            {
+                <div class="col-md-1">
+                    <p>asdasdasd</p>
+                </div>
+                subjectsCount = 0;
+            }*@
+            subjectsCount++;
         }
-        @Html.Partial("_Paging")
-
     </div>
+    @Html.Partial("_Paging")
 </div>
 <!--KODE BLOG MADIUM WRAP END-->
 <script type="text/javascript">

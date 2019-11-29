@@ -29,7 +29,6 @@ namespace IslamicGuide.Data
         public string BookContent_English { get; set; }
         public string BookContentHTML_English { get; set; }
     
-        public virtual Book Book { get; set; }
         public virtual QuranAyat QuranAyat { get; set; }
         public virtual QuranSuar QuranSuar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

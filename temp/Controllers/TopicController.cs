@@ -23,9 +23,9 @@ namespace IslamicGuide.App.Controllers
         }
 
         // GET: Topic
-        public ActionResult Index(int ? page, int subjectId)
+        public ActionResult Index(int? page, int subjectId)
         {
-            var res = Search(subjectId,page);
+            var res = Search(subjectId, page);
 
             if (res == 1)
                 return RedirectToAction("Index", "Positions", new { id = subjectId });
@@ -35,7 +35,24 @@ namespace IslamicGuide.App.Controllers
             var parentId = _subjectService.GetSubjectParentId(subjectId);
             var parent = _subjectService.GetSubjectById(parentId, LangCode);
             var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
-            ViewBag.ParentTitle = currentRoute.Title;
+            if (parentId != 0)
+            {
+                if (parent.ID != 1)
+                {
+                    ViewBag.ParentImageName = parent.Title;
+
+                    if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
+                        ViewBag.ParentImageName = parent.ParentTitle;
+                }
+                else
+                    ViewBag.ParentImageName = currentRoute.Title;
+            }
+            else
+            {
+                ViewBag.ParentImageName = null;
+            }
+
+            ViewBag.ParentTitle = null;
             if (subjectId != 1)
             {
                 _routeService.RouteHandling(
@@ -60,9 +77,10 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult SearchLayout(string searchQuery, int? page)
         {
-            if(!string.IsNullOrEmpty(searchQuery))
+            List<string> searchedSubjectsImages = new List<string>();
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                int pageSize = 12;
+                int pageSize = 20;
 
                 var result = _subjectService.SearchQuery(new PageFilterModel()
                 {
@@ -72,6 +90,32 @@ namespace IslamicGuide.App.Controllers
                 }, searchQuery.ToLower());
                 if (result != null)
                 {
+                    foreach (var subjec in result.DataList)
+                    {
+                        string imageToAdd = "";
+                        var parentId = _subjectService.GetSubjectParentId(subjec.ID);
+                        var parent = _subjectService.GetSubjectById(parentId, LangCode);
+                        var currentRoute = _subjectService.GetSubjectById(subjec.ID, LangCode);
+                        if (parentId != 0)
+                        {
+                            if (parent.ID != 1)
+                            {
+                                imageToAdd = parent.Title;
+
+                                if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
+                                    imageToAdd = parent.ParentTitle;
+                            }
+                            else
+                                imageToAdd = currentRoute.Title;
+                        }
+                        else
+                        {
+                            imageToAdd = null;
+                        }
+                        searchedSubjectsImages.Add(imageToAdd);
+                    }
+
+                    ViewBag.SearchedImages = searchedSubjectsImages;
                     var pageUrl = "/topic/SearchLayout";
                     pageUrl += "?searchQuery=" + searchQuery;
 
@@ -117,10 +161,10 @@ namespace IslamicGuide.App.Controllers
                 pageUrl += "?SubjectId=" + subjectId;
             }
             var positions = _positionService.GetSubjectAndSubSubjectPositionsById(subjectId, LangCode);
-            
+
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
-            int pageSize = 12;
+            int pageSize = 20;
 
             var result = _subjectService.AdjustingMainSubjectsData(new PageFilterModel()
             {
@@ -131,7 +175,7 @@ namespace IslamicGuide.App.Controllers
             // if Subject has no SubSubjects
             if (result == null)
             {
-                if(positions.Count==0)
+                if (positions.Count == 0)
                     return 2;
                 return 1;
             }
@@ -142,7 +186,7 @@ namespace IslamicGuide.App.Controllers
                 pagesCount = (result.RowsCount / pageSize);
             else
                 pagesCount = (result.RowsCount / pageSize) + 1;
-            
+
             int parentId = _subjectService.GetSubjectParentId(subjectId);
 
             if (parentId == 0)
@@ -166,7 +210,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult GetByIdList(int id)
         {
-            _routeService.PopRoutesOutOfIndexFromList(Request.Url.OriginalString,Routes);
+            _routeService.PopRoutesOutOfIndexFromList(Request.Url.OriginalString, Routes);
             return RedirectToAction("Index", new { subjectId = id });
         }
         public ActionResult PreIndex(int subjectId)

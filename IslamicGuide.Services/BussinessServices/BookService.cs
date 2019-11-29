@@ -7,10 +7,10 @@ namespace IslamicGuide.Services.Services
 {
     public class BookService
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
         public BookService()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
         }
         public List<BookGridVM> GetAllBooks()
         {
