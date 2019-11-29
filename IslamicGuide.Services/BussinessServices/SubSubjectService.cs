@@ -9,10 +9,10 @@ namespace IslamicGuide.Services.BussinessServices
 {
     public class SubSubjectService
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
         public SubSubjectService()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
         }
         
         public void GetSubSubjectById(int id)

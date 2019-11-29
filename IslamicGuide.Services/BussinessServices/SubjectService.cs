@@ -12,7 +12,7 @@ namespace IslamicGuide.Services.BussinessServices
 
     public class SubjectService
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
 
         public PageListResult<SubjectVM> SearchQuery(PageFilterModel pageFilterModel , string searchQuery)
         {
@@ -36,7 +36,7 @@ namespace IslamicGuide.Services.BussinessServices
 
         public SubjectService()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
         }
         public int CountSubjects()
         {

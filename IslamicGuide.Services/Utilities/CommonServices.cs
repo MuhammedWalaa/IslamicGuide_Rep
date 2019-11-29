@@ -13,12 +13,12 @@ namespace IslamicGuide.Services.Utilities
 {
     public class CommonServices
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
         private readonly SubjectService _subjectService;
         public CommonServices()
         {
             _subjectService = new SubjectService();
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
         }
         public KeyValueList GetQuranWords(int from, int to, int ayatCount,string langCode)
         {

@@ -7,11 +7,11 @@ namespace IslamicGuide.Services.Utilities
 {
     public class StaticDataService
     {
-        private readonly DB_A4DE6E_IslamicGuideEntities _db;
+        private readonly IslamicCenterEntities _db;
 
         public StaticDataService()
         {
-            _db = new DB_A4DE6E_IslamicGuideEntities();
+            _db = new IslamicCenterEntities();
         }
 
         public List<PraysVM> GetPraysTime(string langCode)

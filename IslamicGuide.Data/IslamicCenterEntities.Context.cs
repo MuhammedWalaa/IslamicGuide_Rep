@@ -13,10 +13,10 @@ namespace IslamicGuide.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_A4DE6E_IslamicGuideEntities : DbContext
+    public partial class IslamicCenterEntities : DbContext
     {
-        public DB_A4DE6E_IslamicGuideEntities()
-            : base("name=DB_A4DE6E_IslamicGuideEntities")
+        public IslamicCenterEntities()
+            : base("name=IslamicCenterEntities")
         {
         }
     
