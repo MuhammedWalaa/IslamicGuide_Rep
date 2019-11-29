@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int rawCount = 0;
+    string divClass = "";
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
@@ -35,7 +37,7 @@
     <!--CONTAINER END-->
 </div>
 
-<div class="kode_navigation_wrap">
+<div class="kode_navigation_wrap">3
     <div class="container">
         <div dir="rtl" class="navigation">
             <div style="padding-bottom:20px;padding-top:20px" class="row">
@@ -66,11 +68,20 @@
 <!--CONTAINER START-->
 <div class="container">
     <div class="row">
+
         @foreach (var item in ((List<SubjectVM>)ViewBag.SubPage.DataList.DataList))
         {
-            <div style="max-height: 380px;" class="col-md-3">
+            if (rawCount % 5 == 0)
+            {
+                <div class="col-md-1">
+                    <p>--></p>
+                </div>
 
-                <a href="@Url.Action("Index", "Topic" ,new { subjectId=item.ID },null)">
+            }
+
+            <div style="max-height: 380px;" class="col-md-2">
+
+                <a href="@Url.Action("Index", "Topic", new {subjectId = item.ID}, null)">
                     <div style="max-height: 370px;" class="kode_service_des">
                         <figure>
                             <img src="~/Content/extra-images/Child subject.jpg" alt="">
@@ -84,7 +95,16 @@
                     </div>
                 </a>
             </div>
+            if (rawCount % 5 == 4)
+            {
+                <div class="col-md-1">
+                    <p>--></p>
+                </div>
+
+            }
+            rawCount++;
         }
+
         @Html.Partial("_Paging")
 
     </div>

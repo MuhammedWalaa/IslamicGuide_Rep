@@ -7,10 +7,10 @@ namespace SchedualedJobs
     public class Program
     {
         private static readonly HttpService _httpService;
-        private static readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private static readonly IslamicCenterEntities _DbContext;
         static Program()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
             _httpService = new HttpService();
 
         }

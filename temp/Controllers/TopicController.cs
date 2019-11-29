@@ -120,7 +120,7 @@ namespace IslamicGuide.App.Controllers
             
             SubSubjectPageVM SubPage = new SubSubjectPageVM();
             List<SubjectVM> dropList = new List<SubjectVM>();
-            int pageSize = 12;
+            int pageSize = 20;
 
             var result = _subjectService.AdjustingMainSubjectsData(new PageFilterModel()
             {

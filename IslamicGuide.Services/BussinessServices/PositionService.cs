@@ -16,11 +16,11 @@ namespace IslamicGuide.Services.BussinessServices
     public class PositionService
     {
 
-        private readonly DB_A4DE6E_IslamicGuideEntities _DbContext;
+        private readonly IslamicCenterEntities _DbContext;
         private readonly CommonServices _commonServices;
         public PositionService()
         {
-            _DbContext = new DB_A4DE6E_IslamicGuideEntities();
+            _DbContext = new IslamicCenterEntities();
             _commonServices = new CommonServices();
         }
 
