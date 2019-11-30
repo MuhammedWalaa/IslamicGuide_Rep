@@ -2,15 +2,45 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var breadCrumbDivClass = "sab_banner_text";
+
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    if (langCode == "ar")
+    {
+        breadCrumbDivClass = "sab_banner_textAr";
+        <style>
+            .breadcrumbs li:first-child:before {
+                content: "";
+            }
+
+            .breadcrumbs li:last-child:before {
+                content: "\f100" !important;
+            }
+
+            .breadcrumbs {
+                padding-right: 0px !important;
+                direction: rtl !important;
+            }
+
+                .breadcrumbs li {
+                    margin-right: 5px !important;
+                }
+
+            .subjectsStyles {
+                margin-right: 30px !important;
+                margin-bottom: 20px !important;
+                margin-left: 0px !important;
+            }
+        </style>
+    }
 }
 <!--KODE SAB BANNER WRAP START-->
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
-        <div class="sab_banner_text">
+        <div class="@(breadCrumbDivClass)">
             <h2>@ViewBag.subjectTitle</h2>
             <ul class="breadcrumbs">
                 @*<li><a href="#"><i class="fa fa-home"></i></a></li>*@
@@ -18,7 +48,7 @@
                 {
                     if (r.Id == null)
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName,r.ActionName, r.Controller, null, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
                     else
                     {
@@ -38,10 +68,10 @@
         @foreach (var item in (List<PositionVM>)ViewBag.pm.DataList.DataList)
         {
             <div class="row" style="padding: 25px; box-shadow: -1px -1px 10px -1px #888888;margin-bottom: 30px;">
-               
+
                 <div class="col-md-6">
                     <h4 style="display: inline-block !important;  color:brown;font-size:20pt;font-weight: 1000;">@item.SuraTitle &nbsp;&nbsp;</h4>
-                    
+
                     <span style="font-size: 20pt;color: chocolate;font-weight: 600;">@item.SuraNum</span>
 
                     <p style="padding-top:20px; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>

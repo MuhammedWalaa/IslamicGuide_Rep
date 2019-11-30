@@ -348,4 +348,7 @@
   <data name="Aya" xml:space="preserve">
     <value>Aya</value>
   </data>
+  <data name="LogoTitle" xml:space="preserve">
+    <value>Al Quran Subjects</value>
+  </data>
 </root>

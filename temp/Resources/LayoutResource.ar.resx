@@ -345,4 +345,7 @@
   <data name="Aya" xml:space="preserve">
     <value>الأية</value>
   </data>
+  <data name="LogoTitle" xml:space="preserve">
+    <value>موضوعات القرآن الكريم</value>
+  </data>
 </root>

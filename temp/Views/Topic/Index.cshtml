@@ -32,7 +32,7 @@
             }
             .subjectsStyles {
                 margin-right: 30px !important; 
-                margin-bottom: 20px !important;
+                margin-bottom: 5px !important;
                 margin-left: 0px !important;
             }
         </style>
@@ -105,10 +105,10 @@
         @foreach (var item in ((List<SubjectVM>)ViewBag.SubPage.DataList.DataList))
         {
             
-            <div style="margin-left: 30px; max-height: 250px;" class="subjectsStyles col-md-2">
+            <div style="margin-left: 30px; " class="subjectBoxesDiv subjectsStyles col-md-2">
 
                 <a href="@Url.Action("Index", "Topic", new {subjectId = item.ID}, null)">
-                    <div style="max-height: 250px;" class="kode_service_des">
+                    <div  class="subjectBoxesDiv kode_service_des">
                         <figure>
 
                             @if (ViewBag.SearchedImages != null && ((List<string>)ViewBag.SearchedImages).Count > 0)

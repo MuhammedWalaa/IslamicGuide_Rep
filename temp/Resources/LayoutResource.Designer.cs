@@ -394,6 +394,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Al Quran Subjects.
+        /// </summary>
+        public static string LogoTitle {
+            get {
+                return ResourceManager.GetString("LogoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Magrib.
         /// </summary>
         public static string Magrib {
