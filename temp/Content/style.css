@@ -2,6 +2,10 @@
 .kode_service_text_Align {
     text-align: center;
 }
+.alignselect {
+    direction: ltr;
+    float: right;
+}
 /*=====================================================================================
 	
 	Project: Islamic project
@@ -89,19 +93,17 @@
 
 ==============================================================================================	*/
 
-    
-@media screen and (min-width: 0px) and (max-width:600px) {
+
+@media only screen and (min-device-width: 0) and (max-device-width: 480px) {
     .subjectBoxesDiv {
         max-height: 190px;
     }
 }
-@media screen and (min-width: 600px) and (max-width:100px) {
-
-        .subjectBoxesDiv {
-            max-height: 240px;
-        }
+@media only screen and (min-device-width: 481px) and (max-device-width: 1600px) {
+    .subjectBoxesDiv {
+        max-height: 250px;
+    }
 }
-
     .wraper {
         float: left;
         width: 100%;
@@ -119,7 +121,6 @@
     .dl-menuwrapper {
         display: none;
     }
-
     /*
 	=======================================
 		KODE TOP WRAP START
@@ -265,7 +266,6 @@
 		KODE TOP WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		KODE TOP LOGO WRAP START
@@ -654,7 +654,6 @@
                 display: none;
             }
         /* SECTION HEADING END */
-
         /* SECTION HEADING HDG 2 START */
         .section_hdg.hdg_2 {
             text-align: center;
@@ -675,8 +674,6 @@
                 display: block;
             }
             /* SECTION HEADING HDG 2 START */
-
-
             /* SECTION HEADING HDG 2 START */
             .section_hdg.hdg_2.hdg_3 {
                 margin-bottom: 34px;
@@ -995,7 +992,7 @@
             }
 
     .kode_service_text {
-        padding: 10px 20px 60px;
+        padding: 10px 20px 20px;
         position: relative;
     }
 
@@ -1586,7 +1583,6 @@
     .kode_payment_list .form-submit {
         margin-bottom: 0px;
     }
-
     /*
 	=======================================
 		KODE CAUSE WRAP END
@@ -2123,7 +2119,6 @@
 		KODE NEWSLETTER WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		WIDGET WRAP START
@@ -2301,7 +2296,6 @@
 		WIDGET COPYRIGHT END
 	=======================================
 */
-
     .widget_event .kode_textarea textarea::-moz-placeholder,
     .widget_event .kf_commet_field input[type="text"]::-moz-placeholder,
     .kode_newsletter_form .kf_commet_field input[type="text"]::-moz-placeholder {
@@ -2689,7 +2683,6 @@
 		KODE BANNER2 WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		KODE MOSQUE2 WRAP START
@@ -2751,7 +2744,6 @@
 		KODE MOSQUE2 WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		KODE PILLARS WRAP PILLARS 2 START
@@ -2943,7 +2935,6 @@
 		KODE BUILDING WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		KODE CLIENT WRAP CLIENT 2 START
@@ -3089,13 +3080,11 @@
 		KODE EVENT WRAP END
 	=======================================
 */
-
     /*
 	=======================================
 		WIDGET WRAP WIDGET 02 START
 	=======================================
 */
-
     .widget_wrap.widget_2.them_overlay:before {
         opacity: 0.85;
         background-color: #131313;
@@ -3123,7 +3112,6 @@
 		WIDGET WRAP WIDGET 02 END
 	=======================================
 */
-
     /*
 	---------------------------------------------------------------------------
 	===========================================================================
@@ -3136,7 +3124,6 @@
 		KODE SAB BANNER WRAP START
 	=======================================
 */
-
     .sab_banner_text,
     .kode_sab_banner_wrap {
         float: left;
@@ -3240,7 +3227,6 @@
         font-family: fontawesome;
         font-size: 14px;
     }
-
     /*CustomStyle for breadcrumbs AR Start
 */
     .kode_sab_banner_wrap {
@@ -3269,13 +3255,8 @@
             font-family: fontawesome;
             font-size: 14px;
         }
-
-
     /*CustomStyle for breadcrumbs AR End
     */
-
-
-
     /*
 	=======================================
 		KODE SAB BANNER WRAP END
@@ -3540,7 +3521,6 @@
     .kode_blog_des figure .btn_hover2:before {
         border-radius: 100%;
     }
-
     /* KODE PAGINATION START */
     .kode_pagination_list {
         float: left;
@@ -3864,7 +3844,6 @@
     .comment_des.padding {
         padding-top: 0px;
     }
-
     /* KODE COMMENT START */
     .kode_comments .kf_commet_field {
         float: left;
@@ -3908,7 +3887,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     /*
 	---------------------------------------------------------------------------
 	===========================================================================
@@ -4408,7 +4386,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     /*
 	---------------------------------------------------------------------------
 	===========================================================================
@@ -4563,7 +4540,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     /*
 	---------------------------------------------------------------------------
 	===========================================================================
@@ -4797,7 +4773,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     /*
 	=======================================
 		KODE SERVICE SEARCH FEILD START
@@ -5098,7 +5073,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     /*
 	=============================================
 			KODE TEAM WRAP START
@@ -5563,7 +5537,6 @@
 	===========================================================================
 	---------------------------------------------------------------------------
 */
-
     .kode_portfolio_detail ul li:last-child,
     .kode_contact_service ul li:last-child,
     .kode_gallery_fig.fig_2:nth-child(4),
