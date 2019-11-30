@@ -6,9 +6,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var counter = 0;
     var subjectsCount = 0;
+    
+    var breadCrumbDivClass = "sab_banner_text";
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    if (langCode=="ar")
+    {
+        breadCrumbDivClass = "sab_banner_textAr";
+        <style>
+            .breadcrumbs li:first-child:before {
+                content: "";
+            }
+            .breadcrumbs li:last-child:before {
+                content: "\f100" !important;
+            }
+            .breadcrumbs {
+                padding-right: 0px !important;
+                direction: rtl !important;
+            }
+            .breadcrumbs li {
+                margin-right: 5px !important;
+            }
+            .subjectsStyles {
+                margin-right: 30px !important; 
+                margin-bottom: 20px !important;
+                margin-left: 0px !important;
+            }
+        </style>
+    }
 }
 
 
@@ -16,7 +42,7 @@
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
-        <div class="sab_banner_text">
+        <div class="@(breadCrumbDivClass)">
             <h2>@ViewBag.ParentTitle</h2>
             <ul class="breadcrumbs">
                 @*<li><a href="#"><i class="fa fa-home"></i></a></li>*@
@@ -76,7 +102,7 @@
         @foreach (var item in ((List<SubjectVM>)ViewBag.SubPage.DataList.DataList))
         {
             
-            <div style=" margin-right: 30px; margin-bottom: 20px; max-height: 250px;" class="col-md-2">
+            <div style="margin-left: 30px; max-height: 250px;" class="subjectsStyles col-md-2">
 
                 <a href="@Url.Action("Index", "Topic", new {subjectId = item.ID}, null)">
                     <div style="max-height: 250px;" class="kode_service_des">

@@ -3191,7 +3191,7 @@
     }
 
 .breadcrumbs {
-    direction :ltr !important;
+    direction: ltr !important;
     display: inline-block;
     background-color: #fff;
     padding: 8px 24px;
@@ -3199,7 +3199,7 @@
 }
 
     .breadcrumbs li {
-        margin-right: 33px;
+        margin-right: 5px;
         position: relative;
         display: inline-block;
     }
@@ -3213,12 +3213,11 @@
             font-size: 14px;
         }
 
-        .breadcrumbs li:last-child:before {
+        .breadcrumbs li:first-child:before {
             content: "";
         }
 
 .sab_banner_text li:before {
-    position: absolute;
     content: "\f101";
     top: 1px;
     right: -23px;
@@ -3227,9 +3226,8 @@
     font-size: 14px;
 }
 
-/*Kosom el bdan Start
+/*CustomStyle for breadcrumbs AR Start
 */
-.sab_banner_textAr,
 .kode_sab_banner_wrap {
     float: left;
     width: 100%;
@@ -3248,17 +3246,19 @@
     }
 
     .sab_banner_textAr li:before {
-        position: absolute;
-        content: "\f101";
+        margin-right: 10px;
+        content: "\f100";
         top: 1px;
         right: -23px;
         bottom: 0px;
         font-family: fontawesome;
         font-size: 14px;
+
     }
 
-/*Kosom el bdan End
-*/
+
+/*CustomStyle for breadcrumbs AR End
+    */
 
 
 
