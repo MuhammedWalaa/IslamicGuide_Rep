@@ -348,4 +348,13 @@
   <data name="LogoTitle" xml:space="preserve">
     <value>موضوعات القرآن الكريم</value>
   </data>
+  <data name="Omankind" xml:space="preserve">
+    <value>يَا أَيُّهَا النَّاسُ</value>
+  </data>
+  <data name="Remeber the favor of" xml:space="preserve">
+    <value>اذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ ۚ</value>
+  </data>
+  <data name="surah fatir(35:3)" xml:space="preserve">
+    <value>هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ يَرْزُقُكُمْ مِنَ السَّمَاءِ وَالْأَرْضِ ۚ لَا إِلَٰهَ إِلَّا هُوَ ۖ فَأَنَّىٰ تُؤْفَكُونَ</value>
+  </data>
 </root>

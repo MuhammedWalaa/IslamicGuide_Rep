@@ -36,10 +36,10 @@ namespace IslamicGuide.Data
         public virtual DbSet<QuranAyat> QuranAyats { get; set; }
         public virtual DbSet<QuranSuar> QuranSuars { get; set; }
         public virtual DbSet<QuranWord> QuranWords { get; set; }
-        public virtual DbSet<StaticData> StaticDatas { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Subscriber> Subscribers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<StaticData> StaticDatas { get; set; }
     }
 }

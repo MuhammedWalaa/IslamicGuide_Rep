@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranAyat" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranSuar" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.QuranWord" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.StaticData" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Subject" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.Subscriber" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.User" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
@@ -35,6 +34,7 @@
         <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_QuranWords_QuranAyat" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_QuranWords_QuranSuar" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A506E9_ha4e4zeftModel.FK_Subjects_Subjects" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A506E9_ha4e4zeftModel.StaticData" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

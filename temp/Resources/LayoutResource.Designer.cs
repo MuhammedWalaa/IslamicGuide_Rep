@@ -457,6 +457,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O MANKIND.
+        /// </summary>
+        public static string Omankind {
+            get {
+                return ResourceManager.GetString("Omankind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -534,6 +543,15 @@ namespace Resources {
         public static string Readmore {
             get {
                 return ResourceManager.GetString("Readmore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remeber the favor of.
+        /// </summary>
+        public static string Remeber_the_favor_of {
+            get {
+                return ResourceManager.GetString("Remeber the favor of", resourceCulture);
             }
         }
         
@@ -633,6 +651,15 @@ namespace Resources {
         public static string Submitnow {
             get {
                 return ResourceManager.GetString("Submitnow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is there any creator other than Allah who provides for you from the heaven and earth? There is no deity except Him, so how are you deluded?.
+        /// </summary>
+        public static string surah_fatir_35_3_ {
+            get {
+                return ResourceManager.GetString("surah fatir(35:3)", resourceCulture);
             }
         }
         

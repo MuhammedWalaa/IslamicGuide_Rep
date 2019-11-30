@@ -351,4 +351,13 @@
   <data name="LogoTitle" xml:space="preserve">
     <value>Al Quran Subjects</value>
   </data>
+  <data name="Omankind" xml:space="preserve">
+    <value>O MANKIND</value>
+  </data>
+  <data name="Remeber the favor of" xml:space="preserve">
+    <value>Remeber the favor of</value>
+  </data>
+  <data name="surah fatir(35:3)" xml:space="preserve">
+    <value>Is there any creator other than Allah who provides for you from the heaven and earth? There is no deity except Him, so how are you deluded?</value>
+  </data>
 </root>

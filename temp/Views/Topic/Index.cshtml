@@ -20,9 +20,9 @@
             .breadcrumbs li:first-child:before {
                 content: "";
             }
-            .breadcrumbs li:last-child:before {
+            /*.breadcrumbs li:last-child:before {
                 content: "\f100" !important;
-            }
+            }*/
             .breadcrumbs {
                 padding-right: 0px !important;
                 direction: rtl !important;
@@ -32,7 +32,7 @@
             }
             .subjectsStyles {
                 margin-right: 30px !important; 
-                margin-bottom: 5px !important;
+                margin-bottom: 40px !important;
                 margin-left: 0px !important;
             }
         </style>
@@ -73,8 +73,8 @@
                 @if (ViewBag.Search == null)
                 {
                     <div class="col-md-4">
-                        <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect">
-                            <option style="border-bottom:1px solid black;font-size:18pt;font-weight:300" disabled>@Resources.LayoutResource.Subjects</option>
+                        <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect " >
+                            <option style="border-bottom:1px solid black;font-size:14pt;font-weight:200" disabled>@Resources.LayoutResource.Subjects</option>
                             @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
                             {
                                 if (item.ID == ViewBag.ParID)
@@ -113,18 +113,18 @@
 
                             @if (ViewBag.SearchedImages != null && ((List<string>)ViewBag.SearchedImages).Count > 0)
                             {
-                                <img src="~/Content/extra-images/@(ViewBag.SearchedImages[counter]).png" alt="">
+                                <img style="width: 255px; height: 175px;" src="~/Content/extra-images/@(ViewBag.SearchedImages[counter]).png" alt="">
                                 counter++;
                             }
                             else
                             {
                                 if (ViewBag.ParentImageName != null)
                                 {
-                                    <img src="~/Content/extra-images/@(ViewBag.ParentImageName).png" alt="">
+                                    <img style="width: 255px; height: 175px;" src="~/Content/extra-images/@(ViewBag.ParentImageName).png" alt="">
                                 }
                                 else
                                 {
-                                    <img src="~/Content/extra-images/@(item.Title).png" alt="">
+                                    <img style="width: 255px; height: 175px;" src="~/Content/extra-images/@(item.Title).png" alt="">
 
                                 }
                             }

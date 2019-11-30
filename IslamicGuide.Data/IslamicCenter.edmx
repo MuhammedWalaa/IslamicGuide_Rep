@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_A506E9_ha4e4zeftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_A506E9_ha4e4zeftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookCategories">
           <Key>
             <PropertyRef Name="ID" />
@@ -132,8 +132,8 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Data_Arabic" Type="text" />
-          <Property Name="Data_English" Type="text" />
+          <Property Name="Data_Arabic" Type="nvarchar(max)" />
+          <Property Name="Data_English" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -410,8 +410,7 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
             <End Role="Subjects1" EntitySet="Subjects" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A506E9_ha4e4zeftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -551,15 +550,6 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
           <NavigationProperty Name="Positions1" Relationship="Self.FK_Positions_QuranWords1" FromRole="QuranWords" ToRole="Positions" />
           <NavigationProperty Name="QuranAyat" Relationship="Self.FK_QuranWords_QuranAyat" FromRole="QuranWords" ToRole="QuranAyat" />
           <NavigationProperty Name="QuranSuar" Relationship="Self.FK_QuranWords_QuranSuar" FromRole="QuranWords" ToRole="QuranSuar" />
-        </EntityType>
-        <EntityType Name="StaticData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -779,7 +769,6 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
           <EntitySet Name="QuranAyats" EntityType="Self.QuranAyat" />
           <EntitySet Name="QuranSuars" EntityType="Self.QuranSuar" />
           <EntitySet Name="QuranWords" EntityType="Self.QuranWord" />
-          <EntitySet Name="StaticDatas" EntityType="Self.StaticData" />
           <EntitySet Name="Subjects" EntityType="Self.Subject" />
           <EntitySet Name="Subscribers" EntityType="Self.Subscriber" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -840,7 +829,17 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Subjects1" EntitySet="Subjects" />
           </AssociationSet>
+          <EntitySet Name="StaticDatas" EntityType="DB_A506E9_ha4e4zeftModel.StaticData" />
         </EntityContainer>
+        <EntityType Name="StaticData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -968,16 +967,6 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StaticDatas">
-            <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.StaticData">
-              <MappingFragment StoreEntitySet="StaticData">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
-                <ScalarProperty Name="Data_English" ColumnName="Data_English" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.Subject">
               <MappingFragment StoreEntitySet="Subjects">
@@ -1014,6 +1003,16 @@ warning 6002: The table/view 'DB_A506E9_ha4e4zeft.dbo.Images' does not have a pr
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaticDatas">
+            <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.StaticData">
+              <MappingFragment StoreEntitySet="StaticData">
+                <ScalarProperty Name="Data_English" ColumnName="Data_English" />
+                <ScalarProperty Name="Data_Arabic" ColumnName="Data_Arabic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
