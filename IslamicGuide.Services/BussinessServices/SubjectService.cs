@@ -75,7 +75,7 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 ID = subj.ID,
                 Title = subj.Title?? ".",
-                Title_English = subj.Title_English??".",
+                Title_English = subj.Title_English??"A",
                 ParentTitle = subj.Subject1?.Title,
 
             };
