@@ -66,7 +66,7 @@ namespace IslamicGuide.Services.BussinessServices
                 ID = e.ID,
             }).ToList();
         }
-        public SubjectVM GetSubjectById(int id,string langCode)
+        public SubjectVM GetSubjectById(int id)
         {
             Subject subj = _DbContext.Subjects.Find(id);
             if (subj == null)
@@ -79,6 +79,30 @@ namespace IslamicGuide.Services.BussinessServices
                 ParentTitle = subj.Subject1?.Title,
 
             };
+        }
+
+        public List<SubjectVM> GetListOfSubjectParents(int subjectId)
+        {
+            List<SubjectVM> listofParents = new List<SubjectVM>();
+            var parentId = GetSubjectParentId(subjectId);
+            var parent = GetSubjectById(parentId);
+            
+            while (parentId!=1)
+            {
+                listofParents.Add(new SubjectVM()
+                {
+                    ID = parent.ID,
+                    Title_English = parent.Title_English,
+                    Title = parent.Title,
+                    ParentTitle = parent.ParentTitle
+                });
+                parentId = GetSubjectParentId(parentId);
+                parent = GetSubjectById(parentId);
+                
+            }
+
+            listofParents.Reverse();
+            return listofParents;
         }
         public int GetSubjectParentId(int id)
         {

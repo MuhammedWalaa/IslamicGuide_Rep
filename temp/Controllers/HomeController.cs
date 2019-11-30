@@ -2,9 +2,11 @@
 using IslamicGuide.Services.BussinessServices;
 using IslamicGuide.Services.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IslamicGuide.Data.ViewModels.Shared;
 using IslamicGuide.Services.Utilities;
 
 namespace IslamicGuide.App.Controllers
@@ -28,6 +30,7 @@ namespace IslamicGuide.App.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            Routes=new List<Route>();
             _routeService.RouteHandling(Request.Url.OriginalString, null,"Home","الرئيسية","Home","Index",null,Routes);
             HomeVM hm = new HomeVM
             { 

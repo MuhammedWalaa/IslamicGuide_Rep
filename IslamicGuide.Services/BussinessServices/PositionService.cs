@@ -52,13 +52,14 @@ namespace IslamicGuide.Services.BussinessServices
             return Contents;
         }
 
-        public Title GetSubjectTitleForPosition(int positionId)
+        public SubjectVM GetSubjectTitleForPosition(int positionId)
         {
             var positionSubject = _DbContext.MapSubjectsQurans.FirstOrDefault(p => p.PositionID == positionId);
-            return new Title()
+            return new SubjectVM()
             {
-                ArabicName = positionSubject.Subject.Title,
-                EnglishName = positionSubject.Subject.Title_English
+                ID = positionSubject.SubjectID,
+                Title_English = positionSubject.Subject.Title_English,
+                Title = positionSubject.Subject.Title
             };
         }
         public List<BookContentVM> GetPositionContent(int id, int? tabId, string langCode, bool isFromList)

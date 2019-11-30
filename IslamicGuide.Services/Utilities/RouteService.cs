@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IslamicGuide.Data.ViewModels.Shared;
+using IslamicGuide.Services.BussinessServices;
 
 namespace IslamicGuide.Services.Utilities
 {
     public class RouteService
     {
-        
+        private readonly SubjectService _subjectService;
+        public RouteService()
+        {
+            _subjectService = new SubjectService();
+        }
 
         public void RouteHandling(string uri,Title parentTitle,string nameEnglish,string nameArabic, string controller, string actionName, int? id, List<Route> routes)
         {
@@ -32,6 +37,42 @@ namespace IslamicGuide.Services.Utilities
                     AddRoute(uri,parentTitle,nameEnglish,nameArabic, controller, actionName, id, routes);
             }
             
+        }
+
+        public List<Route> AddAllPreviousRoutesOfRequest(int subjectId, string uri,string character)
+        {
+            var baseUri = uri.Remove(uri.LastIndexOf(character), uri.Length - uri.LastIndexOf(character));
+            List<Route> routes = new List<Route>();
+            var parents = _subjectService.GetListOfSubjectParents(subjectId);
+            routes.Add(new Route()
+            {
+                ActionName = "Index",
+                Controller = "Home",
+                Text = new Title()
+                {
+                    ArabicName = "الرئيسية",
+                    EnglishName = "Home"
+                },
+                Uri = baseUri
+            });
+            foreach (var parent in parents)
+            {
+             routes.Add(new Route()
+             {
+                 ActionName = "Index",
+                 Controller = "Topic",
+                 Text = new Title()
+                 {
+                     ArabicName = parent.Title,
+                     EnglishName = parent.Title_English
+                 },
+                 Uri = baseUri+"/" +subjectId,
+                 Id = parent.ID
+
+             });   
+            }
+
+            return routes;
         }
         private void AddRoute(string uri,Title parentTitle,string nameEnglish,string nameArabic,string controller,string actionName,int ? id, List<Route> routes)
         {

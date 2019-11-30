@@ -37,7 +37,8 @@ namespace IslamicGuide.App.Controllers
             }
             try
             {
-                var parentSubject = _subjectService.GetSubjectById(id, LangCode);
+                var parentSubject = _subjectService.GetSubjectById(id);
+                Routes = _routeService.AddAllPreviousRoutesOfRequest(id,Request.UrlReferrer.ToString(),"?");
                 _routeService.RouteHandling(
                     path,
                     new Title()
@@ -69,7 +70,7 @@ namespace IslamicGuide.App.Controllers
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
 
-
+            ViewBag.Routes = Routes;
             return View();
         }
 
@@ -142,8 +143,27 @@ namespace IslamicGuide.App.Controllers
                 positionDetials.BookContent = p;
                 ViewBag.tabId = tab;
             }
-            
-            var subjectTitle = _positionService.GetSubjectTitleForPosition(id);
+
+            var subject = _positionService.GetSubjectTitleForPosition(id);
+            var subjectTitle = new Title()
+            {
+                ArabicName = subject.Title,
+                EnglishName = subject.Title_English
+            };
+            var path = Request.Url.Authority + "/topic/Index/";
+            Routes = _routeService.AddAllPreviousRoutesOfRequest(subject.ID, path, "/");
+            Routes.Add(new Route()
+            {
+                ActionName = "Index",
+                Controller = "Topic",
+                Id = subject.ID,
+                Text = new Title()
+                {
+                    ArabicName = subject.Title,
+                    EnglishName = subject.Title_English
+                },
+                Uri = path+subject.ID
+            });
             _routeService.RouteHandling(
                 Request.Url.OriginalString,
                 new Title()
@@ -157,6 +177,7 @@ namespace IslamicGuide.App.Controllers
                 "Index",
                 id,
                 Routes);
+            ViewBag.Routes = Routes;
             return View(positionDetials);
         }
     }

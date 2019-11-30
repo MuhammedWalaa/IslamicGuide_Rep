@@ -25,6 +25,8 @@ namespace IslamicGuide.App.Controllers
         // GET: Topic
         public ActionResult Index(int? page, int subjectId)
         {
+            string parentEnglishTitle = "";
+            string parentArabicTitle = "";
             var res = Search(subjectId, page);
 
             if (res == 1)
@@ -33,8 +35,19 @@ namespace IslamicGuide.App.Controllers
                 return View("Error");
 
             var parentId = _subjectService.GetSubjectParentId(subjectId);
-            var parent = _subjectService.GetSubjectById(parentId, LangCode);
-            var currentRoute = _subjectService.GetSubjectById(subjectId, LangCode);
+            var parent = _subjectService.GetSubjectById(parentId);
+            if (parentId == 1)
+            {
+                parentEnglishTitle = "A";
+                parentArabicTitle = "الرئيسية";
+            }
+            else
+            {
+                parentEnglishTitle = parent.Title_English;
+                parentArabicTitle = parent.Title;
+            }
+
+            var currentRoute = _subjectService.GetSubjectById(subjectId);
             if (parentId != 0)
             {
                 if (parent.ID != 1)
@@ -53,14 +66,18 @@ namespace IslamicGuide.App.Controllers
             }
 
             ViewBag.ParentTitle = null;
+            //
             if (subjectId != 1)
             {
+
+                Routes = _routeService.AddAllPreviousRoutesOfRequest(subjectId, Request.Url.OriginalString,"/");
+
                 _routeService.RouteHandling(
                     Request.Url.OriginalString
                     , new Title()
                     {
-                        ArabicName = parent.Title,
-                        EnglishName = parent.Title_English
+                        ArabicName = parentArabicTitle,
+                        EnglishName = parentEnglishTitle
                     }
                     , currentRoute.Title_English
                     , currentRoute.Title
@@ -69,6 +86,14 @@ namespace IslamicGuide.App.Controllers
                     , Routes);
 
             }
+            else
+            {
+                Routes = new List<Route>();
+                _routeService.RouteHandling(Request.Url.OriginalString, null, "Home", "الرئيسية", "Home", "Index", null, Routes);
+                
+            }
+
+            ViewBag.Routes = Routes;
             return View("Index");
         }
         public ActionResult ErrorSearch()
@@ -94,8 +119,8 @@ namespace IslamicGuide.App.Controllers
                     {
                         string imageToAdd = "";
                         var parentId = _subjectService.GetSubjectParentId(subjec.ID);
-                        var parent = _subjectService.GetSubjectById(parentId, LangCode);
-                        var currentRoute = _subjectService.GetSubjectById(subjec.ID, LangCode);
+                        var parent = _subjectService.GetSubjectById(parentId);
+                        var currentRoute = _subjectService.GetSubjectById(subjec.ID);
                         if (parentId != 0)
                         {
                             if (parent.ID != 1)
@@ -215,7 +240,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult PreIndex(int subjectId)
         {
-            var currentRoute = _subjectService.GetSubjectById(1, LangCode);
+            var currentRoute = _subjectService.GetSubjectById(1);
             _routeService.RouteHandling(
                 "http://localhost:52620/Topic?subjectId=1"
                 , new Title()
