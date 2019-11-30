@@ -18,6 +18,22 @@
     .kode_event_ticket{
     float : right;
 }
+.breadcrumbs {
+    direction :rtl !important;
+    display: inline-block;
+    background-color: #fff;
+    padding: 8px 24px;
+    border-radius: 2px;
+}
+.sab_banner_text li:before {
+    position: absolute;
+    content: "\f100";
+    top: 1px;
+    right: -23px;
+    bottom: 0px;
+    font-family: fontawesome;
+    font-size: 14px;
+}
 
 .navigation > ul > li > ul > li a {
     display: block;
