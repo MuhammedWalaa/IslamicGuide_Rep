@@ -48,13 +48,13 @@ namespace IslamicGuide.App.Controllers
                     },
                     parentSubject.Title_English,
                     parentSubject.Title,
-                    "Positions",
+                    "Topic",
                     "Index",
                     id,
                     Routes);
                 ViewBag.subjectTitle = (LangCode == "en") ? parentSubject.Title_English : parentSubject.Title;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return View("Error");
@@ -162,7 +162,7 @@ namespace IslamicGuide.App.Controllers
                     ArabicName = subject.Title,
                     EnglishName = subject.Title_English
                 },
-                Uri = path+subject.ID
+                Uri = Request.Url.OriginalString
             });
             _routeService.RouteHandling(
                 Request.Url.OriginalString,

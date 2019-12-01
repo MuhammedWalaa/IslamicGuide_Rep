@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { Id = r.Id }, null)</strong></li>
                     }
                 }
             </ul>
