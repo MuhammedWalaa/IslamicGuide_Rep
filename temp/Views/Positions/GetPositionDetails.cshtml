@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
 }
 @{
     var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
@@ -26,10 +27,12 @@
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
+                    
                     else
                     {
-                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { Id = r.Id }, null)</strong></li>
+                        <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
+                    count++;
                 }
             </ul>
         </div>

@@ -41,7 +41,15 @@ namespace IslamicGuide.Services.Utilities
 
         public List<Route> AddAllPreviousRoutesOfRequest(int subjectId, string uri,string character)
         {
-            var baseUri = uri.Remove(uri.LastIndexOf(character), uri.Length - uri.LastIndexOf(character));
+            var baseUri = "";
+            if (uri.Contains("?"))
+            {
+                 baseUri = uri.Remove(uri.LastIndexOf("?"), uri.Length - uri.LastIndexOf("?"));
+            }
+            else
+            {
+                 baseUri = uri.Remove(uri.LastIndexOf("/"), uri.Length - uri.LastIndexOf("/"));
+            }
             List<Route> routes = new List<Route>();
             var parents = _subjectService.GetListOfSubjectParents(subjectId);
             routes.Add(new Route()
@@ -53,7 +61,7 @@ namespace IslamicGuide.Services.Utilities
                     ArabicName = "الرئيسية",
                     EnglishName = "Home"
                 },
-                Uri = baseUri
+                Uri = baseUri.Remove(baseUri.LastIndexOf("/"), baseUri.Length - baseUri.LastIndexOf("/"))
             });
             foreach (var parent in parents)
             {

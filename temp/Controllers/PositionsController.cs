@@ -37,6 +37,7 @@ namespace IslamicGuide.App.Controllers
             }
             try
             {
+                Routes = new List<Route>();
                 var parentSubject = _subjectService.GetSubjectById(id);
                 Routes = _routeService.AddAllPreviousRoutesOfRequest(id,Request.UrlReferrer.ToString(),"?");
                 _routeService.RouteHandling(
@@ -164,19 +165,19 @@ namespace IslamicGuide.App.Controllers
                 },
                 Uri = Request.Url.OriginalString
             });
-            _routeService.RouteHandling(
-                Request.Url.OriginalString,
-                new Title()
-                {
-                    ArabicName = subjectTitle.ArabicName,
-                    EnglishName = subjectTitle.EnglishName
-                },
-                positionDetials.SuraTitle_English,
-                positionDetials.SuraTitle,
-                "Positions",
-                "Index",
-                id,
-                Routes);
+            //_routeService.RouteHandling(
+            //    Request.Url.OriginalString,
+            //    new Title()
+            //    {
+            //        ArabicName = subjectTitle.ArabicName,
+            //        EnglishName = subjectTitle.EnglishName
+            //    },
+            //    positionDetials.SuraTitle_English,
+            //    positionDetials.SuraTitle,
+            //    "Positions",
+            //    "Index",
+            //    id,
+            //    Routes);
             ViewBag.Routes = Routes;
             return View(positionDetials);
         }
