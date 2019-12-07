@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var breadCrumbDivClass = "sab_banner_text";
-    int count=1;
+    int count = 1;
 
 }
 @{
@@ -51,7 +51,7 @@
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
-                    else if (count== ViewBag.Routes.Count)
+                    else if (count == ViewBag.Routes.Count)
                     {
                         <li href="#"><strong> @(langCode == "en" ? r.Text.EnglishName : r.Text.ArabicName) </strong></li>
                     }
@@ -71,32 +71,33 @@
 
 <div class="kode_event_wrap">
     <!--CONTAINER START-->
-    <div class="row">
-
-
-        <div class="col-md-12">
-            <div class="card-header" style="text-align:center; background-color:#d2983d">
-                <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
-            </div>
-            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                <p>
-                    <span style="padding:5px; color: black;" class="card-text">@ViewBag.HedayetAlAyat</span>
-                </p>
-            </div>
-        </div>
-    </div>
+   
 
     <div class="container">
-        @foreach (var item in (List<PositionVM>)ViewBag.pm.DataList.DataList)
+        <div class="row">
+            <div style="margin-bottom: 40px;border : 1px solid black;">
+
+                <div class="card-header" style="text-align:center; background-color:#d2983d">
+                    <h3 style="color:white" class="hStyles">@Resources.LayoutResource.Hedayt_Alayat</h3>
+                </div>
+                <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.5em;line-height: 1.7em; font-weight: bold;" class="card-body">
+                    <p>
+                        <span style="padding:5px; color: black;" class="card-text">@ViewBag.HedayetAlAyat</span>
+                    </p>
+                </div>
+            </div>
+             
+        </div>
+        @foreach (var item in (List<PositionVM>) ViewBag.pm.DataList.DataList)
         {
-            <div class="row" style="padding: 25px; box-shadow: -1px -1px 10px -1px #888888;margin-bottom: 30px;">
+            <div class="row" style="padding: 25px; box-shadow: -1px -1px 10px -1px #888888; margin-bottom: 30px;">
 
                 <div class="col-md-6">
-                    <h4 style="display: inline-block !important;  color:brown;font-size:20pt;font-weight: 1000;">@item.SuraTitle &nbsp;&nbsp;</h4>
+                    <h4 style="display: inline-block !important; color: brown; font-size: 20pt; font-weight: 1000;">@item.SuraTitle &nbsp;&nbsp;</h4>
 
-                    <span style="font-size: 20pt;color: chocolate;font-weight: 600;">@item.SuraNum</span>
+                    <span style="font-size: 20pt; color: chocolate; font-weight: 600;">@item.SuraNum</span>
 
-                    <p style="padding-top:20px; color:black;font-weight:200;font-size:18pt">@item.QuranWords</p>
+                    <p style="padding-top: 20px; color: black; font-weight: 200; font-size: 18pt">@item.QuranWords</p>
                 </div>
                 <div class="col-md-2">
                     @if (@item.FromAya == @item.ToAya)
@@ -111,7 +112,7 @@
 
                 </div>
                 <div align="right" class="col-md-2">
-                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetPositionDetails", "Positions", new { id = item.PosID }, new { @class = "medium_btn background-bg-dark", @style = "margin-top:20px" })
+                    @Html.ActionLink(@Resources.LayoutResource.Show, "GetPositionDetails", "Positions", new {id = item.PosID}, new {@class = "medium_btn background-bg-dark", @style = "margin-top:20px"})
                 </div>
             </div>
         }

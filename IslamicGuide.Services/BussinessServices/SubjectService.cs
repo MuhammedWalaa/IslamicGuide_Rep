@@ -49,9 +49,9 @@ namespace IslamicGuide.Services.BussinessServices
         public string GetHedayetAlAyat(int subjectId, string langCode)
         {
             var subject = _DbContext.Subjects.FirstOrDefault(s => s.ID == subjectId);
-            return (langCode == "en" && subject.Hedayt_AlAyat != null)
-                ? subject.Hedayt_AlAyat
-                : subject.Hedayt_AlAyatArabic;
+            return (langCode == "en" && subject.HedayetAlAyatEnglish != null)
+                ? subject.HedayetAlAyatEnglish
+                : subject.HedayetAlAyat;
         }
         public PageListResult<SubjectVM> AdjustingMainSubjectsData(PageFilterModel pageFilterModel, int subjectId)
         {
