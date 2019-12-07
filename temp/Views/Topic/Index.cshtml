@@ -8,7 +8,7 @@
     var counter = 0;
     int routeCount = 1;
     var subjectsCount = 0;
-    
+    int count = 0;
     var breadCrumbDivClass = "sab_banner_text";
 }
 @{
@@ -54,10 +54,15 @@
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
+                    else if (count == ViewBag.Routes.Count)
+                    {
+                        <li href="#"><strong> @(langCode == "en" ? r.Text.EnglishName : r.Text.ArabicName) </strong></li>
+                    }
                     else
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
                     }
+                    count++;
 
                 }
             </ul>
