@@ -2,6 +2,7 @@
 using IslamicGuide.Data.ViewModels.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using IslamicGuide.Data.ViewModels.Home;
 
 namespace IslamicGuide.Services.Utilities
 {
@@ -14,6 +15,45 @@ namespace IslamicGuide.Services.Utilities
             _db = new IslamicCenterEntities();
         }
 
+        public BannerVM GetFirstBannerData(string langCode)
+        {
+            var bannerHeader = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("FirstBannerHeader"));
+            var bannerFirstBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("FirstBannerFirstBody"));
+            var bannerSecBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("FirstBannerSecBody"));
+            var firstBanner = new BannerVM()
+            {
+                BannerFirstBody = (langCode=="en" && bannerFirstBody.Data_English !=null) ? bannerFirstBody.Data_English : bannerFirstBody.Data_Arabic,
+                BannerHeader = (langCode == "en" && bannerHeader.Data_English != null) ? bannerHeader.Data_English : bannerHeader.Data_Arabic,
+                BannerSecBody = (langCode == "en" && bannerSecBody.Data_English != null) ? bannerSecBody.Data_English : bannerSecBody.Data_Arabic
+            };
+            return firstBanner;
+        }
+        public BannerVM GetSecBannerData(string langCode)
+        {
+            var bannerHeader = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("SecBannerHeader"));
+            var bannerFirstBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("SecBannerFirstBody"));
+            var bannerSecBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("SecBannerSecBody"));
+            var secBanner = new BannerVM()
+            {
+                BannerFirstBody = (langCode == "en" && bannerFirstBody.Data_English != null) ? bannerFirstBody.Data_English : bannerFirstBody.Data_Arabic,
+                BannerHeader = (langCode == "en" && bannerHeader.Data_English != null) ? bannerHeader.Data_English : bannerHeader.Data_Arabic,
+                BannerSecBody = (langCode == "en" && bannerSecBody.Data_English != null) ? bannerSecBody.Data_English : bannerSecBody.Data_Arabic
+            };
+            return secBanner;
+        }
+        public BannerVM GetThirdBannerData(string langCode)
+        {
+            var bannerHeader = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("ThirdBannerHeader"));
+            var bannerFirstBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("ThirdBannerFirstBody"));
+            var bannerSecBody = _db.StaticDatas.FirstOrDefault(b => b.Name.Equals("ThirdBannerSecBody"));
+            var thirdBanner = new BannerVM()
+            {
+                BannerFirstBody = (langCode == "en" && bannerFirstBody.Data_English != null) ? bannerFirstBody.Data_English : bannerFirstBody.Data_Arabic,
+                BannerHeader = (langCode == "en" && bannerHeader.Data_English != null) ? bannerHeader.Data_English : bannerHeader.Data_Arabic,
+                BannerSecBody = (langCode == "en" && bannerSecBody.Data_English != null) ? bannerSecBody.Data_English : bannerSecBody.Data_Arabic
+            };
+            return thirdBanner;
+        }
         public List<PraysVM> GetPraysTime(string langCode)
         {
             List<PraysVM> praysVms = new List<PraysVM>();
@@ -65,6 +105,12 @@ namespace IslamicGuide.Services.Utilities
             }
 
         }
+
+        public string GetAboutPageDataSection(string langCode)
+        {
+            var data = _db.StaticDatas.FirstOrDefault(sD => sD.Name.Equals("About"));
+            return (langCode == "en" && data.Data_English != null) ? data.Data_English : data.Data_Arabic;
+        }
         public LayoutStaticDataVM GetLayoutStaticData(string langCode)
         {
             string location = "";
@@ -73,12 +119,12 @@ namespace IslamicGuide.Services.Utilities
             if (langCode == "en")
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location").Data_English;
-                there = staticData.FirstOrDefault(d => d.Name == "There1").Data_English;
+                
             }
             else
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location").Data_Arabic;
-                there = staticData.FirstOrDefault(d => d.Name == "There1").Data_Arabic;
+                
             }
             return new LayoutStaticDataVM()
             {

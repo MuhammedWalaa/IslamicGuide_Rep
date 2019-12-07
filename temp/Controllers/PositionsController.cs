@@ -70,7 +70,7 @@ namespace IslamicGuide.App.Controllers
 
             //// Routing And title Handling
             //var positionDetials = _positionService.GetPositionDetials(id, LangCode);
-
+            ViewBag.HedayetAlAyat = _subjectService.GetHedayetAlAyat(id, LangCode);
             ViewBag.Routes = Routes;
             return View();
         }

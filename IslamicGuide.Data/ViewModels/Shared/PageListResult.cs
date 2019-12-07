@@ -11,5 +11,6 @@ namespace IslamicGuide.Data.ViewModels.Shared
     {
         public int RowsCount { get; set; }
         public List<T>  DataList { get; set; }
+
     }
 }
