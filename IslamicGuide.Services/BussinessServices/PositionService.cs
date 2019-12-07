@@ -135,7 +135,6 @@ namespace IslamicGuide.Services.BussinessServices
         {
             string title = "";
             string suraTitle = "";
-            string hedayt_Ayat = "";
             if (langCode == "en")
             {
                 title = _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
@@ -157,16 +156,14 @@ namespace IslamicGuide.Services.BussinessServices
                 if (langCode == "en")
                 {
                     suraTitle = _DbContext.QuranSuars.Where(p => p.ID == position.QuranWord.SoraID).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
-                    hedayt_Ayat = _DbContext.MapSubjectsQurans.Where(x => x.PositionID == position.ID).Select(e => e.Subject.HedayetAlAyatEnglish == null ? e.Subject.HedayetAlAyat : e.Subject.HedayetAlAyatEnglish).FirstOrDefault();
                 }
                 else
                 {
                     suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
-                    hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.HedayetAlAyat;
                 }
                 var res = _commonServices.GetQuranWordsWithNextPrevAyah(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);
                 var words_ayat = string.Join(" ", res.Words);
-                    return new PositionDetialsVM() {HedaytAlAyat =hedayt_Ayat, SuraTitle = suraTitle, NextAyaWords = res.NextAyaWords, PrevAyaWords = res.PreviousAyaWords, PositionQuranWords = words_ayat, Title = title };
+                    return new PositionDetialsVM() { SuraTitle = suraTitle, NextAyaWords = res.NextAyaWords, PrevAyaWords = res.PreviousAyaWords, PositionQuranWords = words_ayat, Title = title };
             }
 
             return null;

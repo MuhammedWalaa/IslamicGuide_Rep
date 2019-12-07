@@ -34,9 +34,12 @@ namespace IslamicGuide.App.Controllers
             _routeService.RouteHandling(Request.Url.OriginalString, null,"Home","الرئيسية","Home","Index",null,Routes);
             HomeVM hm = new HomeVM
             { 
+                FirstBanner = _staticDataService.GetFirstBannerData(LangCode),
+                SecBanner = _staticDataService.GetSecBannerData(LangCode),
                 Subject = _subjectService.GetMainSubjects(LangCode),
                 BookCount = _bookService.CountBooks(),
-                SubjectCount = _subjectService.CountSubjects()
+                SubjectCount = _subjectService.CountSubjects(),
+                ThirdBanner = _staticDataService.GetThirdBannerData(LangCode)
             };
             return View(hm);
         }
@@ -89,7 +92,7 @@ namespace IslamicGuide.App.Controllers
         }
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = _staticDataService.GetAboutPageDataSection(LangCode);
             ViewBag.BookCount = _bookService.CountBooks();
             ViewBag.SubjectCount = _subjectService.CountSubjects();
             return View();

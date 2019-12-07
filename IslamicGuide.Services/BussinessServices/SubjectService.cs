@@ -14,15 +14,21 @@ namespace IslamicGuide.Services.BussinessServices
     {
         private readonly IslamicCenterEntities _DbContext;
 
-        public PageListResult<SubjectVM> SearchQuery(PageFilterModel pageFilterModel , string searchQuery)
+
+        public SubjectService()
+        {
+            _DbContext = new IslamicCenterEntities();
+        }
+
+        public PageListResult<SubjectVM> SearchQuery(PageFilterModel pageFilterModel, string searchQuery)
         {
             var listOfSubjects = _DbContext.Subjects.Where(x => x.Title.Contains(searchQuery) || x.Title_English.ToLower().Contains(searchQuery))
-                .Select(e=>new SubjectVM()
+                .Select(e => new SubjectVM()
                 {
                     ID = e.ID,
                     Title = e.Title,
                     Title_English = e.Title_English,
-                    ParentTitle = e.Subject1!=null?e.Subject1.Title:null,
+                    ParentTitle = e.Subject1 != null ? e.Subject1.Title : null,
                 }).ToList();
             if (listOfSubjects.Count == 0)
                 return null;
@@ -33,16 +39,19 @@ namespace IslamicGuide.Services.BussinessServices
                     .Take(pageFilterModel.PageSize).ToList(),
             };
         }
-
-        public SubjectService()
-        {
-            _DbContext = new IslamicCenterEntities();
-        }
         public int CountSubjects()
         {
 
             return _DbContext.Subjects.Count(x => x.ParentID == 1);
 
+        }
+
+        public string GetHedayetAlAyat(int subjectId, string langCode)
+        {
+            var subject = _DbContext.Subjects.FirstOrDefault(s => s.ID == subjectId);
+            return (langCode == "en" && subject.Hedayt_AlAyat != null)
+                ? subject.Hedayt_AlAyat
+                : subject.Hedayt_AlAyatArabic;
         }
         public PageListResult<SubjectVM> AdjustingMainSubjectsData(PageFilterModel pageFilterModel, int subjectId)
         {
