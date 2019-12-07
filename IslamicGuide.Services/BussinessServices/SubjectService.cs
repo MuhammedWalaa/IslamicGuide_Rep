@@ -107,7 +107,7 @@ namespace IslamicGuide.Services.BussinessServices
         public int GetSubjectParentId(int id)
         {
 
-            int? parentId = _DbContext.Subjects.Where(x => x.ID == id).FirstOrDefault().ParentID;
+            int? parentId = _DbContext.Subjects.FirstOrDefault(x => x.ID == id)?.ParentID;
             if (parentId != null)
             {
                 return parentId.Value;
@@ -118,17 +118,20 @@ namespace IslamicGuide.Services.BussinessServices
         public List<SubjectVM> GetMainSubjects(string langCode)
         {
             List<SubjectVM> subjects = new List<SubjectVM>();
-            List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).ToList();
+            List<Subject> subjectList = _DbContext.Subjects.Where(p => p.ParentID == 1).OrderBy(x=>x.ID).ToList();
             if (langCode == "en")
             {
                 foreach (Subject item in subjectList)
                 {
-                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English ==null?item.Title: item.Title_English});
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English ?? item.Title});
                 }
             }
             else
             {
-                foreach (Subject item in subjectList)
+                List<Subject> newArList = new List<Subject>();
+                newArList.AddRange(subjectList.Take(4).Reverse());
+                newArList.AddRange(subjectList.Skip(4).Reverse());
+                foreach (Subject item in newArList)
                 {
                     subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
                 }
@@ -168,9 +171,9 @@ namespace IslamicGuide.Services.BussinessServices
             if (id != 0)
             {
                 if (langCode == "en")
-                    return _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
+                    return _DbContext.Subjects.Where(x => x.ID == id).Select(e => e.Title_English ?? e.Title).FirstOrDefault();
                 else
-                    return _DbContext.Subjects.FirstOrDefault(x => x.ID == id).Title;
+                    return _DbContext.Subjects.FirstOrDefault(x => x.ID == id)?.Title;
             }
             return "";
         }
@@ -183,7 +186,7 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 foreach (var item in subjectslist)
                 {
-                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English==null?item.Title :item.Title });
+                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
                 }
             }
             else
