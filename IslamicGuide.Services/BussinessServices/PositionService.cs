@@ -157,12 +157,12 @@ namespace IslamicGuide.Services.BussinessServices
                 if (langCode == "en")
                 {
                     suraTitle = _DbContext.QuranSuars.Where(p => p.ID == position.QuranWord.SoraID).Select(e => e.Title_English == null ? e.Title : e.Title_English).FirstOrDefault();
-                    hedayt_Ayat = _DbContext.MapSubjectsQurans.Where(x => x.PositionID == position.ID).Select(e => e.Subject.Hedayt_AlAyat == null ? e.Subject.Hedayt_AlAyatArabic : e.Subject.Hedayt_AlAyat).FirstOrDefault();
+                    hedayt_Ayat = _DbContext.MapSubjectsQurans.Where(x => x.PositionID == position.ID).Select(e => e.Subject.HedayetAlAyatEnglish == null ? e.Subject.HedayetAlAyat : e.Subject.HedayetAlAyatEnglish).FirstOrDefault();
                 }
                 else
                 {
                     suraTitle = _DbContext.QuranSuars.FirstOrDefault(p => p.ID == position.QuranWord.SoraID).Title;
-                    hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.Hedayt_AlAyatArabic;
+                    hedayt_Ayat = _DbContext.MapSubjectsQurans.FirstOrDefault(x => x.PositionID == position.ID).Subject.HedayetAlAyat;
                 }
                 var res = _commonServices.GetQuranWordsWithNextPrevAyah(position.FromQuranWordID.Value, position.ToQuranWordID.Value, ayatCount, langCode);
                 var words_ayat = string.Join(" ", res.Words);

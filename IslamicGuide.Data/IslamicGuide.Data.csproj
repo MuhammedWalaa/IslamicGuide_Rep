@@ -69,7 +69,7 @@
       <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="ContactUs.cs">
+    <Compile Include="ContactUsInfo.cs">
       <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
