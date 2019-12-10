@@ -357,4 +357,10 @@
   <data name="surah fatir(35:3)" xml:space="preserve">
     <value>هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ يَرْزُقُكُمْ مِنَ السَّمَاءِ وَالْأَرْضِ ۚ لَا إِلَٰهَ إِلَّا هُوَ ۖ فَأَنَّىٰ تُؤْفَكُونَ</value>
   </data>
+  <data name="ContactFailed" xml:space="preserve">
+    <value>فشلت المحاولة. رجاء المحاولة لاحقا</value>
+  </data>
+  <data name="ContactSuccess" xml:space="preserve">
+    <value>تلقينا رسالتك ، وسوف نتصل بك في أقرب وقت ممكن</value>
+  </data>
 </root>

@@ -5,10 +5,7 @@
         <div class="container">
             <div class="sab_banner_text">
                 <h2>@Resources.LayoutResource.ContactUs</h2>
-                <ul class="breadcrumbs">
-                    <li><a href=""><i class="fa fa-home"></i></a></li>
-                    <li><strong>@Resources.LayoutResource.ContactUs</strong></li>
-                </ul>
+                
             </div>
         </div>
         <!--CONTAINER END-->
@@ -20,6 +17,24 @@
         <!--CONTAINER START-->
             <div class="container">
                 <div class="row">
+                    @if (ViewBag.True)
+                    {
+
+
+                        <div class="col-md-4">
+                            <p style="color: green">
+                                @ViewBag.Success
+                            </p>
+                        </div>
+                    }
+                    else if (ViewBag.False)
+                    {
+                        <div class="col-md-4">
+                            <p style="color:red">
+                                @ViewBag.Failed
+                            </p>
+                        </div>
+                    }
                     <div class="kode_contact_field">
                         <div class="section_hdg hdg_2 hdg_3">
                             <a href="#"><img src="images/hdg-img.png" alt=""></a>
@@ -29,17 +44,17 @@
                         <form method="post" id="commentform" class="comment-form">
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.Yname" id="author" name="author" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input maxlength="20" placeholder="@Resources.LayoutResource.Yname" id="author" name="author" type="text" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.Yemail" id="email" name="email" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input maxlength="30" placeholder="@Resources.LayoutResource.Yemail" id="email" name="email" type="email" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="kf_commet_field">
-                                    <input placeholder="@Resources.LayoutResource.yMobile" id="phone" name="phone" type="text" value="" data-default="Name*" size="30" required="">
+                                    <input  placeholder="@Resources.LayoutResource.yMobile" id="phone" name="phone" type="number" value="" data-default="Name*" size="30" required="">
                                 </div>
                             </div>
                             <div class="col-md-12">
