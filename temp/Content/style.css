@@ -6,6 +6,9 @@
     direction: ltr;
     float: right;
 }
+.bookCounter h6 a:hover {
+    color: #d2973b !important;
+}
 /*=====================================================================================
 	
 	Project: Islamic project
