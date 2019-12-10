@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using IslamicGuide.Data.ViewModels.Shared;
 using IslamicGuide.Services.Utilities;
+using Resources;
 
 namespace IslamicGuide.App.Controllers
 {
@@ -56,7 +57,7 @@ namespace IslamicGuide.App.Controllers
                     BookCount = _bookService.CountBooks(),
                     SubjectCount = _subjectService.CountSubjects()
                 };
-                return View(hm);
+                return RedirectToAction("Index");
             }
             return View("Error");
         }
@@ -100,6 +101,8 @@ namespace IslamicGuide.App.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
+            ViewBag.False = false;
+            ViewBag.True = false;
             return View();
         }
         [HttpPost]
@@ -107,11 +110,19 @@ namespace IslamicGuide.App.Controllers
         {
             ViewBag.Message = "Your contact page.";
             var res = _staticDataService.SaveContactUs(author, email, comment, phone);
-            if (res)
+            if (!res || phone.Contains("e"))
             {
-                return View();
+
+                ViewBag.False = true;
+                ViewBag.Failed = LayoutResource.ContactFailed;
+                return View("Error");
             }
-            return View("Error");
+            
+            ViewBag.True = true;
+            ViewBag.Success = LayoutResource.ContactSuccess;
+            return View();
+            
+
         }
         public ActionResult Error()
         {

@@ -360,4 +360,10 @@
   <data name="surah fatir(35:3)" xml:space="preserve">
     <value>Is there any creator other than Allah who provides for you from the heaven and earth? There is no deity except Him, so how are you deluded?</value>
   </data>
+  <data name="ContactFailed" xml:space="preserve">
+    <value>Something went wrong, please try again later</value>
+  </data>
+  <data name="ContactSuccess" xml:space="preserve">
+    <value>We received your message, we will contact you as soon as possible</value>
+  </data>
 </root>
