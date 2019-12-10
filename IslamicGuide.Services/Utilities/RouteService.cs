@@ -28,14 +28,13 @@ namespace IslamicGuide.Services.Utilities
                 uri = uri.Remove(uri.LastIndexOf("&"), uri.Length - uri.LastIndexOf("&"));
             }
 
-            if (routes.FirstOrDefault(r => r.Uri.ToLower()==uri.ToLower()) != null)
-            {
-                    PopRoutesOutOfIndex(uri,routes);
-            }
-            else
-            {
-                    AddRoute(uri,parentTitle,nameEnglish,nameArabic, controller, actionName, id, routes);
-            }
+            //if (routes.FirstOrDefault(r => r.Uri.ToLower()==uri.ToLower()) != null)
+            //{
+            //        PopRoutesOutOfIndex(uri,routes);
+            //}
+            
+            AddRoute(uri,parentTitle,nameEnglish,nameArabic, controller, actionName, id, routes);
+            
             
         }
 
