@@ -45,10 +45,10 @@ namespace IslamicGuide.App.Controllers
             return View(hm);
         }
         [HttpPost]
-        public ActionResult Index(string author, string email, string comment)
+        public ActionResult Index(string author,string phone, string email, string comment)
         {
             var res = _staticDataService.SaveContactUs(author, email, comment);
-            if (res)
+            if (res && !phone.Contains("e"))
             {
                 _routeService.RouteHandling(Request.Url.OriginalString, null, "Home", "الرئيسية", "Home", "Index", null, Routes);
                 HomeVM hm = new HomeVM
