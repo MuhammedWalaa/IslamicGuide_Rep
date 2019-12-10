@@ -331,7 +331,7 @@
     <value>Your Mobile</value>
   </data>
   <data name="Added" xml:space="preserve">
-    <value>Subscribed successfully</value>
+    <value>Your message was delievered successfully</value>
   </data>
   <data name="Wrong" xml:space="preserve">
     <value>Something wrong happened Try again later</value>

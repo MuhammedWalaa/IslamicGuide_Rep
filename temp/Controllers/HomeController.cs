@@ -57,8 +57,12 @@ namespace IslamicGuide.App.Controllers
                     BookCount = _bookService.CountBooks(),
                     SubjectCount = _subjectService.CountSubjects()
                 };
+                TempData["Added"] = true;
+                TempData.Keep("Added");
                 return RedirectToAction("Index");
             }
+            TempData["Wrong"] = true;
+            TempData.Keep("Wrong");
             return View("Error");
         }
         public ActionResult SetLanguage(string lang)
@@ -88,7 +92,8 @@ namespace IslamicGuide.App.Controllers
                 TempData["Wrong"] = true;
             }
 
-            TempData.Keep();
+            TempData.Keep("Added");
+            TempData.Keep("Wrong");
             return Redirect(Request.UrlReferrer.OriginalString);
         }
         public ActionResult About()

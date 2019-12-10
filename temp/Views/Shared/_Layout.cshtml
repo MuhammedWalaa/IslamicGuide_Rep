@@ -1,8 +1,22 @@
 ﻿@using IslamicGuide.Data.ViewModels.Shared
 <!DOCTYPE html>
 @{
+    var value = "";
+    var color = "";
+    var divDisplay = "none";
     /**/
-    
+    if (@TempData["Added"] != null)
+    {
+        color = "Green";
+        value = Resources.LayoutResource.Added;
+        divDisplay = "Block";
+    }
+    if (@TempData["Wrong"] != null)
+    {
+        color = "red";
+        value = Resources.LayoutResource.Wrong;
+        divDisplay = "Block";
+    }
     var langCode = Request.Cookies["culture"] == null ? "ar" : Request.Cookies["culture"].Value;
     var langDir = langCode == "ar" ? "rtl" : "ltr";
     var font = langCode == "ar" ? "Times New Roman" : "";
@@ -67,8 +81,8 @@
     <!--COLOR CSS-->
     <link rel="stylesheet" href="~/Content/css/color.css">
     <!--COLOR CSS-->
-    <link rel="shortcut icon" href="~/Content/images/favicon.ico" >
-    <link rel="icon" type="image/gif" href="~/Content/images/animated_favicon1.gif" >
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+    <link rel="icon" type="image/gif" href="~/Content/images/animated_favicon1.gif">
 
     @if (langCode == "ar")
     {
@@ -96,7 +110,7 @@
                                             <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 @if (langCode == "en")
                                                 {
-                                                <p style="display:inline-block">EN</p> <img style="width:20px !important" src="~/Content/images/en.svg" alt="">
+                                                    <p style="display:inline-block">EN</p> <img style="width:20px !important" src="~/Content/images/en.svg" alt="">
                                                 }
                                                 else
                                                 {
@@ -104,9 +118,9 @@
                                                 }
                                                 <span class="fa fa-angle-down"></span>
                                             </button>
-                                            
+
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li style="display:inline !important" ><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })">AR<img style="width:20px !important ;" src="~/Content/images/ar.svg"></a></li>
+                                                <li style="display:inline !important"><a href="@Url.Action("SetLanguage", "Home", new { lang = "ar" })">AR<img style="width:20px !important ;" src="~/Content/images/ar.svg"></a></li>
                                                 <li style="display:inline !important"><a href="@Url.Action("SetLanguage", "Home", new { lang = "en" })">EN<img style="width:20px !important ;" src="~/Content/images/en.svg"></a></li>
 
                                             </ul>
@@ -130,12 +144,12 @@
                         <!--ROW END-->
                     </div>
                     <!--CONTAINER END-->
-                    </div>
+                </div>
             </div>
             <!--KODE TOP WRAP END-->
             <!--KODE TOP LOGO WRAP START-->
-            
-    
+
+
             <div class="kode_top_logo_wrap them_overlay">
                 <!--CONTAINER START-->
                 <div class="container">
@@ -183,12 +197,15 @@
             </div>
             <!--KODE NAVIGATION WRAP END-->
         </header>
-        
-            @RenderBody()
-      
+
+        @RenderBody()
+
+       
         <div class="kode_newsletter_wrap">
             <!--CONTAINER START-->
+
             <div class="container">
+               
                 <div class="row">
                     <div class="col-md-6">
                         <div class="kode_newsletter_des">
@@ -201,21 +218,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="kode_newsletter_form">
-                           @using (Html.BeginForm("AddSubscriber", "Home"))
-                           {
-                               <div class="kf_commet_field">
-                                   <input style="direction:ltr !important" placeholder="@Resources.LayoutResource.Entermail" name="email" id="email" type="email" value="" data-default="Website" size="30" required>
-                                   <button type="submit" class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
-                                   @if (@TempData["added"] != null)
-                                   {
-                                   <script> alert("@Resources.LayoutResource.Added") </script>
-                                   }
-                                   @if (@TempData["Wrong"] != null)
-                                   {
-                                   <script> alert("@Resources.LayoutResource.Wrong") </script>
-                                   }
-                               </div>
-                           }
+                            @using (Html.BeginForm("AddSubscriber", "Home"))
+                            {
+                                <div class="kf_commet_field">
+                                    <input style="direction: ltr !important" placeholder="@Resources.LayoutResource.Entermail" name="email" id="email" type="email" value="" data-default="Website" size="30" required>
+                                    <button type="submit" class="medium_btn background-bg-dark">@Resources.LayoutResource.Submit</button>
+
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -228,6 +238,7 @@
             <div class="widget_wrap them_overlay">
                 <!--CONTAINER START-->
                 <div class="container">
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="widget_logo">
@@ -246,6 +257,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div id="subscribeDiv" style="font-size: 20pt; display: @divDisplay" class="col-md-12">
+                                    <p style="color: @color">
+                                        @value
+                                    </p>
+                            </div>
                             <div class="widget_event">
                                 <h4 class="widget_title">@Resources.LayoutResource.Getintouch</h4>
                                 <form method="post" class="comment-form">
@@ -310,24 +326,22 @@
     <!--BOOTSTRAP~/Content/ JavaScript-->
     <script src="~/Content/js/waypoints-min.js"></script>
     <!--CUSTOM JavaScript-->
-<script src="~/Content/js/custom.js"></script>
-<script>
-    function OnChangeBook()
-    {
-        if (getElementById("url").valid) {
+    <script src="~/Content/js/custom.js"></script>
+    <script>
+        function OnChangeBook() {
+            if (getElementById("url").valid) {
 
-            var selectedValue = $("#url").val();
-            console.log(selectedValue);
-            var base_url = window.location.origin;
-            document.location = base_url + "/Home/AddSubscriber/" + selectedValue;
+                var selectedValue = $("#url").val();
+                console.log(selectedValue);
+                var base_url = window.location.origin;
+                document.location = base_url + "/Home/AddSubscriber/" + selectedValue;
+            }
         }
-    }
-    function search()
-    {
-        var searchWords = $("#searchWords").val();
-        var base_url = window.location.origin;
-        document.location = base_url + "/Topic/SearchLayout" + searchWords;
-    }
-</script>
+        function search() {
+            var searchWords = $("#searchWords").val();
+            var base_url = window.location.origin;
+            document.location = base_url + "/Topic/SearchLayout" + searchWords;
+        }
+    </script>
 </body>
 </html>
