@@ -28,13 +28,13 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="kode_counter_mosque">
-                        <li>
+                        <li class="bookCounter">
                             <span class="counter">@ViewBag.BookCount </span>
-                            <h6><a href="#">@Resources.LayoutResource.Books</a></h6>
+                            <h6 style="color: #999999"><a>@Resources.LayoutResource.Books</a></h6>
                         </li>
-                        <li>
+                        <li class="bookCounter">
                             <span class="counter">@ViewBag.SubjectCount </span>
-                            <h6><a href="#">@Resources.LayoutResource.Subjects</a></h6>
+                            <h6 style="color: #999999"><a href ="@Url.Action("Index","Topic",new {subjectid=1})">@Resources.LayoutResource.Subjects</a></h6>
                         </li>
                     </ul>
                 </div>
