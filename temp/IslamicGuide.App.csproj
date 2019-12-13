@@ -180,6 +180,12 @@
     <Content Include="Content\css\sidebar-widget.css" />
     <Content Include="Content\css\slick-theme.css" />
     <Content Include="Content\css\slick.css" />
+    <Content Include="Content\extra-images\1الآداب الشرعية.png" />
+    <Content Include="Content\extra-images\1السيرة النبوية الشريفة.png" />
+    <Content Include="Content\extra-images\1العادات.png" />
+    <Content Include="Content\extra-images\1العقيدة.png" />
+    <Content Include="Content\extra-images\1القرآن الكريم.png" />
+    <Content Include="Content\extra-images\1المعاملات.png" />
     <Content Include="Content\extra-images\Child subject.jpg" />
     <Content Include="Content\extra-images\الآداب الشرعية.png" />
     <Content Include="Content\extra-images\التاريخ والأمم السابقة.png" />
@@ -326,9 +332,7 @@
     <Content Include="Content\extra-images\service-side.jpg" />
     <Content Include="Content\extra-images\service-side1.jpg" />
     <Content Include="Content\extra-images\service-side2.jpg" />
-    <Content Include="Content\extra-images\service-side3.jpg" />
     <Content Include="Content\extra-images\service-side4.jpg" />
-    <Content Include="Content\extra-images\service.jpg" />
     <Content Include="Content\extra-images\service01.jpg" />
     <Content Include="Content\extra-images\service02.jpg" />
     <Content Include="Content\extra-images\service03.jpg" />
@@ -337,7 +341,6 @@
     <Content Include="Content\extra-images\service06.jpg" />
     <Content Include="Content\extra-images\service1.jpg" />
     <Content Include="Content\extra-images\service2.jpg" />
-    <Content Include="Content\extra-images\service3.jpg" />
     <Content Include="Content\extra-images\service4.jpg" />
     <Content Include="Content\extra-images\service5.jpg" />
     <Content Include="Content\extra-images\service6.jpg" />
@@ -457,9 +460,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Scripts\bootstrap.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
-    <Content Include="Content\.vs\config\applicationhost.config" />
-    <Content Include="Content\.vs\slnx.sqlite" />
-    <Content Include="Content\.vs\VSWorkspaceState.json" />
     <Content Include="Content\fonts\fontawesome-webfont3e6e.eot" />
     <Content Include="Content\fonts\fontawesome-webfont3e6e.svg" />
     <Content Include="Content\fonts\fontawesome-webfont3e6e.ttf" />
@@ -512,9 +512,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\.vs\islamic\v15\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
