@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_A506E9_ha4e4zeftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AyatView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SoraID" Type="int" />
+          <Property Name="AyaNum" Type="int" />
+          <Property Name="AyaID" Type="int" />
+          <Property Name="AyaWords" Type="nvarchar(max)" />
+          <Property Name="AyaWordsUnDiac" Type="nvarchar(max)" />
+          <Property Name="AyaWordsEn" Type="nvarchar(max)" />
+          <Property Name="AyaStems" Type="nvarchar(max)" />
+          <Property Name="p_Id" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="BookCategories">
           <Key>
             <PropertyRef Name="ID" />
@@ -37,6 +51,7 @@
           <Property Name="Version" Type="nvarchar" MaxLength="255" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
           <Property Name="Author_English" Type="nvarchar" MaxLength="50" />
+          <Property Name="Path" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ContactUsInfo">
           <Key>
@@ -132,8 +147,8 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Data_Arabic" Type="text" />
-          <Property Name="Data_English" Type="text" />
+          <Property Name="Data_Arabic" Type="nvarchar(max)" />
+          <Property Name="Data_English" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -162,6 +177,21 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.AyaWords' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AyaWords">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="SoraID" Type="int" />
+          <Property Name="AyaNum" Type="int" />
+          <Property Name="AyaID" Type="int" />
+          <Property Name="AyaWords" Type="nvarchar" MaxLength="4000" />
+          <Property Name="AyaWordsUnDiac" Type="nvarchar" MaxLength="4000" />
+          <Property Name="AyaWordsEn" Type="nvarchar" MaxLength="4000" />
+          <Property Name="AyaStems" Type="nvarchar" MaxLength="4000" />
+          <Property Name="p_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookContent_QuranAyat">
           <End Role="QuranAyat" Type="Self.QuranAyat" Multiplicity="1" />
@@ -332,6 +362,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_A506E9_ha4e4zeftModelStoreContainer">
+          <EntitySet Name="AyatView" EntityType="Self.AyatView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookCategories" EntityType="Self.BookCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookContent" EntityType="Self.BookContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
@@ -352,6 +383,18 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
     [Images].[Id] AS [Id], 
     [Images].[Path] AS [Path]
     FROM [dbo].[Images] AS [Images]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AyaWords" EntityType="Self.AyaWords" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AyaWords].[SoraID] AS [SoraID], 
+    [AyaWords].[AyaNum] AS [AyaNum], 
+    [AyaWords].[AyaID] AS [AyaID], 
+    [AyaWords].[AyaWords] AS [AyaWords], 
+    [AyaWords].[AyaWordsUnDiac] AS [AyaWordsUnDiac], 
+    [AyaWords].[AyaWordsEn] AS [AyaWordsEn], 
+    [AyaWords].[AyaStems] AS [AyaStems], 
+    [AyaWords].[p_Id] AS [p_Id]
+    FROM [dbo].[AyaWords] AS [AyaWords]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_BookContent_QuranAyat" Association="Self.FK_BookContent_QuranAyat">
             <End Role="QuranAyat" EntitySet="QuranAyat" />
@@ -415,6 +458,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A506E9_ha4e4zeftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="IslamicCenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AyatViews" EntityType="DB_A506E9_ha4e4zeftModel.AyatView" />
           <EntitySet Name="BookCategories" EntityType="DB_A506E9_ha4e4zeftModel.BookCategory" />
           <EntitySet Name="BookContents" EntityType="DB_A506E9_ha4e4zeftModel.BookContent" />
           <EntitySet Name="Books" EntityType="DB_A506E9_ha4e4zeftModel.Book" />
@@ -431,6 +475,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           <EntitySet Name="Subscribers" EntityType="DB_A506E9_ha4e4zeftModel.Subscriber" />
           <EntitySet Name="Users" EntityType="DB_A506E9_ha4e4zeftModel.User" />
           <EntitySet Name="Images" EntityType="DB_A506E9_ha4e4zeftModel.Image" />
+          <EntitySet Name="AyaWords" EntityType="DB_A506E9_ha4e4zeftModel.AyaWord" />
           <AssociationSet Name="FK_Books_BookCategories" Association="DB_A506E9_ha4e4zeftModel.FK_Books_BookCategories">
             <End Role="BookCategory" EntitySet="BookCategories" />
             <End Role="Book" EntitySet="Books" />
@@ -488,6 +533,20 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
             <End Role="Subject1" EntitySet="Subjects" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AyatView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SoraID" Type="Int32" />
+          <Property Name="AyaNum" Type="Int32" />
+          <Property Name="AyaID" Type="Int32" />
+          <Property Name="AyaWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AyaWordsUnDiac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AyaWordsEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AyaStems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="p_Id" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="BookCategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -524,6 +583,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Author_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookCategory" Relationship="DB_A506E9_ha4e4zeftModel.FK_Books_BookCategories" FromRole="Book" ToRole="BookCategory" />
           <NavigationProperty Name="MapBookQurans" Relationship="DB_A506E9_ha4e4zeftModel.FK_MapBookQuran_Books" FromRole="Book" ToRole="MapBookQuran" />
         </EntityType>
@@ -631,8 +691,8 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Data_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data_English" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -671,6 +731,19 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Path" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AyaWord">
+          <Key>
+            <PropertyRef Name="p_Id" />
+          </Key>
+          <Property Name="SoraID" Type="Int32" />
+          <Property Name="AyaNum" Type="Int32" />
+          <Property Name="AyaID" Type="Int32" />
+          <Property Name="AyaWords" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="AyaWordsUnDiac" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="AyaWordsEn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="AyaStems" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="p_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Books_BookCategories">
           <End Type="DB_A506E9_ha4e4zeftModel.BookCategory" Role="BookCategory" Multiplicity="0..1" />
@@ -846,6 +919,21 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_A506E9_ha4e4zeftModelStoreContainer" CdmEntityContainer="IslamicCenterEntities">
+          <EntitySetMapping Name="AyatViews">
+            <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.AyatView">
+              <MappingFragment StoreEntitySet="AyatView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="p_Id" ColumnName="p_Id" />
+                <ScalarProperty Name="AyaStems" ColumnName="AyaStems" />
+                <ScalarProperty Name="AyaWordsEn" ColumnName="AyaWordsEn" />
+                <ScalarProperty Name="AyaWordsUnDiac" ColumnName="AyaWordsUnDiac" />
+                <ScalarProperty Name="AyaWords" ColumnName="AyaWords" />
+                <ScalarProperty Name="AyaID" ColumnName="AyaID" />
+                <ScalarProperty Name="AyaNum" ColumnName="AyaNum" />
+                <ScalarProperty Name="SoraID" ColumnName="SoraID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BookCategories">
             <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.BookCategory">
               <MappingFragment StoreEntitySet="BookCategories">
@@ -872,6 +960,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.Book">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Author_English" ColumnName="Author_English" />
                 <ScalarProperty Name="Title_English" ColumnName="Title_English" />
                 <ScalarProperty Name="Version" ColumnName="Version" />
@@ -1013,6 +1102,20 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AyaWords">
+            <EntityTypeMapping TypeName="DB_A506E9_ha4e4zeftModel.AyaWord">
+              <MappingFragment StoreEntitySet="AyaWords">
+                <ScalarProperty Name="p_Id" ColumnName="p_Id" />
+                <ScalarProperty Name="AyaStems" ColumnName="AyaStems" />
+                <ScalarProperty Name="AyaWordsEn" ColumnName="AyaWordsEn" />
+                <ScalarProperty Name="AyaWordsUnDiac" ColumnName="AyaWordsUnDiac" />
+                <ScalarProperty Name="AyaWords" ColumnName="AyaWords" />
+                <ScalarProperty Name="AyaID" ColumnName="AyaID" />
+                <ScalarProperty Name="AyaNum" ColumnName="AyaNum" />
+                <ScalarProperty Name="SoraID" ColumnName="SoraID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

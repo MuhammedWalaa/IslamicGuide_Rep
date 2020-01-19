@@ -25,6 +25,7 @@ namespace IslamicGuide.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AyatView> AyatViews { get; set; }
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<BookContent> BookContents { get; set; }
         public virtual DbSet<Book> Books { get; set; }
@@ -41,5 +42,6 @@ namespace IslamicGuide.Data
         public virtual DbSet<Subscriber> Subscribers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<AyaWord> AyaWords { get; set; }
     }
 }

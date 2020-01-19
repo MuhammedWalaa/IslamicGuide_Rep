@@ -27,6 +27,7 @@ namespace IslamicGuide.Data
         public string Version { get; set; }
         public string Title_English { get; set; }
         public string Author_English { get; set; }
+        public string Path { get; set; }
     
         public virtual BookCategory BookCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

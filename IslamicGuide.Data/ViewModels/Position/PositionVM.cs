@@ -17,5 +17,6 @@ namespace IslamicGuide.Data.ViewModels.Position
         public int To { get; set; }
         public int FromAya { get; set; }
         public int ToAya { get; set; }
+        public string AyaNumbers { get; set; }
     }
 }

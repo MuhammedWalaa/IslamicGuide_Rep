@@ -12,7 +12,7 @@
     var breadCrumbDivClass = "sab_banner_text";
 }
 @{
-    var langCode = Request.Cookies["culture"] == null ? "en" : Request.Cookies["culture"].Value;
+    var langCode = Request.Cookies["culture"] == null ? "ar" : Request.Cookies["culture"].Value;
     if (langCode=="ar")
     {
         breadCrumbDivClass = "sab_banner_textAr";
@@ -78,18 +78,33 @@
                 @if (ViewBag.Search == null)
                 {
                     <div class="col-md-4">
-                        <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect " >
+                        <select style="font-size:12pt;font-weight:300" onchange="OnChangeEvent(this)" id="ListSubjects" class="kode alignselect ">
                             <option style="border-bottom:1px solid black;font-size:14pt;font-weight:200" disabled>@Resources.LayoutResource.Subjects</option>
                             @foreach (var item in (List<SubjectVM>)ViewBag.SubPage.subjectsDropdown)
                             {
-                                if (item.ID == ViewBag.ParID)
+                                if (langCode == "ar")
                                 {
-                                    <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                                    if (item.ID == ViewBag.ParID)
+                                    {
+                                        <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(item.Title ?? item.Title_English)</option>
+                                    }
+                                    else
+                                    {
+                                        <option style="font-size:12pt;font-weight:200" value="@item.ID">@(item.Title ?? item.Title_English)</option>
+                                    }
                                 }
                                 else
                                 {
-                                    <option style="font-size:12pt;font-weight:200" value="@item.ID">@(@item.Title == null ? "Item" : item.Title)</option>
+                                    if (item.ID == ViewBag.ParID)
+                                    {
+                                        <option selected style="font-size:12pt;font-weight:200" value="@item.ID">@(item.Title_English ?? item.Title)</option>
+                                    }
+                                    else
+                                    {
+                                        <option style="font-size:12pt;font-weight:200" value="@item.ID">@(item.Title_English ?? item.Title)</option>
+                                    }
                                 }
+
                             }
                         </select>
                     </div>

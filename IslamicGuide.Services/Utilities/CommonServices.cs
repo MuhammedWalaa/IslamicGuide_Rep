@@ -44,63 +44,61 @@ namespace IslamicGuide.Services.Utilities
             return res;
         }
 
-        public PositionWordsWithNextAndPrevModel GetQuranWordsWithNextPrevAyah(int from, int to, int ayatCount, string langCode)
+        public PositionWordsWithNextAndPrevModel GetQuranWordsWithNextPrevAyah(int posId ,  string langCode)
         {
-            PositionWordsWithNextAndPrevModel resultModel = new PositionWordsWithNextAndPrevModel(); 
-            string previousAya="";
-            string nextAya="";
-            bool nomoreAyat = false;
-             var allWords = _DbContext.QuranWords.OrderBy(e => e.ID).Skip(from - 1).Take(to + 1 - from).Select(x => new { word = langCode == "en" && x.Word_English != null ? x.Word_English : x.Word, aya = x.AyaNum }).ToList();
-            var finalWords = allWords.Select(x => x.word).ToList();
-            var ayatRange = allWords.Select(e => e.aya).Distinct().ToList();
-            var lastAya = ayatRange[ayatRange.Count-1];
-            var firstAya = ayatRange[0];
-            if (firstAya == lastAya)
-                nomoreAyat = true;
-            int firstAyaSoraId = _DbContext.QuranWords.FirstOrDefault(x => x.ID == from).SoraID.Value;
-            if (firstAya != 1)
-            {
-                if(langCode=="en")
-                    previousAya = _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (firstAya-1)).Aya_English ==null
-                        ? _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (firstAya - 1)).Aya 
-                        : _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (firstAya - 1)).Aya_English;
-                else
-                    previousAya = _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (firstAya - 1)).Aya;
+            #region Vars
+            PositionWordsWithNextAndPrevModel resultModel = new PositionWordsWithNextAndPrevModel();
+            string previousAyaText = "";
+            string nextAyaText = "";
+            string positionAyah = "";
+            var position = _DbContext.Positions.Find(posId);
+            var posAyahFrom = _DbContext.QuranWords.FirstOrDefault( x=>x.ID  ==  position.FromQuranWordID); 
+            var posAyahTo = _DbContext.QuranWords.FirstOrDefault( x=>x.ID  ==  position.ToQuranWordID); 
 
-                previousAya += $"({firstAya - 1})";
+
+            var ayaIdFrom = posAyahFrom.AyaID;
+            var ayaIdTo = posAyahTo.AyaID;
+            var nextAya = new AyatView();
+            var prevAya = new AyatView();
+            #endregion
+            #region Logic
+            if (ayaIdFrom == ayaIdTo)
+            {
+                var ayah = _DbContext.AyatViews.FirstOrDefault(x => x.AyaID == ayaIdFrom);
+                positionAyah = ayah.AyaWords + " ( " + ayah.AyaNum + " ) ";
+                nextAya = _DbContext.AyatViews.FirstOrDefault(x => x.SoraID == ayah.SoraID && x.AyaNum == ayah.AyaNum + 1);
+                prevAya = _DbContext.AyatViews.FirstOrDefault(x => x.SoraID == ayah.SoraID && x.AyaNum == ayah.AyaNum - 1);
+                resultModel.AyahNumbers = "1";
             }
-            //1- ngeb 3dd el ayat ele fe el sora id dh (firstAyaSoraId)
-            nextAya += $"({lastAya})";
-            if (langCode == "en"&&!nomoreAyat)
-                nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English == null
-                    ? _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya
-                    : _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya_English;
             else
             {
-                if(!nomoreAyat)
-                    nextAya += _DbContext.QuranAyats.FirstOrDefault(x => x.SoraID == firstAyaSoraId && x.AyaNum == (lastAya + 1)).Aya;
-            }
-
-
-            //int lastAyaSoraId = _DbContext.QuranAyats.Find(lastAya).SoraID.Value;
-            //if (lastAyaSoraId != 0 && _DbContext.QuranSuars.Where(x => x.ID == lastAyaSoraId).Select(e => e.QuranAyats).Count() > lastAya)
-            //{
-            //    nextAyaWords =  _DbContext.QuranWords.Where(x => (x.AyaNum == lastAya + 1)&&x.SoraID==lastAyaSoraId).Select(x => x.Word).ToList();
-            //}
-
-            foreach (var item in ayatRange)
-            {
-                if (item != ayatRange[ayatRange.Count() - 1])
+                var ayahFrom = _DbContext.AyatViews.FirstOrDefault(x => x.AyaID == ayaIdFrom);
+                var ayahTo = _DbContext.AyatViews.FirstOrDefault(x => x.AyaID == ayaIdTo);
+                var ayahCount = ayahTo.AyaNum - ayahFrom.AyaNum;
+                if (ayahCount == 1)
                 {
-                    //var indexToInsert = allWords.Where(e => e.aya == item).Select(x => new { x.word, x.aya});
-                    allWords.Insert(allWords.FindLastIndex(s => s.aya == item) + 1, new { word = "", aya = item });
-                    var inde = allWords.FindLastIndex(s => s.aya == item);
-                    finalWords.Insert(allWords.FindLastIndex(s => s.aya == item), "(" + item + ")");
+                    positionAyah = ayahFrom.AyaWords + " ( " + ayahFrom.AyaNum + " ) " + ayahTo.AyaWords + " ( " + ayahTo.AyaNum + " ) ";
+                   
                 }
+                else
+                {
+
+                    for (int i = 0; i < ayahCount + 1; i++)
+                    {
+                        var current = _DbContext.AyatViews.FirstOrDefault(x => x.SoraID == ayahFrom.SoraID && x.AyaNum == ayahFrom.AyaNum + i);
+                        positionAyah += current.AyaWords + " ( " + current.AyaNum + " ) ";
+                    }
+                }
+                resultModel.AyahNumbers = (ayahCount + 1).ToString();
+                nextAya = _DbContext.AyatViews.FirstOrDefault(x => x.SoraID == ayahTo.SoraID && x.AyaNum == ayahTo.AyaNum + 1);
+                prevAya = _DbContext.AyatViews.FirstOrDefault(x => x.SoraID == ayahFrom.SoraID && x.AyaNum == ayahFrom.AyaNum - 1);
+
             }
-            resultModel.Words = finalWords;
-            resultModel.PreviousAyaWords = previousAya;
-            resultModel.NextAyaWords = nextAya;
+
+            #endregion
+            resultModel.PositionAyah = positionAyah;
+            resultModel.PreviousAyaWords = prevAya == null ? "" : prevAya.AyaWords + " ( " + prevAya.AyaNum + " ) "; 
+            resultModel.NextAyaWords = nextAya == null ? "" : nextAya.AyaWords + " ( " + nextAya.AyaNum + " ) "; 
             return resultModel;
         }
 

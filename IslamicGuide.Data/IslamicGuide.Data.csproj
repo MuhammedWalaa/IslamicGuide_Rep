@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AyatView.cs">
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AyaWord.cs">
+      <DependentUpon>IslamicCenter.tt</DependentUpon>
+    </Compile>
     <Compile Include="Book.cs">
       <DependentUpon>IslamicCenter.tt</DependentUpon>
     </Compile>
