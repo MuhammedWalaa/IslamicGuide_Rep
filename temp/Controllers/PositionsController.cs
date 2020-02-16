@@ -15,13 +15,16 @@ namespace IslamicGuide.App.Controllers
         private readonly SubjectService _subjectService;
         private readonly PositionService _positionService;
         private readonly RouteService _routeService;
+        private readonly CommonServices _commonService;
         public PositionsController()
         {
+            _commonService = new CommonServices();
             _subjectService = new SubjectService();
             _positionService = new PositionService();
             _routeService = new RouteService();
         }
         // GET: Positions
+        [Route("Index/{id}")]
         public ActionResult Index(int id, int? page)
         {
             string path;
@@ -102,27 +105,46 @@ namespace IslamicGuide.App.Controllers
             };
         }
 
-        public ActionResult GetSpecificContent(int positionId , int bookId)
+        public ActionResult GetSpecificContent(int positionId , int bookId,int? tab)
         {
             var positionDetials = _positionService.GetPositionDetials(positionId, LangCode);
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
             ViewBag.PositionId = positionId;
-            var allBooks = _positionService.GetPositionContent(positionId, bookId,LangCode,true);
+            var tabsVM = _commonService.GetBooksTabs();
+            ViewBag.tabs = tabsVM;
+            if (tab == null)
+            {
+                tab = tabsVM.First().Id;
+                ViewBag.Tab = tab;
+            }
+            else
+                ViewBag.Tab = tab;
 
-            var p = _positionService.GetPositionSpecificContent(positionId,LangCode,bookId);
+            // Start Book Logic
+            var bookList = _positionService.GetBooksByCategory(tab.Value, LangCode);
+            if (bookList != null)
+            {
+                ViewBag.BooksDDL = bookList;
+                ViewBag.SelectedBookId = bookId;
+            }
+
+            var bookContent = _positionService.GetPositionContent(positionId, bookId,LangCode,true);
+
             if (positionDetials != null)
             {
-                ViewBag.BooksDDL = allBooks;
-
-                if (p != null)
+                
+                if (bookContent != null)
                 {
-                    positionDetials.BookContent = p;
+                    positionDetials.BookContent = bookContent;
                 }
             }
+            // End Book Logic
+
             return View("GetPositionDetails",positionDetials);
         }
 
+        
         public ActionResult GetPositionDetails(int id, int? tab, int? page)
         {
             
@@ -130,20 +152,51 @@ namespace IslamicGuide.App.Controllers
             ViewBag.NextAya = positionDetials.NextAyaWords;
             ViewBag.PrevAya = positionDetials.PrevAyaWords;
             ViewBag.PositionId = id;
+            var tabsVM = _commonService.GetBooksTabs();
+            ViewBag.tabs = tabsVM;
             if (tab == null)
             {
-                tab = 4;
-                ViewBag.Tab = 4;
+                tab = tabsVM.First().Id;
+                ViewBag.Tab = tab;
             }
+
             else
                 ViewBag.Tab = tab;
-            var p = _positionService.GetPositionContent(id,tab,LangCode,false);
-            if (positionDetials != null && p != null && p.Count() != 0)
+
+
+            // Start Book Logic
+            var bookList = _positionService.GetBooksByCategory(tab.Value, LangCode);
+            var bookId = 0;
+            if (bookList.Count>0)
             {
-                ViewBag.BooksDDL = p;
-                positionDetials.BookContent = p;
-                ViewBag.tabId = tab;
+                ViewBag.BooksDDL = bookList;
+                bookId = bookList.First().BookId;
+                ViewBag.SelectedBookId = bookId;
+                var bookContent = _positionService.GetPositionContent(id, bookId, LangCode, true);
+
+                if (positionDetials != null)
+                {
+                    if (bookContent != null)
+                    {
+                        positionDetials.BookContent = bookContent;
+                    }
+                }
             }
+
+            
+            // End Book Logic
+
+            //var bookList = _positionService.GetBooksByCategory(tab.Value, LangCode);
+            //if (bookList.Count > 0)
+            //    ViewBag.BooksDDL = bookList;
+            //var p = _positionService.GetPositionContent(id,tab,LangCode,false);
+            //if (p != null && p.Count() != 0)
+            //{
+            //    ViewBag.BooksDDL = p;
+
+            //    positionDetials.BookContent = p;
+            //    ViewBag.tabId = tab;
+            //}
 
             var subject = _positionService.GetSubjectTitleForPosition(id);
             var subjectTitle = new Title()

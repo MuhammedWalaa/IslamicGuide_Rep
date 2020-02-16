@@ -25,7 +25,7 @@ namespace IslamicGuide.Data
         public string Title { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string Title_English { get; set; }
-        public Nullable<int> ImageId { get; set; }
+        public string ImageId { get; set; }
         public string HedayetAlAyat { get; set; }
         public string HedayetAlAyatEnglish { get; set; }
     

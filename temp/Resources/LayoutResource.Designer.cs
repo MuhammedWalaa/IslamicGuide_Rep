@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no content for this Aya.
+        /// </summary>
+        public static string ErrorEmptyContent {
+            get {
+                return ResourceManager.GetString("ErrorEmptyContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fajr.
         /// </summary>
         public static string Fajr {

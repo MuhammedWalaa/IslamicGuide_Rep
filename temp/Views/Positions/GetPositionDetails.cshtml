@@ -12,6 +12,7 @@
     else
     { arrow = "sab_banner_textAr"; }
 }
+@Html.Hidden("selectedBookId", new { @value = ViewBag.SelectedBookId, @id = "selectedBookId" })
 <div class="kode_sab_banner_wrap them_overlay">
     <!--CONTAINER START-->
     <div class="container">
@@ -27,7 +28,7 @@
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName : r.Text.ArabicName, r.ActionName, r.Controller, null, null)</strong></li>
                     }
-                    
+
                     else
                     {
                         <li><strong>@Html.ActionLink((langCode == "en") ? r.Text.EnglishName != null ? r.Text.EnglishName : "." : r.Text.ArabicName, r.ActionName, r.Controller, new { subjectId = r.Id }, null)</strong></li>
@@ -47,15 +48,12 @@
         <!--CONTAINER START-->
         <div style="margin-bottom:2%;margin-top:2%;" class="container">
             <div class="navigation">
-                <ul style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
+                <ul id="linksUL" style="margin-left:auto;margin-right:auto; max-width: fit-content;border: 3px solid #d2983d; float: none !important;">
+                    @foreach (var tab in ViewBag.tabs)
+                    {
+                        <li id=@tab.Id style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = tab.Id})">@((langCode == "en" && tab.EnglishCategory != null) ? tab.EnglishCategory : tab.Category)</a></li>
 
-                    <li id="4" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 4})">@Resources.LayoutResource.Tafsir</a></li>
-                    <li id="9" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 9})">@Resources.LayoutResource.Tajweed</a></li>
-                    <li id="7" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 7})">@Resources.LayoutResource.Readingprinciples</a></li>
-                    <li id="8" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 8})">@Resources.LayoutResource.Tlawa</a></li>
-                    <li id="6" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 6})">@Resources.LayoutResource.WordMeanings</a></li>
-                    <li id="10" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 10})">@Resources.LayoutResource.AsbabAlNuzul</a></li>
-                    <li id="5" style="margin-left:unset"><a href="@Url.Action("GetPositionDetails","Positions",new {id = @ViewBag.PositionId, tab = 5})">@Resources.LayoutResource.Targmat</a></li>
+                    }
                 </ul>
 
             </div>
@@ -70,7 +68,7 @@
     <!--KODE NAVIGATION WRAP END-->
     <input id="positionId" value="@ViewBag.PositionId" hidden="" />
     <div class="container">
-        
+
         <div class="card">
             <div class="card-body">
 
@@ -96,16 +94,17 @@
                     </div>
 
                 </div>
+                @if (ViewBag.BooksDDL != null)
+                {
+                    <div style="padding-bottom: 20px; padding-top: 20px" class="row">
+                        <div class="col-md-4">
+                            @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @onchange = "OnChangeBook()", @id = "Books", @style = "border:1px solid #e1ba7f !important; font-size:18pt; font-weight:300" })
+                        </div>
+                    </div>
+                }
                 @if (Model.BookContent != null)
                 {
-                    if (Model.BookContent.Count > 0)
-                    {
-                        <div style="padding-bottom:20px;padding-top:20px" class="row">
-                            <div class="col-md-4">
-                                @Html.DropDownList(Resources.LayoutResource.Books, new SelectList(ViewBag.BooksDDL, "BookId", "Title"), new { @onchange = "OnChangeBook()", @id = "Books", @style = "border:1px solid #e1ba7f !important; font-size:18pt; font-weight:300" })
-                            </div>
-                        </div>
-                    }
+
                     if (Model.BookContent.Count > 0)
                     {
                         <div class="card text-center">
@@ -114,33 +113,52 @@
                                     @Model.BookContent[0].Title
                                 </h3>
                             </div>
-                            <div style="font-family: Amiri-Quran; color: #535353;font-size: 1.8em;line-height: 1.7em; font-weight: bold;" class="card-body">
-                                <div style="padding-right: 7px; padding-left: 7px;">
-                                    @Html.Raw(Model.BookContent[0].ContentHTML)
+                            @if (!string.IsNullOrEmpty(Model.BookContent[0].ContentHTML))
+                            {
+                                <div style="font-family: Amiri-Quran; color: #535353; font-size: 1.8em; line-height: 1.7em; font-weight: bold;" class="card-body">
+                                    <div style="padding-right: 7px; padding-left: 7px;">
+                                        @Html.Raw(Model.BookContent[0].ContentHTML)
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div style="text-align: center; font-family: Amiri-Quran; color: #535353; font-size: 1.8em; line-height: 1.7em; font-weight: bold;" class="card-body">
+                                    <div style="padding-right: 7px; padding-left: 7px;">
+                                        @Resources.LayoutResource.ErrorEmptyContent
+                                    </div>
+                                </div>
+                            }
                         </div>
                     }
                 }
-
             </div>
         </div>
     </div>
 </div>
-<script>
-    const mySel = document.getElementById("Books");
-    let val = localStorage.getItem("Books");
-    if (val) mySel.value = val;
-</script>
-<script>
-    function OnChangeBook()
-    {
-        var selectedValue = document.getElementById("Books").value;
-        localStorage.setItem("Books", selectedValue);
-        var base_url = window.location.origin;
-        document.location = "/Positions/GetSpecificContent?positionId=" + @ViewBag.PositionId + "&bookId=" + selectedValue;
-    }
-    if (@ViewBag.Tab != null) {
-        document.getElementById("@ViewBag.Tab").firstChild.className += 'active';
-    }
-</script>
+
+
+
+@section scripts{
+
+    <script>
+        document.getElementById("Books").value = @ViewBag.SelectedBookId;
+        function OnChangeBook() {
+            var params = (new URL(document.location)).searchParams;
+            var selectedTab = params.get("tab");
+            console.log(selectedTab);
+            var bookDDL = document.getElementById("Books");
+            var selectedBookId = bookDDL.options[bookDDL.selectedIndex].value;
+            document.location = "/Positions/GetSpecificContent?positionId=" +
+                @ViewBag.PositionId +
+                "&bookId=" +
+                selectedBookId +
+                "&tab=" +
+                selectedTab;
+        }
+        if (@ViewBag.Tab != null) {
+            document.getElementById("@ViewBag.Tab").firstChild.className += 'active';
+        }
+    </script>
+}
+

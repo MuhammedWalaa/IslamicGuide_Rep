@@ -24,6 +24,24 @@ namespace IslamicGuide.Services.BussinessServices
             _commonServices = new CommonServices();
         }
 
+        public List<BookContentVM> GetBooksByCategory(int id, string lang)
+        {
+            var booksList = new List<BookContentVM>();
+            var books = _DbContext.Books.Where(x => x.CategoryID == id).ToList();
+            foreach (var book in books)
+            {
+                booksList.Add(
+                    new BookContentVM()
+                    {
+                        BookId = book.ID,
+                        Title = book.Title,
+                        Title_English = book.Title_English,
+                    });
+            }
+
+            return booksList;
+        }
+
         public PageListResult<PositionVM> AdjustingPositionData(PageFilterModel filter, int id)
         {
             List<PositionVM> positions = GetSubjectAndSubSubjectPositionsById(id, filter.LangCode);
@@ -58,26 +76,64 @@ namespace IslamicGuide.Services.BussinessServices
             return new SubjectVM()
             {
                 ID = positionSubject.SubjectID,
-                Title_English = positionSubject.Subject.Title_English,
-                Title = positionSubject.Subject.Title
+                Title_English = positionSubject.Subject !=null? positionSubject.Subject.Title_English:"",
+                Title = positionSubject.Subject !=null? positionSubject.Subject.Title:""
             };
         }
         public List<BookContentVM> GetPositionContent(int id, int? tabId, string langCode, bool isFromList)
         {
+
+            var bookid = tabId;
             if (isFromList)
             {
                 tabId = _DbContext.Books.FirstOrDefault(x => x.ID == tabId).CategoryID;
             }
+
             //id refers to PositionId , tabId referes to CategoryId
             //return a list of book contents
             //if first time visit we go to first tab (Tafsir)
-            BookContentVM bookContent = new BookContentVM();
-            return _DbContext.MapBookQurans.Where(x => x.PositionID == id && x.Book.CategoryID == tabId).Select(e => new BookContentVM
+            var position = _DbContext.Positions.Find(id);
+            var posAyahFrom = _DbContext.QuranWords.FirstOrDefault(x => x.ID == position.FromQuranWordID);
+            var posAyahTo = _DbContext.QuranWords.FirstOrDefault(x => x.ID == position.ToQuranWordID);
+
+
+            var ayaIdFrom = posAyahFrom.AyaNum;
+            var ayaIdTo = posAyahTo.AyaNum;
+            var suraId = posAyahFrom.SoraID;
+            var lastAyaInSura = _DbContext.QuranAyats.Where(x => x.SoraID == suraId).OrderByDescending(x=>x.AyaNum).FirstOrDefault().AyaNum;
+            if (ayaIdFrom != 1)
+                ayaIdFrom--;
+            if (ayaIdTo != lastAyaInSura)
+                ayaIdTo++;
+            string contentHTML = "";
+            for (int i = ayaIdFrom.Value; i <= ayaIdTo; i++)
             {
-                Title = langCode == "en" && e.Book.Title_English != null ? e.Book.Title_English : e.Book.Title,
-                ContentHTML = langCode == "en" && e.BookContent.BookContentHTML_English != null ? e.BookContent.BookContentHTML_English : e.BookContent.BookContentHTML,
-                BookId = e.BookID,
-            }).ToList();
+                var ayaContent = "";
+                ayaContent = langCode=="en" && _DbContext.QuranAyats.FirstOrDefault(x => x.AyaNum == i && x.SoraID == suraId).Aya_English !=null ? _DbContext.QuranAyats.FirstOrDefault(x => x.AyaNum == i && x.SoraID == suraId).Aya_English : _DbContext.QuranAyats.FirstOrDefault(x => x.AyaNum == i && x.SoraID == suraId).Aya;
+                ayaContent= "<p style='display:inline; color:#d2983d'>" + ayaContent + "</p>";
+                var newContent = _DbContext.BookContents.FirstOrDefault(x =>
+                        x.SouraId == suraId && x.AyahId == i && x.BookId == bookid)?.BookContent1;
+                if (newContent != null)
+                {
+                    newContent = ayaContent + ": " + newContent;
+                    contentHTML += newContent+ "</br>" ;
+                }
+            }
+            List<BookContentVM> bookContent = new List<BookContentVM>();
+            var booktitle =_DbContext.Books.Find(bookid)?.Title;
+            bookContent.Add(new BookContentVM()
+            {
+                Title = booktitle,
+                BookId = bookid.Value,
+                ContentHTML = contentHTML,
+            });
+            return bookContent;
+            //return _DbContext.MapBookQurans.Where(x => x.PositionID == id && x.Book.ID == bookid).Select(e => new BookContentVM
+            //{
+            //    Title = langCode == "en" && e.Book.Title_English != null ? e.Book.Title_English : e.Book.Title,
+            //    ContentHTML = langCode == "en" && e.BookContent.BookContentHTML_English != null ? contentHTML : contentHTML,
+            //    BookId = e.BookID,
+            //}).ToList();
 
             //var positionBookContents = _DbContext.MapBookQurans.Where(p => p.PositionID == e /*id*/).ToList();
 
@@ -91,7 +147,7 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 var posIDs = _DbContext.MapSubjectsQurans.Where(p => p.SubjectID == id).Select(x => x.PositionID).ToList();
                 //var strings = string.Join(" ", posIDs);
-                var positions = _DbContext.Positions.Where(p => posIDs.Contains(p.ID)).ToList();
+                var positions = _DbContext.Positions.Where(p => posIDs.Contains(p.ID)).OrderBy(x=>x.QuranWord.AyaID).ToList();
                 foreach (var item in positions)
                 {
                     string finalResult = "";
@@ -111,12 +167,13 @@ namespace IslamicGuide.Services.BussinessServices
                         var result = _commonServices.GetQuranWordsWithNextPrevAyah(item.ID, langCode);
 
                         var words_ayat = result.PositionAyah;
+                       
                         
-                        positionVMs.Add(new PositionVM { AyaNumbers = result.AyahNumbers, PosID = item.ID, SuraNum = item.QuranWord.SoraID.Value, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = words_ayat, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value, });
+                        positionVMs.Add(new PositionVM { AyaNumbers = result.AyahNumbers, PosID = item.ID, SuraNum = posAyahFrom.QuranSuar.p_Id, SuraTitle = suraTitle, AyatCount = ayatCount, QuranWords = words_ayat, From = item.FromQuranWordID.Value, To = item.ToQuranWordID.Value, });
                         
                     }
                 }
-                return positionVMs.OrderBy(x => x.SuraNum).ToList();
+                return positionVMs.OrderBy(x => x.SuraNum).ThenBy(x=>x.From).ToList();
 
             }
             return null;
@@ -136,7 +193,7 @@ namespace IslamicGuide.Services.BussinessServices
 
             var posAyahFrom = _DbContext.QuranWords.FirstOrDefault(x => x.ID == myPosition.FromQuranWordID);
 
-            suraTitle = langCode == "en"
+            suraTitle = langCode == "en" && posAyahFrom.QuranSuar.Title_English!=null
                 ? posAyahFrom.QuranSuar.Title_English
                 : posAyahFrom.QuranSuar.Title;
             #endregion

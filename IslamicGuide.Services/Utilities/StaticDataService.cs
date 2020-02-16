@@ -114,17 +114,18 @@ namespace IslamicGuide.Services.Utilities
         public LayoutStaticDataVM GetLayoutStaticData(string langCode)
         {
             string location = "";
-            string there = "";
-            List<StaticData> staticData = _db.StaticDatas.Where(d => d.Name == "Phone" || d.Name == "Email" || d.Name == "Location"||d.Name== "There1").ToList();
+            string miniAboutUs = "";
+            List<StaticData> staticData = new List<StaticData>();
+            staticData = _db.StaticDatas.Where(d => d.Name == "Phone" || d.Name == "Email" || d.Name == "Location"||d.Name== "MiniAboutUs").ToList();
             if (langCode == "en")
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location")?.Data_English;
-                
+                miniAboutUs = staticData.FirstOrDefault(d => d.Name == "MiniAboutUs")?.Data_English;
             }
             else
             {
                 location = staticData.FirstOrDefault(d => d.Name == "Location")?.Data_Arabic;
-                
+                miniAboutUs = staticData.FirstOrDefault(d => d.Name == "MiniAboutUs")?.Data_Arabic;
             }
             return new LayoutStaticDataVM()
             {
@@ -132,7 +133,7 @@ namespace IslamicGuide.Services.Utilities
                 Email = staticData.FirstOrDefault(d => d.Name == "Email")?.Data_Arabic,
                 Phone = staticData.FirstOrDefault(d => d.Name == "Phone")?.Data_Arabic,
                 Location = location,
-                There = there,
+                There = miniAboutUs,
             };
         }
     }

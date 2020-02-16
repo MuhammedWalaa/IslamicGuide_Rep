@@ -132,7 +132,7 @@ namespace IslamicGuide.Services.BussinessServices
             {
                 foreach (Subject item in subjectList)
                 {
-                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title_English ?? item.Title});
+                    subjects.Add(new SubjectVM { ID = item.ID,Title_English = item.ImageId,Title = item.Title_English ?? item.Title});
                 }
             }
             else
@@ -142,7 +142,7 @@ namespace IslamicGuide.Services.BussinessServices
                 newArList.AddRange(subjectList.Skip(4).Reverse());
                 foreach (Subject item in newArList)
                 {
-                    subjects.Add(new SubjectVM { ID = item.ID, Title = item.Title });
+                    subjects.Add(new SubjectVM { ID = item.ID, Title_English = item.ImageId, Title = item.Title });
                 }
             }
             //subjects

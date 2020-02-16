@@ -158,7 +158,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.Images' does not hav
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Title_English" Type="nvarchar" MaxLength="50" />
-          <Property Name="ImageId" Type="int" />
+          <Property Name="ImageId" Type="nvarchar" MaxLength="250" />
           <Property Name="HedayetAlAyat" Type="nvarchar" MaxLength="500" />
           <Property Name="HedayetAlAyatEnglish" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -702,7 +702,7 @@ warning 6002: The table/view 'DB_A506E9_QuranSubjectsDB.dbo.AyaWords' does not h
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Title_English" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ImageId" Type="Int32" />
+          <Property Name="ImageId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="HedayetAlAyat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="HedayetAlAyatEnglish" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MapSubjectsQurans" Relationship="DB_A506E9_ha4e4zeftModel.FK_MapSubjectsQuran_Subjects" FromRole="Subject" ToRole="MapSubjectsQuran" />

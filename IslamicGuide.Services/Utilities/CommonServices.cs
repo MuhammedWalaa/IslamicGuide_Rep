@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using IslamicGuide.Data.ViewModels.Shared;
@@ -44,6 +45,16 @@ namespace IslamicGuide.Services.Utilities
             return res;
         }
 
+        public List<Tab> GetBooksTabs()
+        {
+            var tabs = _DbContext.BookCategories.Select(s => new Tab()
+            {
+                Category = s.Category,
+                Id = s.ID,
+                EnglishCategory = s.Category_English
+            }).ToList();
+            return tabs;
+        }
         public PositionWordsWithNextAndPrevModel GetQuranWordsWithNextPrevAyah(int posId ,  string langCode)
         {
             #region Vars

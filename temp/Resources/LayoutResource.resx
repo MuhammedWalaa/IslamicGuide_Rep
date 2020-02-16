@@ -366,4 +366,7 @@
   <data name="ContactSuccess" xml:space="preserve">
     <value>We received your message, we will contact you as soon as possible</value>
   </data>
+  <data name="ErrorEmptyContent" xml:space="preserve">
+    <value>There is no content for this Aya</value>
+  </data>
 </root>

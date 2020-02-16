@@ -363,4 +363,7 @@
   <data name="ContactSuccess" xml:space="preserve">
     <value>تلقينا رسالتك ، وسوف نتصل بك في أقرب وقت ممكن</value>
   </data>
+  <data name="ErrorEmptyContent" xml:space="preserve">
+    <value>لا يوجد محتوي لهذه الأية</value>
+  </data>
 </root>

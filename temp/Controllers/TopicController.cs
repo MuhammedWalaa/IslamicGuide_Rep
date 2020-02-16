@@ -125,10 +125,21 @@ namespace IslamicGuide.App.Controllers
                         {
                             if (parent.ID != 1)
                             {
-                                imageToAdd = parent.Title;
-
-                                if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
-                                    imageToAdd = parent.ParentTitle;
+                                while (parentId != 1)
+                                {
+                                    parentId = _subjectService.GetSubjectParentId(parent.ID);
+                                    if (parentId != 1)
+                                    {
+                                        parent = _subjectService.GetSubjectById(parentId);
+                                        imageToAdd = parent.Title;
+                                    }
+                                    else if (parentId ==1&&imageToAdd=="")
+                                    {
+                                        imageToAdd = currentRoute.ParentTitle;
+                                    }
+                                }
+                                //if (parent.ParentTitle != null && parent.ParentTitle != "التقسيم الموضوعي للقرآن الكريم")
+                                //    imageToAdd = parent.ParentTitle;
                             }
                             else
                                 imageToAdd = currentRoute.Title;
